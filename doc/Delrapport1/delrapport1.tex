@@ -25,7 +25,23 @@ Her skal han tilføje en ny opgave. Vedkommende giver spørgsmålet en kategori 
 
 \paragraph{Løsning af opgaver}
 En studerende på kurset logger ind på hjemmesiden, vedkommende tages til en side, hvor man ser alle læringsmålene, og hvad man allerede har opfyldt. Den studerende vælger et af de tilgængelige læringsmål, og en side åbnes hvor man kan besvare en ny opgave inden for emnet. Den studerende svarer på spørgsmålet, og får feedback med det samme, og der er mulighed for hints, hvis spørgsmålet er svært.
+
+\subsection{Funktionelle krav}
+\begin{itemize}
+    \item Systemet skal være en hjemmeside med opgaver, som kan løses individuelt af studerende.
+    \item Der kræves login, så man kan følge med i den studerendes udvikling.
+    \item Sprøgsmålene skal være grupperede efter hvilke læringsmål de tester.
+    \item Læringsmålene skal igen grupperes efter et \emph{threshold}, som er et øvre læringsmål hvorefter der kommer sværere stof.
+    \item Der skal være hints til opgaverne, og der skal kunne gives feedback til hintsne.
+    \item Alle forsøg på opgavebesvarelser skal gemmes i en log.
 \end{itemize}
+Hvis der er tid i en af de senere iterationer, så er der en række ekstra krav som kan implementeres.
+\begin{itemize}
+    \item Loggen skal bruges til at give underviseren information om hvilke spørgsmål der er svære.
+    \item Der skal tilføjes en grad af \emph{gamification}, så der gives badges og point for fremskridt, og det bliver muligt at følge med i andres fremskridt.
+    \item Hvis man ikke har øvet sig i et emne i et stykke tid, så falder ens erfaring i området.
+\end{itemize}
+
 \section{Indledende projektplan}
 \section{System og softwarearkitektur}
 \section{Projektaftalen}
