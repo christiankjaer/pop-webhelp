@@ -16,9 +16,10 @@
 
 \section{Problemformulering}
 \subsection{Problemområde}
-Fra næste år af laver de markant om på datalogi uddannelsen, og i den forbindelse slår de bl.a. kurserne \emph{Introduktion til Programmering} og \emph{Objektorienteret programmering og design} sammen til et nyt kursus, hvor de i stedet for SML og Java vil bruge F\#. I den forbindelse forudser kursuslederne at det muligvis kan blive svært at finde tilstrækkeligt med instruktorer til at hjælpe de studerende med at lære F\# og med at løse opgaver i F\#, og kursuslederne vil derfor have automatiseret hele opgaveaspektet lidt. 
+Fra næste år af laver de markant om på datalogi uddannelsen, og i den forbindelse slår de bl.a. kurserne \emph{Introduktion til Programmering} og \emph{Objektorienteret programmering og design} sammen til et nyt kursus, hvor de i stedet for SML og Java vil bruge F\#. 
+I den forbindelse forudser kursuslederne at det muligvis kan blive svært at finde tilstrækkeligt med instruktorer til at hjælpe de studerende med at lære F\# og med at løse opgaver i F\#, og kursuslederne vil derfor have automatiseret hele opgaveaspektet lidt. 
 
-I den forbindelse har de bedt os om at hjælpe dem med at lave et slags interaktivt lærinssystem, hvor de studerende kan logge ind og løse en række opgaver der skal hjælpe dem med at lære F\#, de kan få hints til opgaverne hvis de har brug for det, kursuslederne kan tilføje nye og  ændre eller fjerne eksisterende spørgsmål, og desuden få en slags statistik over hvordan de studerende klarer opgaverne.
+I den forbindelse har de bedt os om at hjælpe dem med at lave et slags interaktivt lærinssystem, hvor de studerende kan logge ind og løse en række opgaver der skal hjælpe dem med at lære F\# og de kan få hints til opgaverne hvis de har brug for det, og kursuslederne kan tilføje nye og ændre eller fjerne eksisterende spørgsmål og få en slags statistik over hvordan de studerende klarer opgaverne.
 \subsection{Scenarier}
 \paragraph{Tilføjelse af spørgsmål}
 En underviser på kurset går ind på hjemmesiden. Vedkommende logger ind på siden, og han tages til en speciel side for administatorer.
@@ -26,6 +27,10 @@ Her skal han tilføje en ny opgave. Vedkommende giver spørgsmålet en kategori 
 
 \paragraph{Løsning af opgaver}
 En studerende på kurset logger ind på hjemmesiden, vedkommende tages til en side, hvor man ser alle læringsmålene, og hvad man allerede har opfyldt. Den studerende vælger et af de tilgængelige læringsmål, og en side åbnes hvor man kan besvare en ny opgave inden for emnet. Den studerende svarer på spørgsmålet, og får feedback med det samme, og der er mulighed for hints, hvis spørgsmålet er svært.
+\subsection{Ikke-funktionelle krav}
+De ikke-funktionelle krav til dette projekt er forholdsvis begrænsede. Det vigtigste krav er at det skal være nemt at tilføje nye opgaver til systemet, sådan at kursuslederne efterfølgende kan opbygge en tilstrækkelig samling af opgaver til de studerende.
+
+Derudover er det også det mere overordnere krav at det endelige produkt gerne skal være så simpelt som muligt, så det er nemt at overtage og udvide og bygge videre på efter at vi overgiver projektet til kunden. Det er bl.a. derfor at vi har valgt at bruge Flask frameworket og at lave projektet i Python, idet at det var hvad kunden foreslog og foretrak.
 \end{itemize}
 \section{Indledende projektplan}
 \section{System og softwarearkitektur}
