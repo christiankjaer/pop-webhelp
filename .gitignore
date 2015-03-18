@@ -56,8 +56,8 @@ docs/_build/
 target/
 
 # LaTeX
-.aux
-.log
+*.aux
+*.log
 
 # MAC OS
 .DS_Store
