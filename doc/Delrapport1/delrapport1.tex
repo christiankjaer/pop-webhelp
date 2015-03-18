@@ -1,4 +1,7 @@
 \documentclass[12pt]{article}
+\usepackage{eso-pic}
+
+
 \usepackage{amsmath} % flere matematikkommandoer
 \usepackage{amssymb}
 \usepackage[utf8]{inputenc} % æøå
@@ -8,11 +11,44 @@
 \usepackage[a4paper, margin = 1in]{geometry}
 \usepackage{graphicx}
 
-\title{Delrapport 1}
-\author{Christian Kjær Larsen, Lukas Svarre Engedal, Tobias Sønderskov Hansen}
+\author{
+  Christian Kjær Larsen\\
+  \texttt{wkm839@alumni.ku} \\[.4cm]
+  Lukas Svarre Engedal\\
+  \texttt{xxx123@alumni.ku} \\[.4cm]
+  Tobias Sønderskov Hansen\\
+  \texttt{xxx123@alumni.ku} \\[.4cm]
+  Instruktor: Aske Mottelson\\[.4cm]
+  \vspace{10cm}
+}
+
+\title{
+  \vspace{3cm}
+  \Huge{ProjDat 2015} \\[.25cm]
+  \large{Delrapport 1}
+}
 
 \begin{document}
-\maketitle
+
+\AddToShipoutPicture*{\put(0,0){\includegraphics*[viewport=0 0 700 600]{includes/nat-farve}}}
+\AddToShipoutPicture*{\put(0,602){\includegraphics*[viewport=0 600 700 1600]{includes/nat-farve}}}
+
+%% Change `ku-en` to `nat-en` to use the `Faculty of Science` header
+\AddToShipoutPicture*{\put(0,0){\includegraphics*{includes/nat-en}}}
+
+\clearpage\maketitle
+\thispagestyle{empty}
+
+\newpage
+
+\tableofcontents %generate table of content
+
+\thispagestyle{empty}
+
+\newpage
+\pagestyle{plain}
+\setcounter{page}{1}
+\pagenumbering{arabic}
 
 \section{Problemformulering}
 \subsection{Problemområde}
@@ -73,5 +109,13 @@ Under udviklingsprocessen holder vi jævnligt møder, hvor vi snakker om hvor la
 
 \section{Projektaftalen}
 \section{Intern projektetablering}
+
+\section{Afleveringsopgaver}
+\subsection{OOSE 1.6}
+\subsection{OOSE 1.8}
+\subsection{OOSE 2.(6, 7, 9, 10)}
+\subsection{OOSE 5.3}
+\subsection{OOSE 7.1}
+
 
 \end{document}
