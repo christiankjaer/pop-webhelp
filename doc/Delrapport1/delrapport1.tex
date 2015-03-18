@@ -64,6 +64,13 @@ Under udviklingsprocessen holder vi jævnligt møder, hvor vi snakker om hvor la
 
 
 \section{System og softwarearkitektur}
+\subsection{Delsystemer}
+\begin{itemize}
+    \item Der skal være et delsystem, som tager sig af opbevaring af vedvarende data. Det er fx opgaver, brugere og en log over besvarelser. Det vil nok være en databaseserver.
+    \item Der skal også være et delsystem, der tager sig af forretningslogikken. Der er i vores tilfælde nok en webserver, som tager imod forespørgsler fra brugere, og kommunikerer med databasen. Den vil nok også stå for at lave html, der vises i brugerens webbrowser.
+    \item Brugerens webbrowser er også et undersystem. Det sørger for at sende forespørgsler til vores webserver, og præsentere den returnerede html. Det er også her at designprocessen foregår, altså den store treenighed, nemlig html, css og javascript.
+\end{itemize}
+
 \section{Projektaftalen}
 \section{Intern projektetablering}
 
