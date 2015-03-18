@@ -79,6 +79,7 @@ target/
 *.mtc1
 *.out
 *.synctex.gz
+*.log
 
 # MAC OS
-.DS_Store
+*.DS_Store
