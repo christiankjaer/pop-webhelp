@@ -1,7 +1,5 @@
 \documentclass[12pt]{article}
 \usepackage{eso-pic}
-
-
 \usepackage{amsmath} % flere matematikkommandoer
 \usepackage{amssymb}
 \usepackage[utf8]{inputenc} % æøå
@@ -106,13 +104,14 @@ Under udviklingsprocessen holder vi jævnligt møder, hvor vi snakker om hvor la
 
 
 \section{System og softwarearkitektur}
+Da det endeige system er en webapplikation, så giver det og nogle forudbestemte delsystemer, som traditionelt knytter sig til webudvikling.
 \subsection{Delsystemer}
 \begin{itemize}
     \item Der skal være et delsystem, som tager sig af opbevaring af vedvarende data. Det er fx opgaver, brugere og en log over besvarelser. Det vil nok være en databaseserver.
-    \item Der skal også være et delsystem, der tager sig af forretningslogikken. Der er i vores tilfælde nok en webserver, som tager imod forespørgsler fra brugere, og kommunikerer med databasen. Den vil nok også stå for at lave html, der vises i brugerens webbrowser.
-    \item Brugerens webbrowser er også et undersystem. Det sørger for at sende forespørgsler til vores webserver, og præsentere den returnerede html. Det er også her at designprocessen foregår, altså den store treenighed, nemlig html, css og javascript.
+    \item Der skal også være et delsystem, der tager sig af forretningslogikken. Der er i vores tilfælde nok en webserver, som tager imod forespørgsler fra brugere, og kommunikerer med databasen. Den vil nok også stå for at lave html, der vises i brugerens webbrowser. Det er forskelligt alt efter hvilken platform man vælger, hvordan det skal struktureres.
+    \item Brugerens webbrowser er også et undersystem. Det sørger for at sende forespørgsler til vores webserver, og præsentere den returnerede HTML. Det er også her at designprocessen foregår, altså den store treenighed, nemlig HTML, CSS og JavaScript.
 \end{itemize}
-
+Det er også det, der traditionelt giver en klar rollefordeling i webudvikling, hvor man har frontend, som består i designet af brugerfladen i HTML, CSS og JavaScript. Der er backend, som igen består af databaseudvikling og udvikling af services og logik som frontenden så bruger.
 \section{Projektaftalen}
 \section{Intern projektetablering}
 
