@@ -50,6 +50,7 @@
 \pagenumbering{arabic}
 
 \section{Problemformulering}
+Opbygningen af problemformuleringen er beskrevet på figur 14-11 i \cite{OOSE}. Vi har i vores beskrivelse de samme punkter.
 \subsection{Problemområde}
 Fra næste år af laver de markant om på datalogi uddannelsen, og i den forbindelse slår de bl.a. kurserne \emph{Introduktion til Programmering} og \emph{Objektorienteret programmering og design} sammen til et nyt kursus, hvor de i stedet for SML og Java vil bruge F\#.
 I den forbindelse forudser kursuslederne at det muligvis kan blive svært at finde tilstrækkeligt med instruktorer til at hjælpe de studerende med at lære og løse opgaver i F\#, og kursuslederne vil derfor gerne have automatiseret hele opgaveaspektet så vidt muligt.
@@ -62,6 +63,7 @@ Hvis der bliver tid og overskud til det kan hele opgave aspektet også forbedres
 
 
 \subsection{Scenarier}
+I problemformuleringen skal indgå en række overordnede scenarier, som beskriver den generelle brug af systemet. Dette er med udgangspunkt i afsnit 4.4.2 i \cite{OOSE}. De er lidt mere generelle end dem i bogen, men dette er for at holde designet af systemet åbent for senere ændringer.
 \paragraph{Tilføjelse af spørgsmål}
 En underviser på kurset går ind på hjemmesiden. Vedkommende logger ind på siden, og han tages til en speciel side for administatorer.
 Her skal han tilføje en ny opgave. Vedkommende giver spørgsmålet en kategori efter hvilket læringsmål det opfylder. Opgavesteksten og de rigtige svar skrives ind. Eventuelt tilføjes hints.
@@ -69,7 +71,11 @@ Her skal han tilføje en ny opgave. Vedkommende giver spørgsmålet en kategori 
 \paragraph{Løsning af opgaver}
 En studerende på kurset logger ind på hjemmesiden, vedkommende tages til en side, hvor man ser alle læringsmålene, og hvad man allerede har opfyldt. Den studerende vælger et af de tilgængelige læringsmål, og en side åbnes hvor man kan besvare en ny opgave inden for emnet. Den studerende svarer på spørgsmålet, og får feedback med det samme, og der er mulighed for hints, hvis spørgsmålet er svært.
 
+\paragraph{Tjek af log}
+En underviser på kurset logger ind på hjemmesiden. Vedkommende vil gerne se, om de studerende har svært ved nogle af emnerne. Der findes et menupunkt der hedder \emph{Log}. Her ses en oversigt over spørgsmålene, og hvilke spørgsmål der bliver svaret meget forkert på.
+
 \subsection{Funktionelle krav}
+De funktionelle krav for systemet er i tråd med afsnit 4.3.1 i \cite{OOSE}, nemlig at de omhandler den specifikke brug af systemet.
 \begin{itemize}
     \item Systemet skal være en hjemmeside med opgaver, som kan løses individuelt af studerende.
     \item Der kræves login, så man kan følge med i den studerendes udvikling.
@@ -85,12 +91,11 @@ Hvis der er tid i en af de senere iterationer, så er der en række ekstra krav 
     \item Hvis man ikke har øvet sig i et emne i et stykke tid, så falder ens erfaring i området.
 \end{itemize}
 \subsection{Ikke-funktionelle krav}
-De ikke-funktionelle krav til dette projekt er forholdsvis begrænsede.
+De ikke-funktionelle krav til dette projekt er forholdsvis begrænsede. Vi har ret stor frihed i forhold til vores kunde. I afsnit 4.3.2 i \cite{OOSE} beskrives ikke-funktionelle krav som krav, der ikke direkte beskriver funktionaliteten, men mere generelle krav omkring ting som brugervenlighed, ydeevne, pålidelighed og hvor vedligeholdesesvenligt systemet er.
 
-Det vigtigste krav er at det skal være nemt at tilføje nye opgaver til systemet, sådan at kursuslederne efterfølgende kan opbygge en tilstrækkelig samling af opgaver til de studerende.
+I vores tilfælde er det vigtigste krav er at det skal være nemt at tilføje nye opgaver til systemet, sådan at kursuslederne efterfølgende kan opbygge en tilstrækkelig samling af opgaver til de studerende.
 
-Derudover er der også det mere overordnede krav at det endelige produkt gerne skal være så simpelt og modulært som muligt, sådan at det er nemt at overtage, udvide og bygge videre på efter at vi overgiver projektet til kunden. Det er bl.a. derfor at vi har valgt at bruge Flask frameworket og at lave projektet i Python, idet at det var hvad kunden foreslog og foretrak.
-
+Derudover er der også det mere overordnede krav, at det endelige produkt gerne skal være så simpelt og modulært som muligt, sådan at det er nemt at overtage, udvide og bygge videre på efter at vi overgiver projektet til kunden. Ingen af klienterne er web-udviklere, så det er også vigtigt at det valgte framework er veldokumenteret, og rimeligt simpelt at bruge.
 \subsection{Implementeringsmiljø}
 \begin{itemize}
 \item Studenter skal kunne bruge læringssystemet ved hjælp af en webbrowser der understøtter JavaScript.
@@ -98,9 +103,8 @@ Derudover er der også det mere overordnede krav at det endelige produkt gerne s
 \end{itemize}
 
 \section{Indledende projektplan}
-
 \subsection{Projektoversigt}
-Projektet omhandler udvikling af en webapplikation. Den skal understøtte undervisningen på førsteårskurset i programmering på DIKU. Applikationen skal hjælpe studerende med at forstå kernestof, ved at stille opgaver tilhørende de forskellige læringsmål. Underviserne skal så kunne tilføje hye opgaver, og indhente statistik på allerede stillede opgaver.
+Projektet omhandler udvikling af en webapplikation. Den skal understøtte undervisningen på førsteårskurset i programmering på DIKU. Applikationen skal hjælpe studerende med at forstå kernestof, ved at stille opgaver tilhørende de forskellige læringsmål. Underviserne skal så kunne tilføje nye opgaver, og indhente statistik på allerede stillede opgaver.
 \subsection{Resultatbeskrivelse}
 Til sidst i projektet er målet, at vi afleverer et fungerende system til kunden. Til prototypen skal der også være en mængde dokumentation til kunden, så vedkommende ved, hvordan løsningen er sammensat.
 Til kurset skal vi aflevere en mængde delrapporter, som dokumenterer vores arbejde i løbet af projektet.
@@ -135,7 +139,7 @@ Det endelige produkt vi har aftalt at vi skal aflevere med vores kunde er et læ
 Vi bruger e-mail til kommunikation, både internt i gruppen, og med klienten. På den måde er det nemt at overskue al kommunikation, der er foregået omkring projektet.
 Derudover tilstræber vi internt i gruppen, at mødes ca. en gang ugentligt, hvor vi snakker om projektet og får overblik over rapportskrivningen.
 \subsection{Arbejdssstyring}
-Internt i gruppen bruger vi Git til versionsstyring af alle dokumenter og kildekode. Så er det nemt at holde styr på hvad der er lavet, og vi kan arbejde på projektet uafhængigt af hinanden.
+Internt i gruppen bruger vi Git til versionsstyring af alle dokumenter og kildekode. Så er det nemt at holde styr på hvad der er lavet, og vi kan arbejde på projektet uafhængigt af hinanden. Vi arbejder også agilt, da det er et krav i forbindelse med projektet. Det betyder at vi under projektet ender med en serie af prototyper, hver med mere funktionalitet end den forrige.
 
 \section{Afleveringsopgaver}
 \subsection{OOSE 1.6}
