@@ -1,20 +1,20 @@
 {% extends "base.html" %}
-{% block title %}Login{% endblock %}
+{% block title %}Register{% endblock %}
 {% block body %}
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form action="" method="post" name="login" class="form-signin">
+            <form action="" method="post" name="register">
                 {{ form.hidden_tag() }}
-                <h2 class="form-signin-heading">Please sign in</h2>
+                <h2 class="form-signin-heading">Please enter credentials</h2>
                 {{ form.kuid(class = "form-control", placeholder = "KU-id") }}
                 {{ form.password(class = "form-control", placeholder = "Password") }}
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                {{ form.repeat_password(class = "form-control", placeholder = "Repeat password") }}
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
             </form>
         </div>
     </div>
-
-
 </div> <!-- /container -->
 {% endblock body %}
+
 
