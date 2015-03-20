@@ -80,6 +80,7 @@ target/
 *.out
 *.synctex.gz
 *.log
+*.pdf
 
 # MAC OS
 *.DS_Store
