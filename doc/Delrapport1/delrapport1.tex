@@ -9,10 +9,9 @@
 \usepackage{verbatim} % så man kan skrive ren tekst
 \usepackage[a4paper, margin = 1in]{geometry}
 \usepackage{graphicx}
-
 \author{
   Christian Kjær Larsen\\
-  \texttt{wkm839@alumni.ku.dk} \\[.4cm]
+  \texttt{011292} \\[.4cm]
   Lukas Svarre Engedal\\
   \texttt{210790} \\[.4cm]
   Tobias Sønderskov Hansen\\
@@ -72,7 +71,7 @@ Her skal han tilføje en ny opgave. Vedkommende giver spørgsmålet en kategori 
 En studerende på kurset logger ind på hjemmesiden, vedkommende tages til en side, hvor man ser alle læringsmålene, og hvad man allerede har opfyldt. Den studerende vælger et af de tilgængelige læringsmål, og en side åbnes hvor man kan besvare en ny opgave inden for emnet. Den studerende svarer på spørgsmålet, og får feedback med det samme, og der er mulighed for hints, hvis spørgsmålet er svært.
 
 \paragraph{Tjek af log}
-En underviser på kurset logger ind på hjemmesiden. Vedkommende vil gerne se, om de studerende har svært ved nogle af emnerne. Der findes et menupunkt der hedder \emph{Log}. Her ses en oversigt over spørgsmålene, og hvilke spørgsmål der bliver svaret meget forkert på.
+En underviser på kurset logger ind på hjemmesiden. Vedkommende vil gerne se, om de studerende har svært ved nogle af emnerne. Der findes et menupunkt der hedder \emph{Log}. Her ses en oversigt over spørgsmålene, og hvilke spørgsmål der bliver svaret ofte forkert på.
 
 \subsection{Funktionelle krav}
 De funktionelle krav for systemet er i tråd med afsnit 4.3.1 i \cite{OOSE}, nemlig at de omhandler den specifikke brug af systemet.
@@ -118,11 +117,11 @@ Under udviklingsprocessen holder vi jævnligt møder, hvor vi snakker om hvor la
 
 
 \section{System og softwarearkitektur}
-Da det endeige system er en webapplikation, så giver det og nogle forudbestemte delsystemer, som traditionelt knytter sig til webudvikling.
+Da det endelige system er en webapplikation, så giver det nogle forudbestemte delsystemer, som traditionelt knytter sig til webudvikling.
 \subsection{Delsystemer}
 \begin{itemize}
     \item Der skal være et delsystem, som tager sig af opbevaring af vedvarende data. Det er fx opgaver, brugere og en log over besvarelser. Det vil nok være en databaseserver.
-    \item Der skal også være et delsystem, der tager sig af forretningslogikken. Der er i vores tilfælde nok en webserver, som tager imod forespørgsler fra brugere, og kommunikerer med databasen. Den vil nok også stå for at lave html, der vises i brugerens webbrowser. Det er forskelligt alt efter hvilken platform man vælger, hvordan det skal struktureres.
+    \item Der skal også være et delsystem, der tager sig af forretningslogikken. Der er i vores tilfælde nok en webserver, som tager imod forespørgsler fra brugere, og kommunikerer med databasen. Den vil nok også stå for at lave HTML, der vises i brugerens webbrowser. Det er forskelligt alt efter hvilken platform man vælger, hvordan det skal struktureres.
     \item Brugerens webbrowser er også et undersystem. Det sørger for at sende forespørgsler til vores webserver, og præsentere den returnerede HTML. Det er også her at designprocessen foregår, altså den store treenighed, nemlig HTML, CSS og JavaScript.
 \end{itemize}
 Det er også det, der traditionelt giver en klar rollefordeling i webudvikling, hvor man har frontend, som består i designet af brugerfladen i HTML, CSS og JavaScript. Der er backend, som igen består af databaseudvikling og udvikling af services og logik som frontenden så bruger.
@@ -137,7 +136,7 @@ Det endelige produkt vi har aftalt at vi skal aflevere med vores kunde er et læ
 
 \section{Intern projektetablering}
 \subsection{Kommunikationsformer}
-Vi bruger e-mail til kommunikation, både internt i gruppen, og med klienten. På den måde er det nemt at overskue al kommunikation, der er foregået omkring projektet.
+Vi bruger email til kommunikation, både internt i gruppen, og med klienten. På den måde er det nemt at overskue al kommunikation, der er foregået omkring projektet.
 Derudover tilstræber vi internt i gruppen, at mødes ca. en gang ugentligt, hvor vi snakker om projektet og får overblik over rapportskrivningen.
 \subsection{Arbejdssstyring}
 Internt i gruppen bruger vi Git til versionsstyring af alle dokumenter og kildekode. Så er det nemt at holde styr på hvad der er lavet, og vi kan arbejde på projektet uafhængigt af hinanden. Vi arbejder også agilt, da det er et krav i forbindelse med projektet. Det betyder at vi under projektet ender med en serie af prototyper, hver med mere funktionalitet end den forrige.
