@@ -1,5 +1,5 @@
 from flask import url_for, redirect, render_template
-
+from flask_login import login_user
 from app import app, lm, db
 from models import User
 from forms import LoginForm
@@ -13,10 +13,11 @@ def index():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        u = User()
-        u.kuid = "wkm839"
-        login_user(u)
-        return redirect(url_for('index'))
+        print form.kuid.data
+        u = User.query.get(form.kuid.data)
+        if u.check_password(form.password.data):
+            login_user(u)
+            return redirect(url_for('index'))
     return render_template('login.html', form=form)
 
 @lm.user_loader
