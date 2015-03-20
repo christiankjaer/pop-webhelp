@@ -13,8 +13,10 @@ def index():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
+        # Look if the user is in the database.
         u = User.query.get(form.kuid.data)
         if u is None and form.password.data == form.repeat_password.data:
+            # If not and the repeated password is repeated, then go ahead.
             u = User(form.kuid.data, form.password.data)
             db.session.add(u)
             db.session.commit()
