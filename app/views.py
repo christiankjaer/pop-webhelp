@@ -12,18 +12,23 @@ def index():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
+    errors = []
     if form.validate_on_submit():
         # Look if the user is in the database.
         u = User.query.get(form.kuid.data)
-        if u is None and form.password.data == form.repeat_password.data:
-            # If not and the repeated password is repeated, then go ahead.
-            u = User(form.kuid.data, form.password.data)
-            db.session.add(u)
-            db.session.commit()
-            login_user(u)
-            flash('Succesfully created user %s' % (u.kuid))
-            return redirect(url_for('index'))
-    return render_template('register.html', form=form)
+        if u is None:
+            if form.password.data == form.repeat_password.data:
+                u = User(form.kuid.data, form.password.data)
+                db.session.add(u)
+                db.session.commit()
+                login_user(u)
+                flash('Succesfully created user %s' % (u.kuid))
+                return redirect(url_for('index'))
+            else:
+                errors.append('Passwords must match')
+        else:
+            errors.append('User already exists')
+    return render_template('register.html', form=form, errors=errors)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
