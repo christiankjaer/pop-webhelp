@@ -3,6 +3,9 @@ from flask_login import login_user, login_required, logout_user
 from app import app, lm, db
 from models import User
 from forms import LoginForm, RegisterForm
+from token import confirm_token, generate_confirmation_token
+from email import send_ku_email
+import datetime
 
 @app.route('/')
 @login_required
@@ -21,14 +24,38 @@ def register():
                 u = User(form.kuid.data, form.password.data)
                 db.session.add(u)
                 db.session.commit()
-                login_user(u)
-                flash('Succesfully created user %s' % (u.kuid))
-                return redirect(url_for('index'))
+
+                token = generate_confirmation_token(u.kuid)
+                confirm_url = url_for('confirm_account', token=token, _external=True)
+                html = render_template('confirmation_mail.html', confirm_url=confirm_url)
+                subject = 'Please confirm PoP-Webhelp account'
+                send_ku_email(u.kuid, subject, html)
+
+                flash('Succesfully created user %s. A confirmation mail has been sent' % (u.kuid))
+                return redirect(url_for('login'))
             else:
                 errors.append('Passwords must match')
         else:
             errors.append('User already exists')
     return render_template('register.html', form=form, errors=errors)
+
+@app.route('/confirm/<token>')
+def confirm_account(token):
+    try:
+        kuid = confirm_token(token)
+    except:
+        flash('The confirmation link is invalid or has expired.')
+    user = User.query.get(kuid)
+    if user.confirmed:
+        flash('Account already confirmed. Please login.')
+    else:
+        user.confirmed = True
+        user.confirmed_on = datetime.datetime.now()
+        db.session.add(user)
+        db.session.commit()
+        flash('Your account is confirmed')
+    return redirect(url_for('index'))
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -36,9 +63,12 @@ def login():
     if form.validate_on_submit():
         u = User.query.get(form.kuid.data)
         if u is not None and u.check_password(form.password.data):
-            login_user(u)
-            flash('Succesfully logged %s in' % (u.kuid))
-            return redirect(url_for('index'))
+            if u.confirmed:
+                login_user(u)
+                flash('Succesfully logged %s in' % (u.kuid))
+                return redirect(url_for('index'))
+            else:
+                flash('Please confirm your account')
     return render_template('login.html', form=form)
 
 @app.route('/logout', methods=['GET'])
