@@ -1,6 +1,8 @@
 import datetime
 from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
+from string import ascii_uppercase, digits
+from random import SystemRandom
 
 class User(db.Model):
     kuid = db.Column(db.String(6), primary_key=True)
@@ -24,6 +26,11 @@ class User(db.Model):
 
     def set_password(self, password):
         self.pwhash = generate_password_hash(password)
+
+    def reset_password(self):
+        newpw = ''.join(SystemRandom().choice(ascii_uppercase + digits) for _ in range(10))
+        self.set_password(newpw)
+        return newpw
 
     def is_active(self):
         return self.confirmed

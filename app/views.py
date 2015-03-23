@@ -77,7 +77,7 @@ def change_password():
     errors = []
     if form.validate_on_submit():
         u = current_user
-        if (form.password.data == form.repeat_password.data):
+        if (form.password.data == form.repeat_password.data) and u.check_password(form.old_password.data):
             u.set_password(form.password.data)
             db.session.add(u)
             db.session.commit()
@@ -85,6 +85,40 @@ def change_password():
             return redirect(url_for('index'))
         errors.append('Passwords must match')
     return render_template('changepw.html', form=form, errors=errors)
+
+@app.route('/resetpw/<kuid>')
+def request_password_reset(kuid):
+    u = User.query.get(kuid)
+
+    if u is not None:
+        token = generate_confirmation_token(u.kuid)
+        reset_url = url_for('reset_password', token=token, _external=True)
+        html = render_template('reset_mail.html', reset_url=reset_url)
+        subject = 'Your password reset link'
+        send_ku_email(u.kuid, subject, html)
+        flash('A reset link has been sent to your KU-mail')
+    else:
+        flash('User %s does not exist' % kuid)
+    return redirect(url_for('index'))
+
+
+@app.route('/reset/<token>')
+def reset_password(token):
+    try:
+        kuid = confirm_token(token)
+    except:
+        flash('The confirmation link is invalid or has expired.')
+    user = User.query.get(kuid)
+    if user is not None:
+        newpw = user.reset_password()
+        db.session.add(user)
+        db.session.commit()
+        html = render_template('password_mail.html', new_pw=newpw)
+        subject = 'Your new password'
+        send_ku_email(user.kuid, subject, html)
+        flash('The new password has been sent')
+
+    return redirect(url_for('login'))
 
 
 @app.route('/logout', methods=['GET'])

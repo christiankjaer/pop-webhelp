@@ -17,6 +17,12 @@
                 {% endfor %}
                 {{ form.hidden_tag() }}
                 <h2 class="form-signin-heading">Please enter new password</h2>
+                {{ form.old_password(class = "form-control", placeholder = "Old password") }}
+                {% if form.errors.old_password %}
+                    {% for e in form.errors.old_password %}
+                    <p class="text-danger">{{e}}</p>
+                    {% endfor %}
+                {% endif %}
                 {{ form.password(class = "form-control", placeholder = "Password") }}
                 {% if form.errors.password %}
                     {% for e in form.errors.password %}
