@@ -52,7 +52,7 @@
 \section{Problemformulering}
 Opbygningen af problemformuleringen er beskrevet på figur 14-11 i \cite{OOSE}. Vi har i vores beskrivelse de samme punkter.
 \subsection{Problemområde}
-Fra næste år af laver de markant om på datalogi uddannelsen, og i den forbindelse slår de bl.a. kurserne \emph{Introduktion til Programmering} og \emph{Objektorienteret programmering og design} sammen til et nyt kursus, hvor de i stedet for SML og Java vil bruge F\#.
+Fra næste år af laver de markant om på datalogiuddannelsen, og i den forbindelse slår de bl.a. kurserne \emph{Introduktion til Programmering} og \emph{Objektorienteret programmering og design} sammen til et nyt kursus, hvor de i stedet for SML og Java vil bruge F\#.
 I den forbindelse forudser kursuslederne at det muligvis kan blive svært at finde tilstrækkeligt med instruktorer til at hjælpe de studerende med at lære og løse opgaver i F\#, og kursuslederne vil derfor gerne have automatiseret hele opgaveaspektet så vidt muligt.
 
 I den forbindelse har de bedt os om at hjælpe dem med at lave et slags interaktivt læringssystem, hvor de studerende kan logge ind og løse en række opgaver der skal hjælpe dem med at lære F\#, og hvor de kan få hints til opgaverne hvis de har brug for det. Opgaverne er grupperede efter emner og sværhedsgrad sådan at de studerende kan starte med de simpleste og de nemmeste opgaver og så efterhånden som de klarer sig igennem dem og bliver bedre kan de gå videre til de mere avancerede og svære opgaver.
@@ -66,22 +66,22 @@ Hvis der bliver tid og overskud til det kan hele opgave aspektet også forbedres
 I problemformuleringen skal indgå en række overordnede scenarier, som beskriver den generelle brug af systemet. Dette er med udgangspunkt i afsnit 4.4.2 i \cite{OOSE}. De er lidt mere generelle end dem i bogen, men dette er for at holde designet af systemet åbent for senere ændringer.
 \paragraph{Tilføjelse af spørgsmål}
 En underviser på kurset går ind på hjemmesiden. Vedkommende logger ind på siden, og han tages til en speciel side for administatorer.
-Her skal han tilføje en ny opgave. Vedkommende giver spørgsmålet en kategori efter hvilket læringsmål det opfylder. Opgavesteksten og de rigtige svar skrives ind. Eventuelt tilføjes hints.
+Her skal han tilføje en ny opgave. Vedkommende giver spørgsmålet en kategori efter hvilket læringsmål det opfylder. Opgaveteksten og de rigtige svar skrives ind. Eventuelt tilføjes hints.
 
 \paragraph{Løsning af opgaver}
 En studerende på kurset logger ind på hjemmesiden, vedkommende tages til en side, hvor man ser alle læringsmålene, og hvad man allerede har opfyldt. Den studerende vælger et af de tilgængelige læringsmål, og en side åbnes hvor man kan besvare en ny opgave inden for emnet. Den studerende svarer på spørgsmålet, og får feedback med det samme, og der er mulighed for hints, hvis spørgsmålet er svært.
 
 \paragraph{Tjek af log}
-En underviser på kurset logger ind på hjemmesiden. Vedkommende vil gerne se, om de studerende har svært ved nogle af emnerne. Der findes et menupunkt der hedder \emph{Log}. Her ses en oversigt over spørgsmålene, og hvilke spørgsmål der ofte bliver svaret forkert på.
+En underviser på kurset logger ind på hjemmesiden. Vedkommende vil gerne se, om de studerende har svært ved nogle af emnerne. Der findes et menupunkt der hedder \emph{Log}. Her ses en oversigt over spørgsmålene, og hvilke spørgsmål, der ofte bliver svaret forkert på.
 
 \subsection{Funktionelle krav}
 De funktionelle krav for systemet er i tråd med afsnit 4.3.1 i \cite{OOSE}, nemlig at de omhandler den specifikke brug af systemet.
 \begin{itemize}
     \item Systemet skal være en hjemmeside med opgaver, som kan løses individuelt af studerende.
     \item Der kræves login, så man kan følge med i den studerendes udvikling.
-    \item Sprøgsmålene skal være grupperede efter hvilke læringsmål de tester.
+    \item Spørgsmålene skal være grupperede efter hvilke læringsmål de tester.
     \item Læringsmålene skal igen grupperes efter et \emph{threshold}, som er et øvre læringsmål hvorefter der kommer sværere stof.
-    \item Der skal være hints til opgaverne, og der skal kunne gives feedback til hintsne.
+    \item Der skal være hints til opgaverne, og der skal kunne gives feedback til hints.
     \item Alle forsøg på opgavebesvarelser skal gemmes i en log.
 \end{itemize}
 Hvis der er tid i en af de senere iterationer, så er der en række ekstra krav som kan implementeres.
