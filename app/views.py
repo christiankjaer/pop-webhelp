@@ -1,8 +1,8 @@
 from flask import url_for, redirect, render_template, flash
-from flask_login import login_user, login_required, logout_user
+from flask_login import login_user, login_required, logout_user, current_user
 from app import app, lm, db
 from models import User
-from forms import LoginForm, RegisterForm
+from forms import LoginForm, RegisterForm, ChangePasswordForm
 from token import confirm_token, generate_confirmation_token
 from email import send_ku_email
 import datetime
@@ -56,7 +56,6 @@ def confirm_account(token):
         flash('Your account is confirmed')
     return redirect(url_for('index'))
 
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -70,6 +69,23 @@ def login():
             else:
                 flash('Please confirm your account')
     return render_template('login.html', form=form)
+
+@app.route('/changepw', methods=['GET', 'POST'])
+@login_required
+def change_password():
+    form = ChangePasswordForm()
+    errors = []
+    if form.validate_on_submit():
+        u = current_user
+        if (form.password.data == form.repeat_password.data):
+            u.set_password(form.password.data)
+            db.session.add(u)
+            db.session.commit()
+            flash('Password successfully changed')
+            return redirect(url_for('index'))
+        errors.append('Passwords must match')
+    return render_template('changepw.html', form=form, errors=errors)
+
 
 @app.route('/logout', methods=['GET'])
 def logout():

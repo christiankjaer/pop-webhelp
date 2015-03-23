@@ -11,16 +11,19 @@ class User(db.Model):
 
     def __init__(self, kuid, password, confirmed=False, confirmed_on=None):
         self.kuid = kuid
-        self.pwhash = generate_password_hash(password)
         self.registered_on = datetime.datetime.now()
         self.confirmed = confirmed
         self.confirmed_on = confirmed_on
+        self.set_password(password)
 
     def __repr__(self):
         return '<User %r>' % (self.kuid)
 
     def check_password(self, password):
         return check_password_hash(self.pwhash, password)
+
+    def set_password(self, password):
+        self.pwhash = generate_password_hash(password)
 
     def is_active(self):
         return self.confirmed

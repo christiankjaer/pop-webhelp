@@ -11,3 +11,8 @@ class RegisterForm(Form):
     password = PasswordField('password', validators=[DataRequired()])
     repeat_password = PasswordField('password', validators=[DataRequired()])
 
+class ChangePasswordForm(Form):
+    password = PasswordField('password', validators=[DataRequired()])
+    repeat_password = PasswordField('password', validators=[DataRequired()])
+
+
