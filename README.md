@@ -8,3 +8,8 @@ PKSU Projekt 2015
 
 ##
 Applikationen kan så køres med `python run.py`
+Først skal der dog lige oprettes en database med `python create_db.py`
+Derudover skal der sættes gmail bruger/password
+På Linux/Max er det med
+* `export APP_MAIL_USERNAME="gmail-user"`
+* `export APP_MAIL_PASSWORD="gmail-password"`
