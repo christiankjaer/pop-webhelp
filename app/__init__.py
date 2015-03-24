@@ -15,3 +15,4 @@ lm.login_view = 'login'
 mail = Mail(app)
 
 from app import views
+from app.user import views

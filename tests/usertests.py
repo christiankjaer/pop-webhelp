@@ -1,7 +1,7 @@
 import os
 from flask_sqlalchemy import SQLAlchemy
 from app import app, db, lm
-from app.models import User
+from app.user.models import User
 from config import basedir
 import unittest
 
@@ -19,33 +19,33 @@ class UserTestCase(unittest.TestCase):
         db.drop_all()
 
     def test_add_user(self):
-        user = User('abc123', 'testpw')
+        user = User('wkm839', 'testpw')
         db.session.add(user)
         db.session.commit()
-        user = User.query.get('abc123')
+        user = User.query.get('wkm839')
         assert user != None
-        assert user.kuid == 'abc123'
+        assert user.kuid == 'wkm839'
         assert user.check_password('testpw')
 
     def test_log_in(self):
-        user = User('abc123', 'testpw')
+        user = User('wkm839', 'testpw', confirmed=True)
         db.session.add(user)
         db.session.commit()
         rv = self.app.post('/login', data = dict(
-            kuid='abc123',
+            kuid='wkm839',
             password='testpw'), follow_redirects=True)
 
-        assert 'Succesfully logged abc123 in' in rv.data
+        assert 'Succesfully logged wkm839 in' in rv.data
 
     def test_register(self):
         rv = self.app.post('/register', data = dict(
-            kuid='abc123',
-            password='test',
-            repeat_password='test'), follow_redirects=True)
-        user = User.query.get('abc123')
+            kuid='wkm839',
+            password='testw',
+            repeat_password='testw'), follow_redirects=True)
+        user = User.query.get('wkm839')
         assert user != None
-        assert user.kuid == 'abc123'
-        assert user.check_password('test')
+        assert user.kuid == 'wkm839'
+        assert user.check_password('testw')
 
 
 if __name__ == '__main__':
