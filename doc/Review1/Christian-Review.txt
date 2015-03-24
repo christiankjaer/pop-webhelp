@@ -1,0 +1,17 @@
+Problemformulering beskriver fint det produkt, der skal fremstilles. Der
+mangler bare en mere gennemgående beskrivelse af problemet der skal løses. Det
+man kunne savne er, at det, som er jeres problemformulering nok burde have
+været splittet op. Så skulle den også beskrive de gængse brugsmønstre og egentlige
+krav til systemet, både funktionelle og ikke-funktionelle. Lige nu er det
+skrevet sammen, så det er lidt svært at finde hovede og hale i.
+
+Projektet er fint i omfang, og kan sagtens realiseres inden for den givne tid.
+Det er fint med en solid rollefordeling, og det i skriver som er et instance
+diagram, er nok det mere en beskrivelse af nedbrydelsen af projektet i mindre
+delopgaver.
+
+I kapitlet om arkitektur, så er i nok gået lige specifikt nok til værks.
+Allerede nu har i skrevet om hvilke knapper, funktioner og data i vil have.
+Det er måske tidligt, allerede inden i ved præcist hvordan det skal se ud.
+
+I har skrevet kravene under projektaftalen?
