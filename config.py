@@ -22,3 +22,4 @@ MAIL_DEFAULT_SENDER = 'from@example.com'
 
 # App specific settings
 USER_EMAIL_SUFFIX = '@alumni.ku.dk'
+TESTING = False

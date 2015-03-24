@@ -8,4 +8,4 @@ def send_ku_email(to, subject, template):
         recipients=[to + app.config['USER_EMAIL_SUFFIX']],
         html = template,
         sender=app.config['MAIL_DEFAULT_SENDER'])
-    mail.send(msg)
+    msg.send(mail)
