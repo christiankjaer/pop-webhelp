@@ -1,3 +1,5 @@
-Flask==0.10.1
-Flask-SQLAlchemy==2.0
-Flask-WTF==0.11
+Flask
+Flask-SQLAlchemy
+Flask-WTF
+Flask-Login
+Flask-Mail
