@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc} % æøå
+\usepackage[T1]{fontenc} % mere æøå
+\usepackage[danish]{babel} % orddeling
+\usepackage{verbatim} % så man kan skrive ren tekst
+\usepackage[a4paper, margin = 1in]{geometry}
+
+\begin{document}
+
+\title{
+  \Huge{Review af delrapport 1} \\
+  \Large{Gæsteparkeringssytem}
+}
+\author{
+  Christian Kjær Larsen \\
+  Lukas Svarre Engedal \\
+  Tobias Sønderskov Hansen \\
+}
+\maketitle
+
+\section{Stil}
+Det første man lægger mærke til når man læser rapporten er de utrolig mange stavefejl, grammatiske fejl og manglende ord, hvilket gør rapporten både træls og svær at læse. 
+Det kan klart anbefales lige at lave en grundig gennemlæsning af rapporten inden den afleveres med fokus på den slags, nogle af fejlene burde endda kunne fanges af en helt almindelige stavekontrol. \\
+Desuden er opdelingen af afsnit og underafsnit lidt underlig. F.eks. virker det mærkeligt at have afsnit der hedder 2.5.1.1, 2.5.1.2 og 2.5.1.3 når der ikke er nogen afsnit der hedder 2.5.2. 
+Det ville også have været rigtig fint med en indholdsfortegnelse så man ligesom kunne skabe sig et overblik over alle de mange afsnit og underafsnit. \\
+Det er fint at I inkluderer diverse grafer og diagrammer, men der mangler lidt både en kort figurtekst og en mere detaljeret beskrivelse af flere af figurerne før man som læser virkelig ville kunne få noget ud af dem. \\
+
+\section{Indhold}
+Problemformulering beskriver fint det produkt, der skal fremstilles, der mangler bare en mere gennemgående beskrivelse af problemet der skal løses. 
+Det man kunne savne er, at det, som er jeres problemformulering nok burde have været splittet op. Så skulle den også beskrive de gængse brugsmønstre og egentlige krav til systemet, både funktionelle og ikke-funktionelle. Lige nu er meget af det skrevet sammen, så det er lidt svært at finde hovede og hale i. 
+I har f.eks. skrevet de funktionelle og de ikke-funktionelle kravene under projektaftalen, hvor de i litteraturen står under problemformulering-afsnittet. \\
+Projektet er fint i omfang, og burde kunne realiseres inden for den givne tid, og det virker også som et projekt der kan føre til et produkt som kan være brugbart for en gruppe mennesker. \\
+Det lyder som en god idé løbende at afprøve systemet ved at lade nogle af slutbrugerne teste det, da det nok er ret vigtigt at systemet ikke bliver for avanceret hvis helt almindelige mennesker skal kunne bruge det. \\
+
+Det er fint med en solid rollefordeling. Jeres instance diagram er dog nok mere en beskrivelse af nedbrydelsen af projektet i mindre delopgaver.  \\
+Der mangler måske lidt information om den interne projektetablering. Hvordan vil i f.eks. arbejde sammen i gruppen ud over at mødes ugentlig? Det er især relevant hvis i har haft problemer med dårlig kommunikation tidligere. 
+Kommunikerer I vha. emails, facebook, skype? Eller nøjes i med at mødes og snakke? Og hvad bruger i f.eks. i forhold til arbejde sammen, Git, Dropbox, noget tredje? \\
+Der mangler også lidt information om hvordan i vil kommunikere med kunden, også i forhold til møder, og med brugerne. \\
+
+I kapitlet om arkitektur, så er I nok gået lige specifikt nok til værks. Allerede nu har I skrevet om hvilke knapper, funktioner og data I vil have. Det er måske lige tidligt nok, allerede inden I ved præcist hvordan systemet skal se ud. \\
+Det er også fint at i allerede har en idé om hvordan jeres database skal se ud, men det skal I måske også tænke lidt mere over eller forklare lidt bedre. 
+Hvad betyder f.eks. 'tidspunkt' attributten i 'P-plads' skemaet? Er det ikke det samme som i 'Udlåning' skemaet? \\
+Og er alle brugere i systemet samtidig brugere af p-pladserne, altså skal alle kunne reservere pladser og har alle brug for det, også admins? Fordi ellers skulle man måske splitte 'Bruger' skemaet op i to, et for brugerne og deres information og et med bruger id og de to udlånings attributter. \\
+
+\end{document}
