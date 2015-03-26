@@ -2,7 +2,7 @@ from flask import url_for, redirect, render_template, flash
 from flask_login import login_user, login_required, logout_user, current_user
 from app import app, lm, db
 from models import User
-from forms import LoginForm, RegisterForm, ChangePasswordForm
+from forms import LoginForm, RegisterForm, ChangePasswordForm, RequestPasswordResetForm
 from token import confirm_token, generate_confirmation_token
 from email import send_ku_email
 import datetime
@@ -81,20 +81,22 @@ def change_password():
         errors.append('Passwords must match')
     return render_template('user/changepw.html', form=form, errors=errors)
 
-@app.route('/resetpw/<kuid>')
-def request_password_reset(kuid):
-    u = User.query.get(kuid)
-
-    if u is not None:
-        token = generate_confirmation_token(u.kuid)
-        reset_url = url_for('reset_password', token=token, _external=True)
-        html = render_template('user/reset_mail.html', reset_url=reset_url)
-        subject = 'Your password reset link'
-        send_ku_email(u.kuid, subject, html)
-        flash('A reset link has been sent to your KU-mail')
-    else:
-        flash('User %s does not exist' % kuid)
-    return redirect(url_for('index'))
+@app.route('/resetpw', methods=['GET', 'POST'])
+def request_password_reset():
+    form = RequestPasswordResetForm()
+    if form.validate_on_submit():
+        u = User.query.get(form.kuid.data)
+        if u is not None:
+            token = generate_confirmation_token(u.kuid)
+            reset_url = url_for('reset_password', token=token, _external=True)
+            html = render_template('user/reset_mail.html', reset_url=reset_url)
+            subject = 'Your password reset link'
+            send_ku_email(u.kuid, subject, html)
+            flash('A reset link has been sent to your KU-mail')
+            return redirect(url_for('index'))
+        else:
+            flash('User %s does not exist' % kuid)
+    return render_template('user/resetpw.html', form=form)
 
 
 @app.route('/reset/<token>')
@@ -105,14 +107,14 @@ def reset_password(token):
         flash('The confirmation link is invalid or has expired.')
     user = User.query.get(kuid)
     if user is not None:
-        newpw = user.reset_password()
-        db.session.add(user)
-        db.session.commit()
+        newpw = User.random_password()
         html = render_template('user/password_mail.html', new_pw=newpw)
         subject = 'Your new password'
         send_ku_email(user.kuid, subject, html)
+        user.set_password(newpw)
+        db.session.add(user)
+        db.session.commit()
         flash('The new password has been sent')
-
     return redirect(url_for('login'))
 
 

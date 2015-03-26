@@ -16,4 +16,5 @@ class ChangePasswordForm(Form):
     password = PasswordField('password', validators=[DataRequired()])
     repeat_password = PasswordField('password', validators=[DataRequired()])
 
-
+class RequestPasswordResetForm(Form):
+    kuid = StringField('kuid', validators=[DataRequired()])

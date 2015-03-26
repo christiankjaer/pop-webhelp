@@ -43,3 +43,7 @@ class User(db.Model):
 
     def get_id(self):
         return self.kuid
+
+    @staticmethod
+    def random_password():
+        return ''.join(SystemRandom().choice(ascii_uppercase + digits) for _ in range(10))
