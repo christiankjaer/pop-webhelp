@@ -40,6 +40,11 @@ class UserTestCase(unittest.TestCase):
         rv = self.app.get('/logout', follow_redirects=True)
         assert current_user == None
 
+        rv = self.app.post('/login', data = dict(
+            kuid='abc123',
+            password='fakepw'), follow_redirects=True)
+        assert current_user == None
+
     def test_register(self):
         rv = self.app.post('/register', data = dict(
             kuid='abc123',
@@ -125,7 +130,6 @@ class UserTestCase(unittest.TestCase):
             old_password = 'test2pw',
             password = 'test',
             repeat_password = 'testw'))
-
         user = User.query.get('abc123')
         assert user != None
         assert user.check_password('test2pw')
@@ -160,11 +164,9 @@ class UserTestCase(unittest.TestCase):
         rv = self.app.post('/resetpw', data = dict(
             kuid = 'abc123'), follow_redirects = True)
         assert 'does not exist' in rv.data
-
         user = User('abc123', 'testpw', confirmed=True)
         db.session.add(user)
         db.session.commit()
-
         rv = self.app.post('/resetpw', data = dict(
         kuid = 'abc123'), follow_redirects = True)
         assert 'link has been sent' in rv.data
