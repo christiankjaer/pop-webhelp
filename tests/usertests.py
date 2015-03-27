@@ -8,7 +8,6 @@ from config import basedir
 import unittest
 
 class UserTestCase(unittest.TestCase):
-
     def setUp(self):
         app.config['TESTING'] = True
         app.config['WTF_CSRF_ENABLED'] = False
@@ -84,6 +83,19 @@ class UserTestCase(unittest.TestCase):
         rv = self.app.get('/confirm/%s' % token, follow_redirects=True)
         assert 'Account already confirmed' in rv.data
 
+    def test_confirm_invalid(self):
+        user = User('abc123', 'testpw')
+        db.session.add(user)
+        db.session.commit()
+        old_salt = app.config['SECURITY_PASSWORD_SALT']
+        app.config['SECURITY_PASSWORD_SALT'] = 'something_else'
+        token = generate_confirmation_token(user.kuid)
+        app.config['SECURITY_PASSWORD_SALT'] = old_salt
+        rv = self.app.get('/confirm/%s' % token, follow_redirects=True)
+        user = User.query.get('abc123')
+        assert user is not None
+        assert not user.confirmed
+        assert 'The confirmation link is invalid or has expired.' in rv.data
 
     def test_login_unconfirmed(self):
         user = User('abc123', 'testpw')
@@ -119,7 +131,6 @@ class UserTestCase(unittest.TestCase):
         assert user.check_password('test2pw')
         assert 'Passwords must match' in rv.data
 
-
     def test_reset_pw(self):
         user = User('abc123', 'testpw', confirmed=True)
         db.session.add(user)
@@ -144,6 +155,19 @@ class UserTestCase(unittest.TestCase):
         assert user is not None
         assert user.check_password('testpw')
         assert 'The confirmation link is invalid or has expired.' in rv.data
+
+    def test_request_reset(self):
+        rv = self.app.post('/resetpw', data = dict(
+            kuid = 'abc123'), follow_redirects = True)
+        assert 'does not exist' in rv.data
+
+        user = User('abc123', 'testpw', confirmed=True)
+        db.session.add(user)
+        db.session.commit()
+
+        rv = self.app.post('/resetpw', data = dict(
+        kuid = 'abc123'), follow_redirects = True)
+        assert 'link has been sent' in rv.data
 
 if __name__ == '__main__':
     unittest.main()

@@ -36,19 +36,19 @@ def register():
 
 @app.route('/confirm/<token>')
 def confirm_account(token):
-    try:
-        kuid = confirm_token(token)
-    except:
+    kuid = confirm_token(token)
+    if not kuid:
         flash('The confirmation link is invalid or has expired.')
     user = User.query.get(kuid)
-    if user.confirmed:
-        flash('Account already confirmed. Please login.')
-    else:
-        user.confirmed = True
-        user.confirmed_on = datetime.datetime.now()
-        db.session.add(user)
-        db.session.commit()
-        flash('Your account is confirmed')
+    if user is not None:
+        if user.confirmed:
+            flash('Account already confirmed. Please login.')
+        else:
+            user.confirmed = True
+            user.confirmed_on = datetime.datetime.now()
+            db.session.add(user)
+            db.session.commit()
+            flash('Your account is confirmed')
     return redirect(url_for('index'))
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -95,7 +95,7 @@ def request_password_reset():
             flash('A reset link has been sent to your KU-mail')
             return redirect(url_for('index'))
         else:
-            flash('User %s does not exist' % kuid)
+            flash('User %s does not exist' % form.kuid.data)
     return render_template('user/resetpw.html', form=form)
 
 
