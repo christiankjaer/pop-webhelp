@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import login_user
 from app import app, db, lm
 from app.user.models import User
+from app.user.token import generate_confirmation_token, confirm_token
 from config import basedir
 import unittest
 
@@ -63,6 +64,30 @@ class UserTestCase(unittest.TestCase):
         assert user != None
         assert user.check_password('test2pw')
 
+    def test_reset_pw(self):
+        user = User('abc123', 'testpw', confirmed=True)
+        db.session.add(user)
+        db.session.commit()
+        token = generate_confirmation_token(user.kuid)
+        rv = self.app.get('/reset/%s' % token, follow_redirects=True)
+        user = User.query.get('abc123')
+        assert user is not None
+        assert not user.check_password('testpw')
+        assert 'The new password has been sent' in rv.data
+
+    def test_reset_pw_invalid(self):
+        user = User('abc123', 'testpw', confirmed=True)
+        db.session.add(user)
+        db.session.commit()
+        old_salt = app.config['SECURITY_PASSWORD_SALT']
+        app.config['SECURITY_PASSWORD_SALT'] = 'something_else'
+        token = generate_confirmation_token(user.kuid)
+        app.config['SECURITY_PASSWORD_SALT'] = old_salt
+        rv = self.app.get('/reset/%s' % token, follow_redirects=True)
+        user = User.query.get('abc123')
+        assert user is not None
+        assert user.check_password('testpw')
+        assert 'The confirmation link is invalid or has expired.' in rv.data
 
 if __name__ == '__main__':
     unittest.main()

@@ -101,9 +101,8 @@ def request_password_reset():
 
 @app.route('/reset/<token>')
 def reset_password(token):
-    try:
-        kuid = confirm_token(token)
-    except:
+    kuid = confirm_token(token)
+    if not kuid:
         flash('The confirmation link is invalid or has expired.')
     user = User.query.get(kuid)
     if user is not None:
