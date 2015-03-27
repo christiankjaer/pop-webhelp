@@ -1,6 +1,6 @@
 import os
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import login_user
+from flask_login import login_user, current_user
 from app import app, db, lm
 from app.user.models import User
 from app.user.token import generate_confirmation_token, confirm_token
@@ -29,7 +29,7 @@ class UserTestCase(unittest.TestCase):
         assert user.kuid == 'abc123'
         assert user.check_password('testpw')
 
-    def test_log_in(self):
+    def test_log_in_out(self):
         user = User('abc123', 'testpw', confirmed=True)
         db.session.add(user)
         db.session.commit()
@@ -38,6 +38,8 @@ class UserTestCase(unittest.TestCase):
             password='testpw'), follow_redirects=True)
 
         assert 'Succesfully logged abc123 in' in rv.data
+        rv = self.app.get('/logout', follow_redirects=True)
+        assert current_user == None
 
     def test_register(self):
         rv = self.app.post('/register', data = dict(
@@ -50,6 +52,47 @@ class UserTestCase(unittest.TestCase):
         assert str(user) == '<User %s>' % user.kuid
         assert not user.is_anonymous()
         assert user.check_password('testw')
+
+        # Check if user can't exist twice
+        rv = self.app.post('/register', data = dict(
+            kuid='abc123',
+            password='testw',
+            repeat_password='testw'), follow_redirects=True)
+
+        assert 'User already exists' in rv.data
+
+    def test_register_error(self):
+        rv = self.app.post('/register', data = dict(
+            kuid='abc123',
+            password='test',
+            repeat_password='testw'), follow_redirects=True)
+        user = User.query.get('abc123')
+        assert user == None
+        assert 'Passwords must match' in rv.data
+
+    def test_confirmation(self):
+        user = User('abc123', 'testpw')
+        db.session.add(user)
+        db.session.commit()
+        user = User.query.get('abc123')
+        assert user != None
+        token = generate_confirmation_token(user.kuid)
+        rv = self.app.get('/confirm/%s' % token, follow_redirects=True)
+        assert 'Your account is confirmed' in rv.data
+        user = User.query.get('abc123')
+        assert user.confirmed
+        rv = self.app.get('/confirm/%s' % token, follow_redirects=True)
+        assert 'Account already confirmed' in rv.data
+
+
+    def test_login_unconfirmed(self):
+        user = User('abc123', 'testpw')
+        db.session.add(user)
+        db.session.commit()
+        rv = self.app.post('/login', data = dict(
+            kuid='abc123',
+            password='testpw'), follow_redirects=True)
+        assert 'Please confirm your account' in rv.data
 
     def test_changepw(self):
         user = User('abc123', 'testpw', confirmed=True)
@@ -65,6 +108,17 @@ class UserTestCase(unittest.TestCase):
         user = User.query.get('abc123')
         assert user != None
         assert user.check_password('test2pw')
+
+        rv = self.app.post('/changepw', data = dict(
+            old_password = 'test2pw',
+            password = 'test',
+            repeat_password = 'testw'))
+
+        user = User.query.get('abc123')
+        assert user != None
+        assert user.check_password('test2pw')
+        assert 'Passwords must match' in rv.data
+
 
     def test_reset_pw(self):
         user = User('abc123', 'testpw', confirmed=True)
