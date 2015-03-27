@@ -47,6 +47,8 @@ class UserTestCase(unittest.TestCase):
         user = User.query.get('abc123')
         assert user != None
         assert user.kuid == 'abc123'
+        assert str(user) == '<User %s>' % user.kuid
+        assert not user.is_anonymous()
         assert user.check_password('testw')
 
     def test_changepw(self):

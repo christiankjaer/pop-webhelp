@@ -19,18 +19,13 @@ class User(db.Model):
         self.set_password(password)
 
     def __repr__(self):
-        return '<User %r>' % (self.kuid)
+        return '<User %s>' % (self.kuid)
 
     def check_password(self, password):
         return check_password_hash(self.pwhash, password)
 
     def set_password(self, password):
         self.pwhash = generate_password_hash(password)
-
-    def reset_password(self):
-        newpw = ''.join(SystemRandom().choice(ascii_uppercase + digits) for _ in range(10))
-        self.set_password(newpw)
-        return newpw
 
     def is_active(self):
         return self.confirmed
