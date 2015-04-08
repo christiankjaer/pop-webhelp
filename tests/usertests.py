@@ -44,6 +44,7 @@ class UserTestCase(unittest.TestCase):
             kuid='abc123',
             password='fakepw'), follow_redirects=True)
         assert current_user == None
+        assert 'Wrong KU-id or password' in rv.data
 
     def test_register(self):
         rv = self.app.post('/register', data = dict(

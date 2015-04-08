@@ -1,10 +1,10 @@
 from flask import url_for, redirect, render_template, flash
 from flask_login import login_user, login_required, logout_user, current_user
 from app import app, lm, db
-from models import User
-from forms import LoginForm, RegisterForm, ChangePasswordForm, RequestPasswordResetForm
-from token import confirm_token, generate_confirmation_token
-from email import send_ku_email
+from .models import User
+from .forms import LoginForm, RegisterForm, ChangePasswordForm, RequestPasswordResetForm
+from .token import confirm_token, generate_confirmation_token
+from .email import send_ku_email
 import datetime
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -63,6 +63,8 @@ def login():
                 return redirect(url_for('index'))
             else:
                 flash('Please confirm your account')
+        else:
+            flash('Wrong KU-id or password')
     return render_template('user/login.html', form=form)
 
 @app.route('/changepw', methods=['GET', 'POST'])
@@ -98,7 +100,6 @@ def request_password_reset():
             flash('User %s does not exist' % form.kuid.data)
     return render_template('user/resetpw.html', form=form)
 
-
 @app.route('/reset/<token>')
 def reset_password(token):
     kuid = confirm_token(token)
@@ -116,10 +117,10 @@ def reset_password(token):
         flash('The new password has been sent')
     return redirect(url_for('login'))
 
-
 @app.route('/logout', methods=['GET'])
 def logout():
     logout_user()
+    flash('You have been logged out')
     return redirect(url_for('login'))
 
 @lm.user_loader

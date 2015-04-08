@@ -5,6 +5,7 @@ from string import ascii_uppercase, digits
 from random import SystemRandom
 
 class User(db.Model):
+    """This class represents a user"""
     kuid = db.Column(db.String(6), primary_key=True)
     pwhash = db.Column(db.String(160), nullable=False)
     registered_on = db.Column(db.DateTime, nullable=False)
@@ -22,9 +23,11 @@ class User(db.Model):
         return '<User %s>' % (self.kuid)
 
     def check_password(self, password):
+        """Checks the password against the stored"""
         return check_password_hash(self.pwhash, password)
 
     def set_password(self, password):
+        """Sets the users password"""
         self.pwhash = generate_password_hash(password)
 
     def is_active(self):
@@ -41,4 +44,5 @@ class User(db.Model):
 
     @staticmethod
     def random_password():
+        """Generate a random password with 10 characters"""
         return ''.join(SystemRandom().choice(ascii_uppercase + digits) for _ in range(10))
