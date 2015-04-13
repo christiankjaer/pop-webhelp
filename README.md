@@ -16,4 +16,10 @@ På Linux/Mac er det med
 * `export APP_MAIL_USERNAME="gmail-user"`
 * `export APP_MAIL_PASSWORD="gmail-password"`
 
-På Windows... pas... skriv det ind i `config.py` manuelt
+På Windows fra cmd
+* `set APP_MAIL_USERNAME=gmail-user`
+* `set APP_MAIL_PASSWORD=gmail-password`
+
+På Windows fra PowerShell
+* `$env:APP_MAIL_USERNAME="gmail-user"`
+* `$env:APP_MAIL_PASSWORD="gmail-password"`
