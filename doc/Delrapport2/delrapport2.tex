@@ -56,6 +56,21 @@
 
 \section{Formål og rammer}
 \label{sec:formal_og_rammer}
+I dette afsnit beskrives systemets formål og rammer ved \textit{FACTOR}-kriteriet.
+\begin{description}
+    \item[Funktionalitet]
+        Besvare og oprette programmeringsspørgsmål, Analysere de studerendes fremskridt.
+    \item[Anvendelsesområde]
+        Loginsystem, Spørgsmålshåndtering, Spørgsmålsbesvarelse, Analyse.
+    \item[Betingelser]
+        Undervisere har begrænsede resurser. Studerende har svært ved programmering.
+    \item[Teknologi]
+        Webapplikation med teknologi der er nemt at sætte sig ind i.
+    \item[Objekter]
+        Studerende, Spørgsmål, Hints, Undervisere.
+    \item[Ansvar]
+        E-læringssystem til hjælp af studerende med programmering.
+\end{description}
 \section{Kravspecifikation}
 \label{sec:kravspecifikation}
 
@@ -84,7 +99,6 @@ I afsnit 4.3.2 i \cite{OOSE} beskrives ikke-funktionelle krav som krav, der ikke
 
 Det vigtigste krav er at det skal være nemt at tilføje nye opgaver til systemet, sådan at kursuslederne efterfølgende kan opbygge en tilstrækkelig samling af opgaver til de studerende. Derudover er det også et mere overordnet krav at det endelige produkt gerne skal være så simpelt og modulært som muligt, sådan at det er nemt at overtage, udvide og bygge videre på efter at vi overgiver projektet til kunden. Ingen af kunderne er web-udviklere, så det er også vigtigt at det valgte framework er veldokumenteret og rimeligt simpelt at bruge.
 
-
 \subsection{Use cases}
 \label{sub:use_cases}
 
@@ -112,6 +126,48 @@ Det vigtigste krav er at det skal være nemt at tilføje nye opgaver til systeme
         \bottomrule
     \end{tabular}
     \caption{Use case omkring opretning af brugere}
+    \label{fig:use_case1}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \begin{tabular}{r p{10cm}}
+        \toprule
+        \textit{Navn på use-case:} & \verb!BesvarOpgave! \\
+        \hline
+        \textit{Deltagende aktører:} & Påbegyndt af en studerende \\
+        \hline
+        \textit{Hændelser:} & \begin{enumerate}[nolistsep]
+            \item En studerende åbner hjemmesiden.
+        \end{enumerate}  \\
+        \hline
+        \textit{Startbetingelse:} & En studerende der er logget ind. \\
+        \hline
+        \textit{Slutbetingelse:} & En studerende der er logget ind og har besvaret en opgave. \\
+        \bottomrule
+    \end{tabular}
+    \caption{Use case omkring besvarelse af opgaver.}
+    \label{fig:use_case1}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \begin{tabular}{r p{10cm}}
+        \toprule
+        \textit{Navn på use-case:} & \verb!OpretOpgave! \\
+        \hline
+        \textit{Deltagende aktører:} & Påbegyndt af en administrator \\
+        \hline
+        \textit{Hændelser:} & \begin{enumerate}[nolistsep]
+            \item En studerende åbner hjemmesiden.
+        \end{enumerate}  \\
+        \hline
+        \textit{Startbetingelse:} & En administrator der er logget ind. \\
+        \hline
+        \textit{Slutbetingelse:} & En administrator der er logget ind og har oprettet en opgave. \\
+        \bottomrule
+    \end{tabular}
+    \caption{Use case omkring besvarelse af opgaver.}
     \label{fig:use_case1}
 \end{figure}
 
