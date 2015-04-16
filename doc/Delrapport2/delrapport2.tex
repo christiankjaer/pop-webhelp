@@ -18,7 +18,7 @@
   Lukas Svarre Engedal\\
   \texttt{210790} \\[.4cm]
   Tobias Sønderskov Hansen\\
-  \texttt{243095} \\[.4cm]
+  \texttt{240395} \\[.4cm]
   Instruktor: Aske Mottelson\\[.4cm]
   \vspace{10cm}
 }
@@ -55,8 +55,24 @@
 \subsection{Designing for usability}
 \label{sub:designing_for_usability}
 
-\subsection{A rational design process}
+\subsection{A Rational Design Process: How and Why to Fake It}
 \label{sub:a_rational_design_process}
+\paragraph{Referat}
+I artiklen \cite{parnas1986rational} prøver forfatterne at beskrive en ideel udviklingsproces og den dokumentation der kræves. Hovedargumentet i artiklen er dog, at selvom man ikke har fuldt grundlag for en altomfattende kravspecifikation, så skal man stadig producere dokumentation som hvis man havde.
+
+Derfor mener forfatterne, at hvis man ikke har en helt beskrivende kravspecifikation, så er det vigtigt at kende processen, så man som udvikler kan hjælpe designerne med, at finde de manglende informationer. Det gør, at man tidligere i processen kan få fundet fejl i designet, så de ikke kommer med i det endelige system.
+
+Den metode som Parnas og Clements foreslår i artiklen er, at man starter med at dokumentere krav. Dette er med til at gøre det lettere at estimere tidsforbruget, blive klog på problemområdet for alle involverede og hjælpe med ting som test, inkonsistens og udskiftning af personer, da den specifikke viden er skrevet ned.
+
+Derefter mener de, at man skal nebryde arbejdet i moduler, så det kan uddelegeres til forskellige udviklere. Grænsefladerne mellem modulerne og selve kravene til modulerne dokumenteres grundigt. Til sidst produceres kildekoden, og produktet er klart. Der argumenteres for, at hvis alt forarbejdet er gjort grundigt, så er programmeringen ligetil.
+
+Hele titlen på artiklen, det at \emph{fake} den ideelle udviklingsproces går ud på, at hvis man følger den ideelle proces, så når man mangler et stykke information, så noterer man dette i designdokumentationen. Når man så finder de rigtige svar senere, så rettes dokumentationen hele vejen ned i kæden. Dette skulle så meget gerne producere en korrekt specifikation i sidste ende.
+
+\paragraph{Perspektivering}
+- Kapitel 4 i OOSE, Kravspecifikation.
+- Kapitel 6 i OOSE, Delsystemer, Grænseflader.
+- Kapitel 14 i OOSE, Work products, breakdown.
+
 
 \section{Abstract}
 \label{sec:abstract}
@@ -206,11 +222,5 @@ Det vigtigste krav er at det skal være nemt at tilføje nye opgaver til systeme
 \bibliographystyle{alpha}
 \bibliography{refs}{}
 
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=0.8\linewidth]{name.ext}
-    \caption{Name}
-    \label{fig:name}
-\end{figure}
 
 \end{document}
