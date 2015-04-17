@@ -77,6 +77,8 @@ I artiklen beskrives hvordan dette dokument kan bruges til at nedbryde problemet
 
 Artiklen omtaler processen som ideel. Den omtalte proces er i praksis det vi kender som \emph{waterfall}-modellen. I mere moderne softwareudvikling stiller man spørgsmålstegn ved, om det er den optimale proces. Det er især efter udbredelsen af agile metoder som \emph{SCRUM} \cite{sutherland2010scrum} og andre. Her erkender man, at det er nærmest umuligt at designe software på samme måde som man designer broer på, da der simpelthen er for mange ukendte når man starter. Dette udbedres så ved at beskrive kravene samtidig med at systemet udviklet, da det så er nennere at finde fejl i designet undervejs.
 
+Artiklen omtaler processen som ideel. Den omtalte proces er i praksis det vi kender som \emph{waterfall}-modellen. I mere moderne softwareudvikling stiller man spørgsmålstegn ved, om det er den optimale proces. Det er især efter udbredelsen af agile metoder som \emph{SCRUM} \cite{sutherland2010jeff} og andre. Her erkender man, at det er nærmest umuligt at designe software på samme måde som man designer broer på, da der simpelthen er for mange ukendte når man starter. Dette udbedres så ved at beskrive kravene samtidig med at systemet udviklet, da det så er nemmere at finde fejl i designet undervejs.
+
 \section{Abstract}
 \label{sec:abstract}
 Our project is about developing an e-learning system for use in the newly created introductory computer science course at the Institute of Computer Science at Copenhagen University, called \emph{Programmering og Problemløsning}. Our clients are Martin Dybdal and Oleksandr Shturmov, both employed at the institute, who will be in charge of the course. In the course, the students will be taught the F\# language.
@@ -204,7 +206,9 @@ På Figur \ref{fig:use_case_model} kan man se vores use case model diagram. Vi h
         \textit{Deltagende aktører:} & Påbegyndt af en administrator \\
         \hline
         \textit{Hændelser:} & \begin{enumerate}[nolistsep]
-            \item En studerende åbner hjemmesiden.
+            \item Vedkommende trykker på \verb!Add Question!.
+            \item En YAML fil uploades i en formular.
+            \item Brugeres informeres om at spørgsmålet er oprettet.
         \end{enumerate}  \\
         \hline
         \textit{Startbetingelse:} & En administrator der er logget ind. \\
@@ -226,13 +230,21 @@ Ikke implementeret
   \caption{BCE model for vores system.}
   \label{fig:bce_model}
 \end{figure}
-På Figur \ref{fig:bce_model} kan man se vores BCE model. Modellen har to entity-objekter, fire controller-objekter samt tre boundary-objekter. \\
-De to entity-objekter er \emph{Bruger} og \emph{Opgave}. \emph{Bruger} indeholder informationer om hver enkelt bruger som login-oplysninger, hvor vidt brugeren er en studerende eller en admin samt hvilke opgaver brugeren allerede har løst. \emph{Opgave} indeholder alle informationerne om de enkelte opgaver, det er både selve opgaven der skal løses samt statistik omkring hvordan det er gået når studerende har løst opgaven. \\
-Modellen har tre boundary-objekter, hvor det første man vil støde på er \emph{login}-brugergrænsefladen, der sammen med \emph{login}-controlleren sørger for at logge brugerne ind i systemet. Derefter vil man så enten have adgang til \emph{Bruger}-grænsefladen eller \emph{Admin}-grænsefladen afhængig af hvad ens status er, og derfra har man adgang til en række controllers. \\
+På Figur \ref{fig:bce_model} kan man se vores BCE model. Modellen har to entity-objekter, fire controller-objekter samt tre boundary-objekter.
+
+De to entity-objekter er \emph{Bruger} og \emph{Opgave}. \emph{Bruger} indeholder informationer om hver enkelt bruger som login-oplysninger, hvor vidt brugeren er en studerende eller en admin samt hvilke opgaver brugeren allerede har løst. \emph{Opgave} indeholder alle informationerne om de enkelte opgaver, det er både selve opgaven der skal løses samt statistik omkring hvordan det er gået når studerende har løst opgaven.
+
+Modellen har tre boundary-objekter, hvor det første man vil støde på er \textit{login}-brugergrænsefladen, der sammen med \emph{login}-controlleren sørger for at logge brugerne ind i systemet. Derefter vil man så enten have adgang til \emph{Bruger}-grænsefladen eller \emph{Admin}-grænsefladen afhængig af hvad ens status er, og derfra har man adgang til en række controllers.
+
 Modellen har fire controller-objekter, hvor den første er \emph{login}-controlleren der som tidligere nævnt står for at logge brugere ind i systemet. Som studerende vil man have adgang til \emph{BesvarOpgave}-controlleren, der snakker sammen med \emph{Bruger} og \emph{Opgave} og sørger for at stille brugeren de rigtige opgaver. Som admin vil man have adgang til to controllers, nemlig \emph{EvaluerOpgave}-controlleren og \emph{AdministrerOpgave}-controlleren. \emph{EvaluerOpgave}-controlleren snakker sammen med \emph{Opgave} og giver en adgang til de forskellige slags statistik der bliver samlet om opgaverne, og \emph{AdministrerOpgave}-controlleren snakker ligeledes sammen med \emph{Opgave} og giver en adgang til at slette eller ændre i eksisterende opgaver samt tilføje nye.
 
 \subsection{Sekvens-diagrammer}
-Ikke implementeret
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/OpretBrugerUseCase.png}
+    \caption{Sekvensdiagram over opretning af bruger}
+    \label{fig:opret_bruger_sekvens}
+\end{figure}
 
 \section{Systemdesign}
 \label{sec:systemdesign}
@@ -261,6 +273,7 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 16-04-2015 & LSE & Tilføjet UseCaseModel og BCE model \\
 16-04-2015 & CKL & Tilføjet review af Parnas of Clements. \\
 17-04-2015 & LSE & Tilføjet abstract \\
+17-04-2015 & CKL & Tilføjet use cases og sekvensdiagram. \\
 \end{tabular}
 
 \section{Timeline}
