@@ -56,6 +56,25 @@
 \section{Review}
 \subsection{Designing for usability}
 \label{sub:designing_for_usability}
+\paragraph{Referat}
+Artiklen beskriver en overordnet metode til design og udvikling af brugervenlige systemer. Denne tilgangsvinkel består af 3 grundlæggende principper: tidligt fokus på brugerne, empiriske målinger og iterativt design. Artiklen tager udgangspunkt i udviklingen af IBM's \emph{Audio Distribution System} (ADS) hvor disse principper blev anvendt. 
+
+Ved første princip påstås at det er nødvendigt for systemudviklerne fra starten at sætte sig ind i hvem systemets tiltænkte målgruppe er. Metoden anbefaler at udviklerne danner sig en \emph{forståelse} for brugerne, frem for blot at lave en karakterisering. Udover selve brugerne, skal udviklerne også sætte sig ind i hvilken sammenhæng systemet skal bruges og hvilke opgaver det skal løse, samt hvordan et evt. nuværende system løser disse opgaver.
+
+Andet princip, \emph{empiriske målinger}, beskriver brugen af prototyper og simulationer til at teste mod målgruppen for at studere dennes reaktion. Personer der selv har været med til at udvikle systemet vil næsten uundgåeligt anvende systemet anderledes end en typisk bruger, derfor er det vigtigt at systemet også bliver afprøvet af målgruppen, og at målgruppens respons bruges i den efterfølgende udvikling.
+
+\emph{Iterativt design} går ud på at de problemer der opdages under afprøvningen skal løses. Dette sikres ved at opdele systemudviklingen i en masse gentagelser af design og afprøvning, hvor resultaterne af afprøvningen i én iteration påvirker deisgnet i den næste. Dette er i kontrast til mere lineære modeller, hvor der i stedet udarbejdes en detaljeret kravspecifikation, og en egentlig afprøvning først sker til sidst i projektet.
+
+Når udviklere præsenteres for disse principper er reaktionen typisk at det virker meget intuitivt og mange påstår at de allerede anvender disse principper. Ifølge undersøgelser foretaget af folkene bag metoden tyder det dog på, at der er forskel på hvad systemudviklerne selv siger de gør, og hvad de egentlig gør i praksis.
+
+\paragraph{Perspektivering}
+De tre principper fra artiklen indgår alle i et vist omfang i systemudviklingsmetoden præsenteret i OOSE.
+
+Med hensyn til tidligt fokus på brugerne, så inkorporerer OOSE's fremgangsmåde bl.a. dette i form af en \emph{requirements elicitation}, der beskriver de forskelllige typer brugere og i hvilke sammenhænge de systemet anvendes. 
+
+Artiklen understreger vigtigheden af at kunne foretage ændringer baseret på brugernes reaktioner, derfor er det vigtigt at systemet er struktureret på en måde der tager højde for dette. Man kan sammenligne dette med \emph{Entity-Boundary-Control} fremgangsmåden beskrevet i OOSE, der fokuserer på at opdele systemet i nogle forholdsvis uafhængige elementer, så der eksempelvis kan ændres i brugergrænsefladen uden at det påvirker resten af programmet.
+
+Både metoden beskrevet i artiklen og de fremgangsmåder præsenteret i OOSE er agile. Den grundlæggende metode er altså fælles for dem alle, udviklingen sker i iterationer af henholdsvis design og brugertest.
 
 \subsection{A Rational Design Process: How and Why to Fake It}
 \label{sub:a_rational_design_process}
