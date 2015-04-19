@@ -224,7 +224,7 @@ På figur \ref{fig:use_case1} ses en beskrivelse af use casen, hvor en studerend
     \label{fig:use_case2}
 \end{figure}
 
-Et af kravene for systemet er, at det skal være nemt for underviserne i kurset at oprette nye opgaver. Da underviserne selv er dataloger, så vil det være optimalt hvis man kan lave spørgsmålene i et struktureret filformat. Vi har foreslået \verb!YAML!, derfor er use-casen på figur \ref{fig:use_case3} meget simpel, og består kun af fil-upload.
+Et af kravene for systemet er, at det skal være nemt for underviserne i kurset at oprette nye opgaver. Da underviserne selv er dataloger, så vil det være optimalt hvis man kan lave spørgsmålene i et struktureret filformat. Vi har foreslået \verb!YAML!, derfor er use-casen på Figur \ref{fig:use_case3} meget simpel, og består kun af fil-upload.
 \begin{figure}[htpb]
     \centering
     \begin{tabular}{r p{10cm}}
@@ -249,13 +249,13 @@ Et af kravene for systemet er, at det skal være nemt for underviserne i kurset 
 \end{figure}
 
 \subsection{Klassediagram}
-Se figur \ref{fig:class_diagram}.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/ClassDiagram.png}
     \caption{Klassediagram af problemområdet}
     \label{fig:class_diagram}
 \end{figure}
+På Figur \ref{fig:class_diagram} kan man se vores klassediagram. Størstedelen af klasserne har at gøre med opgaverne og deres inddeling i forskellige grupper samt de forskellige typer af opgaver der findes. Derudover er der et par klasser der har at gøre med den log der føres over de studerendes opgavebesvarelser, for at de kursusansvarlige kan følge med i hvad der går godt og mindre godt. Endeligt er der en klasse for studerende og en klasse for administratorne.
 
 \subsection{BCE-model}
 \begin{figure}[htpb]
@@ -279,6 +279,7 @@ Modellen har fire controller-objekter, hvor den første er \emph{login}-controll
     \caption{Sekvensdiagram over opretning af bruger}
     \label{fig:opret_bruger_sekvens}
 \end{figure}
+På Figur \ref{fig:opret_bruger_sekvens} kan man se sekvens-diagrammet for den første use case, der beskriver hvordan en studerende opretter sig som bruger i systemet.
 
 \begin{figure}[htpb]
     \centering
@@ -286,6 +287,7 @@ Modellen har fire controller-objekter, hvor den første er \emph{login}-controll
     \caption{Sekvensdiagram over opretning af spørgsmål}
     \label{fig:opret_sp_sekvens}
 \end{figure}
+På Figur \ref{fig:opret_sp_sekvens} kan man se sekvens-diagrammet for den tredje use case, der beskriver hvordan en administrator opretter et nyt spørgsmål i systemet.
 
 \section{Systemdesign}
 \label{sec:systemdesign}
