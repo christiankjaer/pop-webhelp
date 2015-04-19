@@ -58,7 +58,7 @@
 \subsection{Designing for usability}
 \label{sub:designing_for_usability}
 \paragraph{Referat}
-Artiklen beskriver en overordnet metode til design og udvikling af brugervenlige systemer. Denne tilgangsvinkel består af 3 grundlæggende principper: tidligt fokus på brugerne, empiriske målinger og iterativt design. Artiklen tager udgangspunkt i udviklingen af IBM's \emph{Audio Distribution System} (ADS) hvor disse principper blev anvendt. 
+Artiklen beskriver en overordnet metode til design og udvikling af brugervenlige systemer. Denne tilgangsvinkel består af 3 grundlæggende principper: tidligt fokus på brugerne, empiriske målinger og iterativt design. Artiklen tager udgangspunkt i udviklingen af IBM's \emph{Audio Distribution System} (ADS) hvor disse principper blev anvendt.
 
 Ved første princip påstås at det er nødvendigt for systemudviklerne fra starten at sætte sig ind i hvem systemets tiltænkte målgruppe er. Metoden anbefaler at udviklerne danner sig en \emph{forståelse} for brugerne, frem for blot at lave en karakterisering. Udover selve brugerne, skal udviklerne også sætte sig ind i hvilken sammenhæng systemet skal bruges og hvilke opgaver det skal løse, samt hvordan et evt. nuværende system løser disse opgaver.
 
@@ -71,7 +71,7 @@ Når udviklere præsenteres for disse principper er reaktionen typisk at det vir
 \paragraph{Perspektivering}
 De tre principper fra artiklen indgår alle i et vist omfang i systemudviklingsmetoden præsenteret i OOSE.
 
-Med hensyn til tidligt fokus på brugerne, så inkorporerer OOSE's fremgangsmåde bl.a. dette i form af en \emph{requirements elicitation}, der beskriver de forskelllige typer brugere og i hvilke sammenhænge de systemet anvendes. 
+Med hensyn til tidligt fokus på brugerne, så inkorporerer OOSE's fremgangsmåde bl.a. dette i form af en \emph{requirements elicitation}, der beskriver de forskelllige typer brugere og i hvilke sammenhænge de systemet anvendes.
 
 Artiklen understreger vigtigheden af at kunne foretage ændringer baseret på brugernes reaktioner, derfor er det vigtigt at systemet er struktureret på en måde der tager højde for dette. Man kan sammenligne dette med \emph{Entity-Boundary-Control} fremgangsmåden beskrevet i OOSE, der fokuserer på at opdele systemet i nogle forholdsvis uafhængige elementer, så der eksempelvis kan ændres i brugergrænsefladen uden at det påvirker resten af programmet.
 
@@ -206,6 +206,7 @@ På figur \ref{fig:use_case1} ses en beskrivelse af use casen, hvor en studerend
         \hline
         \textit{Hændelser:} & \begin{enumerate}[nolistsep]
             \item En studerende åbner hjemmesiden.
+            \item Vedkommende vælger et emne der er låst op.
         \end{enumerate}  \\
         \hline
         \textit{Startbetingelse:} & En studerende der er logget ind. \\
@@ -217,7 +218,7 @@ På figur \ref{fig:use_case1} ses en beskrivelse af use casen, hvor en studerend
     \label{fig:use_case2}
 \end{figure}
 
-Et af kravene for systemet er, at det skal være nemt for underviserne i kurset at oprette nye opgaver. Da underviserne selv er dataloger, så vil det være optimalt hvis man kan lave spørgsmålene i et struktureret filformat. Vi har foreslået \verb!YAML!, derfor er use-casen på figur \ref{fig:use_case3} meget simpel, og består kun af fil-upload.
+Et af kravene for systemet er, at det skal være nemt for underviserne i kurset at oprette nye opgaver. Da underviserne selv er dataloger, så vil det være optimalt hvis man kan lave spørgsmålene i et struktureret filformat. Vi har foreslået \verb!YAML!, derfor er use-casen på figur \ref{fig:use_case3} meget simpel, og består kun af fil-upload, da resten vil foregå i brugerens teksteditor og internt på serveren.
 \begin{figure}[htpb]
     \centering
     \begin{tabular}{r p{10cm}}
@@ -294,13 +295,13 @@ Ikke implementeret
 
 \section{Projektsamarbejdet}
 \label{sec:projektsamarbejdet}
-Siden afleveringen af delrapport 1 har der været påskeferie, eksamensuge og blokferie, og vi er derfor ikke kommet så meget videre med projektet og har derfor heller ikke haft meget kontakt indbyrdes. 
+Siden afleveringen af delrapport 1 har der været påskeferie, eksamensuge og blokferie, og vi er derfor ikke kommet så meget videre med projektet og har derfor heller ikke haft meget kontakt indbyrdes.
 
-Her i blokferien har vi så haft vores andet møde med vores kunder, hvor vi snakkede om diverse aspekter af projektet og diskuterede opbygning og struktur af systemet. Vi er stadig på et stadie i vores diskussion med kunden hvor vi snakker relativt abstrakt om tingene, og vi er også som regel rimelig enige om tingen, og vi har derfor endnu ikke rigtig nået til at punkt hvor vi har følt at det var nødvendigt at tage et grundigt referat af hvad der blev snakket om. 
+Her i blokferien har vi så haft vores andet møde med vores kunder, hvor vi snakkede om diverse aspekter af projektet og diskuterede opbygning og struktur af systemet. Vi er stadig på et stadie i vores diskussion med kunden hvor vi snakker relativt abstrakt om tingene, og vi er også som regel rimelig enige om tingen, og vi har derfor endnu ikke rigtig nået til at punkt hvor vi har følt at det var nødvendigt at tage et grundigt referat af hvad der blev snakket om.
 
 Vi har desuden mødtes to gange i gruppen i blokferien, hvor vi har sat os i kantinen på DIKU for at sammen skrive delrapport 2, og det har fungeret udemærket. Vi har endnu ikke haft nogen deciderede \emph{møder} i gruppen hvor det har været nødvendigt med referat og dokumentation og den slags. Vi kommunikerer stadig på mail både internt i gruppen og med kunden, og vi bruger ligeledes Github til at dele vores arbejde med hinanden og med kunden, og begge dele fungerer også stadig udemærket.
 
-Når vi har afleveret delrapport 2 er det planen at vi så vil mødes i gruppen og konkret diskutere hvordan vi vil implementere vores system, f.eks. ift. opbygningen af databasen og hjemmesiden, og så sammen starte på at skrive koden. Når vi når dertil kan vi så se hvordan det går med arbejdet og med at dele det op imellem os og kommunikere indbyrdes, og der bliver det måske også mere relevant at dokumentere nogen af de ting vi snakker om i anden form end i delrapporterne.
+Når vi har afleveret delrapport 2 er det planen at vi så vil mødes i gruppen og konkret diskuterer hvordan vi vil implementere vores system, f.eks. ift. opbygningen af databasen og hjemmesiden, og så sammen starte på at skrive koden. Når vi når dertil kan vi så se hvordan det går med arbejdet og med at dele det op imellem os og kommunikere indbyrdes, og der bliver det måske også mere relevant at dokumentere nogen af de ting vi snakker om i anden form end i delrapporterne.
 
 
 \appendix
@@ -314,7 +315,7 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 16-04-2015 & LSE & Tilføjet UseCaseModel og BCE model. \\
 16-04-2015 & CKL & Tilføjet review af Parnas of Clements. \\
 17-04-2015 & LSE & Tilføjet Abstract og Projektsamarbejdet. \\
-17-04-2015 & CKL & Tilføjet use cases og sekvensdiagram. \\
+17-04-2015 & CKL & Tilføjet use cases, sekvensdiagram og klassediagram. \\
 \end{tabular}
 
 \section{Timeline}
