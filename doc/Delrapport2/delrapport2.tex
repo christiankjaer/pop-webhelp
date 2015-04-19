@@ -13,6 +13,7 @@
 \usepackage{enumitem}
 \usepackage{placeins}
 \usepackage{hyperref}
+\usepackage{tocbibind}
 
 \author{
   Christian Kjær Larsen\\
@@ -44,7 +45,7 @@
 
 \newpage
 
-\tableofcontents %generate table of content
+\tableofcontents
 
 \thispagestyle{empty}
 
@@ -172,6 +173,7 @@ På Figur \ref{fig:use_case_model} kan man se vores use case model diagram. Vi h
 
 \subsection{Use cases}
 \label{sub:use_cases}
+På figur \ref{fig:use_case1} ses en beskrivelse af use casen, hvor en studerende opretter sin bruger. Det er en simpel use case, der beskriver i detaljer hvordan processen med at oprette sig som bruger i systemet skal foregå.
 
 \begin{figure}[htpb]
     \centering
@@ -200,6 +202,7 @@ På Figur \ref{fig:use_case_model} kan man se vores use case model diagram. Vi h
     \label{fig:use_case1}
 \end{figure}
 
+
 \begin{figure}[htpb]
     \centering
     \begin{tabular}{r p{10cm}}
@@ -221,6 +224,7 @@ På Figur \ref{fig:use_case_model} kan man se vores use case model diagram. Vi h
     \label{fig:use_case2}
 \end{figure}
 
+Et af kravene for systemet er, at det skal være nemt for underviserne i kurset at oprette nye opgaver. Da underviserne selv er dataloger, så vil det være optimalt hvis man kan lave spørgsmålene i et struktureret filformat. Vi har foreslået \verb!YAML!, derfor er use-casen på figur \ref{fig:use_case3} meget simpel, og består kun af fil-upload.
 \begin{figure}[htpb]
     \centering
     \begin{tabular}{r p{10cm}}
@@ -245,7 +249,13 @@ På Figur \ref{fig:use_case_model} kan man se vores use case model diagram. Vi h
 \end{figure}
 
 \subsection{Klassediagram}
-Ikke implementeret
+Se figur \ref{fig:class_diagram}.
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/ClassDiagram.png}
+    \caption{Klassediagram af problemområdet}
+    \label{fig:class_diagram}
+\end{figure}
 
 \subsection{BCE-model}
 \begin{figure}[htpb]
@@ -268,6 +278,13 @@ Modellen har fire controller-objekter, hvor den første er \emph{login}-controll
     \includegraphics[width=0.7\linewidth]{figures/OpretBrugerUseCase.png}
     \caption{Sekvensdiagram over opretning af bruger}
     \label{fig:opret_bruger_sekvens}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/OpretSporgsmalUseCase.png}
+    \caption{Sekvensdiagram over opretning af spørgsmål}
+    \label{fig:opret_sp_sekvens}
 \end{figure}
 
 \section{Systemdesign}
