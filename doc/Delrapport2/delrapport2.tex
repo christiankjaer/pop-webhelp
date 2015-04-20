@@ -58,7 +58,7 @@
 \subsection{Designing for usability}
 \label{sub:designing_for_usability}
 \paragraph{Referat}
-Artiklen beskriver en overordnet metode til design og udvikling af brugervenlige systemer. Denne tilgangsvinkel består af 3 grundlæggende principper: tidligt fokus på brugerne, empiriske målinger og iterativt design. Artiklen tager udgangspunkt i udviklingen af IBM's \emph{Audio Distribution System} (ADS) hvor disse principper blev anvendt.
+Artiklen \cite{gould1985designing} beskriver en overordnet metode til design og udvikling af brugervenlige systemer. Denne tilgangsvinkel består af 3 grundlæggende principper: tidligt fokus på brugerne, empiriske målinger og iterativt design. Artiklen tager udgangspunkt i udviklingen af IBM's \emph{Audio Distribution System} (ADS) hvor disse principper blev anvendt.
 
 Ved første princip påstås at det er nødvendigt for systemudviklerne fra starten at sætte sig ind i hvem systemets tiltænkte målgruppe er. Metoden anbefaler at udviklerne danner sig en \emph{forståelse} for brugerne, frem for blot at lave en karakterisering. Udover selve brugerne, skal udviklerne også sætte sig ind i hvilken sammenhæng systemet skal bruges og hvilke opgaver det skal løse, samt hvordan et evt. nuværende system løser disse opgaver.
 
@@ -151,13 +151,13 @@ Hvis der er tid i en af de senere iterationer, så er der en række ekstra krav 
 
 \paragraph{Ikke-funktionelle krav}
 \label{par:ikke_funktionelle_krav}
-I afsnit 4.3.2 i \cite{OOSE} beskrives ikke-funktionelle krav som krav, der ikke direkte beskriver funktionaliteten, men mere generelle krav omkring ting som brugervenlighed, ydeevne, pålidelighed og hvor vedligeholdesesvenligt systemet er. 
+I afsnit 4.3.2 i \cite{OOSE} beskrives ikke-funktionelle krav som krav, der ikke direkte beskriver funktionaliteten, men mere generelle krav omkring ting som brugervenlighed, ydeevne, pålidelighed og hvor vedligeholdesesvenligt systemet er.
 
 De ikke-funktionelle krav til dette projekt er forholdsvis begrænsede, idet vi har fået ret stor frihed i forhold til hvordan vi løser opgaven af vores kunde.
 
 \begin{itemize}
-\item Det skal være nemt at tilføje nye opgaver til systemet, sådan at kursuslederne efterfølgende kan opbygge en tilstrækkelig samling af opgaver til de studerende. 
-\item Det endelige produkt skal gerne skal være så simpelt og modulært som muligt, sådan at det er nemt at overtage, udvide og bygge videre på efter at vi overgiver projektet til kunden. 
+\item Det skal være nemt at tilføje nye opgaver til systemet, sådan at kursuslederne efterfølgende kan opbygge en tilstrækkelig samling af opgaver til de studerende.
+\item Det endelige produkt skal gerne skal være så simpelt og modulært som muligt, sådan at det er nemt at overtage, udvide og bygge videre på efter at vi overgiver projektet til kunden.
 \item Ingen af kunderne er web-udviklere, så det er også vigtigt at det valgte framework er veldokumenteret og rimeligt simpelt at bruge.
 \end{itemize}
 
@@ -173,7 +173,7 @@ På Figur \ref{fig:use_case_model} kan man se vores use case model diagram. Vi h
 
 \subsection{Use cases}
 \label{sub:use_cases}
-På figur \ref{fig:use_case1} ses en beskrivelse af use casen, hvor en studerende opretter sin bruger. Det er en simpel use case, der beskriver i detaljer hvordan processen med at oprette sig som bruger i systemet skal foregå.
+På Figur \ref{fig:use_case1} ses en beskrivelse af use casen, hvor en studerende opretter sin bruger. Det er en simpel use case, der beskriver i detaljer hvordan processen med at oprette sig som bruger i systemet skal foregå.
 
 \begin{figure}[htpb]
     \centering
@@ -202,6 +202,7 @@ På figur \ref{fig:use_case1} ses en beskrivelse af use casen, hvor en studerend
     \label{fig:use_case1}
 \end{figure}
 
+På Figur \ref{fig:use_case2} ses en beskrivelse af use casen, hvor en studerende svarer på spørgsmål. Den er på et relativt højt abstraktionsniveau, da vi ikke er helt sikre på hvordan workflowet i systemet er endnu.
 
 \begin{figure}[htpb]
     \centering
@@ -213,12 +214,18 @@ På figur \ref{fig:use_case1} ses en beskrivelse af use casen, hvor en studerend
         \hline
         \textit{Hændelser:} & \begin{enumerate}[nolistsep]
             \item En studerende åbner hjemmesiden.
-            \item Vedkommende vælger et emne der er låst op.
+            \item Vedkommende vælger et emne inden for en læringsblok der er låst op ved at have færdiggjort den forrige.
+            \item Systemet præsenterer et spørgsmål for den studerende. Der kan være flere typer spørgsmål (multiple-choice, udfyldning med flere).
+            \item Den studerende indtaster et svar.
+            \item Systemet giver respons på svaret, og gemmer det i en historik.
+            \item Den studerende trykket næste, for at få et spørgsmål mere.
+            \item Hvis den studerende har svaret på nok spørgsmål, så kan den studerende vælge en ny kategori.
+            \item Den studerende lukker browseren.
         \end{enumerate}  \\
         \hline
         \textit{Startbetingelse:} & En studerende der er logget ind. \\
         \hline
-        \textit{Slutbetingelse:} & En studerende der er logget ind og har besvaret en opgave. \\
+        \textit{Slutbetingelse:} & En studerende der er logget ind og har besvaret en eller flere opgaver. \\
         \bottomrule
     \end{tabular}
     \caption{Use case omkring besvarelse af opgaver.}
@@ -281,6 +288,14 @@ Modellen har fire controller-objekter, hvor den første er \emph{login}-controll
     \label{fig:opret_bruger_sekvens}
 \end{figure}
 På Figur \ref{fig:opret_bruger_sekvens} kan man se sekvens-diagrammet for den første use case, der beskriver hvordan en studerende opretter sig som bruger i systemet.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/SvarUseCase.png}
+    \caption{Sekvensdiagram over besvarelse af spørgsmål}
+    \label{fig:svar_sekvens}
+\end{figure}
+På Figur \ref{fig:svar_sekvens} kan man se sekvens-diagrammet for den anden use case, der beskriver hvordan en studerende besvarer spørgsmål.
 
 \begin{figure}[htpb]
     \centering
