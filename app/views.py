@@ -5,5 +5,5 @@ from app import app
 @app.route('/')
 @login_required
 def index():
-    return render_template('blank.html', message='Hello World!')
+    return render_template('blank.html', message='Not implemented!')
 
