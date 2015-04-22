@@ -15,6 +15,19 @@ class Question(db.Model):
     def __repr__(self):
         return 'Question %s' % (self.id)
 
+    @staticmethod
+    def from_dict(data):
+        q = None
+        if data['type'] == 'MultipleChoice':
+            q = MultipleChoice()
+            q.text = data['text']
+            for answer in data['answer']:
+                a = MCAnswer()
+                a.text = answer['text']
+                a.correct = answer['correct']
+                q.choices.append(a)
+        return q
+
 class MultipleChoice(Question):
     """ This is the multiple choice question class """
     __tablename__ = 'multiple_choice'
