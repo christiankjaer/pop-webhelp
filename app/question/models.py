@@ -51,4 +51,4 @@ class MCAnswer(db.Model):
 
     def __repr__(self):
         return 'Multiple Choice Answer %s' % (self.id)
-    
+
