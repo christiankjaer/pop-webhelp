@@ -33,6 +33,7 @@ class MCAnswer(db.Model):
     __tablename__ = 'mcanswer'
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(255))
+    correct = db.Column(db.Boolean())
     mcid = db.Column(db.Integer, db.ForeignKey('multiple_choice.id'))
 
     def __repr__(self):
