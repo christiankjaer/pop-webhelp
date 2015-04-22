@@ -19,7 +19,7 @@ class MultipleChoice(Question):
     """ This is the multiple choice question class """
     __tablename__ = 'multiple_choice'
     id = db.Column(db.Integer, db.ForeignKey('question.id'), primary_key=True)
-    choices = db.relationship('Choice', backref='question')
+    choices = db.relationship('MCAnswer', backref='question')
 
     __mapper_args__ = {
         'polymorphic_identity':'multiple_choice'
