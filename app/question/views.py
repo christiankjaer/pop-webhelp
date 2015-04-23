@@ -25,7 +25,6 @@ def view_question(id):
     elif type(q) == TypeIn:
         form = TypeInForm()
         if form.validate_on_submit():
-            print "bum"
             if form.answer.data == q.answer:
                 return "success"
             else:
