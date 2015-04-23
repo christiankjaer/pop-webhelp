@@ -1,5 +1,6 @@
 from flask_wtf import Form
-from wtforms import SelectMultipleField, widgets
+from wtforms import SelectMultipleField, StringField, widgets
+from wtforms.validators import DataRequired
 
 class MultiCheckboxField(SelectMultipleField):
     """
@@ -12,5 +13,9 @@ class MultiCheckboxField(SelectMultipleField):
     option_widget = widgets.CheckboxInput()
 
 class MultipleChoiceForm(Form):
-    choices = MultiCheckboxField()
+    choices = MultiCheckboxField('choices')
+    def set_data(self, mc_question):
+        self.choices.choices = map(lambda x: (str(x.id), x.text), mc_question.choices)
 
+class TypeInForm(Form):
+    answer = StringField('answer', validators=[DataRequired()])

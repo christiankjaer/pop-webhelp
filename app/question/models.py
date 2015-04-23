@@ -26,7 +26,22 @@ class Question(db.Model):
                 a.text = answer['text']
                 a.correct = answer['correct']
                 q.choices.append(a)
+        elif data['type'] == 'TypeIn':
+            q = TypeIn()
+            q.text = data['text']
+            q.answer = data['answer']
         return q
+
+class TypeIn(Question):
+    __tablename__ = 'type_in'
+    id = db.Column(db.Integer, db.ForeignKey('question.id'), primary_key=True)
+    answer = db.Column(db.String(255))
+    __mapper_args__ = {
+        'polymorphic_identity':'type_in'
+    }
+
+    def __repr__(self):
+        return 'Type In Question %s' % self.id
 
 class MultipleChoice(Question):
     """ This is the multiple choice question class """
