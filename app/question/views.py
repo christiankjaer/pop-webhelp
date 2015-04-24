@@ -1,5 +1,5 @@
 from flask import url_for, redirect, render_template, flash, abort
-from .models import Question, MultipleChoice, MCAnswer, TypeIn
+from .models import Question, MultipleChoice, MCAnswer, TypeIn, Ranking
 from app import app, lm, db
 from .forms import MultipleChoiceForm, TypeInForm
 
@@ -30,4 +30,7 @@ def view_question(id):
             else:
                 return "fail"
         return render_template('question/typein.html', text=q.text, form=form)
+    elif type(q) == Ranking:
+        return render_template('question/ranking.html', q=q)
+
 

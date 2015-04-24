@@ -30,6 +30,14 @@ class Question(db.Model):
             q = TypeIn()
             q.text = data['text']
             q.answer = data['answer']
+        elif data['type'] == 'Ranking':
+            q = Ranking()
+            q.text = data['text']
+            for i, item in enumerate(data['items']):
+                ri = RankItem()
+                ri.rank = i
+                ri.text = item
+                q.items.append(ri)
         return q
 
 class TypeIn(Question):
@@ -47,7 +55,7 @@ class MultipleChoice(Question):
     """ This is the multiple choice question class """
     __tablename__ = 'multiple_choice'
     id = db.Column(db.Integer, db.ForeignKey('question.id'), primary_key=True)
-    choices = db.relationship('MCAnswer', backref='question')
+    choices = db.relationship('MCAnswer', backref='multiple_choice')
 
     __mapper_args__ = {
         'polymorphic_identity':'multiple_choice'
@@ -66,4 +74,19 @@ class MCAnswer(db.Model):
 
     def __repr__(self):
         return 'Multiple Choice Answer %s' % (self.id)
+
+class Ranking(Question):
+    __tablename__ = 'ranking'
+    id = db.Column(db.Integer, db.ForeignKey('question.id'), primary_key=True)
+    items = db.relationship('RankItem', backref='ranking')
+    __mapper_args__ = {
+        'polymorphic_identity':'ranking'
+    }
+
+class RankItem(db.Model):
+    __tablename__ = 'rank_item'
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String(255))
+    rank = db.Column(db.Integer)
+    rid = db.Column(db.Integer, db.ForeignKey('ranking.id'))
 

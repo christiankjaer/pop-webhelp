@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Ranking{% endblock %}
+{% block body %}
+<div class="container">
+{% include "flash.html" %}
+<div class="row">
+    <p>{{ q.text }}</p>
+    <table class="table">
+        {% for i in q.items %}
+        <tr><td>{{ i.text }}</td></tr>
+        {% endfor %}
+    </table>
+    <form action="" method="post">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Answer</button>
+</form>
+</div>
+</div>
+{% endblock body %}
