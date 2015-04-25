@@ -2,6 +2,7 @@ from flask import url_for, redirect, render_template, flash, abort, request
 from .models import Question, MultipleChoice, MCAnswer, TypeIn, Ranking
 from app import app, lm, db
 from .forms import MultipleChoiceForm, TypeInForm
+import random
 
 @app.route('/question/<int:id>', methods=['GET', 'POST'])
 def view_question(id):
@@ -30,6 +31,7 @@ def view_question(id):
             else:
                 return "fail"
         return render_template('question/typein.html', text=q.text, form=form)
+
     elif type(q) == Ranking:
         if request.method == 'POST':
             answer = map(lambda x: int(x), request.form['ranks'].split(','))
@@ -38,6 +40,8 @@ def view_question(id):
                 return "success"
             else:
                 return "fail"
-        return render_template('question/ranking.html', q=q)
+        items = q.items
+        random.shuffle(items)
+        return render_template('question/ranking.html', text=q.text, items=items)
 
 

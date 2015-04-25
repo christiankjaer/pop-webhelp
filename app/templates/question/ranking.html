@@ -12,11 +12,15 @@ function drag(ev) {
 
 function drop(ev) {
     ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    newElem = ev.target;
-    oldElem = $(".item#"+data)[0];
-    $('#items')[0].insertBefore(oldElem, newElem);
-
+    oldId = ev.dataTransfer.getData("text");
+    newId = ev.target.id;
+    from = $("#"+oldId);
+    to = $("#"+newId);
+    if (from.index() > to.index()) {
+        to.before(from);
+    } else {
+        to.after(from);
+    }
 }
 function post(path, params, method) {
     method = method || "post"; // Set method to post by default if not specified.
@@ -52,9 +56,9 @@ function sendList() {
 <div class="container">
 {% include "flash.html" %}
 <div class="row">
-    <p>{{ q.text }}</p>
+    <p>{{ text }}</p>
     <div class="list-group" id="items">
-        {% for i in q.items %}
+        {% for i in items %}
         <div class="list-group-item item" id="{{i.id}}" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)">
             {{ i.text }}
         </div>
