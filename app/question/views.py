@@ -1,4 +1,4 @@
-from flask import url_for, redirect, render_template, flash, abort
+from flask import url_for, redirect, render_template, flash, abort, request
 from .models import Question, MultipleChoice, MCAnswer, TypeIn, Ranking
 from app import app, lm, db
 from .forms import MultipleChoiceForm, TypeInForm
@@ -31,6 +31,13 @@ def view_question(id):
                 return "fail"
         return render_template('question/typein.html', text=q.text, form=form)
     elif type(q) == Ranking:
+        if request.method == 'POST':
+            answer = map(lambda x: int(x), request.form['ranks'].split(','))
+            correct = map(lambda x: x.id, sorted(q.items, key=lambda y: y.rank))
+            if answer == correct:
+                return "success"
+            else:
+                return "fail"
         return render_template('question/ranking.html', q=q)
 
 
