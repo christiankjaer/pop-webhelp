@@ -313,11 +313,11 @@ Ikke implementeret
 \label{sec:program_og_systemtest}
 \subsection{Unittests}
 \label{sub:unittests}
-For at det skal være så nemt og smertefrit som muligt at teste, så bruger vi et automatisk unittest værktøj. Ifølge \cite{COCO}, så er automatiske tests den eneste reelle måde at teste på. En af fordelene i vores tilfælde er, at hvis man laver mange ændringer i koden, som der ofte er, når man arbejder agilt, så er det vigtigt at man kan gøre testene hurtigt og nemt efter hver ændring af koden.
+For at det skal være så nemt og smertefrit som muligt at teste, så bruger vi et automatisk unittest værktøj. Ifølge \cite{COCO}, så er automatiske tests den eneste reelle måde at teste på. En af fordelene i vores tilfælde er, at hvis man laver mange ændringer i koden, som der ofte er, når man arbejder agilt, så er det vigtigt at man kan gøre testene hurtigt og nemt efter hver ændring af koden. Vi bruger det inkluderede testbibliotek i \verb!Python! nemlig \verb!unittest!\footnote{\url{https://docs.python.org/2/library/unittest.html}}. Det virker på samme måde som \verb!JUnit! i \verb!Java!, hvor man skriver testmetoder i en testklasse.
 
-For at være sikker på at vores tests er dækkende, så bruges et værktøj der måler dækningsgraden (Afsnit 11.4.3 i \cite{OOSE})  af vores tests. Det giver en metrik af hvor gode testene er.
+For at være sikker på at vores tests er dækkende, så bruges et værktøj der måler dækningsgraden (Afsnit 11.4.3 i \cite{OOSE})  af vores tests. Det giver en metrik af hvor gode testene er. Dette værktøj er \verb!coverage!. Det kan også generere rapporter, som viser et overblik over koden, og visuelt viser hvilke dele af kopden der er dækket af tests.
 
-På Figur \ref{fig:testcoverage} ses en udskrift af testrapporten. Der ses hvilke moduler af koden, som er dækket tilstrækkeligt af tests.
+På Figur \ref{fig:testcoverage} ses en udskrift af testrapporten. Der ses hvilke moduler af koden, som er dækket tilstrækkeligt af tests. På Figur \ref{fig:code_coverage} ses hvordan værktøjet viser hvilke dele af koden der er dækket af tests.
 
 \begin{figure}[htpb]
     \centering
@@ -326,6 +326,12 @@ På Figur \ref{fig:testcoverage} ses en udskrift af testrapporten. Der ses hvilk
     \label{fig:testcoverage}
 \end{figure}
 
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/code_coverage.png}
+    \caption{Eksempel på en grafik fremstilling, hvor et udtryk der kun delvist er dækket af tests fremhæves.}
+    \label{fig:code_coverage}
+\end{figure}
 
 \section{Brugergrænseflade og interaktionsdesign}
 \label{sec:brugergraenseflade}
@@ -366,6 +372,5 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 
 \bibliographystyle{alpha}
 \bibliography{refs}{}
-
 
 \end{document}
