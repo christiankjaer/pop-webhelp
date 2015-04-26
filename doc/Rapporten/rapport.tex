@@ -309,12 +309,13 @@ På Figur \ref{fig:opret_sp_sekvens} kan man se sekvens-diagrammet for den tredj
 \label{sec:systemdesign}
 Ikke implementeret
 \section{Program- og systemtest}
+
 \label{sec:program_og_systemtest}
 \subsection{Unittests}
 \label{sub:unittests}
+For at det skal være så nemt og smertefrit som muligt at teste, så bruger vi et automatisk unittest værktøj. Ifølge \cite{COCO}, så er automatiske tests den eneste reelle måde at teste på. En af fordelene i vores tilfælde er, at hvis man laver mange ændringer i koden, som der ofte er, når man arbejder agilt, så er det vigtigt at man kan gøre testene hurtigt og nemt efter hver ændring af koden.
 
-% Skriv om coverage, unittests, automatisering
-For at være sikker på at vores tests er dækkende, så bruges et værktøj der måler dækningsgraden (Afsnit 11.4.3 i \cite{OOSE})  af vores tests. Det giver en metrik af hvor robuste testene er, og hvor gode de er til at bekræfte korrektheden af koden.
+For at være sikker på at vores tests er dækkende, så bruges et værktøj der måler dækningsgraden (Afsnit 11.4.3 i \cite{OOSE})  af vores tests. Det giver en metrik af hvor gode testene er.
 
 På Figur \ref{fig:testcoverage} ses en udskrift af testrapporten. Der ses hvilke moduler af koden, som er dækket tilstrækkeligt af tests.
 
@@ -354,8 +355,8 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 17-04-2015 & TSH & Tilføjet review af Gould og Lewis. \\
 17-04-2015 & LSE & Tilføjet Abstract og Projektsamarbejdet. \\
 17-04-2015 & CKL & Tilføjet use cases, sekvensdiagram og klassediagram. \\
+26-04-2015 & CKL & Tilføjet afsnit om tests. \\
 \end{tabular}
-
 \section{Timeline}
 \begin{tabular}{l l p{8cm}}
 11-03-2015 & Første møde med kunde: & Vi har første møde med kunden hvor vi snakker om hvad projektet går ud på og diskuterer krav og løsningsforslag. \\
