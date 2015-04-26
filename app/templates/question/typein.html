@@ -4,7 +4,7 @@
 <div class="container">
 {% include "flash.html" %}
 <div class="row">
-    <p>{{ text }}</p>
+    <p>{{ text | marktohtml | safe }}</p>
     <form action="" method="post">
     {{ form.hidden_tag() }}
     {{ form.answer(class = "form-control") }}

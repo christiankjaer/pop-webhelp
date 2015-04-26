@@ -3,6 +3,7 @@ from .models import Question, MultipleChoice, MCAnswer, TypeIn, Ranking
 from app import app, lm, db
 from .forms import MultipleChoiceForm, TypeInForm
 import random
+import markdown
 
 @app.route('/question/<int:id>', methods=['GET', 'POST'])
 def view_question(id):
@@ -11,6 +12,7 @@ def view_question(id):
         return abort(404)
     elif type(q) == MultipleChoice:
         form = MultipleChoiceForm()
+        random.shuffle(q.choices)
         form.set_data(q)
 
         if form.validate_on_submit():
@@ -44,4 +46,6 @@ def view_question(id):
         random.shuffle(items)
         return render_template('question/ranking.html', text=q.text, items=items)
 
-
+@app.template_filter()
+def marktohtml(value):
+    return markdown.markdown(value)

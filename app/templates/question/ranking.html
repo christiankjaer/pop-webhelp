@@ -2,6 +2,18 @@
 {% block title %}Ranking{% endblock %}
 {% block body %}
 <script>
+function swapElements(elm1, elm2) {
+    var parent1, next1,
+        parent2, next2;
+
+    parent1 = elm1.parentNode;
+    next1   = elm1.nextSibling;
+    parent2 = elm2.parentNode;
+    next2   = elm2.nextSibling;
+
+    parent1.insertBefore(elm2, next1);
+    parent2.insertBefore(elm1, next2);
+}
 function allowDrop(ev) {
     ev.preventDefault();
 }
@@ -14,13 +26,9 @@ function drop(ev) {
     ev.preventDefault();
     oldId = ev.dataTransfer.getData("text");
     newId = ev.target.id;
-    from = $("#"+oldId);
-    to = $("#"+newId);
-    if (from.index() > to.index()) {
-        to.before(from);
-    } else {
-        to.after(from);
-    }
+    from = $("#"+oldId)[0];
+    to = $("#"+newId)[0];
+    swapElements(to, from);
 }
 function post(path, params, method) {
     method = method || "post"; // Set method to post by default if not specified.
@@ -56,7 +64,7 @@ function sendList() {
 <div class="container">
 {% include "flash.html" %}
 <div class="row">
-    <p>{{ text }}</p>
+    <p>{{ text | marktohtml | safe }}</p>
     <div class="list-group" id="items">
         {% for i in items %}
         <div class="list-group-item item" id="{{i.id}}" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)">
