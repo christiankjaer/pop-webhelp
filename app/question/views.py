@@ -1,10 +1,23 @@
 from flask import url_for, redirect, render_template, flash, abort, request
-from .models import Question, MultipleChoice, MCAnswer, TypeIn, Ranking
+from .models import Threshold, Subject, Question, MultipleChoice, MCAnswer, TypeIn, Ranking, RankItem
 from app import app, lm, db
 from .forms import MultipleChoiceForm, TypeInForm
 import random
 import markdown
 
+@app.route('/overview')
+def overview():
+    thresholds = []
+    id = db.session.query(Threshold.id)
+    next = db.session.query(Threshold.next)
+    first = (set(id) - set(next)).pop()[0]
+    t = Threshold.query.get(first)
+    thresholds.append(t)
+    while t.next != None:
+        t = Threshold.query.get(t.next)
+        thresholds.append(t)
+    return render_template('question/overview.html', thresholds=thresholds)
+    
 @app.route('/question/<int:id>', methods=['GET', 'POST'])
 def view_question(id):
     q = Question.query.get(id)
