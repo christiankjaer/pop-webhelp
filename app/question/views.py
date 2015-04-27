@@ -15,11 +15,19 @@ def overview():
         t = Threshold.query.get(t.next)
         thresholds.append(t)
     return render_template('question/overview.html', thresholds=thresholds)
+
+@app.route('/question/<string:name>')
+def random_question(name):
+    s = Subject.query.get(name)
+    if not s.questions:
+        return render_template('question/empty.html', subject=s)
+    q = random.choice(s.questions)
+    return redirect(url_for('view_question', id=q.id))
     
 @app.route('/question/<int:id>', methods=['GET', 'POST'])
 def view_question(id):
     q = Question.query.get(id)
-    if q is None:
+    if not q:
         return abort(404)
     elif type(q) == MultipleChoice:
         form = MultipleChoiceForm()
