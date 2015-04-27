@@ -4,8 +4,11 @@ from app.question.models import *
 
 user = User('abc123', 'pwd', confirmed=True)
 
-t1 = Threshold('Test Threshold 1', 2)
-t2 = Threshold('Test Threshold 2')
+t1 = Threshold('Test Threshold 3', 5)
+t2 = Threshold('Test Threshold 5')
+t3 = Threshold('Test Threshold 1', 4)
+t4 = Threshold('Test Threshold 2', 1)
+t5 = Threshold('Test Threshold 4', 2)
 
 s1 = Subject('TypeIn Subject', 'This is Test Subject 1', 1)
 s2 = Subject('Multiple Choice Subject', 'This is Test Subject 2', 1)
@@ -30,6 +33,9 @@ q3 = Question.from_dict(rkq)
 db.session.add(user)
 db.session.add(t1)
 db.session.add(t2)
+db.session.add(t3)
+db.session.add(t4)
+db.session.add(t5)
 db.session.add(s1)
 db.session.add(s2)
 db.session.add(s3)
@@ -37,3 +43,4 @@ db.session.add(q1)
 db.session.add(q2)
 db.session.add(q3)
 db.session.commit()
+
