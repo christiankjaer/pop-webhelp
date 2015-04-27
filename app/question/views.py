@@ -9,7 +9,7 @@ import markdown
 def overview():
     thresholds = []
     subquery = db.session.query(Threshold.next).filter(Threshold.next != None)
-    t = db.session.query(Threshold).filter(~Threshold.id.in_(subquery)).all()[0]
+    t = db.session.query(Threshold).filter(~Threshold.id.in_(subquery)).first()
     thresholds.append(t)
     while t.next != None:
         t = Threshold.query.get(t.next)
