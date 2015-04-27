@@ -8,10 +8,8 @@ import markdown
 @app.route('/overview')
 def overview():
     thresholds = []
-    id = db.session.query(Threshold.id)
-    next = db.session.query(Threshold.next)
-    first = (set(id) - set(next)).pop()[0]
-    t = Threshold.query.get(first)
+    subquery = db.session.query(Threshold.next).filter(Threshold.next != None)
+    t = db.session.query(Threshold).filter(~Threshold.id.in_(subquery)).all()[0]
     thresholds.append(t)
     while t.next != None:
         t = Threshold.query.get(t.next)
