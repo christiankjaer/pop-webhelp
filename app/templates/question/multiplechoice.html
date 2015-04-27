@@ -1,8 +1,6 @@
-{% extends "base.html" %}
+{% extends "layout.html" %}
 {% block title %}Multiple Choice{% endblock %}
-{% block body %}
-<div class="container">
-{% include "flash.html" %}
+{% block content %}
 <div class="row">
     <p>{{ text | marktohtml | safe }}</p>
     <form action="" method="post">
@@ -13,5 +11,4 @@
     <button class="btn btn-lg btn-primary btn-block" type="submit">Answer</button>
 </form>
 </div>
-</div>
-{% endblock body %}
+{% endblock content %}

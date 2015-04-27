@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+{% extends "layout.html" %}
 {% block title %}Ranking{% endblock %}
-{% block body %}
+{% block content %}
 <script>
 function swapElements(elm1, elm2) {
     var parent1, next1,
@@ -61,8 +61,6 @@ function sendList() {
     post(window.location.pathname, {ranks: ids});
 }
 </script>
-<div class="container">
-{% include "flash.html" %}
 <div class="row">
     <p>{{ text | marktohtml | safe }}</p>
     <div class="list-group" id="items">
@@ -74,5 +72,4 @@ function sendList() {
     </div>
     <button class="btn btn-lg btn-primary btn-block" onclick="sendList()">Answer</button>
 </div>
-</div>
-{% endblock body %}
+{% endblock content %}
