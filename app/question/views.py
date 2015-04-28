@@ -15,7 +15,7 @@ def overview():
         t = Threshold.query.get(t.next)
         thresholds.append(t)
     return render_template('question/overview.html', thresholds=thresholds)
-    
+
 @app.route('/question/<int:id>', methods=['GET', 'POST'])
 def view_question(id):
     q = Question.query.get(id)
