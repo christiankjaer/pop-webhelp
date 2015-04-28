@@ -7,8 +7,7 @@
     <div class="panel-body">
       {% for s in t.subjects %}
         <div>
-          <!-- Virker ikke hvis et Subject ikke har nogen Questions! -->
-          <a href="{{ url_for('view_question', id=s.questions[0].id) }}">
+          <a href="{{ url_for('random_question', name=s.name) }}">
             {{ s.name }}
           </a>
         </div>

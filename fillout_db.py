@@ -2,20 +2,33 @@ from app import db
 from app.user.models import User
 from app.question.models import *
 
+data = []
+
 user = User('abc123', 'pwd', confirmed=True)
+data.append(user)
 
 t1 = Threshold('TypeIn Threshold', 4)
 t2 = Threshold('Multiple Choice Threshold', 3)
 t3 = Threshold('Ranking Threshold', 2)
 t4 = Threshold('Empty Threshold')
+data += [t1, t4, t3, t2]
 
 s1 = Subject('TypeIn Subject', 'This is Test Subject 1', 1)
 s2 = Subject('Multiple Choice Subject', 'This is Test Subject 2', 4)
 s3 = Subject('Ranking Subject', 'This is Test Subject 3', 3)
+s4 = Subject('Empty Subject', 'This is Test Subject 4', 2)
+data += [s1, s2, s3, s4]
 
 tiq = {'type':'TypeIn', 'text':'What is 2 + 2?', 'subject':'TypeIn Subject',
        'answer':'4'}
-q1 = Question.from_dict(tiq)
+tiq1 = Question.from_dict(tiq)
+tiq = {'type':'TypeIn', 'text':'What is 2 - 2?', 'subject':'TypeIn Subject',
+       'answer':'0'}
+tiq2 = Question.from_dict(tiq)
+tiq = {'type':'TypeIn', 'text':'What is 2 * 2?', 'subject':'TypeIn Subject',
+       'answer':'4'}
+tiq3 = Question.from_dict(tiq)
+data += [tiq1, tiq2, tiq3]
 
 mcq = {'type':'MultipleChoice', 'text':'What is 2 + 2?', 
        'subject':'Multiple Choice Subject',
@@ -23,24 +36,54 @@ mcq = {'type':'MultipleChoice', 'text':'What is 2 + 2?',
                  {'text':'4', 'correct':True}, 
                  {'text':'5', 'correct':False},
                  {'text':'6', 'correct':False}]}
-q2 = Question.from_dict(mcq)
+mcq1 = Question.from_dict(mcq)
+mcq = {'type':'MultipleChoice', 'text':'What is 2 - 2?', 
+       'subject':'Multiple Choice Subject',
+       'answer':[{'text':'-2', 'correct':False}, 
+                 {'text':'0', 'correct':True}, 
+                 {'text':'2', 'correct':False},
+                 {'text':'4', 'correct':False}]}
+mcq2 = Question.from_dict(mcq)
+mcq = {'type':'MultipleChoice', 'text':'What is 2 * 2?', 
+       'subject':'Multiple Choice Subject',
+       'answer':[{'text':'2', 'correct':False}, 
+                 {'text':'4', 'correct':True}, 
+                 {'text':'6', 'correct':False},
+                 {'text':'8', 'correct':False}]}
+mcq3 = Question.from_dict(mcq)
+data += [mcq1, mcq2, mcq3]
 
 rkq = {'type':'Ranking', 'text':'Rank these numbers', 
        'subject':'Ranking Subject',
-       'items':['1', '2', '3', '4', '5']}
-q3 = Question.from_dict(rkq)
+       'items':['1', '2', '3', '4']}
+rkq1 = Question.from_dict(rkq)
+rkq = {'type':'Ranking', 'text':'Rank these numbers', 
+       'subject':'Ranking Subject',
+       'items':['-2', '0', '2', '4']}
+rkq2 = Question.from_dict(rkq)
+rkq = {'type':'Ranking', 'text':'Rank these numbers', 
+       'subject':'Ranking Subject',
+       'items':['2', '4', '6', '8']}
+rkq3 = Question.from_dict(rkq)
+data += [rkq1, rkq2, rkq3]
 
-
-db.session.add(user)
-db.session.add(t1)
-db.session.add(t2)
-db.session.add(t3)
-db.session.add(t4)
-db.session.add(s1)
-db.session.add(s2)
-db.session.add(s3)
-db.session.add(q1)
-db.session.add(q2)
-db.session.add(q3)
+#db.session.add(user)
+#db.session.add(t1)
+#db.session.add(t4)
+#db.session.add(t3)
+#db.session.add(t2)
+#db.session.add(s1)
+#db.session.add(s2)
+#db.session.add(s3)
+#db.session.add(s4)
+#db.session.add(q1)
+#db.session.add(q2)
+#db.session.add(q3)
+#db.session.add(q4)
+#db.session.add(q5)
+#db.session.add(q6)
+#db.session.add(q7)
+for d in data:
+    db.session.add(d)
 db.session.commit()
 

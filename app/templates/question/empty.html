@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block title %}{{ subject.name }}{% endblock %}
+{% block content %}
+<div class="container">
+{% include "flash.html" %}
+<h3>Sorry, {{ subject.name }} does not have any questions yet.</h3>
+</div>
+{% endblock content %}
