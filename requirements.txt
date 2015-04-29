@@ -5,3 +5,4 @@ Flask-Login
 Flask-Mail
 coverage
 markdown
+multimethod
