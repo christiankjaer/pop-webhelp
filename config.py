@@ -15,8 +15,16 @@ MAIL_PORT = 465
 MAIL_USE_TLS = False
 MAIL_USE_SSL = True
 # gmail authentication
-MAIL_USERNAME = os.environ['APP_MAIL_USERNAME']
-MAIL_PASSWORD = os.environ['APP_MAIL_PASSWORD']
+if 'APP_MAIL_USERNAME' in os.environ:
+    MAIL_USERNAME = os.environ['APP_MAIL_USERNAME']
+else:
+    MAIL_USERNAME = None
+
+if 'APP_MAIL_PASSWORD' in os.environ:
+    MAIL_PASSWORD = os.environ['APP_MAIL_PASSWORD']
+else:
+    MAIL_PASSWORD = None
+
 # mail accounts
 MAIL_DEFAULT_SENDER = 'from@example.com'
 

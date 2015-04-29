@@ -86,3 +86,4 @@ data += [rkq1, rkq2, rkq3]
 for d in data:
     db.session.add(d)
 db.session.commit()
+
