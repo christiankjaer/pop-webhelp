@@ -1,0 +1,32 @@
+Abstract:
+Ganske fin opsumering af fremskridtet indtil videre. Nogle sætninger er dog lidt uklare, og der er også lidt problemer med den engelske grammatik.
+
+Indledning:
+Fin, enkelte grammatiske fejl. 
+
+FACTOR
+Fin, ordre i entel, ordrer i flertal.
+
+Kravspecifikation
+Ganske udemærkede krav.
+Jeres Use Case Model er vist ikke helt rigtig, minder mere om et slags sekvensdiagram. Prøv evt. at google use case model.
+Fin beskrivelse af use cases, de kunne dog også godt være illustrede lidt mere formelt, kig f.eks. under use cases i bogen.
+Udemærket klassediagram, selvom det igen måske lidt virker som en sammenblandig af forskellige diagramtyper. Nedenstående sætning er også lidt morsom.
+'En indkøbsordre består af mange(mindst 1) vine, som enten allerede er registreret i bogholderiet eller ikke.'
+Rigtig fin BCE model, selvom det måske lige er konkret nok at snakke om knapper som boundaries.
+Meget udførlige sekvensdiagrammer.
+
+Systemdesign:
+Ikke så meget at sige
+
+Test:
+Ikke så meget at sige
+
+Brugergrænseflade:
+Ikke så meget at sige
+
+Projektsamarbejde:
+Fint
+
+Kundekontakt:
+Fint, meget udførligt.
