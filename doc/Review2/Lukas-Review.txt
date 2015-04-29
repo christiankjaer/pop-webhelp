@@ -1,11 +1,15 @@
 Abstract:
-Ganske fin opsumering af fremskridtet indtil videre. Nogle sætninger er dog lidt uklare, og der er også lidt problemer med den engelske grammatik.
+Ganske fin opsummering af fremskridtet indtil videre. Nogle sætninger er dog lidt uklare, og der er også lidt problemer med den engelske grammatik.
 
 Indledning:
-Fin, enkelte grammatiske fejl. 
+Fin, enkelte grammatiske fejl.
 
 FACTOR
-Fin, ordre i entel, ordrer i flertal.
+Fin, ordre i ental, ordrer i flertal.
+
+I er meget specifikke i jeres teknologier. Fx bruger i både Django og PHP. Er
+der en grund til dette? Kunne man nøjes med en af dem? Bruger i en alpha version af Python til udvikling
+(3.5.0a3). Ved man hvilken version af javascript man bruger?
 
 Kravspecifikation
 Ganske udemærkede krav.
@@ -20,13 +24,19 @@ Systemdesign:
 Ikke så meget at sige
 
 Test:
-Ikke så meget at sige
+Har i nogen teststrategi? Har i tænkt for kriterier for hvor gode tests i
+skriver, altså ting som dækningsgrad, mockups, dummy-data? Bruger i et
+testframework (fx som unittest i python, phpunit i php).
 
 Brugergrænseflade:
-Ikke så meget at sige
+Ikke så meget at sige, fedt med en video allerede.
 
 Projektsamarbejde:
 Fint
 
 Kundekontakt:
 Fint, meget udførligt.
+
+Appendix:
+Jeres git-log er meget grim. Overvej at lave den med 'git log --pretty' evt.
+kig i dokumentationen.

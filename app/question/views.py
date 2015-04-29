@@ -1,17 +1,19 @@
 from flask import url_for, redirect, render_template, flash, abort, request
 from .models import Threshold, Subject, Question, MultipleChoice, MCAnswer, TypeIn, Ranking, RankItem
+from flask_login import login_required
 from app import app, lm, db
 from .forms import MultipleChoiceForm, TypeInForm
 import random
 import markdown
 
 @app.route('/overview')
+@login_required
 def overview():
     thresholds = []
     subquery = db.session.query(Threshold.next).filter(Threshold.next != None)
     t = db.session.query(Threshold).filter(~Threshold.id.in_(subquery)).first()
     thresholds.append(t)
-    while t.next != None:
+    while t and t.next != None:
         t = Threshold.query.get(t.next)
         thresholds.append(t)
     return render_template('question/overview.html', thresholds=thresholds)

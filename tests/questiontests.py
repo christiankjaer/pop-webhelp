@@ -2,7 +2,7 @@ import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import login_user, current_user
 from app import app, db, lm
-from app.question.models import TypeIn, Question, MultipleChoice
+from app.question.models import TypeIn, Question, MultipleChoice, Subject, Threshold
 from config import basedir
 import unittest
 
@@ -19,7 +19,9 @@ class UserTestCase(unittest.TestCase):
         db.drop_all()
 
     def test_from_dict_typein(self):
-        d = {'type': 'TypeIn', 'text': 'Text1', 'answer': 'Answer1'}
+        t = Threshold('T1')
+        s = Subject('S1', 'Subject1', t)
+        d = {'type': 'TypeIn', 'subject':'S1', 'text': 'Text1', 'answer': 'Answer1'}
         q = Question.from_dict(d)
         assert type(q) == TypeIn
         assert q.text == 'Text1'
@@ -27,8 +29,11 @@ class UserTestCase(unittest.TestCase):
 
 
     def test_from_dict_mc(self):
+        t = Threshold('T1')
+        s = Subject('S1', 'Subject1', t)
         d = {
             'type': 'MultipleChoice',
+            'subject': 'S1',
             'text': 'Text2',
             'answer': [{
                 'text': 'Answer1',
