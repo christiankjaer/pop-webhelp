@@ -20,7 +20,7 @@ class Subject(db.Model):
     text = db.Column(db.Text())
     thres = db.Column(db.Integer, db.ForeignKey('threshold.id'))
     questions = db.relationship('Question', backref='subject')
-    
+
     def __init__(self, name, text, thres):
         self.name = name
         self.text = text
@@ -71,6 +71,15 @@ class Question(db.Model):
                 ri.rank = i
                 ri.text = item
                 q.items.append(ri)
+        elif data['type'] == 'Matching':
+            q = Matching()
+            q.text = data['text']
+            q.sub = data['subject']
+            for text, answer in data['items']:
+                mi = MatchItem()
+                mi.text = text
+                mi.answer = answer
+                q.items.append(mi)
         return q
 
 class TypeIn(Question):
@@ -130,3 +139,25 @@ class RankItem(db.Model):
 
     def __repr__(self):
         return 'Ranking Item %s' % (self.id)
+
+class Matching(Question):
+    __tablename__ = 'matching'
+    id = db.Column(db.Integer, db.ForeignKey('question.id'), primary_key=True)
+    items = db.relationship('MatchItem', backref='matching')
+
+    __mapper_args__ = {
+        'polymorphic_identity':'matching'
+    }
+
+    def __repr__(self):
+        return 'Matching Question %s' % (self.id)
+
+class MatchItem(db.Model):
+    __tablename__ = 'match_item'
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String(255))
+    answer = db.Column(db.String(255))
+    mid = db.Column(db.Integer, db.ForeignKey('matching.id'))
+
+    def __repr__(self):
+        return 'Matching Item %s' % (self.id)
