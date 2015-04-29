@@ -49,10 +49,18 @@ function post(path, params, method) {
     document.body.appendChild(form);
     form.submit();
 }
-function sendList() {
+function sendListRanking() {
     ids = $('.item');
     ids = $.map(ids, function(val, i) {
         return val.id;
     });
     post(window.location.pathname, {ranks: ids});
 }
+function sendListMatching() {
+    ids = $('.item');
+    ids = $.map(ids, function(val, i) {
+        return val.id;
+    });
+    post(window.location.pathname, {answers: ids});
+}
+

@@ -1,5 +1,5 @@
 from flask import url_for, redirect, render_template, flash, abort, request
-from .models import Threshold, Subject, Question, MultipleChoice, MCAnswer, TypeIn, Ranking, RankItem
+from .models import Threshold, Subject, Question, MultipleChoice, MCAnswer, TypeIn, Ranking, RankItem, Matching
 from flask_login import login_required
 from app import app, lm, db
 from .forms import MultipleChoiceForm, TypeInForm
@@ -37,6 +37,8 @@ def view_question(id):
         return render_type_in(q)
     elif type(q) == Ranking:
         return render_ranking(q)
+    elif type(q) == Matching:
+        return render_matching(q)
 
 def render_multiple_choice(q):
     form = MultipleChoiceForm()
@@ -63,8 +65,10 @@ def render_type_in(q):
 
 def render_ranking(q):
     if request.method == 'POST':
+        # The posted value is a comma seperated string like "1,3,4,6"
         answer = map(lambda x: int(x), request.form['ranks'].split(','))
         correct = map(lambda x: x.id, sorted(q.items, key=lambda y: y.rank))
+        # compare the id's
         if answer == correct:
             return "success"
         else:
@@ -72,6 +76,20 @@ def render_ranking(q):
     items = q.items
     random.shuffle(items)
     return render_template('question/ranking.html', text=q.text, items=items)
+
+def render_matching(q):
+    if request.method == 'POST':
+        answer = request.form['answers'].split(',')
+        correct = map(lambda x: x.answer, q.items)
+        if answer == correct:
+            return "success"
+        else:
+            return "fail"
+    texts = map(lambda x: x.text, q.items)
+    answers = map(lambda x: x.answer, q.items)
+    random.shuffle(answers)
+    items = zip(texts, answers)
+    return render_template('question/matching.html', text=q.text, items=items)
 
 @app.template_filter()
 def marktohtml(value):
