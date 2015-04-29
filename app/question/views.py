@@ -32,40 +32,46 @@ def view_question(id):
     if not q:
         return abort(404)
     elif type(q) == MultipleChoice:
-        form = MultipleChoiceForm()
-        random.shuffle(q.choices)
-        form.set_data(q)
-
-        if form.validate_on_submit():
-            correct = map(lambda c: c.id, filter(lambda c: c.correct, q.choices))
-            if len(correct) != len(form.choices.data):
-                return "fail"
-            for i in form.choices.data:
-                if int(i) not in correct:
-                    return "fail"
-            return "success"
-        return render_template('question/multiplechoice.html', text=q.text, form=form)
-
+        return render_multiple_choice(q)
     elif type(q) == TypeIn:
-        form = TypeInForm()
-        if form.validate_on_submit():
-            if form.answer.data == q.answer:
-                return "success"
-            else:
-                return "fail"
-        return render_template('question/typein.html', text=q.text, form=form)
-
+        return render_type_in(q)
     elif type(q) == Ranking:
-        if request.method == 'POST':
-            answer = map(lambda x: int(x), request.form['ranks'].split(','))
-            correct = map(lambda x: x.id, sorted(q.items, key=lambda y: y.rank))
-            if answer == correct:
-                return "success"
-            else:
+        return render_ranking(q)
+
+def render_multiple_choice(q):
+    form = MultipleChoiceForm()
+    random.shuffle(q.choices)
+    form.set_data(q)
+    if form.validate_on_submit():
+        correct = map(lambda c: c.id, filter(lambda c: c.correct, q.choices))
+        if len(correct) != len(form.choices.data):
+            return "fail"
+        for i in form.choices.data:
+            if int(i) not in correct:
                 return "fail"
-        items = q.items
-        random.shuffle(items)
-        return render_template('question/ranking.html', text=q.text, items=items)
+        return "success"
+    return render_template('question/multiplechoice.html', text=q.text, form=form)
+
+def render_type_in(q):
+    form = TypeInForm()
+    if form.validate_on_submit():
+        if form.answer.data == q.answer:
+            return "success"
+        else:
+            return "fail"
+    return render_template('question/typein.html', text=q.text, form=form)
+
+def render_ranking(q):
+    if request.method == 'POST':
+        answer = map(lambda x: int(x), request.form['ranks'].split(','))
+        correct = map(lambda x: x.id, sorted(q.items, key=lambda y: y.rank))
+        if answer == correct:
+            return "success"
+        else:
+            return "fail"
+    items = q.items
+    random.shuffle(items)
+    return render_template('question/ranking.html', text=q.text, items=items)
 
 @app.template_filter()
 def marktohtml(value):
