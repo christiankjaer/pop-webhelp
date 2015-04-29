@@ -8,9 +8,9 @@
         {% for i in items %}
         <div class="list-group-item">
             <p>{{ i[0] }}</p>
-        <div class="list-group-item item" id="{{i[1]}}" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)">
+        <div class="list-group-item item grabbable" id="{{i[1]}}" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)">
             <span class="glyphicon glyphicon-minus"></span>
-            <span class="answer">{{ i[1] }}</span>
+            {{ i[1] }}
         </div>
         </div>
         {% endfor %}

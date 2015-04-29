@@ -6,7 +6,8 @@
     <p>{{ text | marktohtml | safe }}</p>
     <div class="list-group" id="items">
         {% for i in items %}
-        <div class="list-group-item item" id="{{i.id}}" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)">
+        <div class="list-group-item item grabbable" id="{{i.id}}" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)">
+            <span class="glyphicon glyphicon-minus"></span>
             {{ i.text }}
         </div>
         {% endfor %}
