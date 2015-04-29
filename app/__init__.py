@@ -17,3 +17,4 @@ mail = Mail(app)
 from app import views
 from app.user import views
 from app.question import views
+from app.log import views
