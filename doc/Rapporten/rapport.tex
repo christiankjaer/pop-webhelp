@@ -190,7 +190,7 @@ På Figur \ref{fig:use_case_model} kan man se vores use case model diagram. Vi h
 På Figur \ref{fig:use_case1} ses en beskrivelse af use casen, hvor en studerende opretter sin bruger. Det er en simpel use case, der beskriver i detaljer hvordan processen med at oprette sig som bruger i systemet skal foregå. Inden denne use case, så har brugeren ikke oprettet sig, og når use casen er fuldført, så har brugeren oprettet sig, er godkendt og logget ind. Det kombinerer en del af funktionaliteten i én use case. Det kunne godt deles op, men da vi her kun skal beskrive tre overordnede use cases, så har vi kombineret dem.
 \begin{figure}[h!]
     \centering
-    \begin{tabular}{r p{10cm}}
+    \begin{tabular}{r p{8cm}}
         \toprule
         \textit{Navn på use-case:} & \verb!OpretBruger! \\
         \hline
@@ -217,7 +217,7 @@ På Figur \ref{fig:use_case1} ses en beskrivelse af use casen, hvor en studerend
 På Figur \ref{fig:use_case2} ses en beskrivelse af use casen, hvor en studerende svarer på spørgsmål. Den er på et relativt højt abstraktionsniveau, da vi ikke er helt sikre på hvordan workflowet i systemet er endnu. En ting er dog sikkert. Når man har valgt et emne, så vil der blive stillet spørgsmål i en lind strøm, indtil systemet finder at man har dygtiggjort sig nok inden for emnet til at man kan begynde på et nyt.
 \begin{figure}[h!]
     \centering
-    \begin{tabular}{r p{10cm}}
+    \begin{tabular}{r p{8cm}}
         \toprule
         \textit{Navn på use-case:} & \verb!BesvarOpgave! \\
         \hline
@@ -246,7 +246,7 @@ På Figur \ref{fig:use_case2} ses en beskrivelse af use casen, hvor en studerend
 Et af kravene for systemet er, at det skal være nemt for underviserne i kurset at oprette nye opgaver. Da underviserne selv er dataloger, så vil det være optimalt hvis man kan lave spørgsmålene i et struktureret filformat. Vi har foreslået \verb!YAML!, derfor er use-casen på Figur \ref{fig:use_case3} meget simpel, og består kun af fil-upload.
 \begin{figure}[h!]
     \centering
-    \begin{tabular}{r p{10cm}}
+    \begin{tabular}{r p{8cm}}
         \toprule
         \textit{Navn på use-case:} & \verb!OpretOpgave! \\
         \hline
@@ -295,7 +295,7 @@ Modellen har fire controller-objekter, hvor den første er \emph{login}-controll
 I dette afnit er der lavet sekvensdiagrammer over de tre use cases der er beskrevet i Afsnit \ref{sub:use_cases}.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\linewidth]{figures/OpretBrugerUseCase.png}
+    \includegraphics[width=0.8\linewidth]{figures/OpretBrugerUseCase.png}
     \caption{Sekvensdiagram over opretning af bruger}
     \label{fig:opret_bruger_sekvens}
 \end{figure}
@@ -303,7 +303,7 @@ På Figur \ref{fig:opret_bruger_sekvens} kan man se sekvens-diagrammet for den f
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\linewidth]{figures/SvarUseCase.png}
+    \includegraphics[width=0.8\linewidth]{figures/SvarUseCase.png}
     \caption{Sekvensdiagram over besvarelse af spørgsmål}
     \label{fig:svar_sekvens}
 \end{figure}
@@ -311,7 +311,7 @@ På Figur \ref{fig:svar_sekvens} kan man se sekvens-diagrammet for den anden use
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\linewidth]{figures/OpretSporgsmalUseCase.png}
+    \includegraphics[width=0.8\linewidth]{figures/OpretSporgsmalUseCase.png}
     \caption{Sekvensdiagram over opretning af spørgsmål}
     \label{fig:opret_sp_sekvens}
 \end{figure}
@@ -319,7 +319,29 @@ På Figur \ref{fig:opret_sp_sekvens} kan man se sekvens-diagrammet for den tredj
 
 \section{Systemdesign}
 \label{sec:systemdesign}
-Ikke implementeret
+I dette afsnit beskrives de designopgaver der er udført allerede. Til sidst i afsnittet vises de dele der endnu ikke er udført.
+\subsection{Databasedesign}
+\label{sub:databasedesign}
+Et ER-diagram over databasen ses på Figur \ref{fig:er_diagram}. Det er stort set identisk med klassediagrammet over vores problemområde som ses på Figur \ref{fig:class_diagram}. Her er den generelle struktur over hvordan spørgsmålene er inddelt uddybet. Altså hvordan et \emph{Subject} hører til et \emph{Threshold} og så videre. Vi prøver også at vise den modulære struktur ved at lade nye typer spørgsmål nedarve fra en generaliseret type.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/er_diagram/Qdb.png}
+    \caption{ER-diagram over delen af databasen hvor spørgsmålene hører til.}
+    \label{fig:er_diagram}
+\end{figure}
+
+\subsection{Implementeret funktionalitet}
+\label{sub:implementeret_funktionalitet}
+Vi har med ER-diagrammet i hånden implementeret en lang række klasser med hjælo fra \verb!SQLAlchemy!, som er en \emph{Object Relational Mapper} til python, som sørger for nemt, at kunne lave python objekter ud fra en række i databasen.
+
+Oven på det har vi med hjælp fra \verb!Flask! frameworket implementeret en simpel web applikation der er funktionalitet til at håndtere brugerlogins og som kan vise og give respons på spørgsmål og præsentere dem og de \emph{Subjects} og \emph{Thresholds} de hører ind under.
+
+\subsection{Udestående design- og implementationsopgaver}
+\label{sub:udestaende_design_og_implementationsopgaver}
+
+Vi mangler at implementere delen der vælger spørgsmål og afgører om man man har svaret på nok. Vi mangler også at implementere logning og upload af spørgsmål.
+
+
 \section{Program- og systemtest}
 \label{sec:program_og_systemtest}
 I dette afsnit uddybes vores teststrategi, og hvordan testene er forløbet.
@@ -330,6 +352,14 @@ For at det skal være så nemt og smertefrit som muligt at teste, så bruger vi 
 For at være sikker på at vores tests er dækkende, så bruges et værktøj der måler dækningsgraden (Afsnit 11.4.3 i \cite{OOSE})  af vores tests. Det giver en metrik af hvor gode testene er. Dette værktøj er \verb!coverage!\footnote{\url{http://nedbatchelder.com/code/coverage/}}. Det kan også generere rapporter, som viser et overblik over koden, og visuelt viser hvilke dele af kopden der er dækket af tests.
 
 På Figur \ref{fig:testcoverage} ses en udskrift af testrapporten. Der ses hvilke moduler af koden, som er dækket tilstrækkeligt af tests. På Figur \ref{fig:code_coverage} ses hvordan værktøjet viser hvilke dele af koden der er dækket af tests.
+
+\subsection{Integrationstests}
+\label{sub:integrationstests}
+Når vi har flere færdiggjorte moduler, så skal de testes sammen med realistiske input data, for at se om flere dele af systemet spiller sammen.
+
+\subsection{Usability-tests}
+\label{sub:usability_tests}
+Når vi har en funktionsdygtig brugergrænseflade, så skal der udføres tests af hvor brugervenlig den er.
 
 \begin{figure}[h]
     \centering
@@ -347,7 +377,7 @@ På Figur \ref{fig:testcoverage} ses en udskrift af testrapporten. Der ses hvilk
 
 \section{Brugergrænseflade og interaktionsdesign}
 \label{sec:brugergraenseflade}
-Ikke implementeret
+Der er ikke lavet en reel brugerflade eller mockups endnu, og det er også et emne vi mangler at snakke i dybden med vores kunde om.
 
 \section{Projektsamarbejdet}
 \label{sec:projektsamarbejdet}
@@ -374,7 +404,7 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 17-04-2015 & LSE & Tilføjet Abstract og Projektsamarbejdet. \\
 17-04-2015 & CKL & Tilføjet use cases, sekvensdiagram og klassediagram. \\
 26-04-2015 & CKL & Tilføjet afsnit om tests. \\
-30-04-2015 & CKL & Rettet til genaflevering. \\
+30-04-2015 & CKL & Rettet til genaflevering og tilføjet systemdesign. \\
 \end{tabular}
 \section{Timeline}
 \begin{tabular}{l l p{8cm}}
