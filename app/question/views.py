@@ -5,6 +5,7 @@ from app import app, lm, db
 from .forms import MultipleChoiceForm, TypeInForm
 import random
 import markdown
+from multimethod import multimethod
 
 @app.route('/overview')
 @login_required
@@ -31,16 +32,10 @@ def view_question(id):
     q = Question.query.get(id)
     if not q:
         return abort(404)
-    elif type(q) == MultipleChoice:
-        return render_multiple_choice(q)
-    elif type(q) == TypeIn:
-        return render_type_in(q)
-    elif type(q) == Ranking:
-        return render_ranking(q)
-    elif type(q) == Matching:
-        return render_matching(q)
+    return render_question(q)
 
-def render_multiple_choice(q):
+@multimethod(MultipleChoice)
+def render_question(q):
     form = MultipleChoiceForm()
     random.shuffle(q.choices)
     form.set_data(q)
@@ -54,7 +49,8 @@ def render_multiple_choice(q):
         return "success"
     return render_template('question/multiplechoice.html', text=q.text, form=form)
 
-def render_type_in(q):
+@multimethod(TypeIn)
+def render_question(q):
     form = TypeInForm()
     if form.validate_on_submit():
         if form.answer.data == q.answer:
@@ -63,7 +59,8 @@ def render_type_in(q):
             return "fail"
     return render_template('question/typein.html', text=q.text, form=form)
 
-def render_ranking(q):
+@multimethod(Ranking)
+def render_question(q):
     if request.method == 'POST':
         # The posted value is a comma seperated string like "1,3,4,6"
         answer = map(lambda x: int(x), request.form['ranks'].split(','))
@@ -77,7 +74,8 @@ def render_ranking(q):
     random.shuffle(items)
     return render_template('question/ranking.html', text=q.text, items=items)
 
-def render_matching(q):
+@multimethod(Matching)
+def render_question(q):
     if request.method == 'POST':
         answer = request.form['answers'].split(',')
         correct = map(lambda x: x.answer, q.items)

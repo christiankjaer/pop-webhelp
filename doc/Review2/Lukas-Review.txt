@@ -1,42 +1,42 @@
-Abstract:
-Ganske fin opsummering af fremskridtet indtil videre. Nogle sætninger er dog lidt uklare, og der er også lidt problemer med den engelske grammatik.
+Abstract: Ganske fin opsummering af fremskridtet indtil videre. Nogle
+sætninger er dog lidt uklare, og der er også lidt problemer med den engelske
+grammatik.
 
-Indledning:
-Fin, enkelte grammatiske fejl.
+Indledning: Fin, enkelte grammatiske fejl.
 
-FACTOR
-Fin, ordre i ental, ordrer i flertal.
+FACTOR: Fin, ordre i ental, ordrer i flertal.
 
 I er meget specifikke i jeres teknologier. Fx bruger i både Django og PHP. Er
-der en grund til dette? Kunne man nøjes med en af dem? Bruger i en alpha version af Python til udvikling
-(3.5.0a3). Ved man hvilken version af javascript man bruger?
+der en grund til dette? Kunne man nøjes med en af dem? Bruger i en alpha
+version af Python til udvikling (3.5.0a3). Ved man hvilken version af
+javascript man bruger?
 
-Kravspecifikation
-Ganske udemærkede krav.
-Jeres Use Case Model er vist ikke helt rigtig, minder mere om et slags sekvensdiagram. Prøv evt. at google use case model.
-Fin beskrivelse af use cases, de kunne dog også godt være illustrede lidt mere formelt, kig f.eks. under use cases i bogen.
-Udemærket klassediagram, selvom det igen måske lidt virker som en sammenblandig af forskellige diagramtyper. Nedenstående sætning er også lidt morsom.
-'En indkøbsordre består af mange(mindst 1) vine, som enten allerede er registreret i bogholderiet eller ikke.'
-Rigtig fin BCE model, selvom det måske lige er konkret nok at snakke om knapper som boundaries.
-Meget udførlige sekvensdiagrammer.
+Kravspecifikation: Ganske udemærkede krav.  Jeres Use Case Model er vist ikke
+helt rigtig, minder mere om et slags sekvensdiagram. Prøv evt. at google use
+case model.  Fin beskrivelse af use cases, de kunne dog også godt være
+illustrede lidt mere formelt, kig f.eks. under use cases i bogen.  Udemærket
+klassediagram, selvom det igen måske lidt virker som en sammenblandig af
+forskellige diagramtyper. Nedenstående sætning er også lidt morsom: 'En
+indkøbsordre består af mange(mindst 1) vine, som enten allerede er registreret
+i bogholderiet eller ikke.' Rigtig fin BCE model, selvom det måske lige er
+konkret nok at snakke om knapper som boundaries.  Meget udførlige
+sekvensdiagrammer.
 
-Systemdesign:
-Ikke så meget at sige
+Systemdesign: Ikke så meget at sige
 
-Test:
-Har i nogen teststrategi? Har i tænkt for kriterier for hvor gode tests i
-skriver, altså ting som dækningsgrad, mockups, dummy-data? Bruger i et
+Test: Har i nogen teststrategi? Har i tænkt for kriterier for hvor gode tests
+i skriver, altså ting som dækningsgrad, mockups, dummy-data? Bruger i et
 testframework (fx som unittest i python, phpunit i php).
 
-Brugergrænseflade:
-Ikke så meget at sige, fedt med en video allerede.
+Brugergrænseflade: Ikke så meget at sige, fedt med en video allerede (er jeres
+egenproducerede video en litteraturhenvisning?)
 
-Projektsamarbejde:
-Fint
+Projektsamarbejde: Fint
 
-Kundekontakt:
-Fint, meget udførligt.
+Kundekontakt: Fint, meget udførligt.
 
-Appendix:
-Jeres git-log er meget grim. Overvej at lave den med 'git log --pretty' evt.
-kig i dokumentationen.
+Appendix: Jeres git-log er meget grim. Overvej at lave den med 'git log
+--pretty' evt.  kig i dokumentationen.
+
+Diverse: Brug nogle flere af de strukturerede konstruktioner fra LaTeX som
+\subsection, \paragraph mfl.

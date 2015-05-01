@@ -1,13 +1,12 @@
-\documentclass[12pt]{article}
+\documentclass[11pt, a4paper]{article}
 \usepackage{natbib}
 \usepackage{eso-pic}
 \usepackage{amsmath} % flere matematikkommandoer
 \usepackage{amssymb}
 \usepackage[utf8]{inputenc} % æøå
 \usepackage[T1]{fontenc} % mere æøå
-\usepackage[danish]{babel} % orddeling
+\usepackage[danish, english]{babel} % orddeling
 \usepackage{verbatim} % så man kan skrive ren tekst
-\usepackage[a4paper, margin = 1in]{geometry}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{enumitem}
@@ -16,24 +15,21 @@
 \usepackage{tocbibind}
 
 \author{
-  Christian Kjær Larsen\\
-  \texttt{011292} \\[.4cm]
-  Lukas Svarre Engedal\\
-  \texttt{210790} \\[.4cm]
-  Tobias Sønderskov Hansen\\
-  \texttt{240395} \\[.4cm]
-  Instruktor: Aske Mottelson\\[.4cm]
-  \vspace{10cm}
+    Christian Kjær Larsen \texttt{(011292)} \\[.4cm]
+    Lukas Svarre Engedal \texttt{(210790)} \\[.4cm]
+    Tobias Sønderskov Hansen \texttt{(240395)} \\[.4cm]
+    Instruktor: Aske Mottelson\\[.4cm]
+    \vspace{9cm}
 }
 
 \title{
   \vspace{3cm}
-  \Huge{ProjDat 2015} \\[.25cm]
-  \large{Delrapport 3}
+  \Huge{PoP-Webhelp} \\[.10cm]
+  \Large{Delrapport 2, ProjDat 2015}
 }
 
 \begin{document}
-
+\selectlanguage{danish}
 \AddToShipoutPicture*{\put(0,0){\includegraphics*[viewport=0 0 700 600]{includes/nat-farve}}}
 \AddToShipoutPicture*{\put(0,602){\includegraphics*[viewport=0 600 700 1600]{includes/nat-farve}}}
 
@@ -45,6 +41,19 @@
 
 \newpage
 
+\selectlanguage{english}
+\begin{abstract}
+    This report presents the development of an e-learning system for use in the newly created introductory computer science course at the Institute of Computer Science at the University of Copenhagen, called \emph{Programmering og Problemløsning}. Our clients are Martin Dybdal and Oleksandr Shturmov, both employed at the institute, who will be in charge of the course. In the course, the students will be taught the programming language \verb!F#!.
+
+    The aim of the e-learning system is to introduce new students to programming in a simple and user-friendly way, and to teach them various basic ideas and concepts in programming in general, and \verb!F#! in particular. This is done by presenting the students with an array of different exercises, sorted based on subject and difficulty, and presented to students in a specific and meaningful order.
+
+The system will have two different kinds of users: students and admins.
+
+Students will mainly be working on the various exercises, and they will also be able to get hints for the exercises if needed and provide feedback on the exercises and hints once completed. Students should also be able to see how well they are doing so far, for instance how many of the exercises belonging to a particular subject matter they have solved.
+
+The primary role of the admins will be managing the exercises and supervising how well the students are doing. They should be able to easily delete or modify existing exercises or add new ones, as well as manage the order in which the students are presented with the exercises. They should also be able to get various statistics about how the students are doing in order to improve and optimize the exercises, their order and their subjects.
+\end{abstract}
+\newpage
 \tableofcontents
 
 \thispagestyle{empty}
@@ -54,15 +63,16 @@
 \setcounter{page}{1}
 \pagenumbering{arabic}
 
+\selectlanguage{danish}
 \section{Review}
 \subsection{Designing for usability: key principles and what designers think}
 \label{sub:designing_for_usability}
 \paragraph{Referat}
-Artiklen \cite{gould1985designing} beskriver en overordnet metode til design og udvikling af brugervenlige systemer. Denne tilgangsvinkel består af 3 grundlæggende principper: tidligt fokus på brugerne, empiriske målinger og iterativt design. Artiklen tager udgangspunkt i udviklingen af IBM's \emph{Audio Distribution System} (ADS) hvor disse principper blev anvendt.
+Gould og Lewis\cite{gould1985designing} beskriver en overordnet metode til design og udvikling af brugervenlige systemer. Denne tilgangsvinkel består af tre grundlæggende principper: tidligt fokus på brugerne, empiriske målinger og iterativt design. Artiklen tager udgangspunkt i udviklingen af IBM's \emph{Audio Distribution System} (ADS) hvor disse principper blev anvendt.
 
 Ved første princip påstås at det er nødvendigt for systemudviklerne fra starten at sætte sig ind i hvem systemets tiltænkte målgruppe er. Metoden anbefaler at udviklerne danner sig en \emph{forståelse} for brugerne, frem for blot at lave en karakterisering. Udover selve brugerne, skal udviklerne også sætte sig ind i hvilken sammenhæng systemet skal bruges og hvilke opgaver det skal løse, samt hvordan et evt. nuværende system løser disse opgaver.
 
-Andet princip, \emph{empiriske målinger}, beskriver brugen af prototyper og simulationer til at teste mod målgruppen for at studere dennes reaktion. Personer der selv har været med til at udvikle systemet vil næsten uundgåeligt anvende systemet anderledes end en typisk bruger, derfor er det vigtigt at systemet også bliver afprøvet af målgruppen, og at målgruppens respons bruges i den efterfølgende udvikling.
+Andet princip, \emph{empiriske målinger}, beskriver brugen af prototyper og simulering til at teste mod målgruppen for at studere dennes reaktion. Personer der selv har været med til at udvikle systemet vil næsten uundgåeligt anvende systemet anderledes end en typisk bruger, derfor er det vigtigt at systemet også bliver afprøvet af målgruppen, og at målgruppens respons bruges i den efterfølgende udvikling.
 
 \emph{Iterativt design} går ud på at de problemer der opdages under afprøvningen skal løses. Dette sikres ved at opdele systemudviklingen i en masse gentagelser af design og afprøvning, hvor resultaterne af afprøvningen i én iteration påvirker deisgnet i den næste. Dette er i kontrast til mere lineære modeller, hvor der i stedet udarbejdes en detaljeret kravspecifikation, og en egentlig afprøvning først sker til sidst i projektet.
 
@@ -73,14 +83,14 @@ De tre principper fra artiklen indgår alle i et vist omfang i systemudviklingsm
 
 Med hensyn til tidligt fokus på brugerne, så inkorporerer OOSE's fremgangsmåde bl.a. dette i form af en \emph{requirements elicitation}, der beskriver de forskelllige typer brugere og i hvilke sammenhænge de systemet anvendes.
 
-Artiklen understreger vigtigheden af at kunne foretage ændringer baseret på brugernes reaktioner, derfor er det vigtigt at systemet er struktureret på en måde der tager højde for dette. Man kan sammenligne dette med \emph{Entity-Boundary-Control} fremgangsmåden beskrevet i OOSE, der fokuserer på at opdele systemet i nogle forholdsvis uafhængige elementer, så der eksempelvis kan ændres i brugergrænsefladen uden at det påvirker resten af programmet.
+Artiklen understreger vigtigheden af at kunne foretage ændringer baseret på brugernes reaktioner, derfor er det vigtigt at systemet er struktureret på en måde der tager højde for dette. Man kan sammenligne dette med \emph{Entity-Boundary-Control} fremgangsmåden beskrevet i OOSE \cite{OOSE}, der fokuserer på at opdele systemet i nogle forholdsvis uafhængige elementer, så der eksempelvis kan ændres i brugergrænsefladen uden at det påvirker resten af programmet.
 
 Både metoden beskrevet i artiklen og de fremgangsmåder præsenteret i OOSE er agile. Den grundlæggende metode er altså fælles for dem alle, udviklingen sker i iterationer af henholdsvis design og brugertest.
 
 \subsection{A Rational Design Process: How and Why to Fake It}
 \label{sub:a_rational_design_process}
 \paragraph{Referat}
-I artiklen \cite{parnas1986rational} prøver forfatterne at beskrive en ideel udviklingsproces og den dokumentation der kræves. Hovedargumentet i artiklen er dog, at selvom man ikke har fuldt grundlag for en altomfattende kravspecifikation, så skal man stadig producere dokumentation som hvis man havde.
+Parnas og Clements \cite{parnas1986rational} prøver i artiklen at beskrive en ideel udviklingsproces og den dokumentation der kræves. Hovedargumentet i artiklen er dog, at selvom man ikke har fuldt grundlag for en altomfattende kravspecifikation, så skal man stadig producere dokumentation som hvis man havde.
 
 Derfor mener forfatterne, at hvis man ikke har en helt beskrivende kravspecifikation, så er det vigtigt at kende processen, så man som udvikler kan hjælpe designerne med, at finde de manglende informationer. Det gør, at man tidligere i processen kan få fundet fejl i designet, så de ikke kommer med i det endelige system.
 
@@ -93,43 +103,47 @@ Hele titlen på artiklen, det at \emph{fake} den ideelle udviklingsproces går u
 \paragraph{Perspektivering}
 Den idealiserede udviklingsproces som beskrives i \cite{parnas1986rational} har mange ting til fælles med nogle af kapitlerne i \cite{OOSE}. Den i artiklen omtalte kravspecifikation har mange ting til fælles med det i bogen omtalte \emph{Requirement Analysis Document} (Kapitel 4). I begge dokumenter indgår alle informationer, der skal til at udvilkle systemet.
 
-I artiklen beskrives hvordan dette dokument kan bruges til at nedbryde problemet i moduler som kan takles af mange forskellige udviklere. Det er også hvad der foreslås i kapitel 6 i \cite{OOSE}. Her nedbrydes systemet efter analysemodellen som er resultatet af kravspecifikationen. Det er også her, ligesom i artiklen, at grænsefladerne mellem modulerne specificieres, så en udvikler nemt og fejlfrit kan udvikle delsystemet. I artiklen argumenterer forfatterne for, at for hvert delsystem, så skal der fremstilles en kravspecifikation med samme struktur som for hele systemet. Det bliver en slags rekursiv dokumentation, da et delsystem godt kan bestå af flere. Fra et ledelsesperspektiv er det beskrevet i kapitel 14 i \cite{OOSE} hvordan denne nedbrydning uddelegeres mellem udviklere, så arbejdet foregår mest effektivt.
+I artiklen beskrives hvordan dette dokument kan bruges til at nedbryde problemet i moduler som kan takles af mange forskellige udviklere. Det er også hvad der foreslås i kapitel 6 i \cite{OOSE}. Her nedbrydes systemet efter analysemodellen som er resultatet af kravspecifikationen. Det er også her, ligesom i artiklen, at grænsefladerne mellem modulerne specificeres, så en udvikler nemt og fejlfrit kan udvikle delsystemet. I artiklen argumenterer forfatterne for, at for hvert delsystem, så skal der fremstilles en kravspecifikation med samme struktur som for hele systemet. Det bliver en slags rekursiv dokumentation, da et delsystem godt kan bestå af flere. Fra et ledelsesperspektiv er det beskrevet i kapitel 14 i \cite{OOSE} hvordan denne nedbrydning uddelegeres mellem udviklere, så arbejdet foregår mest effektivt.
 
-Artiklen omtaler processen som ideel. Den omtalte proces er i praksis det vi kender som \emph{waterfall}-modellen. I mere moderne softwareudvikling stiller man spørgsmålstegn ved, om det er den optimale proces. Det er især efter udbredelsen af agile metoder som \emph{SCRUM} \cite{sutherland2010jeff} og andre. Her erkender man, at det er nærmest umuligt at designe software på samme måde som man designer broer på, da der simpelthen er for mange ukendte når man starter. Dette udbedres så ved at beskrive kravene samtidig med at systemet udviklet, da det så er nennere at finde fejl i designet undervejs.
+Artiklen omtaler processen som ideel. Den omtalte proces er i praksis det vi kender som \emph{vandfaldsmodellen}. I mere moderne softwareudvikling stiller man spørgsmålstegn ved, om det er den optimale proces. Det er især efter udbredelsen af agile metoder som \emph{SCRUM} \cite{sutherland2010jeff} og andre. Her erkender man, at det er nærmest umuligt at designe software på samme måde som man designer broer på, da der simpelthen er for mange ukendte faktorer når man starter. Dette udbedres så ved at beskrive kravene samtidig med at systemet udviklet, da det så er nemmere at finde fejl i designet undervejs.
 
 \newpage
-\section{Abstract}
-\label{sec:abstract}
-Our project is about developing an e-learning system for use in the newly created introductory computer science course at the Institute of Computer Science at Copenhagen University, called \emph{Programmering og Problemløsning}. Our clients are Martin Dybdal and Oleksandr Shturmov, both employed at the institute, who will be in charge of the course. In the course, the students will be taught the \verb!F#! language.
-
-The aim of the e-learning system is to introduce new students to programming in a simple and user-friendly way, and to teach them various basic ideas and concepts in programming in general and \verb!F#! in particular. This is done by presenting the students with an array of different exercises, which are sorted based on subject and difficulty, and presented to students in a specific and meaningful order.
-
-The system will have two different kinds of users: students and admins.
-
-Students will mainly be working on the various exercises, and they will also be able to get hints for the exercises if needed and provide feedback on the exercises and hints once completed. Students should also be able to see how well they are doing so far, for instance how many of the exercises belonging to a particular subject matter they have solved.
-
-The primary role of the admins will be managing the exercises and supervising how well the students are doing. They should be able to easily delete or modify existing exercises or add new ones, as well as manage the order in which the students are presented with the exercises. They should also be able to get various statistics about how the students are doing in order to improve and optimize the exercises, their order and their subjects.
-
 \section{Formål og rammer}
 \label{sec:formal_og_rammer}
 I dette afsnit beskrives systemets formål og rammer ved \textit{FACTOR}-kriteriet.
-\begin{description}
-    \item[Funktionalitet]
-        Besvare og oprette programmeringsspørgsmål, Analysere de studerendes fremskridt.
-    \item[Anvendelsesområde]
-        Loginsystem, Spørgsmålshåndtering, Spørgsmålsbesvarelse, Analyse.
-    \item[Betingelser]
-        Undervisere har begrænsede resurser. Studerende har svært ved programmering.
-    \item[Teknologi]
-        Webapplikation med teknologi der er nemt at sætte sig ind i.
-    \item[Objekter]
-        Studerende, Spørgsmål, Hints, Undervisere.
-    \item[Ansvar]
-        E-læringssystem til hjælp af studerende med programmering.
-\end{description}
+\paragraph{Funktionalitet}
+\begin{itemize}
+    \item Besvare programmeringsspørgsmål
+    \item Oprette programmeringsspørgsmpl
+    \item Analysere det studerendes fremskridt
+    \item Håndtere de studerendes login
+\end{itemize}
+\paragraph{Anvendelsesområde}
+\begin{itemize}
+    \item Undervisere ved DIKU
+    \item Førsteårsstuderende ved DIKU
+\end{itemize}
+\paragraph{Betingelser}
+\begin{itemize}
+    \item Undervisere har begrænsede resurser
+    \item Det skal foregå online
+\end{itemize}
+\paragraph{Teknologi}
+\begin{itemize}
+    \item Python 2
+    \item Flask webframework
+    \item SQLAlchemy
+    \item HTML/CSS
+    \item Javascript
+\end{itemize}
+\paragraph{Objekter}
+Studerende, Spørgsmål, Hints, Undervisere.
+\paragraph{Ansvar}
+E-læringssystem der skal hjælpe de studerende med programmering.
+
 \section{Kravspecifikation}
 \label{sec:kravspecifikation}
-
+I dette afsnit beskrives kravene til systemet. Det er ting som de funktionelle og de ikke-funktionelle krav til systemet. Der er også diagrammer der uddybber systemets funktionalitet og udformning.
 \subsection{Krav}
 \label{sub:krav}
 \paragraph{Funktionelle krav}
@@ -157,27 +171,26 @@ De ikke-funktionelle krav til dette projekt er forholdsvis begrænsede, idet vi 
 
 \begin{itemize}
 \item Det skal være nemt at tilføje nye opgaver til systemet, sådan at kursuslederne efterfølgende kan opbygge en tilstrækkelig samling af opgaver til de studerende.
-\item Det endelige produkt skal gerne skal være så simpelt og modulært som muligt, sådan at det er nemt at overtage, udvide og bygge videre på efter at vi overgiver projektet til kunden.
+\item Det endelige produkt skal gerne skal være simpelt og modulært, sådan at det er nemt at overtage, udvide og bygge videre på efter at vi overgiver projektet til kunden.
 \item Ingen af kunderne er web-udviklere, så det er også vigtigt at det valgte framework er veldokumenteret og rimeligt simpelt at bruge.
 \end{itemize}
 
 \subsection{Use case model}
 \label{sub:use_case_model}
-\begin{figure}[htpb]
+På Figur \ref{fig:use_case_model} kan man se vores use case model diagram. Vi har at gøre med to aktører, nemlig studerende og administratorer. Det vigtige for studerende er at de kan oprette sig på siden, og at de har adgang til opgaver de kan besvare. Det vigtige for administratorer er at de kan administrere opgaverne, og at de kan få feedback og statistik på hvordan de studerende klarer opgaverne. Begge aktører skal desuden kunne benytte simpel funktionalitet i forbindelse med deres login.
+\begin{figure}[h]
   \centering
   \includegraphics[width=0.8\linewidth]{figures/UseCaseModel.png}
   \caption{Use case model for vores system.}
   \label{fig:use_case_model}
 \end{figure}
-På Figur \ref{fig:use_case_model} kan man se vores use case model diagram. Vi har at gøre med to aktører, nemlig studerende og administratorer. Det vigtige for studerende er at de kan oprette sig på siden, og at de har adgang til opgaver de kan besvare. Det vigtige for administratorer er at de kan administrere opgaverne, og at de kan få feedback og statistik på hvordan de studerende klarer opgaverne. Begge aktører skal desuden kunne benytte simpel funktionalitet i forbindelse med deres login.
-
 \subsection{Use cases}
 \label{sub:use_cases}
-På Figur \ref{fig:use_case1} ses en beskrivelse af use casen, hvor en studerende opretter sin bruger. Det er en simpel use case, der beskriver i detaljer hvordan processen med at oprette sig som bruger i systemet skal foregå.
 
-\begin{figure}[htpb]
+På Figur \ref{fig:use_case1} ses en beskrivelse af use casen, hvor en studerende opretter sin bruger. Det er en simpel use case, der beskriver i detaljer hvordan processen med at oprette sig som bruger i systemet skal foregå. Inden denne use case, så har brugeren ikke oprettet sig, og når use casen er fuldført, så har brugeren oprettet sig, er godkendt og logget ind. Det kombinerer en del af funktionaliteten i én use case. Det kunne godt deles op, men da vi her kun skal beskrive tre overordnede use cases, så har vi kombineret dem.
+\begin{figure}[h!]
     \centering
-    \begin{tabular}{r p{10cm}}
+    \begin{tabular}{r p{8cm}}
         \toprule
         \textit{Navn på use-case:} & \verb!OpretBruger! \\
         \hline
@@ -198,15 +211,13 @@ På Figur \ref{fig:use_case1} ses en beskrivelse af use casen, hvor en studerend
         \textit{Slutbetingelse:} & En studerende har en aktiveret konto og er logget ind. \\
         \bottomrule
     \end{tabular}
-    \caption{Use case omkring opretning af brugere.}
+    \caption{Use case omkring oprettelse af brugere.}
     \label{fig:use_case1}
 \end{figure}
-
-På Figur \ref{fig:use_case2} ses en beskrivelse af use casen, hvor en studerende svarer på spørgsmål. Den er på et relativt højt abstraktionsniveau, da vi ikke er helt sikre på hvordan workflowet i systemet er endnu.
-
-\begin{figure}[htpb]
+På Figur \ref{fig:use_case2} ses en beskrivelse af use casen, hvor en studerende svarer på spørgsmål. Den er på et relativt højt abstraktionsniveau, da vi ikke er helt sikre på hvordan workflowet i systemet er endnu. En ting er dog sikkert. Når man har valgt et emne, så vil der blive stillet spørgsmål i en lind strøm, indtil systemet finder at man har dygtiggjort sig nok inden for emnet til at man kan begynde på et nyt.
+\begin{figure}[h!]
     \centering
-    \begin{tabular}{r p{10cm}}
+    \begin{tabular}{r p{8cm}}
         \toprule
         \textit{Navn på use-case:} & \verb!BesvarOpgave! \\
         \hline
@@ -233,9 +244,9 @@ På Figur \ref{fig:use_case2} ses en beskrivelse af use casen, hvor en studerend
 \end{figure}
 
 Et af kravene for systemet er, at det skal være nemt for underviserne i kurset at oprette nye opgaver. Da underviserne selv er dataloger, så vil det være optimalt hvis man kan lave spørgsmålene i et struktureret filformat. Vi har foreslået \verb!YAML!, derfor er use-casen på Figur \ref{fig:use_case3} meget simpel, og består kun af fil-upload.
-\begin{figure}[htpb]
+\begin{figure}[h!]
     \centering
-    \begin{tabular}{r p{10cm}}
+    \begin{tabular}{r p{8cm}}
         \toprule
         \textit{Navn på use-case:} & \verb!OpretOpgave! \\
         \hline
@@ -257,7 +268,7 @@ Et af kravene for systemet er, at det skal være nemt for underviserne i kurset 
 \end{figure}
 
 \subsection{Klassediagram}
-\begin{figure}[htpb]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/ClassDiagram.png}
     \caption{Klassediagram af problemområdet}
@@ -265,14 +276,14 @@ Et af kravene for systemet er, at det skal være nemt for underviserne i kurset 
 \end{figure}
 På Figur \ref{fig:class_diagram} kan man se vores klassediagram. Størstedelen af klasserne har at gøre med opgaverne og deres inddeling i forskellige grupper samt de forskellige typer af opgaver der findes. Derudover er der et par klasser der har at gøre med den log der føres over de studerendes opgavebesvarelser, for at de kursusansvarlige kan følge med i hvad der går godt og mindre godt. Endeligt er der en klasse for studerende og en klasse for administratorne.
 
+På Figur \ref{fig:bce_model} kan man se vores BCE model. Modellen har to entity-objekter, fire controller-objekter samt tre boundary-objekter.
 \subsection{BCE-model}
-\begin{figure}[htpb]
+\begin{figure}[h]
   \centering
   \includegraphics[width=0.8\linewidth]{figures/BCE-Model.png}
   \caption{BCE model for vores system.}
   \label{fig:bce_model}
 \end{figure}
-På Figur \ref{fig:bce_model} kan man se vores BCE model. Modellen har to entity-objekter, fire controller-objekter samt tre boundary-objekter.
 
 De to entity-objekter er \emph{Bruger} og \emph{Opgave}. \emph{Bruger} indeholder informationer om hver enkelt bruger som login-oplysninger, hvor vidt brugeren er en studerende eller en admin samt hvilke opgaver brugeren allerede har løst. \emph{Opgave} indeholder alle informationerne om de enkelte opgaver, det er både selve opgaven der skal løses samt statistik omkring hvordan det er gået når studerende har løst opgaven.
 
@@ -281,52 +292,83 @@ Modellen har tre boundary-objekter, hvor det første man vil møde når man indl
 Modellen har fire controller-objekter, hvor den første er \emph{login}-controlleren der som tidligere nævnt står for at logge brugere ind i systemet. Som studerende vil man have adgang til \emph{BesvarOpgave}-controlleren, der snakker sammen med \emph{Bruger} og \emph{Opgave} og sørger for at stille brugeren de rigtige opgaver. Som admin vil man have adgang til to controllers, nemlig \emph{EvaluerOpgave}-controlleren og \emph{AdministrerOpgave}-controlleren. \emph{EvaluerOpgave}-controlleren snakker sammen med \emph{Opgave} og giver en adgang til de forskellige slags statistik der bliver samlet om opgaverne, og \emph{AdministrerOpgave}-controlleren snakker ligeledes sammen med \emph{Opgave} og giver en adgang til at slette eller ændre i eksisterende opgaver samt tilføje nye.
 
 \subsection{Sekvens-diagrammer}
-\begin{figure}[htpb]
+I dette afnit er der lavet sekvensdiagrammer over de tre use cases der er beskrevet i Afsnit \ref{sub:use_cases}.
+\begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\linewidth]{figures/OpretBrugerUseCase.png}
+    \includegraphics[width=0.8\linewidth]{figures/OpretBrugerUseCase.png}
     \caption{Sekvensdiagram over opretning af bruger}
     \label{fig:opret_bruger_sekvens}
 \end{figure}
-På Figur \ref{fig:opret_bruger_sekvens} kan man se sekvens-diagrammet for den første use case, der beskriver hvordan en studerende opretter sig som bruger i systemet.
+På Figur \ref{fig:opret_bruger_sekvens} kan man se sekvens-diagrammet for den første use case, der beskriver hvordan en studerende opretter sig som bruger i systemet. Her indgår to adskilte sessioner. En hvor brugeren opretter sig. Så sender systemet en email til brugeren. I næste session klikker brugeren på et link i denne email, og brugeren aktiveres. Derefter logger vedkommende ind. Brugeren gøres opmærksom på at dette er lykkedes, og use casen er færdig.
 
-\begin{figure}[htpb]
+\begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\linewidth]{figures/SvarUseCase.png}
+    \includegraphics[width=0.8\linewidth]{figures/SvarUseCase.png}
     \caption{Sekvensdiagram over besvarelse af spørgsmål}
     \label{fig:svar_sekvens}
 \end{figure}
-På Figur \ref{fig:svar_sekvens} kan man se sekvens-diagrammet for den anden use case, der beskriver hvordan en studerende besvarer spørgsmål.
+På Figur \ref{fig:svar_sekvens} kan man se sekvens-diagrammet for den anden use case, der beskriver hvordan en studerende besvarer spørgsmål. Brugeren åbner et spørgsmål, og kan ved at svare kommer videre til næste spørgsmål. Løkken viser at der kan komme flere end et spørgsmål efter det første.
 
-\begin{figure}[htpb]
+\begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\linewidth]{figures/OpretSporgsmalUseCase.png}
+    \includegraphics[width=0.8\linewidth]{figures/OpretSporgsmalUseCase.png}
     \caption{Sekvensdiagram over opretning af spørgsmål}
     \label{fig:opret_sp_sekvens}
 \end{figure}
-På Figur \ref{fig:opret_sp_sekvens} kan man se sekvens-diagrammet for den tredje use case, der beskriver hvordan en administrator opretter et nyt spørgsmål i systemet.
+På Figur \ref{fig:opret_sp_sekvens} kan man se sekvens-diagrammet for den tredje use case, der beskriver hvordan en administrator opretter et nyt spørgsmål i systemet. Dette sekvensdiagram er stort set linært, da der ikke sker mere ed at der uploades et spørgsmål, og der gives respons på at det er tilføjet korrekt.
 
 \section{Systemdesign}
 \label{sec:systemdesign}
-Ikke implementeret
-\section{Program- og systemtest}
+I dette afsnit beskrives de designopgaver der er udført allerede. Til sidst i afsnittet vises de dele der endnu ikke er udført.
+\subsection{Databasedesign}
+\label{sub:databasedesign}
+Et ER-diagram over databasen ses på Figur \ref{fig:er_diagram}. Det er stort set identisk med klassediagrammet over vores problemområde som ses på Figur \ref{fig:class_diagram}. Her er den generelle struktur over hvordan spørgsmålene er inddelt uddybet. Altså hvordan et \emph{Subject} hører til et \emph{Threshold} og så videre. Vi prøver også at vise den modulære struktur ved at lade nye typer spørgsmål nedarve fra en generaliseret type.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/er_diagram/Qdb.png}
+    \caption{ER-diagram over delen af databasen hvor spørgsmålene hører til.}
+    \label{fig:er_diagram}
+\end{figure}
 
+\subsection{Implementeret funktionalitet}
+\label{sub:implementeret_funktionalitet}
+Vi har med ER-diagrammet i hånden implementeret en lang række klasser med hjælo fra \verb!SQLAlchemy!, som er en \emph{Object Relational Mapper} til python, som sørger for nemt, at kunne lave python objekter ud fra en række i databasen.
+
+Oven på det har vi med hjælp fra \verb!Flask! frameworket implementeret en simpel web applikation der er funktionalitet til at håndtere brugerlogins og som kan vise og give respons på spørgsmål og præsentere dem og de \emph{Subjects} og \emph{Thresholds} de hører ind under.
+
+\subsection{Udestående design- og implementationsopgaver}
+\label{sub:udestaende_design_og_implementationsopgaver}
+
+Vi mangler at implementere delen der vælger spørgsmål og afgører om man man har svaret på nok. Vi mangler også at implementere logning og upload af spørgsmål.
+
+
+\section{Program- og systemtest}
 \label{sec:program_og_systemtest}
+I dette afsnit uddybes vores teststrategi, og hvordan testene er forløbet.
 \subsection{Unittests}
 \label{sub:unittests}
-For at det skal være så nemt og smertefrit som muligt at teste, så bruger vi et automatisk unittest værktøj. Ifølge \cite{COCO}, så er automatiske tests den eneste reelle måde at teste på. En af fordelene i vores tilfælde er, at hvis man laver mange ændringer i koden, som der ofte er, når man arbejder agilt, så er det vigtigt at man kan gøre testene hurtigt og nemt efter hver ændring af koden. Vi bruger det inkluderede testbibliotek i \verb!Python! nemlig \verb!unittest!\footnote{\url{https://docs.python.org/2/library/unittest.html}}. Det virker på samme måde som \verb!JUnit! i \verb!Java!, hvor man skriver testmetoder i en testklasse.
+For at det skal være så nemt og smertefrit som muligt at teste, så bruger vi et automatisk unittest værktøj. Ifølge \cite{COCO}, så er automatiske tests den eneste reelle måde at teste på. En af fordelene i vores tilfælde er, at hvis man laver mange ændringer i koden, som der ofte er, når man arbejder agilt, så er det vigtigt at man kan køre testene hurtigt og nemt efter hver ændring af koden. Vi bruger det inkluderede testbibliotek i \verb!Python! nemlig \verb!unittest!\footnote{\url{https://docs.python.org/2/library/unittest.html}}. Det virker på samme måde som \verb!JUnit! i \verb!Java!, hvor man skriver testmetoder i en testklasse.
 
-For at være sikker på at vores tests er dækkende, så bruges et værktøj der måler dækningsgraden (Afsnit 11.4.3 i \cite{OOSE})  af vores tests. Det giver en metrik af hvor gode testene er. Dette værktøj er \verb!coverage!. Det kan også generere rapporter, som viser et overblik over koden, og visuelt viser hvilke dele af kopden der er dækket af tests.
+For at være sikker på at vores tests er dækkende, så bruges et værktøj der måler dækningsgraden (Afsnit 11.4.3 i \cite{OOSE})  af vores tests. Det giver en metrik af hvor gode testene er. Dette værktøj er \verb!coverage!\footnote{\url{http://nedbatchelder.com/code/coverage/}}. Det kan også generere rapporter, som viser et overblik over koden, og visuelt viser hvilke dele af kopden der er dækket af tests.
 
 På Figur \ref{fig:testcoverage} ses en udskrift af testrapporten. Der ses hvilke moduler af koden, som er dækket tilstrækkeligt af tests. På Figur \ref{fig:code_coverage} ses hvordan værktøjet viser hvilke dele af koden der er dækket af tests.
 
-\begin{figure}[htpb]
+\subsection{Integrationstests}
+\label{sub:integrationstests}
+Når vi har flere færdiggjorte moduler, så skal de testes sammen med realistiske input data, for at se om flere dele af systemet spiller sammen.
+
+\subsection{Usability-tests}
+\label{sub:usability_tests}
+Når vi har en funktionsdygtig brugergrænseflade, så skal der udføres tests af hvor brugervenlig den er.
+
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/testcoverage.pdf}
     \caption{Oversigt over dækningsgraden af unittests. Det ses også hvor mange udtryk der er dækket af tests.}
     \label{fig:testcoverage}
 \end{figure}
 
-\begin{figure}[htpb]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/code_coverage.png}
     \caption{Eksempel på en grafik fremstilling, hvor et udtryk der kun delvist er dækket af tests fremhæves.}
@@ -335,7 +377,7 @@ På Figur \ref{fig:testcoverage} ses en udskrift af testrapporten. Der ses hvilk
 
 \section{Brugergrænseflade og interaktionsdesign}
 \label{sec:brugergraenseflade}
-Ikke implementeret
+Der er ikke lavet en reel brugerflade eller mockups endnu, og det er også et emne vi mangler at snakke i dybden med vores kunde om.
 
 \section{Projektsamarbejdet}
 \label{sec:projektsamarbejdet}
@@ -362,12 +404,14 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 17-04-2015 & LSE & Tilføjet Abstract og Projektsamarbejdet. \\
 17-04-2015 & CKL & Tilføjet use cases, sekvensdiagram og klassediagram. \\
 26-04-2015 & CKL & Tilføjet afsnit om tests. \\
+30-04-2015 & CKL & Rettet til genaflevering og tilføjet systemdesign. \\
 \end{tabular}
 \section{Timeline}
 \begin{tabular}{l l p{8cm}}
 11-03-2015 & Første møde med kunde: & Vi har første møde med kunden hvor vi snakker om hvad projektet går ud på og diskuterer krav og løsningsforslag. \\
 16-04-2015 & Andet møde med kunde: & Vi har haft andet møde med kunden, hvor vi har snakket om modellen for de opgaver der skal være i systemet. \\
 22-04-2015 & Internt møde i gruppen: & Vi har diskuteret databasemodeller, og vi er kommet frem til et databaseskema for denne iteration af systemet. Derudover fik vi udviklet i fællesskab på systemet. \\
+27-04-2015 & Tredje møde med kunde: & Vi blev enige om en endelig funktionalitet for den første iteration af produktet. Derudover diskuterede vi udformingen af spørgmsålstyper og hvordan det hele skulle knyttes sammen. \\
 \end{tabular}
 
 \bibliographystyle{alpha}
