@@ -3,13 +3,15 @@ from app import db
 class Threshold(db.Model):
     __tablename__ = 'threshold'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text())
-    next = db.Column(db.Integer, db.ForeignKey('threshold.id'), default=None)
+    name = db.Column(db.Text(), unique=True)
+    score = db.Column(db.Integer)
     subjects = db.relationship('Subject', backref='threshold')
+    next = db.Column(db.Integer, db.ForeignKey('threshold.id'), default=None)
 
-    def __init__(self, name, next=None):
+    def __init__(self, name, next=None, score=0):
         self.name = name
         self.next = next
+        self.score = score
 
     def __repr__(self):
         return 'Threshold %s' % (self.id)
@@ -18,13 +20,15 @@ class Subject(db.Model):
     __tablename__ = 'subject'
     name = db.Column(db.String(50), primary_key=True)
     text = db.Column(db.Text())
-    thres = db.Column(db.Integer, db.ForeignKey('threshold.id'))
+    score = db.Column(db.Integer)
     questions = db.relationship('Question', backref='subject')
-
-    def __init__(self, name, text, thres):
+    thres = db.Column(db.Integer, db.ForeignKey('threshold.id'))
+    
+    def __init__(self, name, text, thres, score=0):
         self.name = name
         self.text = text
         self.thres = thres
+        self.score = score
 
     def __repr__(self):
         return 'Subject %s' % (self.name)
@@ -35,6 +39,7 @@ class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(50))
     text = db.Column(db.Text())
+    weight = db.Column(db.Integer, default=0)
     sub = db.Column(db.String(50), db.ForeignKey('subject.name'))
 
     __mapper_args__ = {
@@ -52,6 +57,7 @@ class Question(db.Model):
             q = MultipleChoice()
             q.text = data['text']
             q.sub = data['subject']
+            #q.weight = data['weight']
             for answer in data['answer']:
                 a = MCAnswer()
                 a.text = answer['text']
