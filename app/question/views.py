@@ -1,4 +1,4 @@
-from flask import url_for, redirect, render_template, flash, abort, request
+from flask import url_for, redirect, render_template, flash, abort, request, session
 from .models import Threshold, Subject, Question, MultipleChoice, MCAnswer, TypeIn, Ranking, RankItem, Matching
 from flask_login import login_required
 from app import app, lm, db
@@ -32,7 +32,34 @@ def view_question(id):
     q = Question.query.get(id)
     if not q:
         return abort(404)
-    return render_question(q)
+    re = render_question(q)
+    if re == True:
+        flash('Perfect')
+        return redirect(url_for('overview'))
+    elif re == False:
+        flash('Wrong, try again')
+        return redirect(url_for('view_question', id=q.id))
+    else: return re
+
+@app.route('/question/start/<string:subject>')
+def start_answering(subject):
+    qs = Question.query.filter_by(sub=subject).all()
+    session['queue'] = [q.id for q in qs]
+    return redirect(url_for('answer_question'))
+
+@app.route('/question/answer', methods=['GET', 'POST'])
+def answer_question():
+    next_question = Question.query.get(session['queue'][-1])
+    re = render_question(next_question)
+    if re == True:
+        session['queue'].pop()
+        flash('Correct!, queue size = %s' % len(session['queue']))
+        return redirect(url_for('answer_question'))
+    elif re == False:
+        session['queue'].insert(0, session['queue'].pop())
+        flash('Correct!, queue size = %s' % len(session['queue']))
+        return redirect(url_for('answer_question'))
+    else: return re
 
 @multimethod(MultipleChoice)
 def render_question(q):
@@ -40,13 +67,13 @@ def render_question(q):
     random.shuffle(q.choices)
     form.set_data(q)
     if form.validate_on_submit():
-        correct = map(lambda c: c.id, filter(lambda c: c.correct, q.choices))
+        correct = [c.id for c in q.choices if c.correct]
         if len(correct) != len(form.choices.data):
-            return "fail"
+            return False
         for i in form.choices.data:
             if int(i) not in correct:
-                return "fail"
-        return "success"
+                return False
+        return True
     return render_template('question/multiplechoice.html', text=q.text, form=form)
 
 @multimethod(TypeIn)
@@ -54,22 +81,22 @@ def render_question(q):
     form = TypeInForm()
     if form.validate_on_submit():
         if form.answer.data == q.answer:
-            return "success"
+            return True
         else:
-            return "fail"
+            return False
     return render_template('question/typein.html', text=q.text, form=form)
 
 @multimethod(Ranking)
 def render_question(q):
     if request.method == 'POST':
         # The posted value is a comma seperated string like "1,3,4,6"
-        answer = map(lambda x: int(x), request.form['ranks'].split(','))
-        correct = map(lambda x: x.id, sorted(q.items, key=lambda y: y.rank))
+        answer = [int(x) for x in request.form['ranks'].split(',')]
+        correct = [x.id for x in sorted(q.items, key=lambda y: y.rank)]
         # compare the id's
         if answer == correct:
-            return "success"
+            return True
         else:
-            return "fail"
+            return False
     items = q.items
     random.shuffle(items)
     return render_template('question/ranking.html', text=q.text, items=items)
@@ -78,13 +105,13 @@ def render_question(q):
 def render_question(q):
     if request.method == 'POST':
         answer = request.form['answers'].split(',')
-        correct = map(lambda x: x.answer, q.items)
+        correct = [x.answer for x in q.items]
         if answer == correct:
-            return "success"
+            return True
         else:
-            return "fail"
-    texts = map(lambda x: x.text, q.items)
-    answers = map(lambda x: x.answer, q.items)
+            return False
+    texts = [x.text for x in q.items]
+    answers = [x.answer for x in q.items]
     random.shuffle(answers)
     items = zip(texts, answers)
     return render_template('question/matching.html', text=q.text, items=items)
