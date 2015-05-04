@@ -121,15 +121,22 @@ def render_question(q):
 def get_hint():
     qid = request.args.get('qid', 0, type=int)
     hints = Question.query.get_or_404(qid).hints
+    # We assume that the already given hints are stored in the session cookie
     old_hints = session.get('hints', [])
     new_hints = [h for h in hints if h.id not in old_hints]
     if len(new_hints) > 0:
         session.setdefault('hints', [])
         h = new_hints[0]
         session['hints'].append(h.id)
-        return jsonify(hint=new_hints[0].text)
+        return jsonify(hint=h.text, id=h.id)
     else:
         return abort(404)
+
+@app.route('/question/hint/rate')
+def rate_hint():
+    rid = request.args.get('rid', 0, type=int)
+    status = request.args.get('status', None)
+    return jsonify(status="%s - %s" % (status, rid))
 
 @app.template_filter()
 def marktohtml(value):

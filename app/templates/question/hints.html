@@ -1,14 +1,43 @@
 <script type="text/javascript" charset="utf-8">
 var qid = {{ qid }}
 $(function() {
-    $('a#hint').bind('click', function() {
+    $('a#hint').on('click', function() {
         $.getJSON($SCRIPT_ROOT + '/question/hint', {
             qid: qid
         }, function(data) {
-            var txt = document.createElement('p');
+            var item = document.createElement('div');
+            var txt = document.createElement('span');
+            var icon1 = document.createElement('a');
+            var icon2 = document.createElement('a');
             txt.innerHTML = data.hint;
-            txt.className = 'list-group-item';
-            $('#hints').append(txt);
+            item.className = 'list-group-item';
+            icon1.className = 'glyphicon glyphicon-thumbs-up pull-right';
+            icon2.className = 'glyphicon glyphicon-thumbs-down pull-right';
+            icon1.id = 'like';
+            icon2.id = 'dislike';
+            item.id = data.id;
+            $(item).append(txt);
+            $(item).append(icon1);
+            $(item).append(icon2);
+            $('#hints').append(item);
+            $(icon1).click(function() {
+                id = $(this).parent().get(0).id;
+                $.getJSON($SCRIPT_ROOT + '/question/hint/rate', {
+                    rid: id,
+                    status: 'like'
+                }, function(data) {
+                    alert(data.status);
+                });
+            });
+            $(icon2).click(function() {
+                id = $(this).parent().get(0).id;
+                $.getJSON($SCRIPT_ROOT + '/question/hint/rate', {
+                    rid: id,
+                    status: 'dislike'
+                }, function(data) {
+                    alert(data.status);
+                });
+            });
         });
     });
 });
