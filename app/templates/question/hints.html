@@ -1,0 +1,21 @@
+<script type="text/javascript" charset="utf-8">
+var qid = {{ qid }}
+$(function() {
+    $('a#hint').bind('click', function() {
+        $.getJSON($SCRIPT_ROOT + '/question/hint', {
+            qid: qid
+        }, function(data) {
+            var txt = document.createElement('p');
+            txt.innerHTML = data.hint;
+            txt.className = 'list-group-item';
+            $('#hints').append(txt);
+        });
+    });
+});
+</script>
+<hr />
+<div class="row">
+    <a class="btn btn-lg btn-primary btn-block" id="hint">Get hint</a>
+    <div class="list-group" id="hints">
+    </div>
+</div>
