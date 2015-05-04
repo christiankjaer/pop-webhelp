@@ -8,7 +8,10 @@ PKSU Projekt 2015
 
 ##
 Applikationen kan så køres med `python run.py`
-Først skal der dog lige oprettes en database med `python create_db.py`
+Først skal der dog lige oprettes en database med `python create_db.py`.
+Databasen kan udfyldes med dummy-data med `python fillout_db.py`. Det giver mulighed for at kunne logge ind med:
+* id=abc123
+* pw=pwd
 
 Derudover skal der sættes gmail bruger/password
 
