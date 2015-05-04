@@ -38,6 +38,12 @@ $(function() {
                     alert(data.status);
                 });
             });
+        }).error(function() {
+            var flash = document.createElement('div');
+            flash.className = 'alert alert-danger';
+            $(flash).append('<button type="button" class="close" data-dismiss="alert">&times;</button>');
+            $(flash).append('No more hints');
+            $('body').prepend(flash);
         });
     });
 });
