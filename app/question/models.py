@@ -23,7 +23,7 @@ class Subject(db.Model):
     score = db.Column(db.Integer)
     questions = db.relationship('Question', backref='subject')
     thres = db.Column(db.Integer, db.ForeignKey('threshold.id'))
-    
+
     def __init__(self, name, text, thres, score=0):
         self.name = name
         self.text = text
@@ -41,6 +41,7 @@ class Question(db.Model):
     text = db.Column(db.Text())
     weight = db.Column(db.Integer, default=0)
     sub = db.Column(db.String(50), db.ForeignKey('subject.name'))
+    hints = db.relationship('Hint', backref='question')
 
     __mapper_args__ = {
         'polymorphic_identity':'question',
@@ -86,6 +87,12 @@ class Question(db.Model):
                 mi.text = text
                 mi.answer = answer
                 q.items.append(mi)
+        else:
+            return None
+        for text in data['hints']:
+            h = Hint()
+            h.text = text
+            q.hints.append(h)
         return q
 
 class TypeIn(Question):
@@ -167,3 +174,9 @@ class MatchItem(db.Model):
 
     def __repr__(self):
         return 'Matching Item %s' % (self.id)
+
+class Hint(db.Model):
+    __tablename__ = 'hint'
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String(255))
+    qid = db.Column(db.ForeignKey('question.id'))

@@ -22,57 +22,77 @@ s5 = Subject('Matching Subject', 'This is Test Subject 5', 5)
 data += [s1, s2, s3, s4, s5]
 
 tiq = {'type':'TypeIn', 'text':'What is 2 + 2?', 'subject':'TypeIn Subject',
-       'answer':'4'}
+       'answer':'4',
+       'hints': ['Hint1', 'Hint2']}
+
 tiq1 = Question.from_dict(tiq)
 tiq = {'type':'TypeIn', 'text':'What is 2 - 2?', 'subject':'TypeIn Subject',
-       'answer':'0'}
+       'answer':'0',
+       'hints': ['Hint1', 'Hint2']}
+
 tiq2 = Question.from_dict(tiq)
 tiq = {'type':'TypeIn', 'text':'What is 2 * 2?', 'subject':'TypeIn Subject',
-       'answer':'4'}
+       'answer':'4',
+       'hints': ['Hint1', 'Hint2']}
+
 tiq3 = Question.from_dict(tiq)
 data += [tiq1, tiq2, tiq3]
 
-mcq = {'type':'MultipleChoice', 'text':'What is 2 + 2?', 
+mcq = {'type':'MultipleChoice', 'text':'What is 2 + 2?',
        'subject':'Multiple Choice Subject',
-       'answer':[{'text':'3', 'correct':False}, 
-                 {'text':'4', 'correct':True}, 
+       'answer':[{'text':'3', 'correct':False},
+                 {'text':'4', 'correct':True},
                  {'text':'5', 'correct':False},
-                 {'text':'6', 'correct':False}]}
+                 {'text':'6', 'correct':False}],
+       'hints': ['Hint1', 'Hint2']}
+
 mcq1 = Question.from_dict(mcq)
-mcq = {'type':'MultipleChoice', 'text':'What is 2 - 2?', 
+mcq = {'type':'MultipleChoice', 'text':'What is 2 - 2?',
        'subject':'Multiple Choice Subject',
-       'answer':[{'text':'-2', 'correct':False}, 
-                 {'text':'0', 'correct':True}, 
+       'answer':[{'text':'-2', 'correct':False},
+                 {'text':'0', 'correct':True},
                  {'text':'2', 'correct':False},
-                 {'text':'4', 'correct':False}]}
+                 {'text':'4', 'correct':False}],
+       'hints': ['Hint1', 'Hint2']}
+
 mcq2 = Question.from_dict(mcq)
-mcq = {'type':'MultipleChoice', 'text':'What is 2 * 2?', 
+mcq = {'type':'MultipleChoice', 'text':'What is 2 * 2?',
        'subject':'Multiple Choice Subject',
-       'answer':[{'text':'2', 'correct':False}, 
-                 {'text':'4', 'correct':True}, 
+       'answer':[{'text':'2', 'correct':False},
+                 {'text':'4', 'correct':True},
                  {'text':'6', 'correct':False},
-                 {'text':'8', 'correct':False}]}
+                 {'text':'8', 'correct':False}],
+       'hints': ['Hint1', 'Hint2']}
+
 mcq3 = Question.from_dict(mcq)
 data += [mcq1, mcq2, mcq3]
-mq = {'type':'Matching', 'text':'Pair the items', 
+mq = {'type':'Matching', 'text':'Pair the items',
         'subject':'Matching Subject',
         'items': [
             ('Apples are', 'Round'),
             ('Bananas are', 'Long'),
             ('Kiwis are', 'Hairy'),
-            ('Pineapples are', 'Spiky')]}
+            ('Pineapples are', 'Spiky')],
+       'hints': ['Hint1', 'Hint2']}
+
 data += [Question.from_dict(mq)]
-rkq = {'type':'Ranking', 'text':'Rank these numbers', 
+rkq = {'type':'Ranking', 'text':'Rank these numbers',
        'subject':'Ranking Subject',
-       'items':['1', '2', '3', '4']}
+       'items':['1', '2', '3', '4'],
+       'hints': ['Hint1', 'Hint2']}
+
 rkq1 = Question.from_dict(rkq)
-rkq = {'type':'Ranking', 'text':'Rank these numbers', 
+rkq = {'type':'Ranking', 'text':'Rank these numbers',
        'subject':'Ranking Subject',
-       'items':['-2', '0', '2', '4']}
+       'items':['-2', '0', '2', '4'],
+       'hints': ['Hint1', 'Hint2']}
+
 rkq2 = Question.from_dict(rkq)
-rkq = {'type':'Ranking', 'text':'Rank these numbers', 
+rkq = {'type':'Ranking', 'text':'Rank these numbers',
        'subject':'Ranking Subject',
-       'items':['2', '4', '6', '8']}
+       'items':['2', '4', '6', '8'],
+       'hints': ['Hint1', 'Hint2']}
+
 rkq3 = Question.from_dict(rkq)
 data += [rkq1, rkq2, rkq3]
 

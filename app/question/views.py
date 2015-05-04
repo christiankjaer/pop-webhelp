@@ -1,4 +1,4 @@
-from flask import url_for, redirect, render_template, flash, abort, request, session
+from flask import url_for, redirect, render_template, flash, abort, request, session, jsonify
 from .models import Threshold, Subject, Question, MultipleChoice, MCAnswer, TypeIn, Ranking, RankItem, Matching
 from flask_login import login_required
 from app import app, lm, db
@@ -29,6 +29,7 @@ def random_question(name):
 
 @app.route('/question/<int:id>', methods=['GET', 'POST'])
 def view_question(id):
+    session['hints'] = []
     q = Question.query.get(id)
     if not q:
         return abort(404)
@@ -74,7 +75,7 @@ def render_question(q):
             if int(i) not in correct:
                 return False
         return True
-    return render_template('question/multiplechoice.html', text=q.text, form=form)
+    return render_template('question/multiplechoice.html', text=q.text, form=form, qid=q.id)
 
 @multimethod(TypeIn)
 def render_question(q):
@@ -84,7 +85,7 @@ def render_question(q):
             return True
         else:
             return False
-    return render_template('question/typein.html', text=q.text, form=form)
+    return render_template('question/typein.html', text=q.text, form=form, qid=q.id)
 
 @multimethod(Ranking)
 def render_question(q):
@@ -99,7 +100,7 @@ def render_question(q):
             return False
     items = q.items
     random.shuffle(items)
-    return render_template('question/ranking.html', text=q.text, items=items)
+    return render_template('question/ranking.html', text=q.text, items=items, qid=q.id)
 
 @multimethod(Matching)
 def render_question(q):
@@ -114,7 +115,21 @@ def render_question(q):
     answers = [x.answer for x in q.items]
     random.shuffle(answers)
     items = zip(texts, answers)
-    return render_template('question/matching.html', text=q.text, items=items)
+    return render_template('question/matching.html', text=q.text, items=items, qid=q.id)
+
+@app.route('/question/hint')
+def get_hint():
+    qid = request.args.get('qid', 0, type=int)
+    hints = Question.query.get_or_404(qid).hints
+    old_hints = session.get('hints', [])
+    new_hints = [h for h in hints if h.id not in old_hints]
+    if len(new_hints) > 0:
+        session.setdefault('hints', [])
+        h = new_hints[0]
+        session['hints'].append(h.id)
+        return jsonify(hint=new_hints[0].text)
+    else:
+        return abort(404)
 
 @app.template_filter()
 def marktohtml(value):
