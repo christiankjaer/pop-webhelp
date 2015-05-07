@@ -44,15 +44,21 @@ def view_question(id):
 
 @app.route('/question/start/<string:subject>')
 def start_answering(subject):
+    sub = Subject.query.get_or_404(subject)
     qs = Question.query.filter_by(sub=subject).all()
+    session['score'] = 0
+    session['goal'] = sub.score
     session['queue'] = [q.id for q in qs]
     return redirect(url_for('answer_question'))
 
 @app.route('/question/answer', methods=['GET', 'POST'])
 def answer_question():
+    if session['score'] >= session['goal']:
+        return "DONE"
     next_question = Question.query.get(session['queue'][-1])
     re = render_question(next_question)
     if re == True:
+        session['score'] = session['score'] + next_question.weight
         session['queue'].pop()
         flash('Correct!, queue size = %s' % len(session['queue']))
         return redirect(url_for('answer_question'))
@@ -134,9 +140,9 @@ def get_hint():
 
 @app.route('/question/hint/rate')
 def rate_hint():
-    rid = request.args.get('rid', 0, type=int)
+    hid = request.args.get('hid', 0, type=int)
     status = request.args.get('status', None)
-    return jsonify(status="%s - %s" % (status, rid))
+    return jsonify(status="%s - %s" % (status, hid))
 
 @app.template_filter()
 def marktohtml(value):

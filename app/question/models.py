@@ -93,6 +93,7 @@ class Question(db.Model):
             h = Hint()
             h.text = text
             q.hints.append(h)
+        q.weight = data['weight']
         return q
 
 class TypeIn(Question):

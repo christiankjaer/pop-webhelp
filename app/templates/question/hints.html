@@ -1,5 +1,12 @@
 <script type="text/javascript" charset="utf-8">
 var qid = {{ qid }}
+function flashWarning(warning) {
+    var flash = document.createElement('div');
+    flash.className = 'alert alert-danger';
+    $(flash).append('<button type="button" class="close" data-dismiss="alert">&times;</button>');
+    $(flash).append(warning);
+    $('body').prepend(flash);
+}
 $(function() {
     $('a#hint').on('click', function() {
         $.getJSON($SCRIPT_ROOT + '/question/hint', {
@@ -23,7 +30,7 @@ $(function() {
             $(icon1).click(function() {
                 id = $(this).parent().get(0).id;
                 $.getJSON($SCRIPT_ROOT + '/question/hint/rate', {
-                    rid: id,
+                    hid: id,
                     status: 'like'
                 }, function(data) {
                     alert(data.status);
@@ -32,18 +39,15 @@ $(function() {
             $(icon2).click(function() {
                 id = $(this).parent().get(0).id;
                 $.getJSON($SCRIPT_ROOT + '/question/hint/rate', {
-                    rid: id,
+                    hid: id,
                     status: 'dislike'
                 }, function(data) {
                     alert(data.status);
                 });
             });
         }).error(function() {
-            var flash = document.createElement('div');
-            flash.className = 'alert alert-danger';
-            $(flash).append('<button type="button" class="close" data-dismiss="alert">&times;</button>');
-            $(flash).append('No more hints');
-            $('body').prepend(flash);
+            // This is called when the getJSON returns 404
+            flashWarning('No more hints!');
         });
     });
 });
