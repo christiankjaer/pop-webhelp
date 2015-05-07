@@ -4,7 +4,7 @@ class Threshold(db.Model):
     __tablename__ = 'threshold'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text(), unique=True)
-    score = db.Column(db.Integer)
+    goal = db.Column(db.Integer)
     subjects = db.relationship('Subject', backref='threshold')
     next = db.Column(db.Integer, db.ForeignKey('threshold.id'), default=None)
 
@@ -18,17 +18,18 @@ class Threshold(db.Model):
 
 class Subject(db.Model):
     __tablename__ = 'subject'
-    name = db.Column(db.String(50), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), unique=True)
     text = db.Column(db.Text())
-    score = db.Column(db.Integer)
+    goal = db.Column(db.Integer)
     questions = db.relationship('Question', backref='subject')
     thres = db.Column(db.Integer, db.ForeignKey('threshold.id'))
 
-    def __init__(self, name, text, thres, score=0):
+    def __init__(self, name, text, thres, goal):
         self.name = name
         self.text = text
         self.thres = thres
-        self.score = score
+        self.goal = goal
 
     def __repr__(self):
         return 'Subject %s' % (self.name)

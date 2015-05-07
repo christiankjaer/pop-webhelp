@@ -14,11 +14,11 @@ t4 = Threshold('Empty Threshold', 5)
 t5 = Threshold('Matching Threshold')
 data += [t1, t4, t3, t2, t5]
 
-s1 = Subject('TypeIn Subject', 'This is Test Subject 1', 1, score=4)
-s2 = Subject('Multiple Choice Subject', 'This is Test Subject 2', 4, score=2)
-s3 = Subject('Ranking Subject', 'This is Test Subject 3', 3, score=2)
-s4 = Subject('Empty Subject', 'This is Test Subject 4', 2, score=2)
-s5 = Subject('Matching Subject', 'This is Test Subject 5', 5, score=2)
+s1 = Subject('TypeIn Subject', 'This is Test Subject 1', 1, goal=4)
+s2 = Subject('Multiple Choice Subject', 'This is Test Subject 2', 4, goal=2)
+s3 = Subject('Ranking Subject', 'This is Test Subject 3', 3, goal=2)
+s4 = Subject('Empty Subject', 'This is Test Subject 4', 2, goal=2)
+s5 = Subject('Matching Subject', 'This is Test Subject 5', 5, goal=2)
 data += [s1, s2, s3, s4, s5]
 
 tiq = {'type':'TypeIn', 'text':'What is 2 + 2?', 'subject':'TypeIn Subject',
