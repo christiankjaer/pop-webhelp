@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}Progress{% endblock %}
+{% block content %}
+{% include "question/progress_bar.html" %}
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Feedback
+        </div>
+        <div class="panel-body">
+            <p>{{ feedback }}</p>
+        </div>
+    </div>
+    <a class="btn btn-lg btn-primary btn-block" href="{{ url_for('answer_question') }}">Next Question</a>
+</div>
+{% endblock content %}

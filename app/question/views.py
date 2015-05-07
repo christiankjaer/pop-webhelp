@@ -54,18 +54,16 @@ def start_answering(subject):
 @app.route('/question/answer', methods=['GET', 'POST'])
 def answer_question():
     if session['score'] >= session['goal']:
-        return "DONE"
+        return render_template('question/finished.html')
     next_question = Question.query.get(session['queue'][-1])
     re = render_question(next_question)
     if re == True:
         session['score'] = session['score'] + next_question.weight
         session['queue'].pop()
-        flash('Correct!, queue size = %s' % len(session['queue']))
-        return redirect(url_for('answer_question'))
+        return render_template('question/progress.html', feedback='RIGTIGT')
     elif re == False:
         session['queue'].insert(0, session['queue'].pop())
-        flash('Correct!, queue size = %s' % len(session['queue']))
-        return redirect(url_for('answer_question'))
+        return render_template('question/progress.html', feedback='FORKERT')
     else: return re
 
 @multimethod(MultipleChoice)

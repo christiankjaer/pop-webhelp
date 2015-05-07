@@ -2,7 +2,6 @@
 {% block title %}Type In{% endblock %}
 {% block content %}
 <div class="row">
-    {% include "question/progress_bar.html" %}
     <p>{{ text | marktohtml | safe }}</p>
     <form action="" method="post">
     {{ form.hidden_tag() }}
