@@ -19,13 +19,12 @@ def overview():
         thresholds.append(t)
     return render_template('question/overview.html', thresholds=thresholds)
 
-@app.route('/question/<string:name>')
+@app.route('/subject/<string:name>')
 def random_question(name):
-    s = Subject.query.get(name)
+    s = Subject.query.filter_by(name=name).first()
     if not s.questions:
         return render_template('question/empty.html', subject=s)
-    q = random.choice(s.questions)
-    return redirect(url_for('view_question', id=q.id))
+    return render_template('question/subject.html', subject=s)
 
 @app.route('/question/<int:id>', methods=['GET', 'POST'])
 def view_question(id):
@@ -42,12 +41,12 @@ def view_question(id):
         return redirect(url_for('view_question', id=q.id))
     else: return re
 
-@app.route('/question/start/<string:subject>')
-def start_answering(subject):
-    sub = Subject.query.get_or_404(subject)
-    qs = Question.query.filter_by(sub=subject).all()
+@app.route('/subject/start/<int:sid>')
+def start_answering(sid):
+    sub = Subject.query.get_or_404(sid)
+    qs = Question.query.filter_by(sub=sub.name).all()
     session['score'] = 0
-    session['goal'] = sub.score
+    session['goal'] = sub.goal
     session['queue'] = [q.id for q in qs]
     return redirect(url_for('answer_question'))
 

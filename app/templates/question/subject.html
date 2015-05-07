@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block title %}{{ subject.name }}{% endblock %}
+{% block content %}
+<div class="row">
+  <h1>{{ subject.name }}</h1>
+  <p>{{ subject.text }}</p>
+  <a class="btn btn-lg btn-primary btn-block" href={{ url_for('start_answering', sid=subject.id) }}>Begin</a>
+</div>
+{% endblock content %}
