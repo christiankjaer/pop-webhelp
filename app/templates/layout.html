@@ -20,6 +20,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><p class="navbar-text">You are: {{ current_user.kuid }}</p></li>
         <li><a href="{{ url_for('logout') }}">log out</a></li>
+        <li><a href="{{ url_for('change_password') }}">change password</a></li>
       </ul>
     </div>
   </div>

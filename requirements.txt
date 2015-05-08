@@ -3,6 +3,7 @@ Flask-SQLAlchemy
 Flask-WTF
 Flask-Login
 Flask-Mail
+Flask-Admin
 coverage
 markdown
 multimethod

@@ -33,12 +33,13 @@ def view_question(id):
     if not q:
         return abort(404)
     re = render_question(q)
-    if re == True:
-        flash('Perfect')
-        return redirect(url_for('overview'))
-    elif re == False:
-        flash('Wrong, try again')
-        return redirect(url_for('view_question', id=q.id))
+    if request.method == 'POST' and type(re) == dict:
+        if re['correct']:
+            flash('Perfect')
+            return redirect(url_for('overview'))
+        else:
+            flash('Wrong, try again')
+            return redirect(url_for('view_question', id=q.id))
     else: return re
 
 @app.route('/subject/start/<int:sid>')
@@ -52,18 +53,21 @@ def start_answering(sid):
 
 @app.route('/question/answer', methods=['GET', 'POST'])
 def answer_question():
+    next_question = Question.query.get(session['queue'][-1])
     if session['score'] >= session['goal']:
         return render_template('question/finished.html')
-    next_question = Question.query.get(session['queue'][-1])
     re = render_question(next_question)
-    if re == True:
-        session['score'] = session['score'] + next_question.weight
-        session['queue'].pop()
-        return render_template('question/progress.html', feedback='RIGTIGT')
-    elif re == False:
-        session['queue'].insert(0, session['queue'].pop())
-        return render_template('question/progress.html', feedback='FORKERT')
-    else: return re
+    if request.method == 'POST' and type(re) == dict:
+        if re['correct']:
+            session['score'] = session['score'] + next_question.weight
+            session['queue'].pop()
+            return render_template('question/progress.html', feedback=re)
+        else:
+            session['queue'].insert(0, session['queue'].pop())
+            return render_template('question/progress.html', feedback=re)
+    else:
+        session['hints'] = []
+        return re
 
 @multimethod(MultipleChoice)
 def render_question(q):
@@ -73,11 +77,11 @@ def render_question(q):
     if form.validate_on_submit():
         correct = [c.id for c in q.choices if c.correct]
         if len(correct) != len(form.choices.data):
-            return False
+            return {'correct': False, 'feedback': 'The answer was incorrect'}
         for i in form.choices.data:
             if int(i) not in correct:
-                return False
-        return True
+                return {'correct': False, 'feedback': 'The answer was incorrect'}
+        return {'correct': True, 'feedback': 'The answer was correct'}
     return render_template('question/multiplechoice.html', text=q.text, form=form, qid=q.id)
 
 @multimethod(TypeIn)
@@ -85,9 +89,9 @@ def render_question(q):
     form = TypeInForm()
     if form.validate_on_submit():
         if form.answer.data == q.answer:
-            return True
+            return {'correct': True, 'feedback': 'The answer was correct'}
         else:
-            return False
+            return {'correct': False, 'feedback': 'The answer was incorrect'}
     return render_template('question/typein.html', text=q.text, form=form, qid=q.id)
 
 @multimethod(Ranking)
@@ -98,9 +102,9 @@ def render_question(q):
         correct = [x.id for x in sorted(q.items, key=lambda y: y.rank)]
         # compare the id's
         if answer == correct:
-            return True
+            return {'correct': True, 'feedback': 'The answer was correct'}
         else:
-            return False
+            return {'correct': False, 'feedback': 'The answer was incorrect'}
     items = q.items
     random.shuffle(items)
     return render_template('question/ranking.html', text=q.text, items=items, qid=q.id)
@@ -111,9 +115,9 @@ def render_question(q):
         answer = request.form['answers'].split(',')
         correct = [x.answer for x in q.items]
         if answer == correct:
-            return True
+            return {'correct': True, 'feedback': 'The answer was correct'}
         else:
-            return False
+            return {'correct': False, 'feedback': 'The answer was incorrect'}
     texts = [x.text for x in q.items]
     answers = [x.answer for x in q.items]
     random.shuffle(answers)
