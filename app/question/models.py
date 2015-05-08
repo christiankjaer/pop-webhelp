@@ -5,16 +5,20 @@ class Threshold(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text(), unique=True)
     goal = db.Column(db.Integer)
-    subjects = db.relationship('Subject', backref='threshold')
     next = db.Column(db.Integer, db.ForeignKey('threshold.id'), default=None)
+    subjects = db.relationship('Subject', backref='threshold')
 
-    def __init__(self, name, next=None, score=0):
+    def __init__(self, name, next=None, goal=0):
         self.name = name
         self.next = next
-        self.score = score
+        self.goal = goal
 
     def __repr__(self):
         return 'Threshold %s' % (self.id)
+
+    @staticmethod
+    def from_dict(data):
+        return Threshold(data['Name'], data['next'], data['goal'])
 
 class Subject(db.Model):
     __tablename__ = 'subject'
@@ -22,8 +26,8 @@ class Subject(db.Model):
     name = db.Column(db.String(50), unique=True)
     text = db.Column(db.Text())
     goal = db.Column(db.Integer)
-    questions = db.relationship('Question', backref='subject')
     thres = db.Column(db.Integer, db.ForeignKey('threshold.id'))
+    questions = db.relationship('Question', backref='subject')
 
     def __init__(self, name, text, thres, goal):
         self.name = name
@@ -33,6 +37,10 @@ class Subject(db.Model):
 
     def __repr__(self):
         return 'Subject %s' % (self.name)
+
+    @staticmethod
+    def from_dict(data):
+        return Subject(data['name'], data['text'], data['thres'], data['goal'])
 
 class Question(db.Model):
     """ This is the Question base class """
@@ -54,48 +62,28 @@ class Question(db.Model):
 
     @staticmethod
     def from_dict(data):
-        q = None
-        if data['type'] == 'MultipleChoice':
-            q = MultipleChoice()
-            q.text = data['text']
-            q.sub = data['subject']
-            #q.weight = data['weight']
-            for answer in data['answer']:
-                a = MCAnswer()
-                a.text = answer['text']
-                a.correct = answer['correct']
-                q.choices.append(a)
-        elif data['type'] == 'TypeIn':
-            q = TypeIn()
-            q.text = data['text']
-            q.sub = data['subject']
-            q.answer = data['answer']
-        elif data['type'] == 'Ranking':
-            q = Ranking()
-            q.text = data['text']
-            q.sub = data['subject']
-            for i, item in enumerate(data['items']):
-                ri = RankItem()
-                ri.rank = i
-                ri.text = item
-                q.items.append(ri)
-        elif data['type'] == 'Matching':
-            q = Matching()
-            q.text = data['text']
-            q.sub = data['subject']
-            for text, answer in data['items']:
-                mi = MatchItem()
-                mi.text = text
-                mi.answer = answer
-                q.items.append(mi)
+        qtype = data['type']
+        if qtype == 'MultipleChoice':
+            q = MultipleChoice(data['answer'], data['mctype'])
+        elif qtype == 'TypeIn':
+            q = TypeIn(data['answer'])
+        elif qtype == 'Ranking':
+            q = Ranking(data['items'])
+        elif qtype == 'Matching':
+            q = Matching(data['items'])
         else:
             return None
-        for text in data['hints']:
-            h = Hint()
-            h.text = text
-            q.hints.append(h)
+
+        q.text = data['text']
+        q.sub = data['subject']        
         q.weight = data['weight']
+
+        for text in data['hints']:
+            h = Hint(text)
+            q.hints.append(h)
+
         return q
+
 
 class TypeIn(Question):
     __tablename__ = 'type_in'
@@ -106,6 +94,9 @@ class TypeIn(Question):
         'polymorphic_identity':'type_in'
     }
 
+    def __init__(self, answer):
+        self.answer = answer
+
     def __repr__(self):
         return 'Type In Question %s' % self.id
 
@@ -113,11 +104,18 @@ class MultipleChoice(Question):
     """ This is the multiple choice question class """
     __tablename__ = 'multiple_choice'
     id = db.Column(db.Integer, db.ForeignKey('question.id'), primary_key=True)
+    mctype = db.Column(db.String(1))
     choices = db.relationship('MCAnswer', backref='multiple_choice')
 
     __mapper_args__ = {
         'polymorphic_identity':'multiple_choice'
     }
+
+    def __init__(self, answers, mctype):
+        self.mctype = mctype
+        for answer in answers:
+            a = MCAnswer(answer['text'], answer['correct'])
+            self.choices.append(a)
 
     def __repr__(self):
         return 'Multiple Choice Question %s' % (self.id)
@@ -129,6 +127,10 @@ class MCAnswer(db.Model):
     text = db.Column(db.String(255))
     correct = db.Column(db.Boolean())
     mcid = db.Column(db.Integer, db.ForeignKey('multiple_choice.id'))
+
+    def __init__(self, text, correct):
+        self.text = text
+        self.correct = correct
 
     def __repr__(self):
         return 'Multiple Choice Answer %s' % (self.id)
@@ -142,6 +144,11 @@ class Ranking(Question):
         'polymorphic_identity':'ranking'
     }
 
+    def __init__(self, items):
+        for rank, text in enumerate(items):
+            ri = RankItem(rank, text)
+            self.items.append(ri)
+
     def __repr__(self):
         return 'Ranking Question %s' % (self.id)
 
@@ -151,6 +158,10 @@ class RankItem(db.Model):
     text = db.Column(db.String(255))
     rank = db.Column(db.Integer)
     rid = db.Column(db.Integer, db.ForeignKey('ranking.id'))
+
+    def __init__(self, rank, text):
+        self.rank = rank
+        self.text = text
 
     def __repr__(self):
         return 'Ranking Item %s' % (self.id)
@@ -164,6 +175,11 @@ class Matching(Question):
         'polymorphic_identity':'matching'
     }
 
+    def __init__(self, items):
+        for text, answer in items:
+            mi = MatchItem(text, answer)
+            self.items.append(mi)
+
     def __repr__(self):
         return 'Matching Question %s' % (self.id)
 
@@ -174,6 +190,10 @@ class MatchItem(db.Model):
     answer = db.Column(db.String(255))
     mid = db.Column(db.Integer, db.ForeignKey('matching.id'))
 
+    def __init__(self, text, answer):
+        self.text = text
+        self.answer = answer
+
     def __repr__(self):
         return 'Matching Item %s' % (self.id)
 
@@ -182,3 +202,9 @@ class Hint(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(255))
     qid = db.Column(db.ForeignKey('question.id'))
+
+    def __init__(self, text):
+        self.text = text
+
+    def __repr__(self):
+        return 'Hint %s' % (self.id)
