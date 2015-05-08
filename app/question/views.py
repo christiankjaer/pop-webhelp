@@ -2,7 +2,7 @@ from flask import url_for, redirect, render_template, flash, abort, request, ses
 from .models import Threshold, Subject, Question, MultipleChoice, MCAnswer, TypeIn, Ranking, RankItem, Matching
 from flask_login import login_required
 from app import app, lm, db
-from .forms import MultipleChoiceForm, TypeInForm
+from .forms import MultipleChoiceForm1, MultipleChoiceFormX, TypeInForm
 import random
 import markdown
 from multimethod import multimethod
@@ -67,7 +67,13 @@ def answer_question():
 
 @multimethod(MultipleChoice)
 def render_question(q):
-    form = MultipleChoiceForm()
+    if q.mctype == '1':
+        form = MultipleChoiceForm1()
+    elif q.mctype == 'X':
+        form = MultipleChoiceFormX()
+    else:
+        print 'Multiple Choice Type Missing!'
+        return abort(404)
     random.shuffle(q.choices)
     form.set_data(q)
     if form.validate_on_submit():

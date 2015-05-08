@@ -21,12 +21,12 @@ Admin tools
 
 
 --- Smaller things ---
+Update ER diagrams
+
 Too few question points to finish subject leads to error
 
 Hints Rating
   
-MultipleChoice with 1 or n correct answers (implemented in database, not yet in html)
-
 Template YAML files
 
 Button sizes
