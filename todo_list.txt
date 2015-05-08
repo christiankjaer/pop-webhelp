@@ -1,0 +1,36 @@
+------- To Do List -------
+
+--- Big things ---
+Coding questions
+  Program to read and interpret code
+  Input field with code format
+
+Evaluation machine
+
+Sessions - cookies vs remote
+
+Logging of data
+  Logging of questions
+  Logging of sessions
+  Logging of hints
+
+Admin tools
+  File upload
+  Question, Subject and Threshold editing
+  Log statistics
+
+
+--- Smaller things ---
+Too few question points to finish subject leads to error
+
+Hints Rating
+  
+MultipleChoice with 1 or n correct answers (implemented in database, not yet in html)
+
+Template YAML files
+
+Button sizes
+
+Overview interface
+
+Threshold unlocking
