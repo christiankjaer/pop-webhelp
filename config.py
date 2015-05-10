@@ -9,6 +9,9 @@ SECURITY_PASSWORD_SALT = 'pass-the-salt'
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 
+#Files
+ALLOWED_EXTENSIONS = set(['yaml'])
+
 # mail settings
 MAIL_SERVER = 'smtp.googlemail.com'
 MAIL_PORT = 465
