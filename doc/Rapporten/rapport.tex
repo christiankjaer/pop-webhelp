@@ -322,24 +322,23 @@ På Figur \ref{fig:opret_sp_sekvens} kan man se sekvens-diagrammet for den tredj
 I dette afsnit beskrives de designopgaver der er udført allerede. Til sidst i afsnittet vises de dele der endnu ikke er udført.
 \subsection{Databasedesign}
 \label{sub:databasedesign}
-Et ER-diagram over databasen ses på Figur \ref{fig:er_diagram}. Det er stort set identisk med klassediagrammet over vores problemområde som ses på Figur \ref{fig:class_diagram}. Her er den generelle struktur over hvordan spørgsmålene er inddelt uddybet. Altså hvordan et \emph{Subject} hører til et \emph{Threshold} og så videre. Vi prøver også at vise den modulære struktur ved at lade nye typer spørgsmål nedarve fra en generaliseret type.
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{figures/er_diagram/Qdb.png}
-    \caption{ER-diagram over delen af databasen hvor spørgsmålene hører til.}
-    \label{fig:er_diagram}
-\end{figure}
+I Appendix \ref{sec:er_diagrams} ses tre ER-diagrammer der illustrerer opbygningen af vores database. 
+
+På Figur \ref{fig:er_diagram_question} ses den del der har at gøre med spørgsmålene. Det er stort set identisk med klassediagrammet over vores problemområde som ses på Figur \ref{fig:class_diagram}. Her er den generelle struktur over hvordan spørgsmålene er inddelt uddybet. Altså hvordan et \emph{Question} hører til et \emph{Subject}, der igen hører til et \emph{Threshold} og så videre. Vi prøver også at vise den modulære struktur hvor vi har ladet nye typer spørgsmål nedarve fra en generaliseret type.
+
+På Figur \ref{fig:er_diagram_log} ses den del der har med loggen at gøre. Hver gang en studerende vælger et emne og begynder at svare på spørgsmål bliver der oprettet en session, som sørger for at holde styr på hvilke spørgsmål den studerende svarer på i den omgang. Efter hvert spørgsmål den studerende svarer på bliver der desuden logget en masse informationer om dette. Endelig bliver det gemt når en studerende giver en vurdering af et specifikt hint.
+
+Det tredje og sidste ER-diagram kan ses på Figur \ref{fig:er_diagram_user}, og har at gøre med brugere. Her bliver alt informationen om de studerende og deres kontoer gemt, samt informationer om admins.
 
 \subsection{Implementeret funktionalitet}
 \label{sub:implementeret_funktionalitet}
-Vi har med ER-diagrammet i hånden implementeret en lang række klasser med hjælp fra \verb!SQLAlchemy!, som er en \emph{Object Relational Mapper} til python, der sørger for, at det er nemt at kunne lave python objekter ud fra en række i databasen.
+Vi har med ER-diagrammet i hånden implementeret en lang række klasser med hjælp fra \verb!SQLAlchemy!, som er en \emph{Object Relational Mapper} til python, der sørger for, at det er nemt at kunne lave python objekter ud fra en række i databasen. Disse klasse dækker over alle de forskellige typer af spørgsmål, samt de forskellige log-elementer.
 
 Oven på det har vi med hjælp fra \verb!Flask! frameworket implementeret en simpel web applikation der har funktionalitet til at håndtere brugerlogins og som kan vise og give respons på spørgsmål og præsentere dem og de \emph{Subjects} og \emph{Thresholds} de hører ind under.
 
 \subsection{Udestående design- og implementationsopgaver}
 \label{sub:udestaende_design_og_implementationsopgaver}
-
-Vi mangler at implementere delen der vælger spørgsmål og afgører om man man har svaret på nok. Vi mangler også at implementere logning og upload af spørgsmål.
+De to vigtigste udeståender er implementeringen af hele logningen af data, samt admin aspektet af projektet.
 
 
 \section{Program- og systemtest}
@@ -422,7 +421,7 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 17-04-2015 & CKL & Tilføjet use cases, sekvensdiagram og klassediagram. \\
 26-04-2015 & CKL & Tilføjet afsnit om tests. \\
 30-04-2015 & CKL & Rettet til genaflevering og tilføjet systemdesign. \\
-10-05-2015 & LSE & Tilføjet Brugergrænseflade og screenshots. \\
+10-05-2015 & LSE & Tilføjet Brugergrænseflade og screenshots, opdateret Systemdesign. \\
 \end{tabular}
 
 \section{Timeline}
@@ -437,9 +436,32 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 \bibliographystyle{alpha}
 \bibliography{refs}{}
 
+\section{ER-diagrammer}
+\label{sec:er_diagrams}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/er_diagram/Qdb.png}
+    \caption{ER-diagram over delen af databasen hvor spørgsmålene hører til.}
+    \label{fig:er_diagram_question}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/er_diagram/Logdb.png}
+    \caption{ER-diagram over delen af databasen hvor loggen hører til.}
+    \label{fig:er_diagram_log}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/er_diagram/User.png}
+    \caption{ER-diagram over delen af databasen hvor brugere og admins hører til.}
+    \label{fig:er_diagram_user}
+\end{figure}
+
 \section{Brugergrænseflade screenshots}
 \label{sec:screenshots}
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=1\linewidth]{figures/interface/login.png}
     \caption{Screenshot af login-siden.}
@@ -447,7 +469,7 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=1\linewidth]{figures/interface/register.png}
     \caption{Screenshot af registrerings-siden.}
@@ -455,7 +477,7 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=1\linewidth]{figures/interface/overview.png}
     \caption{Screenshot af index-siden.}
@@ -463,7 +485,7 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=1\linewidth]{figures/interface/subject.png}
     \caption{Screenshot af emne-siden.}
@@ -471,7 +493,7 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=1\linewidth]{figures/interface/question.png}
     \caption{Screenshot af spørgsmåls-siden.}
@@ -479,7 +501,7 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=1\linewidth]{figures/interface/answer.png}
     \caption{Screenshot af svar-siden.}
@@ -487,7 +509,7 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=1\linewidth]{figures/interface/finish.png}
     \caption{Screenshot af færdig-siden.}
