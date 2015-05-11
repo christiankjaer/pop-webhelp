@@ -65,47 +65,25 @@ The primary role of the admins will be managing the exercises and supervising ho
 
 \selectlanguage{danish}
 \section{Review}
-\subsection{Designing for usability: key principles and what designers think}
-\label{sub:designing_for_usability}
-\paragraph{Referat}
-Gould og Lewis\cite{gould1985designing} beskriver en overordnet metode til design og udvikling af brugervenlige systemer. Denne tilgangsvinkel består af tre grundlæggende principper: tidligt fokus på brugerne, empiriske målinger og iterativt design. Artiklen tager udgangspunkt i udviklingen af IBM's \emph{Audio Distribution System} (ADS) hvor disse principper blev anvendt.
 
-Ved første princip påstås at det er nødvendigt for systemudviklerne fra starten at sætte sig ind i hvem systemets tiltænkte målgruppe er. Metoden anbefaler at udviklerne danner sig en \emph{forståelse} for brugerne, frem for blot at lave en karakterisering. Udover selve brugerne, skal udviklerne også sætte sig ind i hvilken sammenhæng systemet skal bruges og hvilke opgaver det skal løse, samt hvordan et evt. nuværende system løser disse opgaver.
+\subsection{No Silver Bullet -- Essence and Accident in Software Engineering}
+\label{sub:no_silver}
 
-Andet princip, \emph{empiriske målinger}, beskriver brugen af prototyper og simulering til at teste mod målgruppen for at studere dennes reaktion. Personer der selv har været med til at udvikle systemet vil næsten uundgåeligt anvende systemet anderledes end en typisk bruger, derfor er det vigtigt at systemet også bliver afprøvet af målgruppen, og at målgruppens respons bruges i den efterfølgende udvikling.
+I artiklen \cite{nsbullet} beskriver Brooks nogle af de barrierer der skal forceres før vi kan få betydelige produktivitetsforbedringer inden for softwareudvikling. Han sammenligner det med Moores lov, men siger at det er urealitisk at ville kunne se de samme fremskridt som inden for hardware. Brooks nævner først den store kompleksitet i software som en af de helt store udfordringer. Det at kompleksiteten ved software ofte stiger eksponentialt med projektets størrelse er problematisk. Dette gør det også sværere at vedligeholde, og hvis der er mange der arbejder på projektet samtidigt, så kan det blive svært at koordinere. Han mener også, at i forhold til andre produkter som er mere fysiske, så er der ikke en entydig måde at visualisere software på, og det bliver derved også svært at overskue.
 
-\emph{Iterativt design} går ud på at de problemer der opdages under afprøvningen skal løses. Dette sikres ved at opdele systemudviklingen i en masse gentagelser af design og afprøvning, hvor resultaterne af afprøvningen i én iteration påvirker deisgnet i den næste. Dette er i kontrast til mere lineære modeller, hvor der i stedet udarbejdes en detaljeret kravspecifikation, og en egentlig afprøvning først sker til sidst i projektet.
+Senere i artiken forklarer Brooks om hvilke fremsridt der allerede er gjort inden for softwareudvikling, som har gjort det mindre komplekst. Han nævner ting som højniveausprog, operativsystemer og overgangen fra batch-processer til \emph{time-sharing}, altså det at man kan køre flere programmer på en gang, som nogle af de vigtige fremskridt.
 
-Når udviklere præsenteres for disse principper er reaktionen typisk at det virker meget intuitivt og mange påstår at de allerede anvender disse principper. Ifølge undersøgelser foretaget af folkene bag metoden tyder det dog på, at der er forskel på hvad systemudviklerne selv siger de gør, og hvad de egentlig gør i praksis.
+Han fortsætter med at skrive om nogle af hans forhåbninger til den nærmeste fremtid. Han skriver især om de forhåbninger han har omkring nøjniveausprog. Han nævner blandt andet muligheder for modularisering af programmer i sproget Ada, og de fremskridt der sker inden for objektorienteret programmering. Han ser dog ikke nogen mulighed for produktivitetsforbedringer på en hel størrelsesorden. Nogle af de ting han ikke har så meget tiltro til er nogle af det mere automatiske kodeværktøjer. Det kan fx være grafiske værktøjer, hvor man tegner flowcharts for at beskrive kontrolflowet i programmet. Han begrunder sin kritik med, at software ikke kan projekteres på et grafisk plan. Han mener at software er multidimensionelt, og meget af kompleksiten skal abstraheres væk på andre måder.
 
-\paragraph{Perspektivering}
-De tre principper fra artiklen indgår alle i et vist omfang i systemudviklingsmetoden præsenteret i OOSE.
+Han slutter artiklen af med nogle af de idéer han spår en god fremtid inden for softwareudvikling. Han er især begejstret for analogien med at gro software. Altså det med at kan ikke fra starten har en stor kravspecifikation, og så bagefter bare skriver kode til man er færdig, men i stedet inkrementelt udvikler både software og krav. Han nævner det også som motiverende at se en prototype virke, og det er bedre for kunden at kunne se et fungerende system, og derved kunne træffe beslutninger om udviklingsprojektets retning derefter.
 
-Med hensyn til tidligt fokus på brugerne, så inkorporerer OOSE's fremgangsmåde bl.a. dette i form af en \emph{requirements elicitation}, der beskriver de forskelllige typer brugere og i hvilke sammenhænge de systemet anvendes.
+Det er ret utroligt at en artikel skrevet i 1983 kan være så præcis i sin beskrivelse af softwareudvikling, selv mere end tredive år senere. Det er stadig mange af de samme problemer der går igen, og gør softwareudvikling til en besværlig og kompliceret affære. Det er stadigvæk ting som upræcise og konstant skiftende kravspecifikationer der gør at der er mange forfejlede og dyre softwareprojekter.
 
-Artiklen understreger vigtigheden af at kunne foretage ændringer baseret på brugernes reaktioner, derfor er det vigtigt at systemet er struktureret på en måde der tager højde for dette. Man kan sammenligne dette med \emph{Entity-Boundary-Control} fremgangsmåden beskrevet i OOSE \cite{OOSE}, der fokuserer på at opdele systemet i nogle forholdsvis uafhængige elementer, så der eksempelvis kan ændres i brugergrænsefladen uden at det påvirker resten af programmet.
+Der er dog sidenhen kommet flere løsningforslag, der påstår at have hjulpet til at gøre softwareudvikling til en mere forudsigelig proces. En af disse processer som afhjælper nogen af de problemer som Brooks nævner er \emph{Unified Process} (Kapitel 15 i \cite{OOSE}). Den prøver at være drevet af iterationer, samtidig med at man prøver at mindske udviklertimer ved at bruge eksterne moduler som enten kan være frit tingængelige eller som købes.
 
-Både metoden beskrevet i artiklen og de fremgangsmåder præsenteret i OOSE er agile. Den grundlæggende metode er altså fælles for dem alle, udviklingen sker i iterationer af henholdsvis design og brugertest.
+Senere er der så kommet hele det agile paradigme, hvor man prøver helt at nytænke måden man udvikler software, hvor man nærmest prøvet at omfavne de hurtigt ændrende krav til produktet. Det er metodikker som \emph{SCRUM}\cite{sutherland2010jeff}, \emph{Extreme Programming}\cite[]{OOSE}, kapitel 16.
 
-\subsection{A Rational Design Process: How and Why to Fake It}
-\label{sub:a_rational_design_process}
-\paragraph{Referat}
-Parnas og Clements \cite{parnas1986rational} prøver i artiklen at beskrive en ideel udviklingsproces og den dokumentation der kræves. Hovedargumentet i artiklen er dog, at selvom man ikke har fuldt grundlag for en altomfattende kravspecifikation, så skal man stadig producere dokumentation som hvis man havde.
-
-Derfor mener forfatterne, at hvis man ikke har en helt beskrivende kravspecifikation, så er det vigtigt at kende processen, så man som udvikler kan hjælpe designerne med, at finde de manglende informationer. Det gør, at man tidligere i processen kan få fundet fejl i designet, så de ikke kommer med i det endelige system.
-
-Den metode som Parnas og Clements foreslår i artiklen er, at man starter med at dokumentere krav. Dette er med til at gøre det lettere at estimere tidsforbruget, blive klog på problemområdet for alle involverede og hjælpe med ting som test, inkonsistens og udskiftning af personer, da den specifikke viden er skrevet ned.
-
-Derefter mener de, at man skal nebryde arbejdet i moduler, så det kan uddelegeres til forskellige udviklere. Grænsefladerne mellem modulerne og selve kravene til modulerne dokumenteres grundigt. Til sidst produceres kildekoden, og produktet er klart. Der argumenteres for, at hvis alt forarbejdet er gjort grundigt, så er programmeringen ligetil.
-
-Hele titlen på artiklen, det at \emph{fake} den ideelle udviklingsproces går ud på, at hvis man følger den ideelle proces, så når man mangler et stykke information, så noterer man dette i designdokumentationen. Når man så finder de rigtige svar senere, så rettes dokumentationen hele vejen ned i kæden. Dette skulle så meget gerne producere en korrekt specifikation i sidste ende.
-
-\paragraph{Perspektivering}
-Den idealiserede udviklingsproces som beskrives i \cite{parnas1986rational} har mange ting til fælles med nogle af kapitlerne i \cite{OOSE}. Den i artiklen omtalte kravspecifikation har mange ting til fælles med det i bogen omtalte \emph{Requirement Analysis Document} (Kapitel 4). I begge dokumenter indgår alle informationer, der skal til at udvilkle systemet.
-
-I artiklen beskrives hvordan dette dokument kan bruges til at nedbryde problemet i moduler som kan takles af mange forskellige udviklere. Det er også hvad der foreslås i kapitel 6 i \cite{OOSE}. Her nedbrydes systemet efter analysemodellen som er resultatet af kravspecifikationen. Det er også her, ligesom i artiklen, at grænsefladerne mellem modulerne specificeres, så en udvikler nemt og fejlfrit kan udvikle delsystemet. I artiklen argumenterer forfatterne for, at for hvert delsystem, så skal der fremstilles en kravspecifikation med samme struktur som for hele systemet. Det bliver en slags rekursiv dokumentation, da et delsystem godt kan bestå af flere. Fra et ledelsesperspektiv er det beskrevet i kapitel 14 i \cite{OOSE} hvordan denne nedbrydning uddelegeres mellem udviklere, så arbejdet foregår mest effektivt.
-
-Artiklen omtaler processen som ideel. Den omtalte proces er i praksis det vi kender som \emph{vandfaldsmodellen}. I mere moderne softwareudvikling stiller man spørgsmålstegn ved, om det er den optimale proces. Det er især efter udbredelsen af agile metoder som \emph{SCRUM} \cite{sutherland2010jeff} og andre. Her erkender man, at det er nærmest umuligt at designe software på samme måde som man designer broer på, da der simpelthen er for mange ukendte faktorer når man starter. Dette udbedres så ved at beskrive kravene samtidig med at systemet udviklet, da det så er nemmere at finde fejl i designet undervejs.
+Der er også sket udvikling inden for værktøjer, som har gjort programmører mere produktive. Det er her værktøjer som integrerede udviklingsmijøer som \emph{Visual Studio} til \verb!.NET! platformen og \emph{IntelliJ} til \verb!Java! som har aflastet programmører i at overskue store kodebaser med enorm kompleksitet. Her er også funktioner til refaktorering, aflusning med flere. Programmeringssprog er også blevet mere højniveau, og der er kommet flere dynamiske sprog som Python, Ruby og Javascript som påstår at højne produktiviteten.
 
 \newpage
 \section{Formål og rammer}
@@ -337,7 +315,7 @@ Det har gjort at vi har kunnet takle problemer uafhængigt af hinanden, og derve
 
 \subsection{Databasedesign}
 \label{sub:databasedesign}
-I Appendix \ref{sec:er_diagrams} ses tre ER-diagrammer der illustrerer opbygningen af vores database. 
+I Appendix \ref{sec:er_diagrams} ses tre ER-diagrammer der illustrerer opbygningen af vores database.
 
 På Figur \ref{fig:er_diagram_question} ses den del der har at gøre med spørgsmålene. Det er stort set identisk med klassediagrammet over vores problemområde som ses på Figur \ref{fig:class_diagram}. Her er den generelle struktur over hvordan spørgsmålene er inddelt uddybet. Altså hvordan et \emph{Question} hører til et \emph{Subject}, der igen hører til et \emph{Threshold} og så videre. Vi prøver også at vise den modulære struktur hvor vi har ladet nye typer spørgsmål nedarve fra en generaliseret type.
 
@@ -437,6 +415,7 @@ Siden sidste rapport har der været en del ændringer og især tilføjelser til 
 30-04-2015 & CKL & Rettet til genaflevering og tilføjet systemdesign. \\
 08-05-2015 & CKL & Tilføjet afsnit om strukturering. \\
 10-05-2015 & LSE & Tilføjet Brugergrænseflade og screenshots, opdateret Systemdesign. \\
+11-05-2015 & CKL & Tilføjet review af \cite{nsbullet}. \\
 \end{tabular}
 
 \section{Timeline}
