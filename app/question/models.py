@@ -62,8 +62,12 @@ class Question(db.Model):
 
     @staticmethod
     def from_dict(data):
-        qtype = data['type']
-        if qtype == 'MultipleChoice':
+        if 'qtype' in data:
+            qtype = data['qtype']
+        else:
+            return None
+
+        if qtype == 'MultipleChoice' and 'answer' in data and 'mctype' in data:
             q = MultipleChoice(data['answer'], data['mctype'])
         elif qtype == 'TypeIn':
             q = TypeIn(data['answer'])
@@ -72,15 +76,17 @@ class Question(db.Model):
         elif qtype == 'Matching':
             q = Matching(data['items'])
         else:
-            return None
+            q = None
 
-        q.text = data['text']
-        q.sub = data['subject']        
-        q.weight = data['weight']
-
-        for text in data['hints']:
-            h = Hint(text)
-            q.hints.append(h)
+        if q and 'text' in data and 'subject' in data and 'weight' in data:
+            q.text = data['text']
+            q.sub = data['subject']        
+            q.weight = data['weight']
+        
+        if q and 'hints' in data:
+            for text in data['hints']:
+                h = Hint(text)
+                q.hints.append(h)
 
         return q
 

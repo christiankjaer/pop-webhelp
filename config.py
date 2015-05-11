@@ -1,3 +1,7 @@
+#Project Name
+NAME = 'PoP'
+
+#Paths and dirs
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 testdir = 'tests'

@@ -18,25 +18,36 @@ class FileUpload(BaseView):
         if request.method == 'POST':
             file = request.files['file']
             if file and allowed_file(file.filename):
-                #filename = secure_filename(file.filename)
                 read_yaml(file)
-                #data = yaml.load(file)
-                #p = Post(data['title'], data['text'])
-                #db.session.add(p)
-                #db.session.commit()
                 flash('File succesfully uploaded')
-                return self.render('admin/upload.html')
             else:
                 flash('Invalid file type.')
-                return self.render('admin/upload.html')
         return self.render('admin/upload.html')
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
 
 def read_yaml(file):
-    pass
-    
+    data = yaml.load(file)
+    if 'type' in data:
+        type = data['type']
+    else:
+        o = None
+
+    if type == 'Threshold':
+        o = Threshold.from_dict(data)
+    elif type == 'Subject':
+        o = Subject.from_dict(data)
+    elif type == 'Question':
+        o = Question.from_dict(data)
+    else:
+        o = None
+
+    if not o:
+        flash('Invalid File Format')
+    else:
+        db.session.add(o)
+        db.session.commit()
 
 adm.add_view(FileUpload(name='Upload File'))
 adm.add_view(ModelView(Threshold, db.session))

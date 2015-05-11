@@ -14,6 +14,7 @@ lm.init_app(app)
 lm.login_view = 'login'
 
 adm = Admin(app)
+#adm = Admin(app, app.config['NAME'], base_template='/admin/layout.html', template_mode='bootstrap3')
 mail = Mail(app)
 
 from app import views
