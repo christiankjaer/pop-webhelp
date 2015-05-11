@@ -320,6 +320,21 @@ På Figur \ref{fig:opret_sp_sekvens} kan man se sekvens-diagrammet for den tredj
 \section{Systemdesign}
 \label{sec:systemdesign}
 I dette afsnit beskrives de designopgaver der er udført allerede. Til sidst i afsnittet vises de dele der endnu ikke er udført.
+\subsection{Strukturering}
+\label{sub:strukturering}
+
+I nogle udviklingsmiljøer er der typisk givet en struktur af kodebasen på forhånd. Det gælder mange gange når man bruger store frameworks som Django til Python eller Play til Java. Der er nogle konventioner til hvilke klasser der skal i hvilke mapper, og til hvordan konfigurationsfiler skal struktureres. Det er med til at tvinge god strukturing af koden. Frameworket Flask, som vi har valgt at bruge, har ikke sådanne konventioner. Alt kunne placeres i en stor fil hvis det skulle være. Derfor har vi været omhyggelige med at organisere moduler og klasser på en sådan måde at det er nemt at finde hoved og hale i.
+
+Det giver god mening som den første nedbrydning at dele applikationen op i moduler, som hver især indkapsler indkapsler adskildt funktionalitet. Det beskrives også i kapitel 6.3 i \cite{OOSE}, hvor det beskrives hvordan man får delt et system op, så kohæsionen mellem moduler bliver så lille som mulig. Ud fra kravspecifikationen har vi nedbrudt det til følgende moduler:
+\begin{description}
+    \item[\texttt{admin}] Håndterer opgaver med administration af spørgsmål, kategorier og brugere.
+    \item[\texttt{log}] Håndterer opgaver med logning af statistik fra opgaver og visning af denne.
+    \item[\texttt{question}] Håndterer opgaver omkring visning og besvarelse af opgaver.
+    \item[\texttt{user}] Håndterer brugerlogins, og alt der hører med af oprettelse, ændring af password, nulstilning osv.
+\end{description}
+
+Det har gjort at vi har kunnet takle problemer uafhængigt af hinanden, og derved har kunnet udvikle mere effektivt.
+
 \subsection{Databasedesign}
 \label{sub:databasedesign}
 I Appendix \ref{sec:er_diagrams} ses tre ER-diagrammer der illustrerer opbygningen af vores database. 
@@ -421,6 +436,7 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 17-04-2015 & CKL & Tilføjet use cases, sekvensdiagram og klassediagram. \\
 26-04-2015 & CKL & Tilføjet afsnit om tests. \\
 30-04-2015 & CKL & Rettet til genaflevering og tilføjet systemdesign. \\
+08-05-2015 & CKL & Tilføjet afsnit om strukturering. \\
 10-05-2015 & LSE & Tilføjet Brugergrænseflade og screenshots, opdateret Systemdesign. \\
 \end{tabular}
 
@@ -431,6 +447,7 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 16-04-2015 & Andet møde med kunde: & Vi har haft andet møde med kunden, hvor vi har snakket om modellen for de opgaver der skal være i systemet. \\
 22-04-2015 & Internt møde i gruppen: & Vi har diskuteret databasemodeller, og vi er kommet frem til et databaseskema for denne iteration af systemet. Derudover fik vi udviklet i fællesskab på systemet. \\
 27-04-2015 & Tredje møde med kunde: & Vi blev enige om en endelig funktionalitet for den første iteration af produktet. Derudover diskuterede vi udformingen af spørgmsålstyper og hvordan det hele skulle knyttes sammen. \\
+07-05-2015 & Internt møde i gruppen: & Vi mødtes internt i gruppen for at diskutere udestående implementationsopgaver, og kigge på nogle ting sammen. \\
 \end{tabular}
 
 \bibliographystyle{alpha}
