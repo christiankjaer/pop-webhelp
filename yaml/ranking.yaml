@@ -1,0 +1,7 @@
+{  type: Ranking
+ , text:
+ , weight:
+ , subject:
+ , hints: [hint1, hint2, ..]
+ , items: [item1, item2, item3, ..]
+}

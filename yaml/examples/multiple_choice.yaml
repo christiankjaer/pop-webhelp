@@ -1,0 +1,9 @@
+{  type: MultipleChoice
+ , text: Test Multiple Choice Spørgsmål
+ , weight: 4
+ , subject: Test Subject
+ , hints: [hint1, hint2]
+ , mctype: 1
+ , choices: [{'text':Valg 1, 'correct':True}, 
+             {'text':Valg 2, 'correct':False}]
+}

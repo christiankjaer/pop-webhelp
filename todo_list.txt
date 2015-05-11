@@ -14,20 +14,20 @@ Logging of data
   Logging of sessions
   Logging of hints
 
-Admin tools
-  File upload
-  Question, Subject and Threshold editing
-  Log statistics
-
-
 --- Smaller things ---
-Update ER diagrams
+Question and question items are seperate in admin view
+
+Threshold next attribute not visible on admin view
+
+Admin interface style
+
+YAML files with wrong format or non-unique values gives ugly error
 
 Too few question points to finish subject leads to error
 
 Hints Rating
   
-Template YAML files
+Matching YAML template doesn't work
 
 Button sizes
 
@@ -37,6 +37,4 @@ Threshold unlocking
 
 
 --- Report ---
-Write about the user interface
-
-Review of articles
+Review of article 2

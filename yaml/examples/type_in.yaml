@@ -1,0 +1,7 @@
+{  type: TypeIn
+ , text: Test Type In Spørgsmål
+ , weight: 3
+ , subject: Test Subject
+ , hints: [hint1, hint2]
+ , answer: svar
+}

@@ -1,0 +1,8 @@
+{  type: Multiple Choice
+ , text:
+ , weight:
+ , subject:
+ , hints: [hint1, hint2, ..]
+ , mctype: 1 or X
+ , choices: [{'text': , 'correct': }, {'text': , 'correct': }, ..]
+}

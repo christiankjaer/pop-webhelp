@@ -29,27 +29,23 @@ def allowed_file(filename):
 
 def read_yaml(file):
     data = yaml.load(file)
-    if 'type' in data:
-        type = data['type']
+    if data.get('subject', None):
+        obj = Question.from_dict(data)
+    elif data.get('threshold', None):
+        obj = Subject.from_dict(data)
+    elif data.get('name', None):
+        obj = Threshold.from_dict(data)
     else:
-        o = None
+        obj = None
 
-    if type == 'Threshold':
-        o = Threshold.from_dict(data)
-    elif type == 'Subject':
-        o = Subject.from_dict(data)
-    elif type == 'Question':
-        o = Question.from_dict(data)
-    else:
-        o = None
-
-    if not o:
+    if not obj:
         flash('Invalid File Format')
     else:
-        db.session.add(o)
+        db.session.add(obj)
         db.session.commit()
 
 adm.add_view(FileUpload(name='Upload File'))
+
 adm.add_view(ModelView(Threshold, db.session))
 adm.add_view(ModelView(Subject, db.session))
 adm.add_view(ModelView(Question, db.session, name='Question', category='Questions'))

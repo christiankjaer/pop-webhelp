@@ -3,22 +3,24 @@ from app import db
 class Threshold(db.Model):
     __tablename__ = 'threshold'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text(), unique=True)
+    name = db.Column(db.String(50), unique=True)
     goal = db.Column(db.Integer)
-    next = db.Column(db.Integer, db.ForeignKey('threshold.id'), default=None)
+    next = db.Column(db.Integer, db.ForeignKey('threshold.id'))
     subjects = db.relationship('Subject', backref='threshold')
 
-    def __init__(self, name, next=None, goal=0):
-        self.name = name
-        self.next = next
-        self.goal = goal
+    def __init__(self, data):
+        self.name = data['name']
+        next = Threshold.query.filter_by(name=data.get('next', None)).first()
+        if next:
+            self.next = next.id
+        self.goal = data.get('goal', 0)
 
     def __repr__(self):
-        return 'Threshold %s' % (self.id)
+        return self.name
 
     @staticmethod
     def from_dict(data):
-        return Threshold(data['Name'], data['next'], data['goal'])
+        return Threshold(data)
 
 class Subject(db.Model):
     __tablename__ = 'subject'
@@ -29,18 +31,20 @@ class Subject(db.Model):
     thres = db.Column(db.Integer, db.ForeignKey('threshold.id'))
     questions = db.relationship('Question', backref='subject')
 
-    def __init__(self, name, text, thres, goal):
-        self.name = name
-        self.text = text
-        self.thres = thres
-        self.goal = goal
+    def __init__(self, data):
+        self.name = data['name']
+        self.text = data['text']
+        thres = Threshold.query.filter_by(name=data.get('threshold', None)).first()
+        if thres:
+            self.thres = thres.id
+        self.goal = data.get('goal', 0)
 
     def __repr__(self):
-        return 'Subject %s' % (self.name)
+        return self.name
 
     @staticmethod
     def from_dict(data):
-        return Subject(data['name'], data['text'], data['thres'], data['goal'])
+        return Subject(data)
 
 class Question(db.Model):
     """ This is the Question base class """
@@ -49,7 +53,7 @@ class Question(db.Model):
     type = db.Column(db.String(50))
     text = db.Column(db.Text())
     weight = db.Column(db.Integer, default=0)
-    sub = db.Column(db.String(50), db.ForeignKey('subject.name'))
+    sub = db.Column(db.Integer, db.ForeignKey('subject.id'))
     hints = db.relationship('Hint', backref='question')
 
     __mapper_args__ = {
@@ -57,37 +61,32 @@ class Question(db.Model):
         'polymorphic_on':type
     }
 
+    def __init__(self, data):
+        self.text = data['text']
+        self.weight = data['weight']
+        sub = Subject.query.filter_by(name=data.get('subject', None)).first()
+        if sub:
+            self.sub = sub.id
+        for text in data['hints']:
+            h = Hint(text)
+            self.hints.append(h)
+
     def __repr__(self):
         return 'Question %s' % (self.id)
 
     @staticmethod
     def from_dict(data):
-        if 'qtype' in data:
-            qtype = data['qtype']
-        else:
-            return None
-
-        if qtype == 'MultipleChoice' and 'answer' in data and 'mctype' in data:
-            q = MultipleChoice(data['answer'], data['mctype'])
-        elif qtype == 'TypeIn':
-            q = TypeIn(data['answer'])
-        elif qtype == 'Ranking':
-            q = Ranking(data['items'])
-        elif qtype == 'Matching':
-            q = Matching(data['items'])
+        type = data.get('type', None)
+        if type == 'MultipleChoice':
+            q = MultipleChoice(data)
+        elif type == 'TypeIn':
+            q = TypeIn(data)
+        elif type == 'Ranking':
+            q = Ranking(data)
+        elif type == 'Matching':
+            q = Matching(data)
         else:
             q = None
-
-        if q and 'text' in data and 'subject' in data and 'weight' in data:
-            q.text = data['text']
-            q.sub = data['subject']        
-            q.weight = data['weight']
-        
-        if q and 'hints' in data:
-            for text in data['hints']:
-                h = Hint(text)
-                q.hints.append(h)
-
         return q
 
 
@@ -100,8 +99,9 @@ class TypeIn(Question):
         'polymorphic_identity':'type_in'
     }
 
-    def __init__(self, answer):
-        self.answer = answer
+    def __init__(self, data):
+        Question.__init__(self, data)
+        self.answer = data['answer']
 
     def __repr__(self):
         return 'Type In Question %s' % self.id
@@ -117,10 +117,11 @@ class MultipleChoice(Question):
         'polymorphic_identity':'multiple_choice'
     }
 
-    def __init__(self, answers, mctype):
-        self.mctype = mctype
-        for answer in answers:
-            a = MCAnswer(answer['text'], answer['correct'])
+    def __init__(self, data):
+        Question.__init__(self, data)
+        self.mctype = data['mctype']
+        for answer in data['choices']:
+            a = MCAnswer(answer)
             self.choices.append(a)
 
     def __repr__(self):
@@ -134,9 +135,9 @@ class MCAnswer(db.Model):
     correct = db.Column(db.Boolean())
     mcid = db.Column(db.Integer, db.ForeignKey('multiple_choice.id'))
 
-    def __init__(self, text, correct):
-        self.text = text
-        self.correct = correct
+    def __init__(self, answer):
+        self.text = answer['text']
+        self.correct = answer['correct']
 
     def __repr__(self):
         return 'Multiple Choice Answer %s' % (self.id)
@@ -150,8 +151,9 @@ class Ranking(Question):
         'polymorphic_identity':'ranking'
     }
 
-    def __init__(self, items):
-        for rank, text in enumerate(items):
+    def __init__(self, data):
+        Question.__init__(self, data)
+        for rank, text in enumerate(data['items']):
             ri = RankItem(rank, text)
             self.items.append(ri)
 
@@ -181,8 +183,9 @@ class Matching(Question):
         'polymorphic_identity':'matching'
     }
 
-    def __init__(self, items):
-        for text, answer in items:
+    def __init__(self, data):
+        Question.__init__(self, data)
+        for (text, answer) in data['items']:
             mi = MatchItem(text, answer)
             self.items.append(mi)
 
