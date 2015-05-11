@@ -43,9 +43,9 @@
 
 \selectlanguage{english}
 \begin{abstract}
-    This report presents the development of an e-learning system for use in the newly created introductory computer science course at the Institute of Computer Science at the University of Copenhagen, called \emph{Programmering og Problemløsning}. Our clients are Martin Dybdal and Oleksandr Shturmov, both employed at the institute, who will be in charge of the course. In the course, the students will be taught the programming language \verb!F#!.
+This report presents the development of an e-learning system for use in the newly created introductory computer science course at the Institute of Computer Science at the University of Copenhagen, called \emph{Programmering og Problemløsning}. Our clients are Martin Dybdal and Oleksandr Shturmov, both employed at the institute, who will be in charge of the course. In the course, the students will be taught the programming language \verb!F#!.
 
-    The aim of the e-learning system is to introduce new students to programming in a simple and user-friendly way, and to teach them various basic ideas and concepts in programming in general, and \verb!F#! in particular. This is done by presenting the students with an array of different exercises, sorted based on subject and difficulty, and presented to students in a specific and meaningful order.
+The aim of the e-learning system is to introduce new students to programming in a simple and user-friendly way, and to teach them various basic ideas and concepts in programming in general, and \verb!F#! in particular. This is done by presenting the students with an array of different exercises, sorted based on subject and difficulty, and presented to students in a specific and meaningful order.
 
 The system will have two different kinds of users: students and admins.
 
@@ -394,35 +394,34 @@ Når vi har en funktionsdygtig brugergrænseflade, så skal der udføres tests a
 \subsection{Screenshots}
 I Appendix \ref{sec:screenshots} ses screenshots af brugergrænsefladen for de vigtigste dele af vores projekt. De optræder i en rækkefølge der illustrerer dynamikken i en studerendes interaktion med vores system. I toppen af de fleste screenshots ses en navigationsbar, hvor man bl.a. kan se hvem der er logget ind, man kan logge ud og man kan ændre sit password. Der er desuden i venstre side et slags logo hvor man kan trykke for at blive taget tilbage til forsiden.
 
-På Figur \ref{fig:screenshot_login} ses et screenshot af den første del af vores brugergrænseflade en studerende vil møde, nemlig en login skærm. Hvis man allerede er registreret som bruger kan man her indtaste sig ku-id og sit valgte kodekord, og dermed logge på systemet. Hvis man ikke er oprettet som bruger er der et link der tager en videre til registrering. 
+På Figur \ref{fig:screenshot_login} ses et screenshot af den første del af vores brugergrænseflade en studerende vil møde, nemlig en login skærm. Hvis man allerede er registreret som bruger kan man her indtaste sit ku-id og sit valgte kodekord, og dermed logge på systemet. Hvis man ikke er oprettet som bruger er der et link der tager en videre til registrering. 
 
-På Figur \ref{fig:screenshot_register} ses registrerings siden. Her kan man indtaste sig ku-id, vælge sig et kodeord og registrere sig. Systemet sender så en mail til den relevante ku-mail med et verificeringslink, og så snart den studerende har trykket på linket er vedkommende klar til at logge på systemet.
+På Figur \ref{fig:screenshot_register} ses registreringssiden. Her kan man indtaste sit ku-id, vælge sig et kodeord og registrere sig. Systemet sender så en mail til den relevante ku-mail med et verificeringslink, og så snart den studerende har trykket på linket er vedkommende klar til at logge på systemet.
 
-Når en studerende har logget sig ind i systemet vil han blive taget til index siden, som kan ses på Figur \ref{fig:screenshot_overview}. Her kan vedkommende få et overblik over de forskellige \emph{thresholds} og de dertil hørende \emph{subjects}. Den studerende kan så vælge hvilket emne han vil arbejde på og klikke på dets navn, hvilket fører ham videre til den næste del.
+Når en studerende har logget sig ind i systemet vil vedkommende blive taget til index siden, som kan ses på Figur \ref{fig:screenshot_overview}. Her kan den studerende få et overblik over de forskellige \emph{thresholds} og de dertil hørende \emph{subjects}. Den studerende kan så vælge hvilket emne han vil arbejde på og klikke på dets navn, hvilket fører ham videre til den næste del.
 
-På Figur \ref{fig:screenshot_subject} ses \emph{subject} siden, hvor den studerende kan læse om det valgte emne, og hvis han finder det interessant, trykke på knappen og begynde at løse opgaver inden for det bestemte emne. De dummy-data vi har i databasen på nuværende tidspunkt er lidt simple, så derfor ser siden også lidt kedelig ud lige nu.
+På Figur \ref{fig:screenshot_subject} ses \emph{subject} siden, hvor den studerende kan læse om det valgte emne, og hvis det virker interessant, trykke på knappen og begynde at løse opgaver inden for det bestemte emne. De dummy-data vi har i databasen på nuværende tidspunkt er lidt simple, så derfor ser siden også lidt kedelig ud lige nu.
 
-Når den studerende har trykket \emph{begin} vil han blive stillet en række opgaver, f.eks. multiple choice opgaver som den der kan ses på Figur \ref{fig:screenshot_question}. Den studerende kan så afgive sit svar, enten ved at indtaste et svar, afkryde de korrekte bokse eller trække svarmulighederne hen på de korrekte positioner, og trykke på \emph{answer} knappen. Der er desuden mulighed for at den studerende kan få hints til opgaven hvis det skulle være nødvendigt ved at trykke på den dertilhørende knap.
+Når den studerende har trykket \emph{begin} vil vedkommende blive stillet en række opgaver, f.eks. multiple choice opgaver som den der kan ses på Figur \ref{fig:screenshot_question}. Den studerende kan så afgive sit svar, enten ved at indtaste et svar, afkryde de korrekte bokse eller trække svarmulighederne hen på de korrekte positioner, og trykke på \emph{answer} knappen. Der er desuden mulighed for at den studerende kan få hints til opgaven, hvis det skulle være nødvendigt, ved at trykke på den dertilhørende knap.
 
 Når den studerende har svaret på en opgave vil vedkommende blive taget til svar-siden, som kan ses på Figur \ref{fig:screenshot_answer}. Her får den studerende feedback på sit svar, der kan variere fra en helt simpel besked i form af rigtigt eller forkert til et mere detaljeret svar der f.eks. kunne indeholde en relevant stack trace. På svar-siden er der desuden et såkaldt \emph{Learn-O-Meter}, hvor den studerende kan se hvor langt vedkommende er nået med at gennemføre det valgte emne.
 
-Endeligt vil den studerende når vedkommende har gennemført et emne blive taget til en sidste side, som kan ses på Figur \ref{fig:screenshot_finish}, hvor der som det ser ud lige nu ikke står meget andet end \emph{Done}. Den studerende kan så trykke på \emph{finish} knappen, hvilket vil tage vedkommende til index siden, og derfra kan vedkommende så vælge et nyt emne at arbejde på eller logge ud.
+Endeligt vil den studerende når vedkommende har gennemført et emne blive taget til en sidste side, som kan ses på Figur \ref{fig:screenshot_finish}, hvor der som det ser ud lige nu ikke står meget andet end \emph{Done}. Den studerende kan så trykke på \emph{finish} knappen, hvilket vil tage vedkommende til index siden, og derfra kan vedkommende så vælge et nyt emne at arbejde på, eller vælge at logge ud.
 
 \section{Projektsamarbejdet}
 \label{sec:projektsamarbejdet}
-Siden afleveringen af delrapport 1 har der været påskeferie, eksamensuge og blokferie, og vi er derfor ikke kommet så meget videre med projektet og har derfor heller ikke haft meget kontakt indbyrdes.
+Samarbejdet med kunden fungerer stadig ganske udemærket. Når vi mødes med dem er der en meget afslappet og munter stemning, og det virker som om vi er meget godt på bølgelængde sammen og forstår at diskutere og blive enige om de forskellige aspekter af projektet. Vi er stadig ikke så gode til at være officielle og tage referater og den slags, mest fordi møderne mere er en mundtlig samtale og diskussion af projektet, og de ting vi bliver enige om er sjældent helt nye for os, så det er tanker vi allerede selv har gjort os. Vi har desuden endnu ikke haft en helt fungerende prototype at vise frem og bruge som basis for en mere konkret diskussion af projektet, men det skulle vi gerne have klar til næste gang vi skal mødes med kunden. 
 
-Her i blokferien har vi så haft vores andet møde med vores kunder, hvor vi snakkede om diverse aspekter af projektet og diskuterede opbygning og struktur af systemet. Vi er stadig på et stadie i vores diskussion med kunden hvor vi snakker relativt abstrakt om tingene, og vi er også som regel rimelig enige om tingen, og vi har derfor endnu ikke rigtig nået til at punkt hvor vi har følt at det var nødvendigt at tage et grundigt referat af hvad der blev snakket om.
+Projektsamarbejdet internt i gruppen går nogenlunde, vi er ikke så gode til at holde sådan officielle møder  med dagsordener og referater og den slags, i stedet snakker vi bare sammen når vi lige mødes inde på universitetet, og arbejder på projektet når vi lige har tid, f.eks. i en pause eller en fri eftermiddag. Det meste af vores kommunikation foregår stadigvæk over email eller facebooks chat. 
 
-Vi har desuden mødtes to gange i gruppen i blokferien, hvor vi har sat os i kantinen på DIKU for at sammen skrive delrapport 2, og det har fungeret udemærket. Vi har endnu ikke haft nogen deciderede \emph{møder} i gruppen hvor det har været nødvendigt med referat og dokumentation og den slags. Vi kommunikerer stadig på mail både internt i gruppen og med kunden, og vi bruger ligeledes Github til at dele vores arbejde med hinanden og med kunden, og begge dele fungerer også stadig udemærket.
-
-Når vi har afleveret delrapport 2 er det planen at vi så vil mødes i gruppen og konkret diskuterer hvordan vi vil implementere vores system, f.eks. ift. opbygningen af databasen og hjemmesiden, og så sammen starte på at skrive koden. Når vi når dertil kan vi så se hvordan det går med arbejdet og med at dele det op imellem os og kommunikere indbyrdes, og der bliver det måske også mere relevant at dokumentere nogen af de ting vi snakker om i anden form end i delrapporterne.
+Vi har for nyligt oprettet en to-do liste inde i vores git repository, hvor vi prøver at notere de forskellige ting ned der mangler at blive gjort, og som vi opdaterer løbende når vi får gennemført nogle af tingene eller støder på nye ting der skal laves. Det håber vi kan hjælpe os til at have et bedre overblik over projektet, og til at ikke glemme alle de små ting man måske støder på. På to-do listen er der tre sektioner, én til de store, vigtige ting, én til de mindre, mindre vigtige ting, og én til de ting der har at gøre med rapporten.
 
 \newpage
 \appendix
 \section{Versionsstyring}
 \label{sec:versionsstyring}
 Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
+Siden sidste rapport har der været en del ændringer og især tilføjelser til koden. Vi har fået bundet alle de dele vi tidligere har lavet sammen til en fungerende prototype, der fungerer efter hensigten og som kan ses på de vedlagte screenshots. Derudover er vi begyndt at arbejde på admin delen af projektet, hvor mange af de overordnede aspekter er ved at være på plads.
 
 \section{Changelog}
 \label{sec:changelog}
