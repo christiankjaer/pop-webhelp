@@ -5,5 +5,5 @@ Flask-Login
 Flask-Mail
 Flask-Admin
 coverage
-markdown
+Flask-Misaka
 multimethod
