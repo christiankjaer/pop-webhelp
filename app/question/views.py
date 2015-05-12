@@ -45,7 +45,7 @@ def view_question(id):
 @app.route('/subject/start/<int:sid>')
 def start_answering(sid):
     sub = Subject.query.get_or_404(sid)
-    qs = Question.query.filter_by(sub=sub.name).all()
+    qs = Question.query.filter_by(sub=sub.id).all()
     session['score'] = 0
     session['goal'] = sub.goal
     session['queue'] = [q.id for q in qs]

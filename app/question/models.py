@@ -185,8 +185,8 @@ class Matching(Question):
 
     def __init__(self, data):
         Question.__init__(self, data)
-        for (text, answer) in data['items']:
-            mi = MatchItem(text, answer)
+        for i in range(len(data['texts'])):
+            mi = MatchItem(data['texts'][i], data['answers'][i])
             self.items.append(mi)
 
     def __repr__(self):

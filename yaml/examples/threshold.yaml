@@ -1,4 +1,3 @@
-{  name: Test Threshold
- , goal: 8
- , next: Empty Threshold
-}
+name: Test Threshold
+goal: 8
+next: Empty Threshold

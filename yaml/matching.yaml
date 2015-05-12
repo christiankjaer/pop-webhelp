@@ -1,7 +1,7 @@
-{  type: Matching
- , text:
- , weight:
- , subject:
- , hints: [hint1, hint2, ..]
- , items: [(text1, item1), (text2, item2), ..]
-}
+type: Matching
+text:
+weight:
+subject:
+hints: [hint1, hint2, ..]
+texts: [text1, text2, ..]
+answers: [answer1, answer2, ..]

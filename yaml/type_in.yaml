@@ -1,7 +1,6 @@
-{  type: TypeIn
- , text:
- , weight:
- , subject:
- , hints: [hint1, hint2, ..]
- , answer:
-}
+type: TypeIn
+text:
+weight:
+subject:
+hints: [hint1, hint2, ..]
+answer:

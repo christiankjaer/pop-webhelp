@@ -1,7 +1,6 @@
-{  type: Ranking
- , text: Test Ranking Spørgsmål
- , weight: 3
- , subject: Test Subject
- , hints: [hint1, hint2]
- , items: [item1, item2, item3, item4]
-}
+type: Ranking
+text: Rank these numbers
+weight: 3
+subject: Ranking Subject
+hints: [2 > 1, 4 > 3]
+items: [1, 2, 3, 4]
