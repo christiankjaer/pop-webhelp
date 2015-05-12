@@ -54,7 +54,7 @@ class Question(db.Model):
     text = db.Column(db.Text())
     weight = db.Column(db.Integer, default=0)
     sub = db.Column(db.Integer, db.ForeignKey('subject.id'))
-    hints = db.relationship('Hint', backref='question')
+    hints = db.relationship('Hint', backref='question', cascade='save-update, delete')
 
     __mapper_args__ = {
         'polymorphic_identity':'question',
@@ -111,7 +111,7 @@ class MultipleChoice(Question):
     __tablename__ = 'multiple_choice'
     id = db.Column(db.Integer, db.ForeignKey('question.id'), primary_key=True)
     mctype = db.Column(db.String(1))
-    choices = db.relationship('MCAnswer', backref='multiple_choice')
+    choices = db.relationship('MCAnswer', backref='multiple_choice', cascade='save-update, delete')
 
     __mapper_args__ = {
         'polymorphic_identity':'multiple_choice'
@@ -145,7 +145,7 @@ class MCAnswer(db.Model):
 class Ranking(Question):
     __tablename__ = 'ranking'
     id = db.Column(db.Integer, db.ForeignKey('question.id'), primary_key=True)
-    items = db.relationship('RankItem', backref='ranking')
+    items = db.relationship('RankItem', backref='ranking', cascade='save-update, delete')
 
     __mapper_args__ = {
         'polymorphic_identity':'ranking'
@@ -177,7 +177,7 @@ class RankItem(db.Model):
 class Matching(Question):
     __tablename__ = 'matching'
     id = db.Column(db.Integer, db.ForeignKey('question.id'), primary_key=True)
-    items = db.relationship('MatchItem', backref='matching')
+    items = db.relationship('MatchItem', backref='matching', cascade='save-update, delete')
 
     __mapper_args__ = {
         'polymorphic_identity':'matching'
