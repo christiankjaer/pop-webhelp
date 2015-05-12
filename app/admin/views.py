@@ -1,16 +1,21 @@
 from flask_admin import Admin, BaseView, expose
 from flask_admin.contrib.sqla import ModelView
-from flask import request, flash
+from flask import request, flash, redirect, url_for
 from werkzeug import secure_filename
 import yaml
 
 from app import app, adm, db
 from app.question.models import Question, Subject, Threshold, TypeIn, MultipleChoice, MCAnswer, Ranking, RankItem, Matching, MatchItem, Hint
 
-class MyView(BaseView):
+class AdminView(BaseView):
     @expose('/')
-    def index(self):
+    def admin_index(self):
         return self.render('admin/index.html')
+
+class ToOverview(BaseView):
+    @expose('/')
+    def to_overview(self):
+        return redirect(url_for('overview'))
 
 class FileUpload(BaseView):
     @expose('/', methods=['GET', 'POST'])
@@ -44,16 +49,60 @@ def read_yaml(file):
         db.session.add(obj)
         db.session.commit()
 
-adm.add_view(FileUpload(name='Upload File'))
+class ThresholdView(ModelView):
+    column_list = ('id', 'name', 'goal', 'next')
+    column_sortable_list = ('id', 'name', 'next')
 
-adm.add_view(ModelView(Threshold, db.session))
-adm.add_view(ModelView(Subject, db.session))
+class SubjectView(ModelView):
+    column_list = ('id', 'name', 'text', 'goal', 'threshold')
+    column_sortable_list = ('id', 'name', 'threshold')
+
+class TypeInView(ModelView):
+    column_list = ('id', 'text', 'answer', 'weight', 'subject')
+    column_sortable_list = ('id', 'subject')
+
+class MultipleChoiceView(ModelView):
+    column_list = ('id', 'text', 'weight', 'mctype', 'subject')
+    column_sortable_list = ('id', 'mctype', 'subject')
+
+class MCAnswerView(ModelView):
+    column_list = ('mcid', 'text', 'correct')
+    column_labels = dict(mcid='Multiple Choice Question ID')
+    column_sortable_list = (('mcid', MCAnswer.mcid))
+
+class RankingView(ModelView):
+    column_list = ('id', 'text', 'weight', 'subject')
+    column_sortable_list = ('id', 'subject')
+
+class RankItemView(ModelView):
+    column_list = ('rid', 'text', 'rank')
+    column_labels = dict(rid='Ranking Question ID')
+    column_sortable_list = (('rid', RankItem.rid))
+
+class MatchingView(ModelView):
+    column_list = ('id', 'text', 'weight', 'subject')
+    column_sortable_list = ('id', 'subject')
+
+class MatchItemView(ModelView):
+    column_list = ('mid', 'text', 'answer')
+    column_labels = dict(mid='Matching Question ID')
+    column_sortable_list = (('mid', MatchItem.mid))
+
+class HintView(ModelView):
+    column_list = ('qid', 'text')
+    column_labels = dict(qid='Question ID')
+    column_sortable_list = (('qid', Hint.qid))
+
+adm.add_view(ToOverview(name='Overview'))
+adm.add_view(FileUpload(name='Upload File'))
+adm.add_view(ThresholdView(Threshold, db.session))
+adm.add_view(SubjectView(Subject, db.session))
 adm.add_view(ModelView(Question, db.session, name='Question', category='Questions'))
-adm.add_view(ModelView(TypeIn, db.session, name='Type In', category='Questions'))
-adm.add_view(ModelView(MultipleChoice, db.session, name='Multiple Choice', category='Questions'))
-adm.add_view(ModelView(MCAnswer, db.session, name='Multiple Choice Answer', category='Questions'))
-adm.add_view(ModelView(Ranking, db.session, name='Ranking', category='Questions'))
-adm.add_view(ModelView(RankItem, db.session, name='Ranking Items', category='Questions'))
-adm.add_view(ModelView(Matching, db.session, name='Matching', category='Questions'))
-adm.add_view(ModelView(MatchItem, db.session, name='Matching Item', category='Questions'))
-adm.add_view(ModelView(Hint, db.session, name='Hint', category='Questions'))
+adm.add_view(TypeInView(TypeIn, db.session, name='Type In', category='Questions'))
+adm.add_view(MultipleChoiceView(MultipleChoice, db.session, name='Multiple Choice', category='Questions'))
+adm.add_view(MCAnswerView(MCAnswer, db.session, name='Multiple Choice Answer', category='Questions'))
+adm.add_view(RankingView(Ranking, db.session, name='Ranking', category='Questions'))
+adm.add_view(RankItemView(RankItem, db.session, name='Ranking Items', category='Questions'))
+adm.add_view(MatchingView(Matching, db.session, name='Matching', category='Questions'))
+adm.add_view(MatchItemView(MatchItem, db.session, name='Matching Item', category='Questions'))
+adm.add_view(HintView(Hint, db.session, name='Hint', category='Questions'))

@@ -95,14 +95,12 @@ mcq = {'type':'MultipleChoice', 'text':'What is 2 * 2?',
 db.session.add(Question.from_dict(mcq))
 
 mq = {'type':'Matching', 'text':'Pair the items',
-        'subject':'Matching Subject',
-        'items':[
-            ('Apples are', 'Round'),
-            ('Bananas are', 'Long'),
-            ('Kiwis are', 'Hairy'),
-            ('Pineapples are', 'Spiky')],
-       'hints': ['Hint1', 'Hint2'],
-       'weight': 1}
+      'subject':'Matching Subject',
+      'texts':['Apples are', 'Bananas are',
+               'Kiwis are', 'Pineapples are'],
+      'answers':['Round', 'Long', 'Hairy', 'Spiky'],
+      'hints': ['Hint1', 'Hint2'],
+      'weight': 1}
 db.session.add(Question.from_dict(mq))
 
 rkq = {'type':'Ranking', 'text':'Rank these numbers',
