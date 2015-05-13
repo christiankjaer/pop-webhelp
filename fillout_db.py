@@ -67,8 +67,8 @@ db.session.add(Question.from_dict(tiq))
 mcq = {'type':'MultipleChoice', 'text':'What is 2 + 2?',
        'subject':'Multiple Choice Subject',
        'choices':[{'text':'3', 'correct':False},
-                 {'text':'4', 'correct':True},
                  {'text':'5', 'correct':False},
+                 {'text':'4', 'correct':True},
                  {'text':'6', 'correct':False}],
        'hints': ['Hint1', 'Hint2'],
        'weight': 1, 'mctype': '1'}
@@ -86,8 +86,8 @@ db.session.add(Question.from_dict(mcq))
 
 mcq = {'type':'MultipleChoice', 'text':'What is 2 * 2?',
        'subject':'Multiple Choice Subject',
-       'choices':[{'text':'2', 'correct':False},
-                 {'text':'4', 'correct':True},
+       'choices':[{'text':'4', 'correct':True},
+                  {'text':'2', 'correct':False},
                  {'text':'6', 'correct':False},
                  {'text':'8', 'correct':False}],
        'hints': ['Hint1', 'Hint2'],
@@ -95,14 +95,12 @@ mcq = {'type':'MultipleChoice', 'text':'What is 2 * 2?',
 db.session.add(Question.from_dict(mcq))
 
 mq = {'type':'Matching', 'text':'Pair the items',
-        'subject':'Matching Subject',
-        'items':[
-            ('Apples are', 'Round'),
-            ('Bananas are', 'Long'),
-            ('Kiwis are', 'Hairy'),
-            ('Pineapples are', 'Spiky')],
-       'hints': ['Hint1', 'Hint2'],
-       'weight': 1}
+      'subject':'Matching Subject',
+      'texts':['Apples are', 'Bananas are',
+               'Kiwis are', 'Pineapples are'],
+      'answers':['Round', 'Long', 'Hairy', 'Spiky'],
+      'hints': ['Hint1', 'Hint2'],
+      'weight': 1}
 db.session.add(Question.from_dict(mq))
 
 rkq = {'type':'Ranking', 'text':'Rank these numbers',

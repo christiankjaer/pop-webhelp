@@ -3,7 +3,7 @@
 {% block content %}
 <script src="/static/js/ranking.js" type="text/javascript" charset="utf-8"></script>
 <div class="row">
-    <p>{{ text | marktohtml | safe }}</p>
+    {{ text | markdown }}
     <div class="list-group" id="items">
         {% for i in items %}
         <div class="list-group-item item grabbable" id="{{i.id}}" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)">

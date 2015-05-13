@@ -17,6 +17,9 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
       </ul>
+      <ul class="nav navbar-nav navbar-left">
+        <li><a href="{{ url_for('admin.index') }}">Admin</a></li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><p class="navbar-text">You are: {{ current_user.kuid }}</p></li>
         <li><a href="{{ url_for('logout') }}">log out</a></li>

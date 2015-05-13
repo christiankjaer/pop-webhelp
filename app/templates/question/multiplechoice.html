@@ -2,7 +2,7 @@
 {% block title %}Multiple Choice{% endblock %}
 {% block content %}
 <div class="row">
-    <p>{{ text | marktohtml | safe }}</p>
+    {{ text | markdown }}
     <form action="" method="post">
     {{ form.csrf_tag }}
     {% for f in form %}

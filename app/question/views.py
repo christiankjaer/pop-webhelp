@@ -46,17 +46,26 @@ def view_question(id):
 def start_answering(sid):
     sub = Subject.query.get_or_404(sid)
     qs = Question.query.filter_by(sub=sub.id).all()
+    session['sid'] = sid
     session['score'] = 0
     session['goal'] = sub.goal
-    session['queue'] = [q.id for q in qs]
+    session['queue'] = make_queue(sid)
     return redirect(url_for('answer_question'))
 
-@app.route('/question/answer', methods=['GET', 'POST'])
+def make_queue(sid):
+    qs = Question.query.filter_by(sub=sid).all()
+    return [q.id for q in qs]
+
+@app.route('/subject/question', methods=['GET', 'POST'])
 def answer_question():
-    next_question = Question.query.get(session['queue'][-1])
     if session['score'] >= session['goal']:
         return render_template('question/finished.html')
+
+    if len(session['queue']) == 0:
+        session['queue'] = make_queue(session['sid'])
+    next_question = Question.query.get(session['queue'][-1])
     re = render_question(next_question)
+
     if request.method == 'POST' and type(re) == dict:
         if re['correct']:
             session['score'] = session['score'] + next_question.weight

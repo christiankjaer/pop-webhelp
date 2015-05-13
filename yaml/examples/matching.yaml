@@ -1,7 +1,7 @@
-{  type: Matching
- , text: Test Matching Spørgsmål
- , weight: 5
- , subject: Test Subject
- , hints: [hint1, hint2]
- , items: [(text1, item1), (text2, item2)]
-}
+type: Matching
+text: Match disse regneudtryk og resultater
+weight: 5
+subject: Matching Subject
+hints: [2 + 2 != 2, 1 + 1 != 4]
+texts: [2 + 2, 1 + 1, 3 + 3]
+answers: [4, 2, 6]

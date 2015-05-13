@@ -1,5 +1,4 @@
-{  name: Test Subject
- , text: This is a test Subject
- , goal: 8
- , threshold: Test Threshold
-}
+name: Test Subject
+text: This is a test Subject
+goal: 8
+threshold: Test Threshold

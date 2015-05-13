@@ -2,7 +2,7 @@
 {% block title %}Type In{% endblock %}
 {% block content %}
 <div class="row">
-    <p>{{ text | marktohtml | safe }}</p>
+    {{ text | markdown }}
     <form action="" method="post">
     {{ form.hidden_tag() }}
     {{ form.answer(class = "form-control") }}
