@@ -96,7 +96,7 @@ Der fremhæves tre vigtige erfaringer forfatterne gjorde sig inden for objekt or
 
 Artiklen er fra 1998, siden da er der altså sket betydelige fremskridt inden for software og hardware. På trods af dette er den grundlæggende problematik inden for systemudvikling den samme, og artiklen er da stadig relevant i dag. Da det er en objektorienteret metode inkorporerer den mange af de typiske elementer. Tilføjning af ny funktionalitet skal være let hvilket opnås ved at opbygge systemet efter \emph{model-view-control}, \emph{entity-boundary-controller}, eller et lignende design mønster. Som i så mange andre metoder sker udviklingen i M.A.D. i flere iterationer. Særligt ved metoden beskrevet i artiklen er dog at de overordnede udviklingsaktiviteter \emph{analyse, design} og \emph{implementering} alle udføres parallelt, i modsætning til sekventielt som er typisk for andre fremgangsmåder. Tanken bag dette er at enhver af de tre aktiviter kan gøre brug af erfaring fået under de to øvrige aktiviteter.
 
-Projektet som danner grundlag for artiklen er, i forhold til vores IT-projekt, i meget stor skala, hvilket også gør at der ikke uden videre kan laves en direkte sammenligning mellem de to. Selvom de to projekter er meget forskellige, kan der dog sagtens drages paralleler mellem metoden præsenteret i artiklen og den fremgangsmåde vi har benyttet os af i vores projekt, bl.a. den iterative fremgangsmåde og det tidlige brugerfokus, som agile metoder er kendetegnet ved.
+Projektet som danner grundlag for artiklen er, i forhold til vores IT-projekt, i meget stor skala, hvilket også gør at der ikke uden videre kan laves en direkte sammenligning mellem de to. Selvom de to projekter er meget forskellige, kan der dog sagtens drages paralleller mellem metoden præsenteret i artiklen og den fremgangsmåde vi har benyttet os af i vores projekt, bl.a. den iterative fremgangsmåde og det tidlige brugerfokus, som agile metoder er kendetegnet ved.
 
 Som nævnt tidligere lægger metoden stor vægt på analyse af den nuværende praksis. Der er dog projekter hvor en sådan nuværende praksis ikke eksisterer. Dette kan siges at være tilfældet i vores projekt, da det produkt vi udvikler ikke skal erstatte noget eksisterende system. I vores tilfælde er der altså visse dele af M.A.D. metoden der ikke ville være nær så relevant.
 
@@ -347,6 +347,8 @@ Oven på det har vi med hjælp fra \verb!Flask! frameworket implementeret en sim
 \subsection{Udestående design- og implementationsopgaver}
 \label{sub:udestaende_design_og_implementationsopgaver}
 De to vigtigste udeståender er implementeringen af hele logningen af data, samt admin aspektet af projektet.
+Admin siden af projektet er vi allerede godt i gang med, og mange af de store elementer er på plads, så vi arbejder mest på alle detaljerne. F.eks. har vi endnu ikke helt fundet ud af hvordan vi vil håndtere admins vs almindelige brugere.
+Logningen af data er endnu ikke implementeret, idet vi stadig ikke helt har besluttet os for hvordan vi vil håndtere sessions og cookies, men så snart vi træffer en beslutning burde selv logningen være forholdsvis simpel at implementere. 
 
 \section{Program- og systemtest}
 \label{sec:program_og_systemtest}
@@ -400,6 +402,9 @@ Når den studerende har svaret på en opgave vil vedkommende blive taget til sva
 
 Endeligt vil den studerende når vedkommende har gennemført et emne blive taget til en sidste side, som kan ses på Figur \ref{fig:screenshot_finish}, hvor der som det ser ud lige nu ikke står meget andet end \emph{Done}. Den studerende kan så trykke på \emph{finish} knappen, hvilket vil tage vedkommende til index siden, og derfra kan vedkommende så vælge et nyt emne at arbejde på, eller vælge at logge ud.
 
+\subsection{Tænke-højt forsøg}
+Vi har endnu ikke foretaget nogen tænke-højt forsøg. De tænkte brugere af vores system er i første omgang næste års nye studerende på datalogi uddannelsen, hvilket gør det svært for os at få fat i nogen af dem da de endnu ikke er startet. Omvendt er vi jo selv startet på datalogi for ikke så længe siden, så vi kunne muligvis godt gennemføre tænke-højt forsøg med nogle af vores medstuderende der ikke kender til vores system. Det har vi dog ikke gjort endnu, da vi først for nylig har fået færdiggjort en nogenlunde fungerende prototype og vi endnu ikke rigtig har nogen spørgsmål i databasen.
+
 \section{Projektsamarbejdet}
 \label{sec:projektsamarbejdet}
 Samarbejdet med kunden fungerer stadig ganske udemærket. Når vi mødes med dem er der en meget afslappet og munter stemning, og det virker som om vi er meget godt på bølgelængde sammen og forstår at diskutere og blive enige om de forskellige aspekter af projektet. Vi er stadig ikke så gode til at være officielle og tage referater og den slags, mest fordi møderne mere er en mundtlig samtale og diskussion af projektet, og de ting vi bliver enige om er sjældent helt nye for os, så det er tanker vi allerede selv har gjort os. Vi har desuden endnu ikke haft en helt fungerende prototype at vise frem og bruge som basis for en mere konkret diskussion af projektet, men det skulle vi gerne have klar til næste gang vi skal mødes med kunden. 
@@ -440,11 +445,13 @@ Siden sidste rapport har der været en del ændringer og især tilføjelser til 
 22-04-2015 & Internt møde i gruppen: & Vi har diskuteret databasemodeller, og vi er kommet frem til et databaseskema for denne iteration af systemet. Derudover fik vi udviklet i fællesskab på systemet. \\
 27-04-2015 & Tredje møde med kunde: & Vi blev enige om en endelig funktionalitet for den første iteration af produktet. Derudover diskuterede vi udformingen af spørgmsålstyper og hvordan det hele skulle knyttes sammen. \\
 07-05-2015 & Internt møde i gruppen: & Vi mødtes internt i gruppen for at diskutere udestående implementationsopgaver, og kigge på nogle ting sammen. \\
+07-05-2015 & Første fungerende prototype & Vores første fungerende prototype af vores projekt er færdig, hvor vi har fået bundet alle de elementer vi løbende har lavet sammen til et sammenhængende hele. \\
 \end{tabular}
 
 \bibliographystyle{alpha}
 \bibliography{refs}{}
 
+\newpage
 \section{ER-diagrammer}
 \label{sec:er_diagrams}
 \begin{figure}[h!]
@@ -468,6 +475,7 @@ Siden sidste rapport har der været en del ændringer og især tilføjelser til 
     \label{fig:er_diagram_user}
 \end{figure}
 
+\newpage
 \section{Brugergrænseflade screenshots}
 \label{sec:screenshots}
 \begin{figure}[h!]
