@@ -4,7 +4,6 @@ from flask_login import login_required, current_user
 from app import app, lm, db
 from .forms import MultipleChoiceForm1, MultipleChoiceFormX, TypeInForm
 import random
-import markdown
 from multimethod import multimethod
 
 @app.route('/overview')
@@ -174,8 +173,3 @@ def rate_hint():
     hid = request.args.get('hid', 0, type=int)
     status = request.args.get('status', None)
     return jsonify(status="%s - %s" % (status, hid))
-
-@app.template_filter()
-def marktohtml(value):
-    return markdown.markdown(value)
-
