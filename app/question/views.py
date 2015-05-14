@@ -90,10 +90,15 @@ def render_question(q):
     random.shuffle(q.choices)
     form.set_data(q)
     if form.validate_on_submit():
+        answer = None
+        if q.mctype == '1':
+            answer = [form.choices.data]
+        else:
+            answer = form.choices.data
         correct = [c.id for c in q.choices if c.correct]
-        if len(correct) != len(form.choices.data):
+        if len(correct) != len(answer):
             return {'correct': False, 'feedback': 'The answer was incorrect'}
-        for i in form.choices.data:
+        for i in answer:
             if int(i) not in correct:
                 return {'correct': False, 'feedback': 'The answer was incorrect'}
         return {'correct': True, 'feedback': 'The answer was correct'}
