@@ -52,5 +52,5 @@ class User(db.Model):
 
 # Many-to-many table
 completed = db.Table('completed',
-                     db.Column('kuid', db.String(6), db.ForeignKey('user.kuid')),
-                     db.Column('sname', db.String(50), db.ForeignKey('subject.name')))
+                     db.Column('kuid', db.String(6), db.ForeignKey('user.kuid'), primary_key=True),
+                     db.Column('sname', db.String(50), db.ForeignKey('subject.name'), primary_key=True))
