@@ -8,7 +8,7 @@ class QLog(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime)
     qid = db.Column(db.Integer, db.ForeignKey('question.id'))
-    uid = db.Column(db.String(6), db.ForeignKey('user.kuid'))
+    uid = db.Column(db.String(6), db.ForeignKey('users.kuid'))
     sid = db.Column(db.Integer, db.ForeignKey('session.id'))
     answer = db.Column(db.Text())
     correct = db.Column(db.Boolean)
@@ -30,7 +30,7 @@ class Session(db.Model):
     __tablename__ = 'session'
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime)
-    uid = db.Column(db.String(6), db.ForeignKey('user.kuid'))
+    uid = db.Column(db.String(6), db.ForeignKey('users.kuid'))
     sname = db.Column(db.String(50), db.ForeignKey('subject.name'))
     logs = db.relationship('QLog', backref='session')
 

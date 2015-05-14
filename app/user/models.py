@@ -7,6 +7,7 @@ from random import SystemRandom
 
 class User(db.Model):
     """This class represents a user"""
+    __tablename__ = 'users' # user is a bad name
     kuid = db.Column(db.String(6), primary_key=True)
     pwhash = db.Column(db.String(160), nullable=False)
     registered_on = db.Column(db.DateTime, nullable=False)
@@ -52,5 +53,5 @@ class User(db.Model):
 
 # Many-to-many table
 completed = db.Table('completed',
-                     db.Column('kuid', db.String(6), db.ForeignKey('user.kuid'), primary_key=True),
-                     db.Column('sname', db.String(50), db.ForeignKey('subject.name'), primary_key=True))
+                     db.Column('kuid', db.String(6), db.ForeignKey('users.kuid'), primary_key=True),
+                     db.Column('sid', db.Integer, db.ForeignKey('subject.id'), primary_key=True))
