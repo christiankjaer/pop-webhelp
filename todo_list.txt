@@ -22,13 +22,9 @@ Admin interface style
 YAML files with wrong format or non-unique values gives ugly error
 
 Hints Rating
-  
+
 Button sizes
 
 Overview interface
 
-Threshold unlocking
-
-
 --- Report ---
-Review of article 2

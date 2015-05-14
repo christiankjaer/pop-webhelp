@@ -2,14 +2,16 @@
 {% block title %}Overview{% endblock %}
 {% block content %}
 {% for t in thresholds %}
-  <div class="panel panel-default">
+<div class="panel {% if t.open %}panel-default{% else %}panel-danger{% endif %}">
     <div class="panel-heading">{{ t.name }}</div>
     <div class="panel-body">
       {% for s in t.subjects %}
         <div>
-          <a href="{{ url_for('random_question', name=s.name) }}">
-            {{ s.name }}
-          </a>
+            {% if t.open %}
+            <a {% if s in current_user.completed %} class="text-success"{% endif %} href="{{ url_for('view_subject', name=s.name) }}">{{s.name}}</a>
+            {% else %}
+            <span>{{s.name}}</span>
+            {% endif %}
         </div>
       {% endfor %}
     </div>

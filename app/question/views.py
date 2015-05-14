@@ -1,6 +1,6 @@
 from flask import url_for, redirect, render_template, flash, abort, request, session, jsonify
 from .models import Threshold, Subject, Question, MultipleChoice, MCAnswer, TypeIn, Ranking, RankItem, Matching
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app import app, lm, db
 from .forms import MultipleChoiceForm1, MultipleChoiceFormX, TypeInForm
 import random
@@ -13,14 +13,21 @@ def overview():
     thresholds = []
     subquery = db.session.query(Threshold.next).filter(Threshold.next != None)
     t = db.session.query(Threshold).filter(~Threshold.id.in_(subquery)).first()
+    t.open = False
     thresholds.append(t)
     while t and t.next != None:
         t = Threshold.query.get(t.next)
+        t.open = False
         thresholds.append(t)
+    for threshold in thresholds:
+        threshold.open = True
+        if not all([s in current_user.completed for s in threshold.subjects]):
+            break
+
     return render_template('question/overview.html', thresholds=thresholds)
 
 @app.route('/subject/<string:name>')
-def random_question(name):
+def view_subject(name):
     s = Subject.query.filter_by(name=name).first()
     if not s.questions:
         return render_template('question/empty.html', subject=s)
@@ -59,6 +66,9 @@ def make_queue(sid):
 @app.route('/subject/question', methods=['GET', 'POST'])
 def answer_question():
     if session['score'] >= session['goal']:
+        current_user.completed.append(Subject.query.get(session['sid']))
+        db.session.add(current_user)
+        db.session.commit()
         return render_template('question/finished.html')
 
     if len(session['queue']) == 0:
