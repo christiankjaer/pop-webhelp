@@ -7,7 +7,6 @@ import random
 from multimethod import multimethod
 import uuid
 from app.log.models import QLog
-from flask_sqlalchemy import get_debug_queries
 
 @app.route('/overview')
 @login_required
