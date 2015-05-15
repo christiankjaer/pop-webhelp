@@ -111,7 +111,7 @@ class MultipleChoice(Question):
     __tablename__ = 'multiple_choice'
     id = db.Column(db.Integer, db.ForeignKey('question.id'), primary_key=True)
     mctype = db.Column(db.String(1))
-    choices = db.relationship('MCAnswer', backref='multiple_choice', cascade='save-update, delete')
+    choices = db.relationship('MCAnswer', backref='multiple_choice')#, cascade='save-update, delete')
 
     __mapper_args__ = {
         'polymorphic_identity':'multiple_choice'

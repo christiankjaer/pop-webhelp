@@ -5,6 +5,9 @@ from app import app, lm, db
 from .forms import MultipleChoiceForm1, MultipleChoiceFormX, TypeInForm
 import random
 from multimethod import multimethod
+import uuid
+from app.log.models import QLog
+from flask_sqlalchemy import get_debug_queries
 
 @app.route('/overview')
 @login_required
@@ -56,6 +59,7 @@ def start_answering(sid):
     session['score'] = 0
     session['goal'] = sub.goal
     session['queue'] = make_queue(sid)
+    session['session_id'] = str(uuid.uuid4())
     return redirect(url_for('answer_question'))
 
 def make_queue(sid):
@@ -65,19 +69,27 @@ def make_queue(sid):
 @app.route('/subject/question', methods=['GET', 'POST'])
 def answer_question():
     if session['score'] >= session['goal']:
-        current_user.completed.append(Subject.query.get(session['sid']))
-        db.session.add(current_user)
-        db.session.commit()
+        subject = Subject.query.get(session['sid'])
+        if subject not in current_user.completed:
+            current_user.completed.append(subject)
+            db.session.add(current_user)
+            db.session.commit()
         return render_template('question/finished.html')
 
     if len(session['queue']) == 0:
         session['queue'] = make_queue(session['sid'])
-    next_question = Question.query.get(session['queue'][-1])
-    re = render_question(next_question)
+
+    question = Question.query.get(session['queue'][-1])
+    re = render_question(question)
 
     if request.method == 'POST' and type(re) == dict:
+        # Ugly hack, but shuffling the choices of the questions makes SQLAlchemy go crazy
+        db.session.rollback()
+        log_entry = QLog(question.id, current_user.kuid, session['session_id'], re['answer'], re['correct'], len(session['hints']))
+        db.session.add(log_entry)
+        db.session.commit()
         if re['correct']:
-            session['score'] = session['score'] + next_question.weight
+            session['score'] = session['score'] + question.weight
             session['queue'].pop()
             return render_template('question/progress.html', feedback=re)
         else:
@@ -94,7 +106,6 @@ def render_question(q):
     elif q.mctype == 'X':
         form = MultipleChoiceFormX()
     else:
-        print 'Multiple Choice Type Missing!'
         return abort(404)
     random.shuffle(q.choices)
     form.set_data(q)
@@ -106,11 +117,11 @@ def render_question(q):
             answer = form.choices.data
         correct = [c.id for c in q.choices if c.correct]
         if len(correct) != len(answer):
-            return {'correct': False, 'feedback': 'The answer was incorrect'}
+            return {'correct': False, 'feedback': 'The answer was incorrect', 'answer': str(answer)}
         for i in answer:
             if int(i) not in correct:
-                return {'correct': False, 'feedback': 'The answer was incorrect'}
-        return {'correct': True, 'feedback': 'The answer was correct'}
+                return {'correct': False, 'feedback': 'The answer was incorrect' , 'answer': str(answer)}
+        return {'correct': True, 'feedback': 'The answer was correct', 'answer': str(answer)}
     return render_template('question/multiplechoice.html', text=q.text, form=form, qid=q.id)
 
 @multimethod(TypeIn)
@@ -118,9 +129,9 @@ def render_question(q):
     form = TypeInForm()
     if form.validate_on_submit():
         if form.answer.data == q.answer:
-            return {'correct': True, 'feedback': 'The answer was correct'}
+            return {'correct': True, 'feedback': 'The answer was correct', 'answer': q.answer}
         else:
-            return {'correct': False, 'feedback': 'The answer was incorrect'}
+            return {'correct': False, 'feedback': 'The answer was incorrect', 'answer': q.answer}
     return render_template('question/typein.html', text=q.text, form=form, qid=q.id)
 
 @multimethod(Ranking)
@@ -131,9 +142,9 @@ def render_question(q):
         correct = [x.id for x in sorted(q.items, key=lambda y: y.rank)]
         # compare the id's
         if answer == correct:
-            return {'correct': True, 'feedback': 'The answer was correct'}
+            return {'correct': True, 'feedback': 'The answer was correct', 'answer': str(answer)}
         else:
-            return {'correct': False, 'feedback': 'The answer was incorrect'}
+            return {'correct': False, 'feedback': 'The answer was incorrect', 'answer': str(answer)}
     items = q.items
     random.shuffle(items)
     return render_template('question/ranking.html', text=q.text, items=items, qid=q.id)
@@ -144,9 +155,9 @@ def render_question(q):
         answer = request.form['answers'].split(',')
         correct = [x.answer for x in q.items]
         if answer == correct:
-            return {'correct': True, 'feedback': 'The answer was correct'}
+            return {'correct': True, 'feedback': 'The answer was correct', 'answer': str(answer)}
         else:
-            return {'correct': False, 'feedback': 'The answer was incorrect'}
+            return {'correct': False, 'feedback': 'The answer was incorrect', 'answer': str(answer)}
     texts = [x.text for x in q.items]
     answers = [x.answer for x in q.items]
     random.shuffle(answers)
