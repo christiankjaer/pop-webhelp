@@ -5,6 +5,7 @@ from app import app, lm, db
 from .forms import MultipleChoiceForm1, MultipleChoiceFormX, TypeInForm
 import random
 from multimethod import multimethod
+from redis import redis
 
 @app.route('/overview')
 @login_required
