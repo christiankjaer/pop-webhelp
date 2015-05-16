@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import login_user, current_user
 from app import app, db, lm
 from app.user.models import User
+from app.question.models import Threshold
 from app.user.token import generate_confirmation_token, confirm_token
 from config import basedir
 import unittest
@@ -14,6 +15,8 @@ class UserTestCase(unittest.TestCase):
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
         self.app = app.test_client()
         db.create_all()
+        db.session.add(Threshold.from_dict({'name':'t1'}))
+        db.session.commit()
 
     def tearDown(self):
         db.session.remove()
