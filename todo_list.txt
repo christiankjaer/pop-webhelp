@@ -11,6 +11,8 @@ Sessions - cookies vs remote
 
 Logging of sessions, atm. we have an uuid per session.
 
+Access control
+
 --- Smaller things ---
 
 Log should have more features like filtering
