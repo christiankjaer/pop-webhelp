@@ -9,19 +9,17 @@ Evaluation machine
 
 Sessions - cookies vs remote
 
-Logging of data
-  Logging of questions
-  Logging of sessions
-  Logging of hints
+Logging of sessions, atm. we have an uuid per session.
 
 --- Smaller things ---
+
+Log should have more features like filtering
+
 Question and question items are seperate in admin view
 
 Admin interface style
 
 YAML files with wrong format or non-unique values gives ugly error
-
-Hints Rating
 
 Button sizes
 

@@ -6,7 +6,7 @@ from .forms import MultipleChoiceForm1, MultipleChoiceFormX, TypeInForm
 import random
 from multimethod import multimethod
 import uuid
-from app.log.models import QLog
+from app.log.models import QLog, HintRating
 
 @app.route('/overview')
 @login_required
@@ -182,4 +182,7 @@ def get_hint():
 def rate_hint():
     hid = request.args.get('hid', 0, type=int)
     status = request.args.get('status', None)
-    return jsonify(status="%s - %s" % (status, hid))
+    hr = HintRating(hid, status)
+    db.session.add(hr)
+    db.session.commit()
+    return jsonify(status='Rating sent')

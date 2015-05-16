@@ -35,6 +35,6 @@ class HintRating(db.Model):
 
     def __init__(self, hid, rating):
         self.hid = hid
-        self.rating = ratings
+        self.rating = rating
     def __repr__(self):
         return 'HintRating %s' % (self.id)
