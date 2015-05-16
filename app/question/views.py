@@ -128,9 +128,9 @@ def render_question(q):
     form = TypeInForm()
     if form.validate_on_submit():
         if form.answer.data == q.answer:
-            return {'correct': True, 'feedback': 'The answer was correct', 'answer': q.answer}
+            return {'correct': True, 'feedback': 'The answer was correct', 'answer': form.answer.data}
         else:
-            return {'correct': False, 'feedback': 'The answer was incorrect', 'answer': q.answer}
+            return {'correct': False, 'feedback': 'The answer was incorrect', 'answer': form.answer.data}
     return render_template('question/typein.html', text=q.text, form=form, qid=q.id)
 
 @multimethod(Ranking)
