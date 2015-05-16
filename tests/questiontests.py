@@ -19,9 +19,9 @@ class UserTestCase(unittest.TestCase):
         db.drop_all()
 
     def test_from_dict_typein(self):
-        t = Threshold('T1')
-        s = Subject('S1', 'Subject1', t)
-        d = {'type': 'TypeIn', 'subject':'S1', 'text': 'Text1', 'answer': 'Answer1'}
+        t = Threshold({'name':'T1'})
+        s = Subject({'name':'S1', 'text':'Subject1', 'threshold': t.id, 'goal':5})
+        d = {'type': 'TypeIn', 'subject':'S1', 'text': 'Text1', 'answer': 'Answer1', 'hints':['h1', 'h2'], 'weight':2}
         q = Question.from_dict(d)
         assert type(q) == TypeIn
         assert q.text == 'Text1'
@@ -29,17 +29,20 @@ class UserTestCase(unittest.TestCase):
 
 
     def test_from_dict_mc(self):
-        t = Threshold('T1')
-        s = Subject('S1', 'Subject1', t)
+        t = Threshold({'name':'T1'})
+        s = Subject({'name':'S1', 'text':'Subject1', 'threshold': t.id, 'goal':5})
         d = {
             'type': 'MultipleChoice',
+            'mctype': 'X',
             'subject': 'S1',
             'text': 'Text2',
-            'answer': [{
+            'choices': [{
                 'text': 'Answer1',
                 'correct': True}, {
                 'text': 'Answer2',
-                'correct': False}]
+                'correct': False}],
+            'weight': 5,
+            'hints': ['h1', 'h2']
         }
         q = Question.from_dict(d)
         assert type(q) == MultipleChoice
