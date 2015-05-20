@@ -22,6 +22,23 @@ class Threshold(db.Model):
     def from_dict(data):
         return Threshold(data)
 
+    @staticmethod
+    def make_list(user):
+        thresholds = []
+        subquery = db.session.query(Threshold.next).filter(Threshold.next != None)
+        t = db.session.query(Threshold).filter(~Threshold.id.in_(subquery)).first()
+        t.open = True
+        thresholds.append(t)
+        while t.next != None:
+            tnext = Threshold.query.get(t.next)
+            if all([s in user.completed for s in t.subjects]):
+                tnext.open = True
+            else:
+                tnext.open = False
+            thresholds.append(tnext)
+            t = tnext
+        return thresholds
+
 class Subject(db.Model):
     __tablename__ = 'subject'
     id = db.Column(db.Integer, primary_key=True)
@@ -41,6 +58,12 @@ class Subject(db.Model):
 
     def __repr__(self):
         return self.name
+
+    @staticmethod
+    def make_queue(sid):
+        sub = Subject.query.get(sid)
+        qs = sub.questions
+        return [q.id for q in qs]
 
     @staticmethod
     def from_dict(data):
@@ -110,7 +133,8 @@ class MultipleChoice(Question):
     """ This is the multiple choice question class """
     __tablename__ = 'multiple_choice'
     id = db.Column(db.Integer, db.ForeignKey('question.id'), primary_key=True)
-    mctype = db.Column(db.String(1))
+    #mctype = db.Column(db.String(1))
+    mctype = db.Column(db.Enum('1', 'X', name='mctype_check'))
     choices = db.relationship('MCAnswer', backref='multiple_choice', cascade='save-update, delete')
 
     __mapper_args__ = {

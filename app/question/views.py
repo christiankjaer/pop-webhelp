@@ -1,10 +1,9 @@
 from flask import url_for, redirect, render_template, flash, abort, request, session, jsonify
 from .models import Threshold, Subject, Question, MultipleChoice, MCAnswer, TypeIn, Ranking, RankItem, Matching
 from flask_login import login_required, current_user
-from app import app, lm, db
+from app import app, db
 from .forms import MultipleChoiceForm1, MultipleChoiceFormX, TypeInForm
 from multimethod import multimethod
-from redis import redis
 from app.log.models import QLog, HintRating
 from app.decorators import role_must_be
 import random
@@ -13,20 +12,7 @@ import uuid
 @app.route('/overview')
 @login_required
 def overview():
-    thresholds = []
-    subquery = db.session.query(Threshold.next).filter(Threshold.next != None)
-    t = db.session.query(Threshold).filter(~Threshold.id.in_(subquery)).first()
-    t.open = False
-    thresholds.append(t)
-    while t and t.next != None:
-        t = Threshold.query.get(t.next)
-        t.open = False
-        thresholds.append(t)
-    for threshold in thresholds:
-        threshold.open = True
-        if not all([s in current_user.completed for s in threshold.subjects]):
-            break
-
+    thresholds = Threshold.make_list(current_user)
     return render_template('question/overview.html', thresholds=thresholds)
 
 @app.route('/subject/<string:name>')
@@ -41,17 +27,13 @@ def view_subject(name):
 @login_required
 def start_answering(sid):
     sub = Subject.query.get_or_404(sid)
-    qs = Question.query.filter_by(sub=sub.id).all()
+    session['session_id'] = str(uuid.uuid4())
     session['sid'] = sid
+    session['uid'] = current_user.kuid
     session['score'] = 0
     session['goal'] = sub.goal
-    session['queue'] = make_queue(sid)
-    session['session_id'] = str(uuid.uuid4())
+    session['queue'] = Subject.make_queue(sid)
     return redirect(url_for('answer_question'))
-
-def make_queue(sid):
-    qs = Question.query.filter_by(sub=sid).all()
-    return [q.id for q in qs]
 
 @app.route('/subject/question', methods=['GET', 'POST'])
 @login_required
@@ -65,22 +47,29 @@ def answer_question():
         return render_template('question/finished.html')
 
     if len(session['queue']) == 0:
-        session['queue'] = make_queue(session['sid'])
+        session['queue'] = Subject.make_queue(session['sid'])
 
-    question = Question.query.get(session['queue'][-1])
+    session['qid'] = session['queue'][-1]
+    session['correct'] = False
+    question = Question.query.get(session['qid'])
     re = render_question(question)
 
-    if request.method == 'POST' and type(re) == dict:
-        log_entry = QLog(question.id, current_user.kuid, session['session_id'], re['answer'], re['correct'], len(session['hints']))
+    if request.method == 'POST' and re:
+        log_entry = QLog(session)
         db.session.add(log_entry)
         db.session.commit()
-        if re['correct']:
+
+        if session['correct']:
             session['score'] = session['score'] + question.weight
-            session['queue'].pop()
-            return render_template('question/progress.html', feedback=re)
+            feedback = 'The answer was correct.'
         else:
-            session['queue'].insert(0, session['queue'].pop())
-            return render_template('question/progress.html', feedback=re)
+            session['queue'].insert(0, session['qid'])
+            feedback = 'The answer was incorrect.'
+        
+        session['queue'].pop()
+        result = {'correct': session['correct'], 'feedback': feedback}
+        return render_template('question/progress.html', feedback=result)
+    
     else:
         session['hints'] = []
         return re
@@ -90,18 +79,17 @@ def answer_question():
 @login_required
 def view_question(id):
     session['hints'] = []
-    q = Question.query.get(id)
-    if not q:
-        return abort(404)
+    q = Question.query.get_or_404(id)
     re = render_question(q)
-    if request.method == 'POST' and type(re) == dict:
-        if re['correct']:
+
+    if request.method == 'POST':
+        if session['correct']:
             flash('Perfect')
-            return redirect(url_for('overview'))
         else:
             flash('Wrong, try again')
-            return redirect(url_for('view_question', id=q.id))
-    else: return re
+        return redirect(url_for('view_question', id=q.id))
+
+    return re
 
 @multimethod(MultipleChoice)
 def render_question(q):
@@ -112,31 +100,42 @@ def render_question(q):
     else:
         return abort(404)
     form.set_data(q)
+
     if form.validate_on_submit():
         answer = None
         if q.mctype == '1':
             answer = [form.choices.data]
         else:
             answer = form.choices.data
+
         correct = [c.id for c in q.choices if c.correct]
+        session['answer'] = str(answer)
+        session['correct'] = True
         if len(correct) != len(answer):
-            return {'correct': False, 'feedback': 'The answer was incorrect', 'answer': str(answer)}
+            session['correct'] = False
         for i in answer:
             if int(i) not in correct:
-                return {'correct': False, 'feedback': 'The answer was incorrect' , 'answer': str(answer)}
-        return {'correct': True, 'feedback': 'The answer was correct', 'answer': str(answer)}
+                session['correct'] = False
+        return True
+
     random.shuffle(q.choices)
-    return render_template('question/multiplechoice.html', text=q.text, form=form, qid=q.id)
+    return render_template('question/multiplechoice.html', 
+                           text=q.text, form=form, qid=q.id)
 
 @multimethod(TypeIn)
 def render_question(q):
     form = TypeInForm()
     if form.validate_on_submit():
-        if form.answer.data == q.answer:
-            return {'correct': True, 'feedback': 'The answer was correct', 'answer': form.answer.data}
+        answer = form.answer.data
+        session['answer'] = answer
+        print answer
+        if answer == q.answer:
+            session['correct'] = True
         else:
-            return {'correct': False, 'feedback': 'The answer was incorrect', 'answer': form.answer.data}
-    return render_template('question/typein.html', text=q.text, form=form, qid=q.id)
+            session['correct'] = False
+        return True
+    return render_template('question/typein.html', 
+                           text=q.text, form=form, qid=q.id)
 
 @multimethod(Ranking)
 def render_question(q):
@@ -145,28 +144,35 @@ def render_question(q):
         answer = [int(x) for x in request.form['ranks'].split(',')]
         correct = [x.id for x in sorted(q.items, key=lambda y: y.rank)]
         # compare the id's
+        session['answer'] = str(answer)
         if answer == correct:
-            return {'correct': True, 'feedback': 'The answer was correct', 'answer': str(answer)}
+            session['correct'] = True
         else:
-            return {'correct': False, 'feedback': 'The answer was incorrect', 'answer': str(answer)}
+            session['correct'] = False
+        return True
     items = q.items
     random.shuffle(items)
-    return render_template('question/ranking.html', text=q.text, items=items, qid=q.id)
+    return render_template('question/ranking.html', 
+                           text=q.text, items=items, qid=q.id)
 
 @multimethod(Matching)
 def render_question(q):
     if request.method == 'POST':
         answer = request.form['answers'].split(',')
         correct = [x.answer for x in q.items]
+        session['answer'] = str(answer)
         if answer == correct:
-            return {'correct': True, 'feedback': 'The answer was correct', 'answer': str(answer)}
+            session['correct'] = True
         else:
-            return {'correct': False, 'feedback': 'The answer was incorrect', 'answer': str(answer)}
+            session['correct'] = False
+        return True
+
     texts = [x.text for x in q.items]
     answers = [x.answer for x in q.items]
     random.shuffle(answers)
     items = zip(texts, answers)
-    return render_template('question/matching.html', text=q.text, items=items, qid=q.id)
+    return render_template('question/matching.html', 
+                           text=q.text, items=items, qid=q.id)
 
 @app.route('/question/hint')
 @login_required
