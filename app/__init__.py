@@ -4,7 +4,6 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from flask_admin import Admin
 from flask_misaka import Misaka
-
 app = Flask(__name__)
 # Load config file from 'config.py'
 app.config.from_object('config')

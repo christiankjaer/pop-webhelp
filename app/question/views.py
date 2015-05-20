@@ -7,6 +7,7 @@ import random
 from multimethod import multimethod
 import uuid
 from app.log.models import QLog, HintRating
+from app.decorators import role_must_be
 
 @app.route('/overview')
 @login_required
@@ -34,6 +35,7 @@ def view_subject(name):
         return render_template('question/empty.html', subject=s)
     return render_template('question/subject.html', subject=s)
 
+@role_must_be('admin')
 @app.route('/question/<int:id>', methods=['GET', 'POST'])
 def view_question(id):
     session['hints'] = []
@@ -82,8 +84,6 @@ def answer_question():
     re = render_question(question)
 
     if request.method == 'POST' and type(re) == dict:
-        # Ugly hack, but shuffling the choices of the questions makes SQLAlchemy go crazy
-        db.session.rollback()
         log_entry = QLog(question.id, current_user.kuid, session['session_id'], re['answer'], re['correct'], len(session['hints']))
         db.session.add(log_entry)
         db.session.commit()
@@ -106,7 +106,6 @@ def render_question(q):
         form = MultipleChoiceFormX()
     else:
         return abort(404)
-    random.shuffle(q.choices)
     form.set_data(q)
     if form.validate_on_submit():
         answer = None
@@ -121,6 +120,7 @@ def render_question(q):
             if int(i) not in correct:
                 return {'correct': False, 'feedback': 'The answer was incorrect' , 'answer': str(answer)}
         return {'correct': True, 'feedback': 'The answer was correct', 'answer': str(answer)}
+    random.shuffle(q.choices)
     return render_template('question/multiplechoice.html', text=q.text, form=form, qid=q.id)
 
 @multimethod(TypeIn)
