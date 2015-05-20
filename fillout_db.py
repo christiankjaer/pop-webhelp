@@ -5,7 +5,7 @@ from app.question.models import *
 user = User('abc123', 'pwd', confirmed=True, role='student')
 db.session.add(user)
 
-user = User('wkm839', 'test', confirmed=True, role='admin')
+user = User('admin', 'test', confirmed=True, role='admin')
 db.session.add(user)
 
 thres = {'name':'Empty Threshold'}

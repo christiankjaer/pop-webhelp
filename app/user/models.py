@@ -13,9 +13,9 @@ class User(db.Model):
     registered_on = db.Column(db.DateTime, nullable=False)
     confirmed = db.Column(db.Boolean, nullable=False, default=False)
     confirmed_on = db.Column(db.DateTime, nullable=True)
+    role = db.Column(db.String(20))
     completed = db.relationship('Subject', secondary=lambda: completed,
                                 backref=db.backref('users', lazy='dynamic'))
-    role = db.Column(db.String(20))
 
     def __init__(self, kuid, password, confirmed=False, confirmed_on=None, role=None):
         self.kuid = kuid

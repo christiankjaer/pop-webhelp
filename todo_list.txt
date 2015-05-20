@@ -18,6 +18,8 @@ TESTS TESTS TESTS
 
 --- Smaller things ---
 
+Realistic examples for demo!
+
 Log should have more features like filtering
 
 Question and question items are seperate in admin view
