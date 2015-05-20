@@ -1,11 +1,17 @@
 from flask_admin import Admin, BaseView, expose
 from flask_admin.contrib.sqla import ModelView
 from flask import request, flash, redirect, url_for
+from flask_login import current_user
 from werkzeug import secure_filename
 import yaml
+from app.decorators import role_must_be
 
 from app import app, adm, db
 from app.question.models import Question, Subject, Threshold, TypeIn, MultipleChoice, MCAnswer, Ranking, RankItem, Matching, MatchItem, Hint
+
+class AdminModelView(ModelView):
+    def is_accessible(self):
+        return current_user.role == 'admin'
 
 class AdminView(BaseView):
     @expose('/')
@@ -18,6 +24,8 @@ class ToOverview(BaseView):
         return redirect(url_for('overview'))
 
 class FileUpload(BaseView):
+    def is_accessible(self):
+        return current_user.role == 'admin'
     @expose('/', methods=['GET', 'POST'])
     def upload_file(self):
         if request.method == 'POST':
@@ -49,46 +57,46 @@ def read_yaml(file):
         db.session.add(obj)
         db.session.commit()
 
-class ThresholdView(ModelView):
+class ThresholdView(AdminModelView):
     column_list = ('id', 'name', 'goal', 'next')
     column_sortable_list = ('id', 'name', 'next')
 
-class SubjectView(ModelView):
+class SubjectView(AdminModelView):
     column_list = ('id', 'name', 'text', 'goal', 'threshold')
     column_sortable_list = ('id', 'name', 'threshold')
 
-class TypeInView(ModelView):
+class TypeInView(AdminModelView):
     column_list = ('id', 'text', 'answer', 'weight', 'subject')
     column_sortable_list = ('id', 'subject')
 
-class MultipleChoiceView(ModelView):
+class MultipleChoiceView(AdminModelView):
     column_list = ('id', 'text', 'weight', 'mctype', 'subject')
     column_sortable_list = ('id', 'mctype', 'subject')
 
-class MCAnswerView(ModelView):
+class MCAnswerView(AdminModelView):
     column_list = ('mcid', 'text', 'correct')
     column_labels = dict(mcid='Multiple Choice Question ID')
     column_sortable_list = (('mcid', MCAnswer.mcid))
 
-class RankingView(ModelView):
+class RankingView(AdminModelView):
     column_list = ('id', 'text', 'weight', 'subject')
     column_sortable_list = ('id', 'subject')
 
-class RankItemView(ModelView):
+class RankItemView(AdminModelView):
     column_list = ('rid', 'text', 'rank')
     column_labels = dict(rid='Ranking Question ID')
     column_sortable_list = (('rid', RankItem.rid))
 
-class MatchingView(ModelView):
+class MatchingView(AdminModelView):
     column_list = ('id', 'text', 'weight', 'subject')
     column_sortable_list = ('id', 'subject')
 
-class MatchItemView(ModelView):
+class MatchItemView(AdminModelView):
     column_list = ('mid', 'text', 'answer')
     column_labels = dict(mid='Matching Question ID')
     column_sortable_list = (('mid', MatchItem.mid))
 
-class HintView(ModelView):
+class HintView(AdminModelView):
     column_list = ('qid', 'text')
     column_labels = dict(qid='Question ID')
     column_sortable_list = (('qid', Hint.qid))
@@ -97,7 +105,7 @@ adm.add_view(ToOverview(name='Overview'))
 adm.add_view(FileUpload(name='Upload File'))
 adm.add_view(ThresholdView(Threshold, db.session))
 adm.add_view(SubjectView(Subject, db.session))
-adm.add_view(ModelView(Question, db.session, name='Question', category='Questions'))
+adm.add_view(AdminModelView(Question, db.session, name='Question', category='Questions'))
 adm.add_view(TypeInView(TypeIn, db.session, name='Type In', category='Questions'))
 adm.add_view(MultipleChoiceView(MultipleChoice, db.session, name='Multiple Choice', category='Questions'))
 adm.add_view(MCAnswerView(MCAnswer, db.session, name='Multiple Choice Answer', category='Questions'))

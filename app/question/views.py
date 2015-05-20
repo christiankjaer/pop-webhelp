@@ -3,9 +3,12 @@ from .models import Threshold, Subject, Question, MultipleChoice, MCAnswer, Type
 from flask_login import login_required, current_user
 from app import app, lm, db
 from .forms import MultipleChoiceForm1, MultipleChoiceFormX, TypeInForm
-import random
 from multimethod import multimethod
 from redis import redis
+from app.log.models import QLog, HintRating
+from app.decorators import role_must_be
+import random
+import uuid
 
 @app.route('/overview')
 @login_required
@@ -27,13 +30,64 @@ def overview():
     return render_template('question/overview.html', thresholds=thresholds)
 
 @app.route('/subject/<string:name>')
+@login_required
 def view_subject(name):
     s = Subject.query.filter_by(name=name).first()
     if not s.questions:
         return render_template('question/empty.html', subject=s)
     return render_template('question/subject.html', subject=s)
 
+@app.route('/subject/start/<int:sid>')
+@login_required
+def start_answering(sid):
+    sub = Subject.query.get_or_404(sid)
+    qs = Question.query.filter_by(sub=sub.id).all()
+    session['sid'] = sid
+    session['score'] = 0
+    session['goal'] = sub.goal
+    session['queue'] = make_queue(sid)
+    session['session_id'] = str(uuid.uuid4())
+    return redirect(url_for('answer_question'))
+
+def make_queue(sid):
+    qs = Question.query.filter_by(sub=sid).all()
+    return [q.id for q in qs]
+
+@app.route('/subject/question', methods=['GET', 'POST'])
+@login_required
+def answer_question():
+    if session['score'] >= session['goal']:
+        subject = Subject.query.get(session['sid'])
+        if subject not in current_user.completed:
+            current_user.completed.append(subject)
+            db.session.add(current_user)
+            db.session.commit()
+        return render_template('question/finished.html')
+
+    if len(session['queue']) == 0:
+        session['queue'] = make_queue(session['sid'])
+
+    question = Question.query.get(session['queue'][-1])
+    re = render_question(question)
+
+    if request.method == 'POST' and type(re) == dict:
+        log_entry = QLog(question.id, current_user.kuid, session['session_id'], re['answer'], re['correct'], len(session['hints']))
+        db.session.add(log_entry)
+        db.session.commit()
+        if re['correct']:
+            session['score'] = session['score'] + question.weight
+            session['queue'].pop()
+            return render_template('question/progress.html', feedback=re)
+        else:
+            session['queue'].insert(0, session['queue'].pop())
+            return render_template('question/progress.html', feedback=re)
+    else:
+        session['hints'] = []
+        return re
+
+@role_must_be('admin')
 @app.route('/question/<int:id>', methods=['GET', 'POST'])
+@login_required
 def view_question(id):
     session['hints'] = []
     q = Question.query.get(id)
@@ -49,45 +103,6 @@ def view_question(id):
             return redirect(url_for('view_question', id=q.id))
     else: return re
 
-@app.route('/subject/start/<int:sid>')
-def start_answering(sid):
-    sub = Subject.query.get_or_404(sid)
-    qs = Question.query.filter_by(sub=sub.id).all()
-    session['sid'] = sid
-    session['score'] = 0
-    session['goal'] = sub.goal
-    session['queue'] = make_queue(sid)
-    return redirect(url_for('answer_question'))
-
-def make_queue(sid):
-    qs = Question.query.filter_by(sub=sid).all()
-    return [q.id for q in qs]
-
-@app.route('/subject/question', methods=['GET', 'POST'])
-def answer_question():
-    if session['score'] >= session['goal']:
-        current_user.completed.append(Subject.query.get(session['sid']))
-        db.session.add(current_user)
-        db.session.commit()
-        return render_template('question/finished.html')
-
-    if len(session['queue']) == 0:
-        session['queue'] = make_queue(session['sid'])
-    next_question = Question.query.get(session['queue'][-1])
-    re = render_question(next_question)
-
-    if request.method == 'POST' and type(re) == dict:
-        if re['correct']:
-            session['score'] = session['score'] + next_question.weight
-            session['queue'].pop()
-            return render_template('question/progress.html', feedback=re)
-        else:
-            session['queue'].insert(0, session['queue'].pop())
-            return render_template('question/progress.html', feedback=re)
-    else:
-        session['hints'] = []
-        return re
-
 @multimethod(MultipleChoice)
 def render_question(q):
     if q.mctype == '1':
@@ -95,9 +110,7 @@ def render_question(q):
     elif q.mctype == 'X':
         form = MultipleChoiceFormX()
     else:
-        print 'Multiple Choice Type Missing!'
         return abort(404)
-    random.shuffle(q.choices)
     form.set_data(q)
     if form.validate_on_submit():
         answer = None
@@ -107,11 +120,12 @@ def render_question(q):
             answer = form.choices.data
         correct = [c.id for c in q.choices if c.correct]
         if len(correct) != len(answer):
-            return {'correct': False, 'feedback': 'The answer was incorrect'}
+            return {'correct': False, 'feedback': 'The answer was incorrect', 'answer': str(answer)}
         for i in answer:
             if int(i) not in correct:
-                return {'correct': False, 'feedback': 'The answer was incorrect'}
-        return {'correct': True, 'feedback': 'The answer was correct'}
+                return {'correct': False, 'feedback': 'The answer was incorrect' , 'answer': str(answer)}
+        return {'correct': True, 'feedback': 'The answer was correct', 'answer': str(answer)}
+    random.shuffle(q.choices)
     return render_template('question/multiplechoice.html', text=q.text, form=form, qid=q.id)
 
 @multimethod(TypeIn)
@@ -119,9 +133,9 @@ def render_question(q):
     form = TypeInForm()
     if form.validate_on_submit():
         if form.answer.data == q.answer:
-            return {'correct': True, 'feedback': 'The answer was correct'}
+            return {'correct': True, 'feedback': 'The answer was correct', 'answer': form.answer.data}
         else:
-            return {'correct': False, 'feedback': 'The answer was incorrect'}
+            return {'correct': False, 'feedback': 'The answer was incorrect', 'answer': form.answer.data}
     return render_template('question/typein.html', text=q.text, form=form, qid=q.id)
 
 @multimethod(Ranking)
@@ -132,9 +146,9 @@ def render_question(q):
         correct = [x.id for x in sorted(q.items, key=lambda y: y.rank)]
         # compare the id's
         if answer == correct:
-            return {'correct': True, 'feedback': 'The answer was correct'}
+            return {'correct': True, 'feedback': 'The answer was correct', 'answer': str(answer)}
         else:
-            return {'correct': False, 'feedback': 'The answer was incorrect'}
+            return {'correct': False, 'feedback': 'The answer was incorrect', 'answer': str(answer)}
     items = q.items
     random.shuffle(items)
     return render_template('question/ranking.html', text=q.text, items=items, qid=q.id)
@@ -145,9 +159,9 @@ def render_question(q):
         answer = request.form['answers'].split(',')
         correct = [x.answer for x in q.items]
         if answer == correct:
-            return {'correct': True, 'feedback': 'The answer was correct'}
+            return {'correct': True, 'feedback': 'The answer was correct', 'answer': str(answer)}
         else:
-            return {'correct': False, 'feedback': 'The answer was incorrect'}
+            return {'correct': False, 'feedback': 'The answer was incorrect', 'answer': str(answer)}
     texts = [x.text for x in q.items]
     answers = [x.answer for x in q.items]
     random.shuffle(answers)
@@ -155,6 +169,7 @@ def render_question(q):
     return render_template('question/matching.html', text=q.text, items=items, qid=q.id)
 
 @app.route('/question/hint')
+@login_required
 def get_hint():
     qid = request.args.get('qid', 0, type=int)
     hints = Question.query.get_or_404(qid).hints
@@ -170,7 +185,11 @@ def get_hint():
         return abort(404)
 
 @app.route('/question/hint/rate')
+@login_required
 def rate_hint():
     hid = request.args.get('hid', 0, type=int)
     status = request.args.get('status', None)
-    return jsonify(status="%s - %s" % (status, hid))
+    hr = HintRating(hid, status)
+    db.session.add(hr)
+    db.session.commit()
+    return jsonify(status='Rating sent')

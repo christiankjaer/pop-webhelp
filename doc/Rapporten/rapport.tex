@@ -7,12 +7,54 @@
 \usepackage[T1]{fontenc} % mere æøå
 \usepackage[danish, english]{babel} % orddeling
 \usepackage{verbatim} % så man kan skrive ren tekst
+\usepackage{listings}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{enumitem}
 \usepackage{placeins}
 \usepackage[colorlinks=false]{hyperref}
 \usepackage{tocbibind}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{10} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{10}  % for normal
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+        language=Python,
+        basicstyle=\ttm,
+        otherkeywords={self},             % Add keywords here
+        keywordstyle=\ttb\color{deepblue},
+        emph={MyClass,__init__},          % Custom highlighting
+        emphstyle=\ttb\color{deepred},    % Custom highlighting style
+        stringstyle=\color{deepgreen},
+        frame=tb,                         % Any extra options here
+        showstringspaces=false            %
+    }}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+    \pythonstyle
+    \lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+        \pythonstyle
+        \lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
 
 \author{
     Christian Kjær Larsen \texttt{(011292)} \\[.4cm]
@@ -25,7 +67,7 @@
 \title{
   \vspace{3cm}
   \Huge{PoP-Webhelp} \\[.10cm]
-  \Large{Delrapport 2, ProjDat 2015}
+  \Large{Delrapport 4, ProjDat 2015}
 }
 
 \begin{document}
@@ -89,7 +131,7 @@ Der er også sket udvikling inden for værktøjer, som har gjort programmører m
 \subsection{The M.A.D. Experience: Multiperspective Application Development in evolutionary prototyping}
 Artiklen beskriver en overordnet objektorienteret systemudviklingsmetode med fokus på hurtig fremstilling af prototyper, og hvordan denne metode er blevet anvendt i et større projektforløb. Metoden bygger på erfaringer som en forskningsgruppe gjorde sig i forbindelse med en produktudvikling de lavede i samarbejde med et dansk containerrederi.
 
-\emph{Multiperspective} i navnet refererer til tre generelle grupperoller, som hver bidgrager med deres unikke perspektiv til projektet. 
+\emph{Multiperspective} i navnet refererer til tre generelle grupperoller, som hver bidgrager med deres unikke perspektiv til projektet.
 \emph{The ethnographer} fokuserer på den nuværende praksis inden for det område hvor systemet skal bruges. Generelt har M.A.D. metoden gennem hele projektet stort fokus på at designe et produkt der passer ind i den eksisterende praksis, etnografernes analyse spiller derfor en central rolle, da den danner fundament for mange af de andre udviklingsaktiviteter. \emph{Participatory designer}-rollen fokuserer på at inddrage de fremtidige brugere af systemet i designprocessen. Dette gøres ud fra både et moralsk og et praktisk standpunkt. Det er brugerne selv der skal leve med konsekvenserne af de forskellige designbeslutninger. Samtidig antages det at erfaringen fra deres arbejde med det eksisterende system gør dem i stand til at komme med fornuftig respons til designet. I M.A.D. ses design i høj grad som en fællesaktivitet. Sidst er der \emph{OO developer}-rollen som fokuserer på at lave og implementere selve modellen. Disse roller skal ikke forstås som skarpt adskildte, idéen er at de skal komplementerer hinanden.
 
 Der fremhæves tre vigtige erfaringer forfatterne gjorde sig inden for objekt orienteret udvikling: \emph{Analyse er mere end bare at finde navneord}, \emph{design er mere end at udfylde detaljerne i en objektorienteret analysemodel} og \emph{implementering er mere end oversættelse af design modeller til kode}.
@@ -338,6 +380,46 @@ På Figur \ref{fig:er_diagram_log} ses den del der har med loggen at gøre. Hver
 
 Det tredje og sidste ER-diagram kan ses på Figur \ref{fig:er_diagram_user}, og har at gøre med brugere. Her bliver alt informationen om de studerende og deres kontoer gemt, samt informationer om admins.
 
+\subsection{Brugere}
+\label{sub:brugere}
+
+Modulet \texttt{user} håndterer brugere. Vi har implementeret funktionalitet som vi synes børe være i et brugerhåndteringssystem. Der er følgende features
+\begin{itemize}
+    \item Log ind og log ud
+    \item Oprettelse af brugere med email-godkendelse via. KU-mail
+    \item Skift af password
+    \item Nulstilling af password
+\end{itemize}
+
+For at det ikke skal være muligt at se brugerens password, så gemmer vi en hashet udgave af det. Vi bruger password hashing funktionaliteten der følger med \verb!Flask!. Den benytter hashing algoritmen \verb!SHA1! som er implementeret i pythons standardbibliotek. Dette er vigtigt for os, da det er vigtigt at hashing algoritmen er til at stole på.
+
+Vi godkender brugere ved at sende en email til deres KU-mail. I denne mail er der en token som kan afkodes til brugerens KU-id, så det er kun præcis den token der fungerer. Vi bruger samme teknik til nulstilning af passwords, for at være sikker på at det er den korrekte bruger der får lov at nulstille passwordet eller godkende brugeren.
+
+Ændring af password er trivielt, man skal bare være sikker på at brugeren er logget ind først.
+
+Vi implementerer forskellige brugertyper med flag i databasen. For at gøre det nemt at lave adgangskontrol på views, så har vi implementeret en decorator som pakker hvert view ind. Det ser ud på følgende måde
+
+\begin{python}
+@app.route('/admin')
+@role_must_be('admin')
+def admin_index():
+    return render_template('admin/index.html')
+\end{python}
+for et view der kunne vise admin siden. Den tjekker så om den nuværende bruger der er logget ind har rollen \verb!admin!.
+
+\subsection{Spørgsmål}
+\label{sub:sporgsmal}
+
+multimethods til at gøre views polymorfe
+
+Factory pattern til at lave spørgsmål ud fra dictionaries som så kan laves fra YAML filer.
+
+Thresholds som en hægtet liste som peger på det efterfølgende threshold
+
+Hints loades dynamisk med AJAX
+
+
+
 \subsection{Implementeret funktionalitet}
 \label{sub:implementeret_funktionalitet}
 Vi har med ER-diagrammet i hånden implementeret en lang række klasser med hjælp fra \verb!SQLAlchemy!, som er en \emph{Object Relational Mapper} til python, der sørger for, at det er nemt at kunne lave python objekter ud fra en række i databasen. Disse klasse dækker over alle de forskellige typer af spørgsmål, samt de forskellige log-elementer.
@@ -348,7 +430,7 @@ Oven på det har vi med hjælp fra \verb!Flask! frameworket implementeret en sim
 \label{sub:udestaende_design_og_implementationsopgaver}
 De to vigtigste udeståender er implementeringen af hele logningen af data, samt admin aspektet af projektet.
 Admin siden af projektet er vi allerede godt i gang med, og mange af de store elementer er på plads, så vi arbejder mest på alle detaljerne. F.eks. har vi endnu ikke helt fundet ud af hvordan vi vil håndtere admins vs almindelige brugere.
-Logningen af data er endnu ikke implementeret, idet vi stadig ikke helt har besluttet os for hvordan vi vil håndtere sessions og cookies, men så snart vi træffer en beslutning burde selv logningen være forholdsvis simpel at implementere. 
+Logningen af data er endnu ikke implementeret, idet vi stadig ikke helt har besluttet os for hvordan vi vil håndtere sessions og cookies, men så snart vi træffer en beslutning burde selv logningen være forholdsvis simpel at implementere.
 
 \section{Program- og systemtest}
 \label{sec:program_og_systemtest}
@@ -388,7 +470,7 @@ Når vi har en funktionsdygtig brugergrænseflade, så skal der udføres tests a
 \subsection{Screenshots}
 I Appendix \ref{sec:screenshots} ses screenshots af brugergrænsefladen for de vigtigste dele af vores projekt. De optræder i en rækkefølge der illustrerer dynamikken i en studerendes interaktion med vores system. I toppen af de fleste screenshots ses en navigationsbar, hvor man bl.a. kan se hvem der er logget ind, man kan logge ud og man kan ændre sit password. Der er desuden i venstre side et slags logo hvor man kan trykke for at blive taget tilbage til forsiden.
 
-På Figur \ref{fig:screenshot_login} ses et screenshot af den første del af vores brugergrænseflade en studerende vil møde, nemlig en login skærm. Hvis man allerede er registreret som bruger kan man her indtaste sit ku-id og sit valgte kodekord, og dermed logge på systemet. Hvis man ikke er oprettet som bruger er der et link der tager en videre til registrering. 
+På Figur \ref{fig:screenshot_login} ses et screenshot af den første del af vores brugergrænseflade en studerende vil møde, nemlig en login skærm. Hvis man allerede er registreret som bruger kan man her indtaste sit ku-id og sit valgte kodekord, og dermed logge på systemet. Hvis man ikke er oprettet som bruger er der et link der tager en videre til registrering.
 
 På Figur \ref{fig:screenshot_register} ses registreringssiden. Her kan man indtaste sit ku-id, vælge sig et kodeord og registrere sig. Systemet sender så en mail til den relevante ku-mail med et verificeringslink, og så snart den studerende har trykket på linket er vedkommende klar til at logge på systemet.
 
@@ -407,9 +489,9 @@ Vi har endnu ikke foretaget nogen tænke-højt forsøg. De tænkte brugere af vo
 
 \section{Projektsamarbejdet}
 \label{sec:projektsamarbejdet}
-Samarbejdet med kunden fungerer stadig ganske udemærket. Når vi mødes med dem er der en meget afslappet og munter stemning, og det virker som om vi er meget godt på bølgelængde sammen og forstår at diskutere og blive enige om de forskellige aspekter af projektet. Vi er stadig ikke så gode til at være officielle og tage referater og den slags, mest fordi møderne mere er en mundtlig samtale og diskussion af projektet, og de ting vi bliver enige om er sjældent helt nye for os, så det er tanker vi allerede selv har gjort os. Vi har desuden endnu ikke haft en helt fungerende prototype at vise frem og bruge som basis for en mere konkret diskussion af projektet, men det skulle vi gerne have klar til næste gang vi skal mødes med kunden. 
+Samarbejdet med kunden fungerer stadig ganske udemærket. Når vi mødes med dem er der en meget afslappet og munter stemning, og det virker som om vi er meget godt på bølgelængde sammen og forstår at diskutere og blive enige om de forskellige aspekter af projektet. Vi er stadig ikke så gode til at være officielle og tage referater og den slags, mest fordi møderne mere er en mundtlig samtale og diskussion af projektet, og de ting vi bliver enige om er sjældent helt nye for os, så det er tanker vi allerede selv har gjort os. Vi har desuden endnu ikke haft en helt fungerende prototype at vise frem og bruge som basis for en mere konkret diskussion af projektet, men det skulle vi gerne have klar til næste gang vi skal mødes med kunden.
 
-Projektsamarbejdet internt i gruppen går nogenlunde, vi er ikke så gode til at holde sådan officielle møder  med dagsordener og referater og den slags, i stedet snakker vi bare sammen når vi lige mødes inde på universitetet, og arbejder på projektet når vi lige har tid, f.eks. i en pause eller en fri eftermiddag. Det meste af vores kommunikation foregår stadigvæk over email eller facebooks chat. 
+Projektsamarbejdet internt i gruppen går nogenlunde, vi er ikke så gode til at holde sådan officielle møder  med dagsordener og referater og den slags, i stedet snakker vi bare sammen når vi lige mødes inde på universitetet, og arbejder på projektet når vi lige har tid, f.eks. i en pause eller en fri eftermiddag. Det meste af vores kommunikation foregår stadigvæk over email eller facebooks chat.
 
 Vi har for nyligt oprettet en to-do liste inde i vores git repository, hvor vi prøver at notere de forskellige ting ned der mangler at blive gjort, og som vi opdaterer løbende når vi får gennemført nogle af tingene eller støder på nye ting der skal laves. Det håber vi kan hjælpe os til at have et bedre overblik over projektet, og til at ikke glemme alle de små ting man måske støder på. På to-do listen er der tre sektioner, én til de store, vigtige ting, én til de mindre, mindre vigtige ting, og én til de ting der har at gøre med rapporten.
 
@@ -435,6 +517,7 @@ Siden sidste rapport har der været en del ændringer og især tilføjelser til 
 08-05-2015 & CKL & Tilføjet afsnit om strukturering. \\
 10-05-2015 & LSE & Tilføjet Brugergrænseflade og screenshots, opdateret Systemdesign. \\
 11-05-2015 & CKL & Tilføjet review af \cite{nsbullet}. \\
+20-05-2015 & CKL & Tilføjet afsnit omkring systemdesign af brugere og begyndt på spørgsmål. \\
 \end{tabular}
 
 \section{Timeline}

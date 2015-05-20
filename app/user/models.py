@@ -13,15 +13,17 @@ class User(db.Model):
     registered_on = db.Column(db.DateTime, nullable=False)
     confirmed = db.Column(db.Boolean, nullable=False, default=False)
     confirmed_on = db.Column(db.DateTime, nullable=True)
+    role = db.Column(db.String(20))
     completed = db.relationship('Subject', secondary=lambda: completed,
                                 backref=db.backref('users', lazy='dynamic'))
 
-    def __init__(self, kuid, password, confirmed=False, confirmed_on=None):
+    def __init__(self, kuid, password, confirmed=False, confirmed_on=None, role=None):
         self.kuid = kuid
         self.registered_on = datetime.datetime.now()
         self.confirmed = confirmed
         self.confirmed_on = confirmed_on
         self.set_password(password)
+        self.role = role
 
     def __repr__(self):
         return '<User %s>' % (self.kuid)

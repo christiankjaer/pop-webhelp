@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block title %}Log{% endblock title %}
+{% block content %}
+<table class="table table-striped">
+    <tr>
+        <th>Time</th>
+        <th>Question</th>
+        <th>User</th>
+        <th>Answer</th>
+        <th>Correct</th>
+        <th>Hints#</th></tr>
+    {% for l in log_entries %}
+    <tr>
+        <td>{{ l.date }}</td>
+        <td><a href="{{ url_for('view_question', id=l.qid) }}">{{ l.question }}</a></td>
+        <td>{{ l.uid }}</td>
+        <td>{{ l.answer }}</td>
+        <td>{{ l.correct }}</td>
+        <td>{{ l.hints }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
