@@ -4,3 +4,10 @@
     cursor: -moz-grab;
     cursor: -webkit-grab;
 }
+#editor {
+    height: 300px;
+}
+
+#editor-panel {
+    padding: 0;
+}

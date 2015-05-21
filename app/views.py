@@ -6,5 +6,3 @@ from app import app
 @login_required
 def index():
     return redirect(url_for('overview'))
-    #return render_template('blank.html', message='Not implemented!')
-

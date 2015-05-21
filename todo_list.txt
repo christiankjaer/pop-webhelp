@@ -34,6 +34,8 @@ Overview interface
 
 --- Report ---
 
+Terminology
+
 Review of Naur
 Review of Highsmith
 

@@ -5,6 +5,7 @@ NAME = 'PoP'
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 testdir = 'tests'
+scriptdir = 'scripts'
 
 WTF_CSRF_ENABLED = True
 SECRET_KEY = 'you-will-never-guess'

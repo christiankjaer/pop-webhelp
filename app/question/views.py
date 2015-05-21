@@ -1,5 +1,5 @@
 from flask import url_for, redirect, render_template, flash, abort, request, session, jsonify
-from .models import Threshold, Subject, Question, MultipleChoice, MCAnswer, TypeIn, Ranking, RankItem, Matching
+from .models import Threshold, Subject, Question, MultipleChoice, MCAnswer, TypeIn, Ranking, RankItem, Matching, Coding
 from flask_login import login_required, current_user
 from app import app, lm, db
 from .forms import MultipleChoiceForm1, MultipleChoiceFormX, TypeInForm
@@ -8,6 +8,7 @@ from multimethod import multimethod
 import uuid
 from app.log.models import QLog, HintRating
 from app.decorators import role_must_be
+from app.script_runner import get_feedback
 
 @app.route('/overview')
 @login_required
@@ -163,6 +164,16 @@ def render_question(q):
     items = zip(texts, answers)
     return render_template('question/matching.html', text=q.text, items=items, qid=q.id)
 
+@multimethod(Coding)
+def render_question(q):
+    if request.method == 'POST':
+        answer = request.form['code']
+        feedback = get_feedback(q.exec_name, answer)
+        feedback['answer'] = answer
+        return feedback
+
+    return render_template('question/coding.html', text=q.text, code=q.code, qid=q.id)
+
 @app.route('/question/hint')
 def get_hint():
     qid = request.args.get('qid', 0, type=int)
@@ -186,3 +197,5 @@ def rate_hint():
     db.session.add(hr)
     db.session.commit()
     return jsonify(status='Rating sent')
+
+

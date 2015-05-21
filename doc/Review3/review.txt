@@ -1,0 +1,29 @@
+Layout: Der er noget galt med formateringen af jeres abstract, derudover er
+der meget store linjeskift mellem afsnit. Centrering af figurer. Use cases
+mangler linjeskift.
+
+Krav er lidt en blanding af alt muligt (use cases, analyse). Under ikke funktionelle
+krav har i skrevet krav i selv har valgt.
+
+Problemområde != Anvendelsesområde
+Problemområde er objekterne i problemet, ikke i løsningen.
+
+Jeres to use case diagrammer er ens?? Hvad er end i forhold til delete.
+
+Klassediagram: Hvad er main? Hvad indeholder en evaluering.
+
+BCE modellen er meget specifik. I snakker om
+implementeringen allerede i kravspecifikationen. I har fine sekvensdiagrammer.
+
+I skriver i skal lave en erstatning for en anden applikation. Er der
+beskrivelser af den gamle.
+
+Tester i kun testkoden eller tester i produktionskode? Laver i negative tests?
+TEST? TEST? TEST?
+
+I har ikke fået udviklet så meget. Generelt er det lidt tyndt med både
+implementering og tests. Når i at blive færdige?
+
+Hvordan kommer man fra skærmbillede til skærmbillede?
+
+Projektsamarbejdet: Hvordan er det så gået med ændringerne.

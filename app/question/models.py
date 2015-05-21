@@ -85,6 +85,8 @@ class Question(db.Model):
             q = Ranking(data)
         elif type == 'Matching':
             q = Matching(data)
+        elif type == 'Coding':
+            q = Coding(data)
         else:
             q = None
         return q
@@ -217,3 +219,21 @@ class Hint(db.Model):
 
     def __repr__(self):
         return 'Hint %s' % (self.id)
+
+class Coding(Question):
+    __tablename__ = 'coding'
+    id = db.Column(db.Integer, db.ForeignKey('question.id'), primary_key=True)
+    code = db.Column(db.Text())
+    exec_name = db.Column(db.String(255))
+
+    __mapper_args__ = {
+        'polymorphic_identity':'coding'
+    }
+
+    def __init__(self, data):
+        Question.__init__(self, data)
+        self.code = data['code']
+        self.exec_name = data['exec_name']
+
+    def __repr__(self):
+        return 'Coding Question %s' % self.id
