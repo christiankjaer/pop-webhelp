@@ -57,6 +57,10 @@ def read_yaml(file):
         db.session.add(obj)
         db.session.commit()
 
+class QuestionView(AdminModelView):
+    column_list = ('id', 'type', 'text', 'weight', 'subject')
+    column_sortable_list = ('id', 'type', 'subject')
+
 class ThresholdView(AdminModelView):
     column_list = ('id', 'name', 'goal', 'next')
     column_sortable_list = ('id', 'name', 'next')
@@ -105,7 +109,7 @@ adm.add_view(ToOverview(name='Overview'))
 adm.add_view(FileUpload(name='Upload File'))
 adm.add_view(ThresholdView(Threshold, db.session))
 adm.add_view(SubjectView(Subject, db.session))
-adm.add_view(AdminModelView(Question, db.session, name='Question', category='Questions'))
+adm.add_view(QuestionView(Question, db.session, name='Question', category='Questions'))
 adm.add_view(TypeInView(TypeIn, db.session, name='Type In', category='Questions'))
 adm.add_view(MultipleChoiceView(MultipleChoice, db.session, name='Multiple Choice', category='Questions'))
 adm.add_view(MCAnswerView(MCAnswer, db.session, name='Multiple Choice Answer', category='Questions'))
