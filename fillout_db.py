@@ -5,13 +5,13 @@ from app.question.models import *
 user = User('abc123', 'pwd', confirmed=True, role='admin')
 db.session.add(user)
 
-user = User('admin', 'test', confirmed=True, role='admin')
+user = User('def456', 'test', confirmed=True, role='admin')
 db.session.add(user)
 
-thres = {'name':'Empty Threshold'}
+thres = {'name':'TypeIn Threshold'}
 db.session.add(Threshold.from_dict(thres))
 
-thres = {'name':'Matching Threshold', 'next':'Empty Threshold'}
+thres = {'name':'Matching Threshold', 'next':'TypeIn Threshold'}
 db.session.add(Threshold.from_dict(thres))
 
 thres = {'name':'Ranking Threshold', 'next':'Matching Threshold'}
@@ -20,7 +20,7 @@ db.session.add(Threshold.from_dict(thres))
 thres = {'name':'Multiple Choice Threshold', 'next':'Ranking Threshold'}
 db.session.add(Threshold.from_dict(thres))
 
-thres = {'name':'TypeIn Threshold', 'next':'Multiple Choice Threshold'}
+thres = {'name':'Coding Threshold', 'next':'Multiple Choice Threshold'}
 db.session.add(Threshold.from_dict(thres))
 
 sub = {'name':'TypeIn Subject', 'text':'This is Test Subject 1', 
@@ -39,8 +39,8 @@ sub = {'name':'Matching Subject', 'text':'This is Test Subject 4',
        'threshold':'Matching Threshold', 'goal':2}
 db.session.add(Subject.from_dict(sub))
 
-sub = {'name':'Empty Subject', 'text':'This is Test Subject 5', 
-       'threshold':'Empty Threshold', 'goal':2}
+sub = {'name':'Coding Subject', 'text':'This is Test Subject 5', 
+       'threshold':'Coding Threshold', 'goal':2}
 db.session.add(Subject.from_dict(sub))
 
 tiq = {'type':'TypeIn', 'text':'What is 2 + 2?', 'subject':'TypeIn Subject',
@@ -126,5 +126,14 @@ rkq = {'type':'Ranking', 'text':'Rank these numbers',
        'hints': ['Hint1', 'Hint2'],
        'weight': 1}
 db.session.add(Question.from_dict(rkq))
+
+cq = {'type':'Coding', 'text':'Correct this code',
+       'subject':'Coding Subject',
+       'code': 'var x = 12333',
+       'exec_name': 'test.sh',
+       'hints': ['Hint1', 'Hint2'],
+       'weight': 2}
+
+db.session.add(Question.from_dict(cq))
 
 db.session.commit()

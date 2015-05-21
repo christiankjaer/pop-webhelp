@@ -1,0 +1,9 @@
+Any script must be callable
+
+Must print JSON to stdout
+
+JSON must contain keys
+
+  - correct: bool
+  - feedback: string
+  - stacktrace: string

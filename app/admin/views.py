@@ -7,7 +7,7 @@ import yaml
 from app.decorators import role_must_be
 
 from app import app, adm, db
-from app.question.models import Question, Subject, Threshold, TypeIn, MultipleChoice, MCAnswer, Ranking, RankItem, Matching, MatchItem, Hint
+from app.question.models import Question, Subject, Threshold, TypeIn, MultipleChoice, MCAnswer, Ranking, RankItem, Matching, MatchItem, Hint, Coding
 
 class AdminModelView(ModelView):
     def is_accessible(self):
@@ -96,6 +96,10 @@ class MatchItemView(AdminModelView):
     column_labels = dict(mid='Matching Question ID')
     column_sortable_list = (('mid', MatchItem.mid))
 
+class CodingView(AdminModelView):
+    column_list = ('id', 'text', 'weight', 'code', 'exec_name')
+    column_sortable_list = ('id', 'subject')
+
 class HintView(AdminModelView):
     column_list = ('qid', 'text')
     column_labels = dict(qid='Question ID')
@@ -107,6 +111,7 @@ adm.add_view(ThresholdView(Threshold, db.session))
 adm.add_view(SubjectView(Subject, db.session))
 adm.add_view(AdminModelView(Question, db.session, name='Question', category='Questions'))
 adm.add_view(TypeInView(TypeIn, db.session, name='Type In', category='Questions'))
+adm.add_view(CodingView(Coding, db.session, name='Coding', category='Questions'))
 adm.add_view(MultipleChoiceView(MultipleChoice, db.session, name='Multiple Choice', category='Questions'))
 adm.add_view(MCAnswerView(MCAnswer, db.session, name='Multiple Choice Answer', category='Questions'))
 adm.add_view(RankingView(Ranking, db.session, name='Ranking', category='Questions'))
