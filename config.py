@@ -14,6 +14,9 @@ SECURITY_PASSWORD_SALT = 'pass-the-salt'
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 
+#Session
+SESSION_TYPE = 'redis'
+
 #Files
 ALLOWED_EXTENSIONS = set(['yaml'])
 
@@ -22,6 +25,7 @@ MAIL_SERVER = 'smtp.googlemail.com'
 MAIL_PORT = 465
 MAIL_USE_TLS = False
 MAIL_USE_SSL = True
+
 # gmail authentication
 if 'APP_MAIL_USERNAME' in os.environ:
     MAIL_USERNAME = os.environ['APP_MAIL_USERNAME']

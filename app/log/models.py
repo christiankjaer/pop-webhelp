@@ -15,14 +15,14 @@ class QLog(db.Model):
     correct = db.Column(db.Boolean)
     hints = db.Column(db.Integer)
 
-    def __init__(self, qid, uid, sid, answer, correct, hints):
+    def __init__(self, session, result):
         self.date = datetime.datetime.now()
-        self.qid = qid
-        self.uid = uid
-        self.sid = sid
-        self.answer = answer
-        self.correct = correct
-        self.hints = hints
+        self.qid = session['qid']
+        self.uid = session['uid']
+        self.sid = session['session_id']
+        self.answer = result['answer']
+        self.correct = result['correct']
+        self.hints = len(session['hints'])
 
     def __repr__(self):
         return 'QLog %s' % (self.id)
