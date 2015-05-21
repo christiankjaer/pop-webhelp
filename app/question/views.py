@@ -54,21 +54,17 @@ def answer_question():
     question = Question.query.get(session['qid'])
     re = render_question(question)
 
-    if request.method == 'POST' and re:
-        log_entry = QLog(session)
+    if request.method == 'POST' and type(re) == dict:
+        log_entry = QLog(session, re)
         db.session.add(log_entry)
         db.session.commit()
 
-        if session['correct']:
+        if re['correct']:
             session['score'] = session['score'] + question.weight
-            feedback = 'The answer was correct.'
         else:
             session['queue'].insert(0, session['qid'])
-            feedback = 'The answer was incorrect.'
-        
         session['queue'].pop()
-        result = {'correct': session['correct'], 'feedback': feedback}
-        return render_template('question/progress.html', feedback=result)
+        return render_template('question/progress.html', feedback=re)
     
     else:
         session['hints'] = []
@@ -83,7 +79,7 @@ def view_question(id):
     re = render_question(q)
 
     if request.method == 'POST':
-        if session['correct']:
+        if re['correct']:
             flash('Perfect')
         else:
             flash('Wrong, try again')
@@ -109,14 +105,14 @@ def render_question(q):
             answer = form.choices.data
 
         correct = [c.id for c in q.choices if c.correct]
-        session['answer'] = str(answer)
-        session['correct'] = True
-        if len(correct) != len(answer):
-            session['correct'] = False
+        feedback = 'The answer was correct.'
+        result = {'answer': str(answer), 'correct':True, 'feedback':feedback}
         for i in answer:
             if int(i) not in correct:
-                session['correct'] = False
-        return True
+                feedback = 'The answer was incorrect.'
+                result['feedback'] = feedback
+                result['correct'] = False
+        return result
 
     random.shuffle(q.choices)
     return render_template('question/multiplechoice.html', 
@@ -127,13 +123,14 @@ def render_question(q):
     form = TypeInForm()
     if form.validate_on_submit():
         answer = form.answer.data
-        session['answer'] = answer
-        print answer
+        feedback = 'The answer was incorrect.'
+        result = {'correct': False, 'answer': answer, 'feedback': feedback}
         if answer == q.answer:
-            session['correct'] = True
-        else:
-            session['correct'] = False
-        return True
+            feedback = 'The answer was correct.'
+            result['feedback'] = feedback
+            result['correct'] = True
+        return result
+
     return render_template('question/typein.html', 
                            text=q.text, form=form, qid=q.id)
 
@@ -144,12 +141,14 @@ def render_question(q):
         answer = [int(x) for x in request.form['ranks'].split(',')]
         correct = [x.id for x in sorted(q.items, key=lambda y: y.rank)]
         # compare the id's
-        session['answer'] = str(answer)
+        feedback = 'The answer was incorrect.'
+        result = {'correct': False, 'answer': str(answer), 'feedback': feedback}
         if answer == correct:
-            session['correct'] = True
-        else:
-            session['correct'] = False
-        return True
+            feedback = 'The answer was correct.'
+            result['feedback'] = feedback
+            result['correct'] = True
+        return result
+
     items = q.items
     random.shuffle(items)
     return render_template('question/ranking.html', 
@@ -160,12 +159,13 @@ def render_question(q):
     if request.method == 'POST':
         answer = request.form['answers'].split(',')
         correct = [x.answer for x in q.items]
-        session['answer'] = str(answer)
+        feedback = 'The answer was incorrect.'
+        result = {'correct': False, 'answer': str(answer), 'feedback': feedback}        
         if answer == correct:
-            session['correct'] = True
-        else:
-            session['correct'] = False
-        return True
+            feedback = 'The answer was correct.'
+            result['feedback'] = feedback
+            result['correct'] = True
+        return result
 
     texts = [x.text for x in q.items]
     answers = [x.answer for x in q.items]
