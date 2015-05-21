@@ -14,6 +14,9 @@ import uuid
 @login_required
 def overview():
     thresholds = Threshold.make_list(current_user)
+    if current_user.role == 'admin':
+        for t in thresholds:
+            t.open = True
     return render_template('question/overview.html', thresholds=thresholds)
 
 @app.route('/subject/<string:name>')

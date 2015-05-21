@@ -3,15 +3,10 @@
 --- Big things ---
 Coding questions
   Program to read and interpret code
-  Input field with code format
 
 Evaluation machine
+  Feedback generator
 
-Sessions - cookies vs remote
-
-Logging of sessions, atm. we have an uuid per session.
-
-TESTS TESTS TESTS
 TESTS TESTS TESTS
 TESTS TESTS TESTS
 TESTS TESTS TESTS
@@ -26,11 +21,16 @@ Question and question items are seperate in admin view
 
 Admin interface style
 
-YAML files with wrong format or non-unique values gives ugly error
-
 Button sizes
 
 Overview interface
+
+--- Bugs ---
+Users can acces admin front page
+
+Users can acces subject they haven't unlocked with the direct link
+
+YAML files with wrong format or non-unique values gives ugly error
 
 --- Report ---
 

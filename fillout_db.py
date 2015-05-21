@@ -2,7 +2,7 @@ from app import db
 from app.user.models import User
 from app.question.models import *
 
-user = User('abc123', 'pwd', confirmed=True, role='admin')
+user = User('abc123', 'pwd', confirmed=True, role='student')
 db.session.add(user)
 
 user = User('def456', 'test', confirmed=True, role='admin')
