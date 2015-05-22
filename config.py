@@ -16,6 +16,7 @@ SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 
 #Session
 SESSION_TYPE = 'redis'
+PERMANENT_SESSION_LIFETIME = 3600
 
 #Files
 ALLOWED_EXTENSIONS = set(['yaml'])

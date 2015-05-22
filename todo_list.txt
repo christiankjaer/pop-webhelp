@@ -12,10 +12,11 @@ TESTS TESTS TESTS
 TESTS TESTS TESTS
 
 --- Smaller things ---
-
 Realistic examples for demo!
 
 Log should have more features like filtering
+
+Coding template made into a wtform
 
 Question and question items are seperate in admin view
 
@@ -25,6 +26,8 @@ Button sizes
 
 Overview interface
 
+Session expiration?
+
 --- Bugs ---
 Users can acces admin front page
 
@@ -33,11 +36,16 @@ Users can acces subject they haven't unlocked with the direct link
 YAML files with wrong format or non-unique values gives ugly error
 
 --- Report ---
-
 Terminology
 
 Review of Naur
 Review of Highsmith
+
+Screenshots and flow
+
+Commit log
+
+Update ER diagrams
 
 AV presentation
 

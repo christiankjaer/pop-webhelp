@@ -18,6 +18,12 @@ class Threshold(db.Model):
     def __repr__(self):
         return self.name
 
+    def is_open(self, user):
+        t = Threshold.query.filter_by(next=self.id).first()
+        if all([s in user.completed for s in t.subjects]):
+            return True
+        return False
+
     @staticmethod
     def from_dict(data):
         return Threshold(data)

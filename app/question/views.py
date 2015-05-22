@@ -22,7 +22,9 @@ def overview():
 @app.route('/subject/<string:name>')
 @login_required
 def view_subject(name):
-    s = Subject.query.filter_by(name=name).first()
+    s = Subject.query.filter_by(name=name).first_or_404()
+    if not s.threshold.is_open(current_user):
+        return abort(403)
     if not s.questions:
         return render_template('question/empty.html', subject=s)
     return render_template('question/subject.html', subject=s)
@@ -31,6 +33,8 @@ def view_subject(name):
 @login_required
 def start_answering(sid):
     sub = Subject.query.get_or_404(sid)
+    if not sub.threshold.is_open(current_user):
+        return abort(403)
     session['session_id'] = str(uuid.uuid4())
     session['sid'] = sid
     session['uid'] = current_user.kuid
@@ -42,6 +46,8 @@ def start_answering(sid):
 @app.route('/subject/question', methods=['GET', 'POST'])
 @login_required
 def answer_question():
+    if not session.get('session_id', False):
+        return abort(404)
     if session['score'] >= session['goal']:
         subject = Subject.query.get(session['sid'])
         if subject not in current_user.completed:
