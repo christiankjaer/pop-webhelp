@@ -190,7 +190,6 @@ def render_question(q):
     form.codearea.data = q.code
     if form.validate_on_submit():
         answer = form.codearea.data
-        print answer
         feedback = get_feedback(q.exec_name, answer)
         feedback['answer'] = answer
         return feedback
