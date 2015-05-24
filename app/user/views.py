@@ -59,7 +59,6 @@ def login():
         if u is not None and u.check_password(form.password.data):
             if u.confirmed:
                 login_user(u)
-                flash('Succesfully logged %s in' % (u.kuid))
                 return redirect(url_for('index'))
             else:
                 flash('Please confirm your account')

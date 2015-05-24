@@ -2,7 +2,7 @@ from flask import url_for, redirect, render_template, flash, abort, request, ses
 from .models import Threshold, Subject, Question, MultipleChoice, MCAnswer, TypeIn, Ranking, RankItem, Matching, Coding
 from flask_login import login_required, current_user
 from app import app, db
-from .forms import MultipleChoiceForm1, MultipleChoiceFormX, TypeInForm
+from .forms import MultipleChoiceForm1, MultipleChoiceFormX, TypeInForm, CodeForm
 from multimethod import multimethod
 from app.log.models import QLog, HintRating
 from app.decorators import role_must_be
@@ -186,13 +186,15 @@ def render_question(q):
 
 @multimethod(Coding)
 def render_question(q):
-    if request.method == 'POST':
-        answer = request.form['code']
+    form = CodeForm()
+    form.codearea.data = q.code
+    if form.validate_on_submit():
+        answer = form.codearea.data
         feedback = get_feedback(q.exec_name, answer)
         feedback['answer'] = answer
         return feedback
 
-    return render_template('question/coding.html', text=q.text, code=q.code, qid=q.id)
+    return render_template('question/coding.html', form = form, text=q.text, qid=q.id)
 
 @app.route('/question/hint')
 @login_required

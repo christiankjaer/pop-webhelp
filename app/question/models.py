@@ -20,7 +20,7 @@ class Threshold(db.Model):
 
     def is_open(self, user):
         t = Threshold.query.filter_by(next=self.id).first()
-        if all([s in user.completed for s in t.subjects]):
+        if t is None or all([s in user.completed for s in t.subjects]):
             return True
         return False
 

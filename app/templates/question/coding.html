@@ -4,39 +4,18 @@
 <link rel="stylesheet" href="/static/js/cm/lib/codemirror.css" type="text/css">
 <script src="/static/js/cm/lib/codemirror.js"></script>
 <script src="/static/js/cm/mode/mllike/mllike.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" charset="utf-8">
-function post(path, params, method) {
-    method = method || "post"; // Set method to post by default if not specified.
-
-    // The rest of this code assumes you are not using a library.
-    // It can be made less wordy if you use one.
-    var form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", path);
-
-    for(var key in params) {
-        if(params.hasOwnProperty(key)) {
-            var hiddenField = document.createElement("input");
-            hiddenField.setAttribute("type", "hidden");
-            hiddenField.setAttribute("name", key);
-            hiddenField.setAttribute("value", params[key]);
-
-            form.appendChild(hiddenField);
-         }
-    }
-    document.body.appendChild(form);
-    form.submit();
-}
-</script>
 <div class="row">
     {{ text | markdown }}
-    <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title">Editor</h3></div>
-        <div class="panel-body" id="editor-panel">
-            <textarea id="editor">{{ code }}</textarea>
-        </div>
+    <form action="" method="post" accept-charset="utf-8">
+        {{ form.hidden_tag() }}
+        <div class="panel-default">
+            <div class="panel-heading"><h3 class="panel-title">Editor</h3></div>
+            <div class="panel-body" id="editor-panel">
+                {{ form.codearea(id="editor") }}
+            </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Answer</button>
+    </form>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" onclick="post(window.location.pathname, {code: editor.getValue()})">Answer</button>
 </div>
 
 <script type="text/javascript" charset="utf-8">

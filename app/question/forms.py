@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import SelectMultipleField, StringField, widgets, RadioField
+from wtforms import SelectMultipleField, StringField, widgets, RadioField, TextAreaField
 from wtforms.validators import DataRequired
 
 class MultiCheckboxField(SelectMultipleField):
@@ -24,3 +24,6 @@ class MultipleChoiceForm1(Form):
 
 class TypeInForm(Form):
     answer = StringField('answer', validators=[DataRequired()])
+
+class CodeForm(Form):
+    codearea = TextAreaField()
