@@ -8,14 +8,14 @@
     {{ text | markdown }}
     <form action="" method="post" accept-charset="utf-8">
         {{ form.hidden_tag() }}
-        <div class="panel-default">
+        <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">Editor</h3></div>
             <div class="panel-body" id="editor-panel">
                 {{ form.codearea(id="editor") }}
             </div>
+        </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Answer</button>
     </form>
-    </div>
 </div>
 
 <script type="text/javascript" charset="utf-8">
