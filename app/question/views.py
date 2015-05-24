@@ -75,7 +75,7 @@ def answer_question():
             session['queue'].insert(0, session['qid'])
         session['queue'].pop()
         return render_template('question/progress.html', feedback=re)
-    
+
     else:
         session['hints'] = []
         return re
@@ -125,7 +125,7 @@ def render_question(q):
         return result
 
     random.shuffle(q.choices)
-    return render_template('question/multiplechoice.html', 
+    return render_template('question/multiplechoice.html',
                            text=q.text, form=form, qid=q.id)
 
 @multimethod(TypeIn)
@@ -141,7 +141,7 @@ def render_question(q):
             result['correct'] = True
         return result
 
-    return render_template('question/typein.html', 
+    return render_template('question/typein.html',
                            text=q.text, form=form, qid=q.id)
 
 @multimethod(Ranking)
@@ -161,7 +161,7 @@ def render_question(q):
 
     items = q.items
     random.shuffle(items)
-    return render_template('question/ranking.html', 
+    return render_template('question/ranking.html',
                            text=q.text, items=items, qid=q.id)
 
 @multimethod(Matching)
@@ -170,7 +170,7 @@ def render_question(q):
         answer = request.form['answers'].split(',')
         correct = [x.answer for x in q.items]
         feedback = 'The answer was incorrect.'
-        result = {'correct': False, 'answer': str(answer), 'feedback': feedback}        
+        result = {'correct': False, 'answer': str(answer), 'feedback': feedback}
         if answer == correct:
             feedback = 'The answer was correct.'
             result['feedback'] = feedback
@@ -181,7 +181,7 @@ def render_question(q):
     answers = [x.answer for x in q.items]
     random.shuffle(answers)
     items = zip(texts, answers)
-    return render_template('question/matching.html', 
+    return render_template('question/matching.html',
                            text=q.text, items=items, qid=q.id)
 
 @multimethod(Coding)
@@ -190,6 +190,7 @@ def render_question(q):
     form.codearea.data = q.code
     if form.validate_on_submit():
         answer = form.codearea.data
+        print answer
         feedback = get_feedback(q.exec_name, answer)
         feedback['answer'] = answer
         return feedback
