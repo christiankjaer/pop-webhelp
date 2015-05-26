@@ -14,6 +14,7 @@
 \usepackage{placeins}
 \usepackage[colorlinks=false]{hyperref}
 \usepackage{tocbibind}
+\usepackage{fancyvrb}
 
 % Default fixed font does not support bold face
 \DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{10} % for bold
@@ -95,6 +96,7 @@ Students will mainly be working on the various exercises, and they will also be 
 
 The primary role of the admins will be managing the exercises and supervising how well the students are doing. They should be able to easily delete or modify existing exercises or add new ones, as well as manage the order in which the students are presented with the exercises. They should also be able to get various statistics about how the students are doing in order to improve and optimize the exercises, their order and their subjects.
 \end{abstract}
+\selectlanguage{danish}
 \newpage
 \tableofcontents
 
@@ -105,44 +107,18 @@ The primary role of the admins will be managing the exercises and supervising ho
 \setcounter{page}{1}
 \pagenumbering{arabic}
 
-\selectlanguage{danish}
 \section{Review}
 
-\subsection{No Silver Bullet -- Essence and Accident in Software Engineering}
-\label{sub:no_silver}
+\subsection{Programming as theory building}
+\label{sub:programming_as_theory_building}
 
-I artiklen \cite{nsbullet} beskriver Brooks nogle af de barrierer der skal forceres før vi kan få betydelige produktivitetsforbedringer inden for softwareudvikling. Han sammenligner det med Moores lov, men siger at det er urealitisk at ville kunne se de samme fremskridt som inden for hardware. Brooks nævner først den store kompleksitet i software som en af de helt store udfordringer. Det at kompleksiteten ved software ofte stiger eksponentialt med projektets størrelse er problematisk. Dette gør det også sværere at vedligeholde, og hvis der er mange der arbejder på projektet samtidigt, så kan det blive svært at koordinere. Han mener også, at i forhold til andre produkter som er mere fysiske, så er der ikke en entydig måde at visualisere software på, og det bliver derved også svært at overskue.
+\subsection{Extreme Programming}
+\label{sub:extreme_programming}
 
-Senere i artiken forklarer Brooks om hvilke fremsridt der allerede er gjort inden for softwareudvikling, som har gjort det mindre komplekst. Han nævner ting som højniveausprog, operativsystemer og overgangen fra batch-processer til \emph{time-sharing}, altså det at man kan køre flere programmer på en gang, som nogle af de vigtige fremskridt.
 
-Han fortsætter med at skrive om nogle af hans forhåbninger til den nærmeste fremtid. Han skriver især om de forhåbninger han har omkring nøjniveausprog. Han nævner blandt andet muligheder for modularisering af programmer i sproget Ada, og de fremskridt der sker inden for objektorienteret programmering. Han ser dog ikke nogen mulighed for produktivitetsforbedringer på en hel størrelsesorden. Nogle af de ting han ikke har så meget tiltro til er nogle af det mere automatiske kodeværktøjer. Det kan fx være grafiske værktøjer, hvor man tegner flowcharts for at beskrive kontrolflowet i programmet. Han begrunder sin kritik med, at software ikke kan projekteres på et grafisk plan. Han mener at software er multidimensionelt, og meget af kompleksiten skal abstraheres væk på andre måder.
-
-Han slutter artiklen af med nogle af de idéer han spår en god fremtid inden for softwareudvikling. Han er især begejstret for analogien med at gro software. Altså det med at kan ikke fra starten har en stor kravspecifikation, og så bagefter bare skriver kode til man er færdig, men i stedet inkrementelt udvikler både software og krav. Han nævner det også som motiverende at se en prototype virke, og det er bedre for kunden at kunne se et fungerende system, og derved kunne træffe beslutninger om udviklingsprojektets retning derefter.
-
-Det er ret utroligt at en artikel skrevet i 1983 kan være så præcis i sin beskrivelse af softwareudvikling, selv mere end tredive år senere. Det er stadig mange af de samme problemer der går igen, og gør softwareudvikling til en besværlig og kompliceret affære. Det er stadigvæk ting som upræcise og konstant skiftende kravspecifikationer der gør at der er mange forfejlede og dyre softwareprojekter.
-
-Der er dog sidenhen kommet flere løsningforslag, der påstår at have hjulpet til at gøre softwareudvikling til en mere forudsigelig proces. En af disse processer som afhjælper nogen af de problemer som Brooks nævner er \emph{Unified Process} (Kapitel 15 i \cite{OOSE}). Den prøver at være drevet af iterationer, samtidig med at man prøver at mindske udviklertimer ved at bruge eksterne moduler som enten kan være frit tingængelige eller som købes.
-
-Senere er der så kommet hele det agile paradigme, hvor man prøver helt at nytænke måden man udvikler software, hvor man nærmest prøvet at omfavne de hurtigt ændrende krav til produktet. Det er metodikker som \emph{SCRUM}\cite{sutherland2010jeff}, \emph{Extreme Programming}\cite[]{OOSE}, kapitel 16.
-
-Der er også sket udvikling inden for værktøjer, som har gjort programmører mere produktive. Det er her værktøjer som integrerede udviklingsmijøer som \emph{Visual Studio} til \verb!.NET! platformen og \emph{IntelliJ} til \verb!Java! som har aflastet programmører i at overskue store kodebaser med enorm kompleksitet. Her er også funktioner til refaktorering, aflusning med flere. Programmeringssprog er også blevet mere højniveau, og der er kommet flere dynamiske sprog som Python, Ruby og Javascript som påstår at højne produktiviteten.
 
 \newpage
-\subsection{The M.A.D. Experience: Multiperspective Application Development in evolutionary prototyping}
-Artiklen beskriver en overordnet objektorienteret systemudviklingsmetode med fokus på hurtig fremstilling af prototyper, og hvordan denne metode er blevet anvendt i et større projektforløb. Metoden bygger på erfaringer som en forskningsgruppe gjorde sig i forbindelse med en produktudvikling de lavede i samarbejde med et dansk containerrederi.
 
-\emph{Multiperspective} i navnet refererer til tre generelle grupperoller, som hver bidgrager med deres unikke perspektiv til projektet.
-\emph{The ethnographer} fokuserer på den nuværende praksis inden for det område hvor systemet skal bruges. Generelt har M.A.D. metoden gennem hele projektet stort fokus på at designe et produkt der passer ind i den eksisterende praksis, etnografernes analyse spiller derfor en central rolle, da den danner fundament for mange af de andre udviklingsaktiviteter. \emph{Participatory designer}-rollen fokuserer på at inddrage de fremtidige brugere af systemet i designprocessen. Dette gøres ud fra både et moralsk og et praktisk standpunkt. Det er brugerne selv der skal leve med konsekvenserne af de forskellige designbeslutninger. Samtidig antages det at erfaringen fra deres arbejde med det eksisterende system gør dem i stand til at komme med fornuftig respons til designet. I M.A.D. ses design i høj grad som en fællesaktivitet. Sidst er der \emph{OO developer}-rollen som fokuserer på at lave og implementere selve modellen. Disse roller skal ikke forstås som skarpt adskildte, idéen er at de skal komplementerer hinanden.
-
-Der fremhæves tre vigtige erfaringer forfatterne gjorde sig inden for objekt orienteret udvikling: \emph{Analyse er mere end bare at finde navneord}, \emph{design er mere end at udfylde detaljerne i en objektorienteret analysemodel} og \emph{implementering er mere end oversættelse af design modeller til kode}.
-
-Artiklen er fra 1998, siden da er der altså sket betydelige fremskridt inden for software og hardware. På trods af dette er den grundlæggende problematik inden for systemudvikling den samme, og artiklen er da stadig relevant i dag. Da det er en objektorienteret metode inkorporerer den mange af de typiske elementer. Tilføjning af ny funktionalitet skal være let hvilket opnås ved at opbygge systemet efter \emph{model-view-control}, \emph{entity-boundary-controller}, eller et lignende design mønster. Som i så mange andre metoder sker udviklingen i M.A.D. i flere iterationer. Særligt ved metoden beskrevet i artiklen er dog at de overordnede udviklingsaktiviteter \emph{analyse, design} og \emph{implementering} alle udføres parallelt, i modsætning til sekventielt som er typisk for andre fremgangsmåder. Tanken bag dette er at enhver af de tre aktiviter kan gøre brug af erfaring fået under de to øvrige aktiviteter.
-
-Projektet som danner grundlag for artiklen er, i forhold til vores IT-projekt, i meget stor skala, hvilket også gør at der ikke uden videre kan laves en direkte sammenligning mellem de to. Selvom de to projekter er meget forskellige, kan der dog sagtens drages paralleller mellem metoden præsenteret i artiklen og den fremgangsmåde vi har benyttet os af i vores projekt, bl.a. den iterative fremgangsmåde og det tidlige brugerfokus, som agile metoder er kendetegnet ved.
-
-Som nævnt tidligere lægger metoden stor vægt på analyse af den nuværende praksis. Der er dog projekter hvor en sådan nuværende praksis ikke eksisterer. Dette kan siges at være tilfældet i vores projekt, da det produkt vi udvikler ikke skal erstatte noget eksisterende system. I vores tilfælde er der altså visse dele af M.A.D. metoden der ikke ville være nær så relevant.
-
-\newpage
 \section{Formål og rammer}
 \label{sec:formal_og_rammer}
 I dette afsnit beskrives systemets formål og rammer ved \textit{FACTOR}-kriteriet.
@@ -354,7 +330,14 @@ På Figur \ref{fig:opret_sp_sekvens} kan man se sekvens-diagrammet for den tredj
 
 \section{Systemdesign}
 \label{sec:systemdesign}
+
 I dette afsnit beskrives de designopgaver der er udført allerede. Til sidst i afsnittet vises de dele der endnu ikke er udført.
+
+\subsection{Valg af frameworks}
+\label{sub:valg_af_frameworks}
+
+Som før omtalt i Afsnit~\ref{sec:formal_og_rammer} har vi valgt at bruge frameworket Flask som grundlag for vores webapplikation. Ifølge deres hjemmeside\cite{flask}, er det et såkaldt \emph{microframework}. Det betyder at der ikke følger mange af de ting med som der gør i mange større webframeworks. Flask tilbyder kun HTTP routing og templating. Resten skal man selv finde andre biblioteker til. Vi har valgt det, da der så ikke er så meget, at skulle sætte sig ind i, og det giver mere frihed til at udforme applikationen som vi vil.
+
 \subsection{Strukturering}
 \label{sub:strukturering}
 
@@ -410,13 +393,13 @@ for et view der kunne vise admin siden. Den tjekker så om den nuværende bruger
 \subsection{Spørgsmål}
 \label{sub:sporgsmal}
 
-multimethods til at gøre views polymorfe
+Ud fra ER diagrammernes nedarvningshieraki har vi implementeret dem som Python klasser der alle nedarver fra en generel klasse \verb!Question!. I underklasserne er der så alle de attributter der adskiller klasserne fra hinanden. I en kodeopgave er der for eksempel tilføjet attributterne \verb!code! og \verb!exec_name!. Den første er kodestumpen der skal modificeres, og det andet er den eksekverbare fil der findes på serveren til at vurdere svaret på opgaven. For ikke at skulle ændre i logikken til at vise spørgsmål, så bruges en polymorf metode \verb!render_question!. Den sørger for at generere HTML til et spørgsmål, samt tjekke om svaret der gives er rigtigt. Tricket er så, at når man laver en ny underklasse af \verb!Question!, så skal man kun skrive en ny metode til at generere et view og tjekke svaret. Det er et led i at vi gerne vil gøre koden så modulær som muligt.
 
-Factory pattern til at lave spørgsmål ud fra dictionaries som så kan laves fra YAML filer.
+Et af kravene i kravspecifikationen var, at man kunne oprette spørgsmål fra et semistruktureret filformat som \verb!YAML!. Til dette har vi brugt et \emph{Factory Method Pattern}. Det er en simpel version af det \emph{Factory Pattern} der beskrives i kapitel 8 i Bruegge og Dutoit\cite{OOSE}. Vi har implementeret en statisk metode, som sørger for at lave det rigtige \verb!Question! fra et \verb!dict! i python. Vi slipper for at tænke alt for meget på underklasser fordi man i python har \emph{duck-typing}. Hvilket vil sige, at interfaces er implicitte, og at ikke explicit skal implementere et interface. Det gør at man kan returnere det specifikke objekt i stedet. Vi har så implementeret en \verb!from_dict! metode, som returnerer det spørgsmål der knytter sig til at stykke data. Vi kan så bruge ethvert struktureret filformat, da mange biblioteker tager en fil ind, og outputter en \verb!dict!.
 
-Thresholds som en hægtet liste som peger på det efterfølgende threshold
+Da \emph{thresholds} har en naturlig rækkefølge, så er de lidt mere komplicerede. Man kan ikke bare pukke dem ind i databasen, da SQL ikke garanterer nogen rækkefølge. Det har givet os to muligheder for at implementere det. Man kan enten give hvert threshold et tal for hvilket nummer i rækkefølgen af \emph{thresholds}. Den mulighed vi har valgt er, at hvert \emph{threshold} har en peger til næste \emph{threshold}. Det gør det meget simpelt at vedligeholde databasen, og indsætte data. I praksis betyder det, at hvert \emph{threshold} har en \verb!next! attribut. For at slå det næste threshold op, så følger man bare fra peger til peger.
 
-Hints loades dynamisk med AJAX
+Et andet krav er, at man skal kunne få hints til opgaverne. For at man ikke kan snyde, og se hints inden man har bedt om dem, så sender vi dem dynamisk til brugeren. Det vil sige at de injiceres på hjemmesiden men vedkommende er i gang med at løse opgaven. Vi kan så på serversiden holde øje med hvor mange hints den pågældende bruger har bedt om, og gemme det i loggen. Det foregår med teknologien \verb!AJAX!, som handler om, at man sender et asynkront HTTP-request til serveren, som så sender data tilbage. Hjemmesiden ændres så dynamisk, at dataene sættes ind på siden uden at den genindlæses.
 
 Bedømmelsesmaskine og javascript kode-editor
 
@@ -501,8 +484,13 @@ Vi har for nyligt oprettet en to-do liste inde i vores git repository, hvor vi p
 \appendix
 \section{Versionsstyring}
 \label{sec:versionsstyring}
+
 Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
-Siden sidste rapport har der været en del ændringer og især tilføjelser til koden. Vi har fået bundet alle de dele vi tidligere har lavet sammen til en fungerende prototype, der fungerer efter hensigten og som kan ses på de vedlagte screenshots. Derudover er vi begyndt at arbejde på admin delen af projektet, hvor mange af de overordnede aspekter er ved at være på plads.
+
+\subsection{Git log}
+\label{sub:git_log}
+
+\VerbatimInput[fontsize=\tiny]{git-log.txt}
 
 \section{Changelog}
 \label{sec:changelog}
