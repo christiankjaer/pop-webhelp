@@ -1,0 +1,376 @@
+* 9837b06 Fjernet ting fra todo
+* 0f30d9d Ryddet op
+* 7f4e858 CSS fejl
+* 2b9f4af Code er nu med wtforms og rettet bug med at man ikke kan åbne første emne
+*   383196f Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+|\  
+| * eb8b266 Rigtige testdata
+* | 9f80a5e Added extra acces control, session expiration timer and updated the todo-list
+|/  
+*   4695206 Merge branch 'redis' of https://github.com/christiankjaer/pop-webhelp
+|\  
+| * f082922 Et par småting og opdateret todo-list
+| *   4805fe2 Merge with branch 'master'
+| |\  
+| * | f3b8a09 Gået tilbage til at render_question returnerer resultatet
+| * | f58b536 Tilføjet server side session redis halløjsa med flask-session, samt ændret og flyttet rundt på nogle ting
+| * |   27be351 Merge with branch 'master'
+| |\ \  
+| * | | 20b9478 Tester lige om jeg har fået min branch til at virke
+* | | |   ba0ecea Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+|\ \ \ \  
+| | |_|/  
+| |/| |   
+| * | | 430b616 Tilføjet coding spørgsmål
+| | |/  
+| |/|   
+* | | 35f032c Oprettet custom question view til admin siden
+|/ /  
+* | a11a3c1 Ændringer i rapport og todo
+* | 0d3dd64 New points on todo
+* | ef42b22 Updated todo
+* | 45b6c37 Simpelt rollesystem til at skille studerende fra admins
+* |   644f334 Merge
+|\ \  
+| * | b086ac8 Update todo_list.txt
+* | | 01549a7 Tilføjet lidt til todo
+* | | 70c0112 Flere ok tests
+* | | b7acd24 Lill fejl
+* | | 64f31d7 Testene kører igen
+|/ /  
+* | d8c8cba Added simple hint rating system
+* | 6026527 Fjerne debug hejs
+* | e06bec8 Glemt at ud-udkommentere noget kode der virker
+* | 5746e85 Skrevet et bud på en log
+|/  
+* 8f0f96d user er et dårlig navn i postgres
+* b06a602 Ryddet mere op
+* 6360db2 ryddet op
+* f3273b8 Der skal primary keys på
+* 49f3264 Now with unlocking thresholds
+* 7a38581 Bugfix med MC spørgsmål
+*   b773904 Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+|\  
+| * 8e3c4a6 Diverse små tilføjelser og rettelser i rapporten
+| *   9c5d9c6 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+| |\  
+| | * 117ed8b Review af M.A.D.
+| * | 11c4f33 Diverse ændringer i rapporten
+| |/  
+* |   380b9b6 Markdown support
+|\ \  
+| |/  
+| * 5c3e46a Diverse fiks og ændringer
+| * 1ef6abe Tilføjet cascading til databasen så diverse Question items som f.eks. hints bliver slettet sammen med spørgsmålet
+| * 1e17044 Diverse interface og layout forbedringer og justeringer
+| * 01f81df Opdateret yaml templates'ne og fixet matching template'en
+* | 33067a7 Tilføjet bedre markdown converter
+|/  
+*   50bee2f Merge
+|\  
+| * bbbf480 Tilføjet review af No Silver Bullet
+* | ff9d7b7 Diverse ændringer og tilføjelser til rapporten
+* | 6127fb8 Implementeret fil upload og lavet diverse fiks i den forbindelse
+* |   12ddb84 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+|\ \  
+| |/  
+| * fef6f82 Merge
+| *   ac36f77 Merge
+| |\  
+| * | a852af3 Tilføjet afsnit om strukturering
+* | | 49f51f6 Diverse ændringer
+| |/  
+|/|   
+* | 9a7710e Tilføjet Questions og FileUpload til admin siden
+* | 3a73666 Opdateret Systemdesign i rapporten
+* |   f91ba0c Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+|\ \  
+| |/  
+| * 6818b6f Added points to the todolist
+* | 7922005 Tilføjet screenshots, både som filer og i rapporten, og opdateret er-diagrammerne
+|/  
+*   531d7b5 Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+|\  
+| * 4842ef2 Tilføjet Multiple Choice med 1 eller X rigtige
+| * 415ccd9 Tilføjet To Do List
+| * 8ba461e Refaktureret Question's from_dict funktion, tilføjet from_dict funktion til Subject og Threshold, tilføjet mctype til MultipleChoice
+* | b3aeefd Tilføjet automatisk admin interface fra Flask-Admin + bedre feedback fra views.
+|/  
+*   a0dbfdc Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+|\  
+| * eed0136 Tilføjet Subject startside og diverse fiks
+* | a7d842b Tilføjet statussider
+|/  
+* ef6de23 Scores for questions
+* 11fdc24 Fejlhåndtering når der ikke er flere hints
+*   930c7e0 Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+|\  
+| * 7a796ab Update README.md
+* | e44d521 Simpel funktion til at rate hints med thumbs up/thumbs down
+|/  
+* b0845be Glemt fil
+* 56e025c Forslag til hints, det bruger desværre cookies til state
+* c90f81e Lidt latex ting til gitignore
+* 18f8482 Delete rapport.fdb_latexmk
+* 0d8d498 Delete rapport.fls
+* e599e67 Opdateret ER diagrammerne og flyttet dem
+*   2b9ad37 Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+|\  
+| * 2c475e9 Diverse rettelser i rapporten
+| *   14a03b5 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+| |\  
+| * \   517cfec Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+| |\ \  
+| * \ \   1172651 Merge
+| |\ \ \  
+| * | | | d284333 Tilføjet point til Question, Subject og Threshold
+| * | | | 7fc2c19 Tilføjet 'completed' table for at holde styr på hvilke users har fuldført hvilke subjects
+| * | | |   a54050b Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+| |\ \ \ \  
+| * | | | | a20c1ee Tilføjet Log til databasen.
+* | | | | | 8676574 Rettelser til rapporten
+* | | | | | 6438ca9 Forsøg på en queue til spørgsmål
+| |_|_|_|/  
+|/| | | |   
+* | | | | 62c95cc Flere rapport ting. Se changelog i rapporten
+* | | | | 52bbb8c Første hold rettelser til genaflevering
+* | | | | 3f75a6c Review
+* | | | | 4af2c9f Fejl i metoden der blev kaldt ved submit
+* | | | | f57ea81 Used the multimethod module to make dispatch simpler
+| |_|_|/  
+|/| | |   
+* | | | 90a2462 Forglemmelse
+* | | | 7bf1637 Cursor ved drag
+* | | | 8f07b4b Lille bugfix
+| |_|/  
+|/| |   
+* | | 85cf0c6 Added a matching question type
+| |/  
+|/|   
+* | f76a6ae Refactored out the javascript in the ranking question
+* | 2356051 Refactored out render functions for each question type
+* | 57e6c1e Default credentials in config, Fixed tests, added review
+* |   ab799fa Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+|\ \  
+| |/  
+| * 47604eb Tilføjet Lukas' Review
+* |   144c232 Merge
+|\ \  
+| |/  
+| * becca30 Tilføjet random view og empty template
+* | 9daa89d Merge
+* |   e86e9d9 Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+|\ \  
+| |/  
+| * 0762b57 Lille rettelse i Overview
+* |   c47c749 Merge
+|\ \  
+| |/  
+| *   ad842f3 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+| |\  
+| * | 7867e7d Diverse fiks og ændringer ifb. Overview
+| * | 7194e65 Tilføjet 'Overview' forside
+* | | af4f1e5 Lidt blandet
+* | | a98969b Tests af question klassen
+| |/  
+|/|   
+* | 1564ac5 Fixet bug https://github.com/christiankjaer/pop-webhelp/issues/3
+|/  
+* 781b086 Ændret i base.html
+* 7fb4fdc Tilføjet Subject, Threshold, start data til databasen, layout med navbar, opdateret de tre question templates
+* 9ac848d Markdown i spørgsmålstekst og fix af javascript i ranking
+* 29a5f27 Mere tekst om tests + flot figur
+* 7d34fd6 Afsnit om tests
+* cdb6e4e Tilføjet næste rapport
+* f1cfd25 Bedre rangeringsfunktion med en masse javascript.
+* bb4bcfb Nu kan den tjekke rank spørgsmål
+* d87d6a1 Javascript til omrokering
+* ba96356 Tilføjet ranking spørgsmål
+* 88a55dc Update views.py
+* bb3dcbf Tilføjet ny type spørgsmål og dispatching
+* 167b154 Med HTMl nu
+* c0cca22 Bugfix
+* 5d0ffe8 HTML til visning af multiple choice
+* 7627e79 Tilføjet factory method til question
+* 263f8cc Fixet Questions igen igen
+* d28ec42 Fixet Models igen
+* 8d4f006 Fixet Question i databasen
+* 966f343 Oprettet Question model
+* d470a11 Tilføjet ER-diagrammer for databasen
+* aaa9e23 Rettet knaptekst
+* 148a1b6 Stavefejl + not implemented
+* 60972ae Lidt smårettelser
+* 458bad5 Tilføjet anden use case
+*   1457180 Merge
+|\  
+| * 7efd78e Tilføjet figurtekster
+| *   7e1ac67 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+| |\  
+| * | 8d83e72 Diverse rettelser
+* | | 32f931f Stavefejl, tror jeg
+| |/  
+|/|   
+* | a569bbc Class diagram
+* |   f2ea4a6 Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+|\ \  
+| |/  
+| *   7f7e360 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+| |\  
+| | * 85a8e84 Review af artikel 1
+| * | 63b69fd Tilføjet Projektsamarbejdet.
+* | | 0771c1e Tekst til use cases
+* | | d9e4517 Mere sekvens
+| |/  
+|/|   
+* | c833489 FEJLRETNING
+|/  
+*   d6fe2d4 Merged
+|\  
+| * 9faf8c8 Sekvensdiagrammer og use cases
+| *   0920d3e Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+| |\  
+| * | 2024357 Citeringer
+* | | ceb70f1 Tilføjet abstract
+| |/  
+|/|   
+* | 7b5b2dd Fjernet UseCaseModel da den var blevet flyttet
+* |   6e1a966 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+|\ \  
+| |/  
+| * 97f94eb Færdiggjort review
+| * 4f089eb Review af artikel 2
+| * b40f0ad Review
+* | 5d7014c Tilføjet use case model og bce model
+* |   3cce567 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+|\ \  
+| |/  
+| *   045f093 Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+| |\  
+| * | b430546 FACTOR
+* | | 78aa034 Oprettet figur-mappe og flyttet UseCaseModel dertil
+| |/  
+|/|   
+* | 30633e3 Tilføjet bilag og startet på changelog og timeline
+* |   ae06ff2 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+|\ \  
+| |/  
+| *   c30b9b6 Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+| |\  
+| * | c58d161 Et styks use-case
+* | | c059acb Tilføjet UseCaseModel diagram
+| |/  
+|/|   
+* | b184f5b Update README.md
+|/  
+* 686563f Næste rapport tilføjet + lidt diverse
+* 7aa7aff Update requirements.txt
+* d8d8ca8 Flere tests + rettet gitignore
+* aeed9bd Unittests + bugfix
+* 5a9c405 Flere tests
+* 14c14e8 Tilføjet 'code coverage' til test scriptet
+* 481db77 Bugfixes + flere tests
+* e2fd701 Nu med en reset form + link + bugfixes
+*   12ddb79 Merge branch 'add_login'
+|\  
+| * f6a2b56 Flere tests
+| *   dbf8603 Merge branch 'add_login' of github.com:christiankjaer/pop-webhelp into add_login
+| |\  
+| | * 3126090 Update README.md
+| | * 3a3406c Update README.md
+| | * 5801503 Update README.md
+| | * f320496 Update README.md
+| * | 922089b Refactored all user relevant code into folders
+| |/  
+| * 4a545c5 Now you can reset your password if you have amnesia
+| * da3f6be Added reset pw feature
+| * 0d37793 Nu med confirmation email
+| * f28b6ab Tilføjet unittests af User
+| * d15c3de Mere inputvalidering
+| * cbe6bc0 Ryddet op, og gjort rent
+| * 4a9973e Tilføjet register view/controller
+| * 1999da4 Fået login-form til at virke
+| * c64495e Password validering, login html
+| * 4cb7774 Fixed imports for flask-login and sqlalchemy
+* | ec977bc Oprettet og tilføjet review.tex
+* | b921fad Christians review
+* | cccc056 Lukas' Review
+* | 9a54e35 CPR-nummer
+* | 6e7e637 Rettet 2 stavefejl
+* | 24498b4 Diverse rettelser i rapporten.
+* | 179355d Indsat opgave 5.3 og ordnet billeder
+* | c6b3cf0 Tilføjede nogle figurer
+|/  
+*   384fc71 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+|\  
+| * 83ed112 Update delrapport1.tex
+| * 7fd50bc Stavefejl
+* | 5859112 Diverse rettelser og et enkelt citat
+|/  
+*   cb7bed5 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+|\  
+| * deec8c1 Flere citater
+| * 6c3cd45 Flere citater
+| * 353063b Tilføjet citationer
+* | 3974d43 Opdateret Projektaftale og Problemområde afsnittene
+|/  
+*   6a2cfa3 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+|\  
+| * 6cb4552 slettet pdf
+| * b5a8b50 Tilføjet projektetablering
+* | 7ec0721 Skrevet Projektaftale
+* | eefd377 Skrevet Projektaftalen
+* |   1c1491d Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+|\ \  
+| |/  
+| * bac6292 Litteraturliste
+* | 8a976f8 Skrevet projektaftale
+|/  
+*   d2abbfc Merge conflict resolved
+|\  
+| * 7570e96 Opdateret mine afsnit
+* | 890b74a Tilføjet mere om arkitektur
+* | f3ce4d1 Rettet stavefejl
+|/  
+* fc1ba46 Tilføjede bud på nogle afleveringsopgaver
+* 8e0faa1 Tilføjede punkt til problemformulering
+*   6398b24 fixed merge
+|\  
+| * 7e7fa51 Update .gitignore
+| * b33ae8d Delete delrapport1.aux
+| * e6d7922 Delete .DS_Store
+* | 9cdec49 Nu med pæn LaTeX
+|/  
+* 39d86c2 Vi har tilføget starten på en systemdefinition.
+*   3d08464 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+|\  
+| * 7340ea5 Jeg har tilføjet nogle afsnit under projektplanen
+* | 0d9def5 Skrevet Arbejdsfordeling og Køreplan
+* |   4df4774 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+|\ \  
+| |/  
+| * 06be520 SPMP sections added
+| * 15096e0 Fixed
+* | 61ffc96 Ændringer
+|/  
+*   1ef0568 Fixed merge
+|\  
+| * 12abb38 Skrevet ikke-funktionelle krav
+| *   936e744 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+| |\  
+| * | c2fe587 Opdaterede problemområde
+* | | a67363b Tilføjet funktionelle krav
+| |/  
+|/|   
+* |   b5aeb60 Fixed merge
+|\ \  
+| |/  
+| * fe72f9f Skrevet problemområde
+* | fd29dfc Skrevet scenarier
+|/  
+* 1256473 Dokumentation
+* 11f4ef7 Added helper files (bootstrap)
+* ec2dea2 Updated README
+* 6ad9e54 Added requirements file for pip
+* 7d9a548 Made a simple flask template
+* 2f663a2 Changed .gitignore to ignore virtualenv files
+* c26e8a8 Initial commit
