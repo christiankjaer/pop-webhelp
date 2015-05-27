@@ -2,7 +2,7 @@
 PKSU Projekt 2015
 
 ## Installation
-* Vær sikker på at du har `pip` og `python` installeret
+* Vær sikker på at du har `pip` og `python2` installeret
 * Kør `git clone https://github.com/christiankjaer/pop-webhelp`
 * Kør `pip install -r requirements.txt`
 
