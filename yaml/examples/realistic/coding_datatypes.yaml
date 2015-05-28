@@ -1,0 +1,19 @@
+type: Coding
+text: |
+    Given this datatype declaration
+
+        type tree =
+            | Leaf of int
+            | Node of tree * tree
+
+    Complete a function that sums all the leaves
+weight: 5
+subject: Simple datatypes
+hints:
+    - How many arguments should the functions have
+    - How would it call itself?
+code: |
+    let rec leafSum t =
+        match r with
+            |
+exec_name: test.sh

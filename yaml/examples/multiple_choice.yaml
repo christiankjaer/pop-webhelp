@@ -4,6 +4,10 @@ weight: 4
 subject: Multiple Choice Subject
 hints: [Ikke 5, Ikke 7]
 mctype: 1
-choices: [{'text':5, 'correct':False}, 
-          {'text':6, 'correct':True},
-          {'text':7, 'correct':False}]
+choices:
+    - text: 5
+      correct: No
+    - text: 6
+      correct: Yes
+    - text: 7
+      correct: No

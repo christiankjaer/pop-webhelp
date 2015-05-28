@@ -12,8 +12,6 @@ TESTS TESTS TESTS
 TESTS TESTS TESTS
 
 --- Smaller things ---
-Realistic examples for demo!
-
 Log should have more features like filtering
 
 Question and question items are seperate in admin view
@@ -39,14 +37,11 @@ Review of Highsmith
 
 Screenshots and flow
 
-Commit log
-
 Update ER diagrams
 
 AV presentation
 
 Systemdesign
- - Users
  - Log
  - Admin
 
