@@ -1,7 +1,17 @@
 type: Matching
-text: Match disse regneudtryk og resultater
-weight: 5
-subject: Matching Subject
-hints: [2 + 2 != 2, 1 + 1 != 4]
-texts: [2 + 2, 1 + 1, 3 + 3]
-answers: [4, 2, 6]
+text: What datatypes would be appropriate for the tasks. Match the ones that fit together.
+weight: 3
+subject: Simple datatypes
+hints:
+    - Another name for the act of giving another name to something?
+    - Skeleton is something witout meat on.
+texts:
+    - Handle errors in calculations
+    - Give another name for a known type
+    - Use as a skeleton for concrete implementations
+    - Store complex data with functions
+answers:
+    - Option type
+    - Alias
+    - Interface
+    - Class

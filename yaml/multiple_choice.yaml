@@ -2,6 +2,14 @@ type: Multiple Choice
 text:
 weight:
 subject:
-hints: [hint1, hint2, ..]
+hints:
+    - Hint1
+    - Hint2
+    - osv.
 mctype: 1 or X
-choices: [{'text': , 'correct': }, {'text': , 'correct': }, ..]
+choices: 
+    - text:
+      correct:
+    - text:
+      correct:
+    - osv.

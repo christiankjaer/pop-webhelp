@@ -1,4 +1,4 @@
-type: TypeIn
+type: Coding
 text:
 weight:
 subject:
@@ -6,4 +6,5 @@ hints:
     - Hint1
     - Hint2
     - osv.
-answer:
+code:
+exec_name:

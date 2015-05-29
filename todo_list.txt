@@ -7,6 +7,10 @@ Coding questions
 Evaluation machine
   Feedback generator
 
+Sessions/redis
+
+Different courses/years
+
 TESTS TESTS TESTS
 TESTS TESTS TESTS
 TESTS TESTS TESTS
@@ -18,11 +22,13 @@ Question and question items are seperate in admin view
 
 Admin interface style
 
+YAML documentation
+
+Matching questions text and answer should be a dict instead of seperate for simplicity
+
 Button sizes
 
 Overview interface
-
-Session expiration?
 
 --- Bugs ---
 Users can acces admin front page
@@ -36,8 +42,6 @@ Review of Naur
 Review of Highsmith
 
 Screenshots and flow
-
-Update ER diagrams
 
 AV presentation
 
