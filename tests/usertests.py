@@ -39,7 +39,6 @@ class UserTestCase(unittest.TestCase):
             kuid='abc123',
             password='testpw'), follow_redirects=True)
 
-        assert 'Succesfully logged abc123 in' in rv.data
         rv = self.app.get('/logout', follow_redirects=True)
         assert current_user == None
 

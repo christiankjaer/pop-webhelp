@@ -1,0 +1,13 @@
+type: Ranking
+text: Rank these operators by precedence
+weight: 2
+subject: Simple datatypes
+hints:
+    - Check the book on page 145
+    - How would you go about it in math?
+items:
+    - '->'
+    - '< , >'
+    - '- , +'
+    - '*, /'
+    - 'f(x), function application'

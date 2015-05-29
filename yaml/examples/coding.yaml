@@ -1,0 +1,11 @@
+type: Coding
+text: Make this function tail recursive
+weight: 3
+subject: Coding Subject
+hints: [How many arguments should the functions have, How would it call itself]
+code: |
+    let rec fib n =
+        match n with
+        | 0 | 1 -> n
+        | _ -> fib (n - 1) + fib (n - 2)
+exec_name: test.sh

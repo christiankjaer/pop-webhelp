@@ -1,0 +1,26 @@
+type: TypeIn
+text: |
+    Givet følgende funktion
+
+        let rec onlyOnions kebab =
+          match kebab with
+            | Skewer -> true
+            | Onion x -> onlyOnions(x)
+            | Lamb x -> false
+            | Tomato x -> false
+
+    På datatypedeklarationen
+
+        type ShishKebab =
+            | Skewer
+            | Onion of ShishKebab
+            | Lamb of ShishKebab
+            | Tomato of ShishKebab
+
+    Hvad er typen af onlyOnions?
+weight: 3
+subject: Simple datatypes
+hints:
+    - Kig på typen af inputparametret?
+    - Hvad returnerer onlyOnions?
+answer: ShishKebab -> bool
