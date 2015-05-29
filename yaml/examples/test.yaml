@@ -1,6 +1,0 @@
-type: TypeIn
-text: What is 1 + 1?
-weight: 3
-subject: TypeIn Subject
-hints: [Not 1, Not 3]
-answer: 2

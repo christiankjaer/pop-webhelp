@@ -2,6 +2,15 @@ type: Matching
 text:
 weight:
 subject:
-hints: [hint1, hint2, ..]
-texts: [text1, text2, ..]
-answers: [answer1, answer2, ..]
+hints: 
+    - hint1
+    - hint2
+    - osv
+texts: 
+    - text1
+    - text2
+    - osv.
+answers: 
+    - answer1
+    - answer2
+    - osv.

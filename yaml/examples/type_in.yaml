@@ -1,6 +1,26 @@
 type: TypeIn
-text: What is 1 + 1?
+text: |
+    Givet følgende funktion
+
+        let rec onlyOnions kebab =
+          match kebab with
+            | Skewer -> true
+            | Onion x -> onlyOnions(x)
+            | Lamb x -> false
+            | Tomato x -> false
+
+    På datatypedeklarationen
+
+        type ShishKebab =
+            | Skewer
+            | Onion of ShishKebab
+            | Lamb of ShishKebab
+            | Tomato of ShishKebab
+
+    Hvad er typen af onlyOnions?
 weight: 3
-subject: TypeIn Subject
-hints: [Not 1, Not 3]
-answer: 2
+subject: Simple datatypes
+hints:
+    - Kig på typen af inputparametret
+    - Hvad returnerer onlyOnions?
+answer: ShishKebab -> bool

@@ -2,5 +2,11 @@ type: Ranking
 text:
 weight:
 subject:
-hints: [hint1, hint2, ..]
-items: [item1, item2, item3, ..]
+hints:
+    - Hint1
+    - Hint2
+    - osv.
+items:
+    - Item1
+    - Item2
+    - osv.

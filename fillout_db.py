@@ -9,10 +9,10 @@ def fillout():
     user = User('def456', 'test', confirmed=True, role='admin')
     db.session.add(user)
 
-    thres = {'name':'TypeIn Threshold'}
+    thres = {'name':'Coding Threshold'}
     db.session.add(Threshold.from_dict(thres))
 
-    thres = {'name':'Matching Threshold', 'next':'TypeIn Threshold'}
+    thres = {'name':'Matching Threshold', 'next':'Coding Threshold'}
     db.session.add(Threshold.from_dict(thres))
 
     thres = {'name':'Ranking Threshold', 'next':'Matching Threshold'}
@@ -21,7 +21,7 @@ def fillout():
     thres = {'name':'Multiple Choice Threshold', 'next':'Ranking Threshold'}
     db.session.add(Threshold.from_dict(thres))
 
-    thres = {'name':'Coding Threshold', 'next':'Multiple Choice Threshold'}
+    thres = {'name':'TypeIn Threshold', 'next': 'Multiple Choice Threshold'}
     db.session.add(Threshold.from_dict(thres))
 
     sub = {'name':'TypeIn Subject', 'text':'This is Test Subject 1', 

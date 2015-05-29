@@ -1,6 +1,13 @@
 type: Ranking
-text: Rank these numbers
-weight: 3
-subject: Ranking Subject
-hints: [2 > 1, 4 > 3]
-items: [1, 2, 3, 4]
+text: Rank these operators by precedence
+weight: 2
+subject: Simple datatypes
+hints:
+    - Check the book on page 145
+    - How would you go about it in math?
+items:
+    - '->'
+    - '< , >'
+    - '- , +'
+    - '*, /'
+    - 'f(x), function application'
