@@ -474,27 +474,165 @@ Når vi har en funktionsdygtig brugergrænseflade, så skal der udføres tests a
 \FloatBarrier
 
 \section{Brugergrænseflade og interaktionsdesign}
-\label{sec:brugergraenseflade}
-\subsection{Screenshots}
-I Appendix \ref{sec:screenshots} ses screenshots af brugergrænsefladen for de vigtigste dele af vores projekt. De optræder i en rækkefølge der illustrerer dynamikken i en studerendes interaktion med vores system. I toppen af de fleste screenshots ses en navigationsbar, hvor man bl.a. kan se hvem der er logget ind, man kan logge ud og man kan ændre sit password. Der er desuden i venstre side et slags logo hvor man kan trykke for at blive taget tilbage til forsiden.
+\label{sec:userinterface}
 
+\subsection{Screenshots}
+\label{sub:screenshots}
+I dette afsnit ses screenshots af brugergrænsefladen for de vigtigste dele af vores projekt. De optræder i en rækkefølge der illustrerer dynamikken i en studerendes interaktion med vores system. Først kommer der et afsnit om login, dernæst om de studerendes del, og til sidst om admin delen af vores projekt.
+
+\subsubsection{Login}
+\label{subsub:screenshots_login}
 På Figur \ref{fig:screenshot_login} ses et screenshot af den første del af vores brugergrænseflade en studerende vil møde, nemlig en login skærm. Hvis man allerede er registreret som bruger kan man her indtaste sit KU-id og sit valgte kodeord, og dermed logge på systemet. Hvis man ikke er oprettet som bruger er der et link der tager en videre til registrering.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/interface/login.png}
+    \caption{Screenshot af login-siden.}
+    \label{fig:screenshot_login}
+\end{figure}
 
 På Figur \ref{fig:screenshot_register} ses registreringssiden. Her kan man indtaste sit KU-id, vælge sig et kodeord og registrere sig. Systemet sender så en mail til den relevante KU-mail med et verificeringslink, og så snart den studerende har trykket på linket er vedkommende klar til at logge på systemet.
 
-Når en studerende har logget sig ind i systemet vil vedkommende blive taget til index siden, som kan ses på Figur \ref{fig:screenshot_overview}. Her kan den studerende få et overblik over de forskellige \emph{thresholds} og de dertil hørende \emph{subjects}. Den studerende kan så vælge hvilket emne vedkommende vil arbejde på, og klikke på dets navn, hvilket fører dem videre til den næste del.
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/interface/register.png}
+    \caption{Screenshot af registrerings-siden.}
+    \label{fig:screenshot_register}
+\end{figure}
 
-På Figur \ref{fig:screenshot_subject} ses \emph{subject} siden, hvor den studerende kan læse om det valgte emne, og hvis det virker interessant, trykke på knappen og begynde at løse opgaver inden for det bestemte emne. De dummy-data vi har i databasen på nuværende tidspunkt er lidt simple, så derfor ser siden også lidt kedelig ud lige nu.
+\FloatBarrier
 
-Når den studerende har trykket \emph{begin} vil vedkommende blive stillet en række opgaver, f.eks. multiple choice opgaver som den der kan ses på Figur \ref{fig:screenshot_question}. Den studerende kan så afgive sit svar, enten ved at indtaste et svar, afkryde de korrekte bokse eller trække svarmulighederne hen på de korrekte positioner, og trykke på \emph{answer} knappen. Der er desuden mulighed for at den studerende kan få hints til opgaven, hvis det skulle være nødvendigt, ved at trykke på den dertilhørende knap.
+\subsubsection{Studerende}
+\label{subsub:screenshots_student}
+Når en studerende har logget sig ind i systemet vil vedkommende blive taget til index siden, som kan ses på Figur \ref{fig:screenshot_overview}.  I toppen siden ses en navigationsbar, hvor man bl.a. kan se hvem man er logget ind som, man kan logge ud og man kan ændre sit password. Der er desuden i venstre side et slags logo hvor man kan trykke for at blive taget tilbage til forsiden. 
 
-Når den studerende har svaret på en opgave vil vedkommende blive taget til svar-siden, som kan ses på Figur \ref{fig:screenshot_answer}. Her får den studerende feedback på sit svar, der kan variere fra en helt simpel besked i form af rigtigt eller forkert til et mere detaljeret svar der f.eks. kunne indeholde en relevant stack trace. På svar-siden er der desuden et såkaldt \emph{Learn-O-Meter}, hvor den studerende kan se hvor langt vedkommende er nået med at gennemføre det valgte emne.
+På forsiden kan den studerende få et overblik over de forskellige \emph{thresholds} og de dertil hørende \emph{subjects}. De \emph{thresholds} som den studerende har låst op for er grønne, og ved at trykke på de \emph{subjects} der hører til disse kan den studerende begynde at svare på spørgsmål. De \emph{thresholds} som den studerende ikke har låst op for er røde, og de detilhørende \emph{subjects} kan ikke trykkes på.
 
-Endeligt vil den studerende når vedkommende har gennemført et emne blive taget til en sidste side, som kan ses på Figur \ref{fig:screenshot_finish}, hvor der som det ser ud lige nu ikke står meget andet end \emph{Done}. Den studerende kan så trykke på \emph{finish} knappen, hvilket vil tage vedkommende til index siden, og derfra kan vedkommende så vælge et nyt emne at arbejde på, eller vælge at logge ud.
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/interface/overview.png}
+    \caption{Screenshot af index-siden.}
+    \label{fig:screenshot_overview}
+\end{figure}
+
+På Figur \ref{fig:screenshot_subject} ses \emph{subject} siden, hvor den studerende kan læse om det valgte \emph{subject}, og hvis det virker interessant, trykke på knappen og begynde at løse opgaver inden for dette \emph{subject}.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/interface/subject.png}
+    \caption{Screenshot af \emph{subject}-siden.}
+    \label{fig:screenshot_subject}
+\end{figure}
+
+Når den studerende har trykket \emph{begin} vil vedkommende blive stillet en række opgaver, f.eks. multiple choice opgaver som den der kan ses på Figur \ref{fig:screenshot_question}. Den studerende kan så afgive sit svar, enten ved at indtaste et svar, afkryde de korrekte bokse eller trække svarmulighederne hen på de korrekte positioner, og trykke på \emph{answer} knappen. Der er desuden mulighed for at den studerende kan få hints til opgaven, hvis det skulle være nødvendigt, ved at trykke på \emph{Get hint} knappen.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/interface/question.png}
+    \caption{Screenshot af spørgsmåls-siden.}
+    \label{fig:screenshot_question}
+\end{figure}
+
+Når den studerende har svaret på et spørgsmål vil vedkommende blive taget til svar-siden, som kan ses på Figur \ref{fig:screenshot_answer}. Her får den studerende feedback på sit svar, der kan variere fra en helt simpel besked i form af rigtigt eller forkert til et mere detaljeret svar der f.eks. kunne indeholde en relevant stack trace hvis den studerende har skrevet en stump kode. På svar-siden er der desuden et såkaldt \emph{Learn-O-Meter}, hvor den studerende kan se hvor langt vedkommende er nået med at gennemføre det valgte \emph{subject}. 
+
+Når den studerende har opnået tilstrækkeligt med point er det valgte \emph{subject} gennemført, og vedkommende bliver taget til en, på nuværende tidspunkt rimelig kedelig, afslutningsside, hvor man kan trykke på \emph{finish} knappen for at blive taget tilbage til forsiden.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/interface/answer.png}
+    \caption{Screenshot af svar-siden.}
+    \label{fig:screenshot_answer}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{Admin}
+\label{subsub:screenshots_admin}
+Når man er logget ind som administrator dukker der to nye links op i navigationsbaren ude på forsiden. Det første hedder \emph{admin}, og tager en til admin index-siden, som kan ses på Figur \ref{fig:screenshot_admin_home}. Her kan man se at der er kommet en ny navigationsbar, som giver adgang til diverse admin sider. \emph{Overview} tager en tilbage til forsiden.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/interface/admin_home.png}
+    \caption{Screenshot af administratorernes index-side.}
+    \label{fig:screenshot_admin_home}
+\end{figure}
+
+Den første af disse er \emph{Upload File}, som tager en til den side der kan ses på Figur \ref{fig:screenshot_admin_upload}. Her kan man uploade en YAML fil, og hvis den er korrekt udfyldt bliver der så oprettet et nyt spørgsmål i databasen. 
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/interface/admin_upload.png}
+    \caption{Screenshot af administratorernes upload-side.}
+    \label{fig:screenshot_admin_upload}
+\end{figure}
+
+Størstedelen af de andre links tager en til sider hvor man kan få et overblik over databasen. På Figur \ref{fig:screenshot_admin_subject} kan man se \emph{subject} siden, hvor man kan få et overblik over de \emph{subject} der er i databasen og deres diverse attributter. Det er desuden muligt at ændre på disse ved at trykke på blyant-knappen i venstre side af hver række, samt at slette \emph{subjects} ved at trykke på skraldespands-knappen.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/interface/admin_subject.png}
+    \caption{Screenshot af administratorernes \emph{subject}-side.}
+    \label{fig:screenshot_admin_subject}
+\end{figure}
+
+Hvis man i navigationsbaren trykker på \emph{Question} åbner man en dropdown menu, hvor man så kan vælge blandt de forskellige typer af spørgsmål i databsen og deres tilhørende svarmuligheds-objekter. På Figur \ref{fig:screenshot_admin_question} kan man f.eks. se de generelle spørgsmål objekter.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/interface/admin_question.png}
+    \caption{Screenshot af administratorernes spørgsmål-side.}
+    \label{fig:screenshot_admin_question}
+\end{figure}
+
+Det andet nye link på forsiden er \emph{Log}, der tager en til log-siden der kan ses på Figur \ref{fig:screenshot_admin_log}. Herfra kan man se alle de forskellige informationer der bliver gemt hver eneste gang en bruger besvarer et spørgsmål.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/interface/admin_log.png}
+    \caption{Screenshot af administratorernes log-side.}
+    \label{fig:screenshot_admin_log}
+\end{figure}
+
+\FloatBarrier
+
+\subsection{Flow-diagrammer}
+\label{sub:flow_charts}
+På Figur \ref{fig:flow_chart_login} ses en illustration af flowet i de forskellige handlinger man kan foretage sig ifb. med login-systemet. De forskellige pile antager at man indtaster de korrekte oplysninger og at der ikke sker nogle fejl, fordi hvis man f.eks. prøver at logge ind med et forkert kodeord lykkes det naturligvis ikke, og man kan selvfølgelig ikke registrere en ny bruger med et KU-id der allerede er brugt. 
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1\linewidth]{figures/interface/flow_login.png}
+    \caption{Flowchart over login-grænsefladen.}
+    \label{fig:flow_chart_login}
+\end{figure}
+\FloatBarrier
+
+På Figur \ref{fig:flow_chart_student} ses en illustration af flowet i en almindelig studerende interaktion med hjemmesiden, specifikt for når den studerende besvarer spørgsmål inden for et bestemt \emph{subject}.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1\linewidth]{figures/interface/flow_student.png}
+    \caption{Flowchart over de studerendes brugergrænseflade.}
+    \label{fig:flow_chart_student}
+\end{figure}
+\FloatBarrier
+
+På Figur \ref{fig:flow_chart_admin} ses en illustration af flowet i en admins interaktion med hjemmesiden.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1\linewidth]{figures/interface/flow_admin.png}
+    \caption{Flowchart over admin brugergrænsefladen.}
+    \label{fig:flow_chart_admin}
+\end{figure}
 \FloatBarrier
 
 \subsection{Tænke-højt forsøg}
 \label{sub:taenke_hoejt}
+Blah blah blah
+
+\subsection{Audio-Visuel Præsentation}
+\label{sub:audio_visuel}
 Blah blah blah
 
 \section{Projektsamarbejdet}
@@ -552,63 +690,5 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 
 \bibliographystyle{alpha}
 \bibliography{refs}{}
-
-\newpage
-\section{Brugergrænseflade screenshots}
-\label{sec:screenshots}
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=1\linewidth]{figures/interface/login.png}
-    \caption{Screenshot af login-siden.}
-    \label{fig:screenshot_login}
-\end{figure}
-
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=1\linewidth]{figures/interface/register.png}
-    \caption{Screenshot af registrerings-siden.}
-    \label{fig:screenshot_register}
-\end{figure}
-
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=1\linewidth]{figures/interface/overview.png}
-    \caption{Screenshot af index-siden.}
-    \label{fig:screenshot_overview}
-\end{figure}
-
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=1\linewidth]{figures/interface/subject.png}
-    \caption{Screenshot af emne-siden.}
-    \label{fig:screenshot_subject}
-\end{figure}
-
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=1\linewidth]{figures/interface/question.png}
-    \caption{Screenshot af spørgsmåls-siden.}
-    \label{fig:screenshot_question}
-\end{figure}
-
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=1\linewidth]{figures/interface/answer.png}
-    \caption{Screenshot af svar-siden.}
-    \label{fig:screenshot_answer}
-\end{figure}
-
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=1\linewidth]{figures/interface/finish.png}
-    \caption{Screenshot af færdig-siden.}
-    \label{fig:screenshot_finish}
-\end{figure}
 
 \end{document}
