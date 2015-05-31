@@ -97,8 +97,8 @@ Students will mainly be working on the various exercises, and they will also be 
 The primary role of the admins will be managing the exercises and supervising how well the students are doing. They should be able to easily delete or modify existing exercises or add new ones, as well as manage the order in which the students are presented with the exercises. They should also be able to get various statistics about how the students are doing in order to improve and optimize the exercises, their order and their subjects.
 \end{abstract}
 \selectlanguage{danish}
-
 \newpage
+
 \section*{Indholdsfortegnelse}
 \label{sec:toc}
 \makeatletter
@@ -106,16 +106,32 @@ The primary role of the admins will be managing the exercises and supervising ho
 \makeatother
 
 \thispagestyle{empty}
-
 \newpage
+
 \pagestyle{plain}
 \setcounter{page}{1}
 \pagenumbering{arabic}
 
 \section{Review}
+\label{sec:review}
 
 \subsection{Programming as theory building}
 \label{sub:programming_as_theory_building}
+Artiklen beskriver en måde at betragte programmering på, kaldet \emph{Theory Building View}, hvor fokus er på teorien og menneskerne bag et program, snarere end på selve programmet og koden. 
+
+Artiklen starter med et par eksempler på situationer hvor et projekt er udviklet af ét hold af programmører, men vedligeholdt og viderebygget af et andet hold. Der argumenteres så for at uanset hvor omfattende og detaljeret dokumentation det oprindelige hold af udviklere har produceret, vil det hold der senere tager over aldrig fuldstændig kunne overtage og videreføre projektet uden tab af effektivitet og sammenhæng. Dette kan dog mindskes eller måske endda helt undgås ved at det nye hold er i tæt kontakt med det oprindelige hold af udviklere og kan trække på, og nyde godt af, deres oprindelige idéer og erfaringer med projektet.
+
+Artiklen definerer det at have en teori om et program sådan at hvis en person har en teori om et bestemt program betyder det at personen har en omfattende viden om ikke bare hvordan programmet virker helt konkret, men også hvordan det er forbundet og interagerer med den virkelige verden. Personen er derfor i stand til både at forklare, forsvare og diskutere hvordan programmet opfører sig i forskellige situationer og på forskellige tidspunkter. Og det er netop denne form for viden der argumenteres for ikke bare kan videregives i form af dokumentation og regler, men som skal tilegnes ved selv at få erfaring med programmet, samt i høj grad også ved at interagere med og lære af andre med denne viden.
+
+Artiklen forklarer at der hvor \emph{the Theory Building View} virkelig adskiller sig fra et mere traditionelt syn på programmering er når det kommer til ændringer og udvidelser af programmer. Hvis man ser på det meget simpelt er et program i virkeligheden bare en række af filer indeholdende tekst, med en tilhørende række af tekstfiler der beskriver denne tekst i form af dokumentation. Man kunne derfor fristes til at tro at det burde være meget simpelt at ændre og tilføje til denne tekst, og derfor også forvente at ændringer og tilføjelser til programmer er simple og billige. 
+
+Hvis man antager \emph{the Theory Building View} er situationen dog en helt anden; her svarer en ændring af programmet til en ændring af selve teorien bag programmet, og det er langt mere avanceret. For at kunne ændre i, og tilføje til, teorien bag et program på en effektiv og meningsfuld måde kræver det, at man har en grundlæggende forståelse af teorien, og artiklen går endda så langt som til at hævde, at hvis det ikke er tilfældet, så er ændringer så godt som umulige. Det forklares at det ofte er dette der fører til at programmer 'dør ud', og at det i sådanne situationer nogen gange faktisk kan være den bedste idé at lade det ske og så i stedet lade programmet 'genopstå' ved at lade et nyt hold af programmører danne en ny teori.
+
+Overordnet set passer \emph{the Theory Building View} meget godt sammen med de ting vi lærer i PKSU-kurset og læser i OOSE\cite{OOSE} bogen. Vi har lært meget om, og haft meget fokus på, at lave en masse arbejde allerede inden vi går i gang med at 'programmere', altså med at skrive selve koden. Vi bruger tid på at lave grundige analyser af vores problem- og anvendelsesområde, vi arbejder med kravene til systemet, vi laver design af vores system og vores objekter, vi laver use cases og diverse andre grafer der beskriver vores system, vi laver forskellige og grundige former for tests osv. Alt dette kan jo meget vel ses som at vi opbygger en teori omkring vores system, idet at vi dermed tilegner os den viden der skal til for at kunne forklare, forsvare og argumentere for hvorfor vores system virker som det gør og hvordan det er forbundet med den virkelige verden, hvilket jo netop er sådan som en teori blev defineret i artiklen.
+
+Enhver der har arbejdet med et program skrevet af en anden ved også at selvom man læser både koden og dokumentationen grundigt, så er det ikke altid helt nemt at forstå fuldstændig hvad der sker og hvorfor, og at skulle ændre i, eller tilføje til, koden kan være noget af en opgave. Hvis man derimod kan snakke med én af dem der har været med til at udvikle programmet, og som dermed har styr på teorien bag, og kan stille spørgsmål og få forklaret ting man ikke helt forstår, så gør det det væsentlig nemmere. 
+
+Endelig kan man jo som datalog ikke være andet end enig i det syn på programmører som \emph{the Theory Building View} er fortaler for; nemlig at programmører ikke bare er komponenter i en industriel produktion som man bare kan smide væk og erstatte efter lyst og behov, men at de derimod er en vigtig og integral del af ethvert it-system, og fortjener den dertilhørende respekt og status.
 
 \subsection{Extreme Programming}
 \label{sub:extreme_programming}
@@ -124,7 +140,7 @@ The primary role of the admins will be managing the exercises and supervising ho
 
 \section{Formål og rammer}
 \label{sec:formal_og_rammer}
-I dette afsnit beskrives systemets formål og rammer ved \textit{FACTOR}-kriteriet, !!!citat mangler!!!, samt centralt terminologi forklares.
+I dette afsnit beskrives systemets formål og rammer ved \textit{FACTOR}-kriteriet, !!!citat mangler!!!, samt central terminologi forklares.
 
 \subsection{FACTOR}
 \label{sub:factor}
@@ -135,16 +151,19 @@ I dette afsnit beskrives systemets formål og rammer ved \textit{FACTOR}-kriteri
     \item Analysere de studerendes fremskridt
     \item Håndtere de studerendes login
 \end{itemize}
+
 \paragraph{Anvendelsesområde}
 \begin{itemize}
     \item Undervisere ved DIKU
     \item Førsteårsstuderende ved DIKU
 \end{itemize}
+
 \paragraph{Betingelser}
 \begin{itemize}
     \item Undervisere har begrænsede resurser
     \item Det skal foregå online
 \end{itemize}
+
 \paragraph{Teknologi}
 \begin{itemize}
     \item Python 2.7
@@ -153,14 +172,22 @@ I dette afsnit beskrives systemets formål og rammer ved \textit{FACTOR}-kriteri
     \item HTML/CSS
     \item JavaScript
 \end{itemize}
+
 \paragraph{Objekter}
 Studerende, Spørgsmål, Hint, Underviser.
+
 \paragraph{Ansvar}
 E-læringssystem der skal hjælpe de studerende med programmering.
 
 \subsection{Terminologi}
 \label{sub:terminologi}
+I vores projekt er der et par udtryk som går igen, hvor betydningen måske ikke er helt åbenlys, og som måske også nogle gange bliver kaldt noget andet. Derfor har vi lige en kort forklaring af disse udtryk.
 
+Det første af disse er \emph{subject}, som også vil blive refereret til som \emph{emne} på dansk. Et \emph{subject} er et overordnet emne, hvortil der hører en række spørgsmål som beskæftiger sig med dette emne. Et eksempel kunne være et \emph{subject} der hed 'Strings', hvor man så f.eks. ville få spørgsmål der beskæftigede sig med sammensætning og opsplitning af tekststrenge.
+
+Det andet af disse ord er \emph{threshold}, hvor den bedste danske oversættelse nok er \emph{overemne}. Et \emph{threshold} minder på mange måder om et \emph{subject}, bare på et højere niveau, idet at der til hvert \emph{thresholds} hører en række \emph{subjects}. Et eksempel kunne være et \emph{threshold} der hed 'Datatypes', og som så indeholdt \emph{subjects} som f.eks. tupler, lister, hashmaps osv.
+
+Endelig er der selve opgaverne på hjemmesiden, som både vil blive refereret til som \emph{opgaver}, \emph{spørgsmål} og \emph{questions}, uden at det betyder at der er en forskel. Der vil desuden heller ikke blive skælnet imellem de forskellige typer af spørgsmål, f.eks. multiple-choice spørgsmål, udfyldsningsspørgsmål osv.
 
 \section{Kravspecifikation}
 \label{sec:kravspecifikation}
@@ -173,8 +200,8 @@ De funktionelle krav for systemet er i tråd med afsnit 4.3.1 i \cite{OOSE}, nem
 \begin{itemize}
     \item Systemet skal være en hjemmeside med opgaver, som kan løses individuelt af de studerende.
     \item Der kræves login, så man kan følge med i den studerendes udvikling.
-    \item Spørgsmålene skal være grupperede efter hvilke læringsmål de tester.
-    \item Læringsmålene skal igen grupperes i nogle blokke, hvor idéen så er at man gennemgår blokkene én af gangen i en bestemt rækkefølge, og at sværhedsgraden stiger løbende.
+    \item Spørgsmålene skal være grupperede efter hvilke emne de hører under, og man kan så svare på spørgsmål inden for ét emne af gangen.
+    \item Emnerne skal igen grupperes i nogle overemner, hvor idéen så er at man gennemgår overemnerne én af gangen i en bestemt rækkefølge, og at sværhedsgraden løbende stiger.
     \item Der skal være hints til opgaverne som de studerende kan benytte om nødvendigt, og de studerende skal kunne give feedback til disse hints.
     \item Alle forsøg på opgavebesvarelser skal gemmes i en log.
 \end{itemize}
@@ -183,7 +210,7 @@ Hvis der er tid i en af de senere iterationer, så er der en del ekstra funktion
 \begin{itemize}
     \item Loggen skal bruges til at give underviseren information om hvilke spørgsmål der er svære.
     \item Der skal tilføjes en grad af \emph{gamification}, så der gives badges og point for fremskridt, og det bliver muligt at følge med i andres fremskridt.
-    \item Hvis man ikke har øvet sig i et emne i et stykke tid, så falder ens erfaring i området.
+    \item Hvis man ikke har øvet sig i et emne i et stykke tid, så falder ens erfaring inden for det område.
 \end{itemize}
 
 \paragraph{Ikke-funktionelle krav}
@@ -195,12 +222,12 @@ De ikke-funktionelle krav til dette projekt er forholdsvis begrænsede, idet vi 
 \begin{itemize}
 \item Det skal være simpelt og hurtigt at tilføje nye opgaver til systemet, sådan at kursuslederne efterfølgende kan opbygge en tilstrækkelig samling af opgaver til de studerende.
 \item Det endelige produkt skal gerne skal være simpelt og modulært, sådan at det er nemt at overtage, udvide og bygge videre på efter at vi overgiver projektet til kunden.
-\item Ingen af kunderne er web-udviklere, så det er også vigtigt at det valgte framework er veldokumenteret, samt at det er til at gå i gang med at bruge uden at skulle sætte sig ind i store mængder funktionalitet og dokumentation.
+\item Ingen af kunderne er web-udviklere, så det er også vigtigt at det valgte framework er veldokumenteret, mens at det samtidig er til at gå i gang med at bruge uden at skulle sætte sig ind i store mængder funktionalitet og dokumentation.
 \end{itemize}
 
 \subsection{Use case model}
 \label{sub:use_case_model}
-På Figur \ref{fig:use_case_model} kan man se vores use case model diagram. Vi har at gøre med to aktører, nemlig studerende og administratorer. Det vigtige for studerende er at de kan oprette sig på siden, og at de har adgang til opgaver de kan besvare. Det vigtige for administratorer er at de kan administrere opgaverne, og at de kan få feedback og statistik på hvordan de studerende klarer opgaverne. Begge aktører skal desuden kunne benytte simpel funktionalitet i forbindelse med deres login.
+På Figur \ref{fig:use_case_model} kan man se vores use case model diagram. Vi har at gøre med to aktører, nemlig studerende og administratorer. Det vigtige for studerende er at de kan oprette sig på siden, og at de har adgang til spørgsmål de kan besvare. Det vigtige for administratorer er at de kan administrere opgaverne, og at de kan få feedback og statistik på hvordan de studerende klarer opgaverne. Begge aktører skal desuden kunne benytte simpel funktionalitet i forbindelse med deres login.
 
 \begin{figure}[h]
   \centering
@@ -241,7 +268,7 @@ På Figur \ref{fig:use_case1} ses en beskrivelse af use casen, hvor en studerend
     \label{fig:use_case1}
 \end{figure}
 
-På Figur \ref{fig:use_case2} ses en beskrivelse af use casen, hvor en studerende svarer på spørgsmål inden for et givet subject. Når den studerende har valgt et subject vil vedkommende blive stillet en række af spørgsmål tilhørende dette subject. Hver gang den studerende svarer rigtigt på et spørgsmål bliver vedkommende belønnet med point. Dette fortsætter indtil har opnået nok point til at gennemføre det givne subject. 
+På Figur \ref{fig:use_case2} ses en beskrivelse af use casen, hvor en studerende svarer på spørgsmål inden for et givet \emph{subject}. Når den studerende har valgt et \emph{subject} vil vedkommende blive stillet en række af spørgsmål tilhørende dette emne. Hver gang den studerende svarer rigtigt på et spørgsmål bliver vedkommende belønnet med point. Dette fortsætter indtil har opnået nok point til at gennemføre det valgte \emph{subject}. 
 
 \begin{figure}[h]
     \centering
@@ -253,17 +280,17 @@ På Figur \ref{fig:use_case2} ses en beskrivelse af use casen, hvor en studerend
         \hline
         \textit{Hændelser:} & \begin{enumerate}[nolistsep]
             \item Den studerende åbner hjemmesiden.
-            \item Vedkommende vælger et subject inden for et threshold der er låst op ved at have færdiggjort det forrige.
-            \item Systemet præsenterer et spørgsmål for den studerende. Der kan være flere typer spørgsmål (multiple-choice, udfyldning med flere).
-            \item Den studerende angiver sit svar.
-            \item Systemet giver respons på svaret, og gemmer det i loggen.
+            \item Vedkommende vælger et \emph{subject} inden for et af de pbne \emph{threshold}.
+            \item Systemet præsenterer et spørgsmål for den studerende.
+            \item Den studerende angiver sit svar i form af indtastning, afkrydsning eller andet.
+            \item Systemet giver respons på svaret, og gemmer alle informationerne i loggen.
             \item Den studerende trykker næste, for at få et spørgsmål mere.
-            \item Når den studerende har svaret på nok spørgsmål, har vedkommende gennemført det aktuelle subject, og tages tilbage til forsiden.
+            \item Når den studerende har svaret på nok spørgsmål, har vedkommende gennemført det valgte \emph{subject}, og tages tilbage til forsiden.
         \end{enumerate}  \\
         \hline
         \textit{Startbetingelse:} & Den studerende er logget ind. \\
         \hline
-        \textit{Slutbetingelse:} & Den studerende har gennemført et subject. \\
+        \textit{Slutbetingelse:} & Den studerende har gennemført et \emph{subject}. \\
         \bottomrule
     \end{tabular}
     \caption{Use case omkring besvarelse af spørgsmål og gennemførelse af subject.}
@@ -318,7 +345,7 @@ På Figur \ref{fig:bce_model} kan man se vores BCE model. Modellen har to entity
   \label{fig:bce_model}
 \end{figure}
 
-De to entity-objekter er \emph{Bruger} og \emph{Opgave}. \emph{Bruger} indeholder informationer om hver enkelt bruger, så som login-oplysninger, hvor vidt brugeren er studerende eller admin samt hvilke opgaver brugeren allerede har løst. \emph{Opgave} indeholder alle informationerne om de enkelte opgaver, det er både selve opgaven der skal løses samt statistik omkring hvordan det er gået når studerende har løst opgaven.
+De to entity-objekter er \emph{Bruger} og \emph{Opgave}. \emph{Bruger} indeholder informationer om hver enkelt bruger, så som login-oplysninger, hvor vidt brugeren er studerende eller admin samt hvilke \emph{subjects} brugeren allerede har gennemført. \emph{Opgave} indeholder alle informationerne om \emph{thresholds}, \emph{subjects} og opgaver, samt statistik omkring hvordan det er gået når de studerende har løst opgaverne.
 
 Modellen har tre boundary-objekter, hvor det første man vil møde når man indlæser siden er \textit{login}-brugergrænsefladen, der sammen med \emph{login}-controlleren sørger for at logge brugerne ind i systemet. Derefter vil man så enten have adgang til \emph{Bruger}-grænsefladen eller \emph{Admin}-grænsefladen afhængig af hvad ens status er, og derfra har man adgang til en række controllers.
 
@@ -327,7 +354,7 @@ Modellen har fire controller-objekter, hvor den første er \emph{login}-controll
 
 \subsection{Sekvens-diagrammer}
 I dette afnit er der lavet sekvensdiagrammer over de tre use cases der er beskrevet i Afsnit \ref{sub:use_cases}. De funktionskald der fremgår af sekvensdiagrammerne er ikke nødvendigvis reelle funktioner i vores applikation, men er nærmere brugt for at beskrive hvad der sker.
-På Figur \ref{fig:opret_bruger_sekvens} kan man se sekvens-diagrammet for den første use case, der beskriver hvordan en studerende opretter sig som bruger i systemet. Her indgår to adskilte sessioner. I den første opretter brugeren sig i systemet, og systemet så sender en email til brugeren. I næste session klikker brugeren på et link i denne email, og brugeren bliver så aktiveret i systemet. Derefter logger brugeren ind, får at vide at det er lykkedes, og use casen er så færdig.
+På Figur \ref{fig:opret_bruger_sekvens} kan man se sekvens-diagrammet for den første use case, der beskriver hvordan en studerende opretter sig som bruger i systemet. Her indgår to adskilte sessioner. I den første opretter brugeren sig i systemet, og systemet sender så en email til brugeren. I næste session klikker brugeren på et link i denne email, og brugeren bliver så aktiveret i systemet. Derefter logger brugeren ind, får at vide at det er lykkedes, og use casen er så færdig.
 
 \begin{figure}[h]
     \centering
@@ -336,7 +363,7 @@ På Figur \ref{fig:opret_bruger_sekvens} kan man se sekvens-diagrammet for den f
     \label{fig:opret_bruger_sekvens}
 \end{figure}
 
-På Figur \ref{fig:svar_sekvens} kan man se sekvens-diagrammet for den anden use case, der beskriver hvordan en studerende vælger et subject og dernæst besvarer spørgsmål indtil subject'et er gennemført. Løkken viser at der kan komme flere end ét spørgsmål efter det første.
+På Figur \ref{fig:svar_sekvens} kan man se sekvens-diagrammet for den anden use case, der beskriver hvordan en studerende vælger et \emph{subject} og dernæst besvarer spørgsmål indtil det valgte \emph{subject} er gennemført. Løkken viser at der kan komme flere end ét spørgsmål efter det første.
 
 \begin{figure}[h]
     \centering
@@ -357,24 +384,21 @@ På Figur \ref{fig:opret_sp_sekvens} kan man se sekvens-diagrammet for den tredj
 
 \section{Systemdesign}
 \label{sec:systemdesign}
-
-I dette afsnit beskrives de designopgaver der er udført allerede. Til sidst i afsnittet gennemgås de dele der endnu ikke er udført.
+I dette afsnit beskrives de forskellige apsekter af vores systemdesign. Til sidst i afsnittet gennemgås de dele vi ikke har nået at gennemføre/implementere.
 
 \subsection{Valg af frameworks}
 \label{sub:valg_af_frameworks}
-
-Som før omtalt i Afsnit~\ref{sec:formal_og_rammer} har vi valgt at bruge frameworket Flask som grundlag for vores webapplikation, der på deres egen hjemmeside\footnote{\url{http://flask.pocoo.org/}} er beskrevet som et såkaldt \emph{microframework}. Det betyder at der ikke følger mange af de ting med som der gør i mange større webframeworks. Flask tilbyder kun HTTP routing og templating. Resten skal man selv finde andre biblioteker til. Vi har valgt det, da der så ikke er så meget, at skulle sætte sig ind i, og det giver mere frihed til at udforme applikationen som kunden og vi synes er bedst.
+Som før omtalt i Afsnit \ref{sec:formal_og_rammer} har vi valgt at bruge frameworket \emph{Flask} som grundlag for vores webapplikation, der på deres egen hjemmeside\footnote{\url{http://flask.pocoo.org/}} er beskrevet som et såkaldt \emph{microframework}. Det betyder at der ikke følger mange af de ting med som der gør i mange større webframeworks. Flask tilbyder kun HTTP routing og templating. Resten skal man selv finde andre biblioteker til. Vi har valgt det, da der så ikke er så meget, at skulle sætte sig ind i, og det giver mere frihed til at udforme applikationen som kunden og vi synes er bedst.
 
 \subsection{Strukturering}
 \label{sub:strukturering}
+I nogle udviklingsmiljøer er der typisk givet en struktur af kodebasen på forhånd. Det gælder f.eks. mange gange når man bruger store frameworks som Django til Python eller Play til Java. Der er nogle konventioner for hvilke klasser der skal i hvilke mapper, og til hvordan konfigurationsfiler skal struktureres. Det er med til at sikre en god strukturing af koden. Frameworket Flask, som vi har valgt at bruge, har ikke sådanne konventioner. Alt kode kunne i teorien placeres i én stor fil hvis man ville. Derfor har vi været omhyggelige med at organisere moduler og klasser i forskellige filer og mapper på en sådan måde at det er overskueligt og forståeligt.
 
-I nogle udviklingsmiljøer er der typisk givet en struktur af kodebasen på forhånd. Det gælder f.eks. mange gange når man bruger store frameworks som Django til Python eller Play til Java. Der er nogle konventioner til hvilke klasser der skal i hvilke mapper, og til hvordan konfigurationsfiler skal struktureres. Det er med til at sikre en god strukturing af koden. Frameworket Flask, som vi har valgt at bruge, har ikke sådanne konventioner. Alt kode kunne placeres i en stor fil hvis man ville. Derfor har vi været omhyggelige med at organisere moduler og klasser på en sådan måde at det er nemt at finde hoved og hale i.
+Det giver god mening som den første nedbrydning at dele applikationen op i moduler, som hver især indkapsler adskildt funktionalitet. Det beskrives også i kapitel 6.3 i \cite{OOSE} hvordan man får delt et system op, så kohæsionen mellem moduler bliver så lille som mulig. Ud fra kravspecifikationen har vi nedbrudt det i fire moduler; \texttt{user, admin, question} og \texttt{log}. 
 
-Det giver god mening som den første nedbrydning at dele applikationen op i moduler, som hver især indkapsler adskildt funktionalitet. Det beskrives også i kapitel 6.3 i \cite{OOSE}, hvor det beskrives hvordan man får delt et system op, så kohæsionen mellem moduler bliver så lille som mulig. Ud fra kravspecifikationen har vi nedbrudt det i fire moduler; \texttt{user, admin, question} og \texttt{log}. 
+\texttt{User} modulet håndterer den del der har at gøre med brugerlogins, og alt der hører med af oprettelse, ændring og nulstilning af kodeord osv. \texttt{Admin} modulet håndterer den del der har at gøre med administration af spørgsmål, \emph{subects}, \emph{thresholds} og brugere. \texttt{Log} modulet håndterer den del der har at gøre med logning af statistik fra spørgsmålbesvarelser, samt visning af denne. Endelig håndterer \texttt{question} modulet den del der har at gøre med spørgsmål, \emph{subjects} og \emph{thresholds}, både selve opbygningen af hele spørgsmål-strukturen samt visning og besvarelse af spørgsmål.
 
-\texttt{User} modulet håndterer den del der har at gøre med brugerlogins, og alt der hører med af oprettelse, ændring af kodeord, nulstilning af kodeord osv. \texttt{Admin} modulet håndterer den del der har at gøre med administration af spørgsmål, subects, thresholds og brugere. \texttt{Log} modulet håndterer den del der har at gøre med logning af statistik fra spørgsmålbesvarelser, samt visning af denne. Endlig håndterer \texttt{question} modulet den del der har at gøre med spørgsmål, både selve opbygningen af hele spørgsmål-strukturen samt visning og besvarelse af spørgsmål.
-
-Det har gjort at vi har kunnet takle problemer uafhængigt af hinanden, og derved har kunnet udvikle mere effektivt.
+Denne opdeling har gjort at vi nemmere har kunnet takle problemer uafhængigt af hinanden, og derved har kunnet udvikle mere effektivt.
 
 \subsection{Databasedesign}
 \label{sub:databasedesign}
@@ -387,15 +411,15 @@ På Figur \ref{fig:er_diagram_question} er ER-diagrammet for hele spørgsmål-as
     \label{fig:er_diagram_question}
 \end{figure}
 
-Log-aspektet af vores database er rimelig simpel, idet at vi helt simpelt har to tabeller; QLog og HintRatings. Hver gang en studerende vælger et emne og begynder at svare på spørgsmål bliver der gemt en masse informationer om det i QLog-tabellen. I den anden tabel bliver det gemt når en studerende giver en vurdering af et specifikt hint.
+Log-aspektet af vores database er rimelig simpel, idet at vi blot har to tabeller; \emph{QLog} og \emph{HintRatings}. Hver gang en studerende vælger et emne og begynder at svare på spørgsmål bliver der gemt en masse informationer om det i QLog-tabellen. I den anden tabel bliver det gemt når en studerende giver en vurdering af et specifikt hint.
 
-Det tredje aspektet af vores database er brugere. Vi har en User tabel, hvor alt informationen om de studerende og deres kontoer bliver gemt, samt informationer om admins.
+Det tredje aspektet af vores database er brugere. Vi har en \emph{Users} tabel, hvor alt informationen om brugerne og deres kontoer bliver gemt, deriblandt også hvilken rolle de har i systemet.
 \FloatBarrier
 
 \subsection{Brugere}
 \label{sub:brugere}
+Modulet \texttt{user} håndterer brugere. Vi har implementeret funktionalitet som vi synes børe være i et brugerhåndteringssystem. Der er følgende features:
 
-Modulet \texttt{user} håndterer brugere. Vi har implementeret funktionalitet som vi synes børe være i et brugerhåndteringssystem. Der er følgende features
 \begin{itemize}
     \item Log ind og log ud
     \item Oprettelse af brugere med email-godkendelse via. KU-mail
@@ -403,13 +427,13 @@ Modulet \texttt{user} håndterer brugere. Vi har implementeret funktionalitet so
     \item Nulstilling af password
 \end{itemize}
 
-For at det ikke skal være muligt at se brugerens password, gemmer vi en hashet udgave af det i databasen vha. password hashing funktionaliteten der følger med \verb!Flask!. Den benytter hashing algoritmen \verb!SHA1! som er implementeret i pythons standardbibliotek. Dette er vigtigt for os, da det er vigtigt at hashing algoritmen er til at stole på.
+For at det ikke skal være muligt at se brugeres password, gemmer vi en hashet udgave af det i databasen vha. password hashing funktionaliteten der følger med \verb!Flask!. Den benytter hashing algoritmen \verb!SHA1! som er implementeret i pythons standardbibliotek. Dette er vigtigt for os, da det er vigtigt at hashing algoritmen er til at stole på.
 
 Vi godkender brugere ved at sende en email til deres KU-mail. I denne mail er der en token som kan afkodes til brugerens KU-id, så det er kun præcis den token der fungerer. Vi bruger samme teknik til nulstilning af passwords, for at være sikker på at det er den korrekte bruger der får lov at nulstille passwordet eller godkende brugeren.
 
 Ændring af password er trivielt, man skal bare være sikker på at brugeren er logget ind først.
 
-Vi implementerer forskellige brugertyper med flag i databasen. For at gøre det nemt at lave adgangskontrol på views, har vi implementeret en decorator som pakker hvert view ind. Det ser ud på følgende måde
+Vi implementerer forskellige brugertyper med flag i databasen. For at gøre det nemt at lave adgangskontrol på views, har vi implementeret en decorator som pakker hvert view ind. Det ser ud på følgende måde:
 
 \begin{python}
 @app.route('/admin')
@@ -417,11 +441,12 @@ Vi implementerer forskellige brugertyper med flag i databasen. For at gøre det 
 def admin_index():
     return render_template('admin/index.html')
 \end{python}
-for et view der kunne vise admin siden. Den tjekker så om den nuværende bruger der er logget ind har rollen \verb!admin!.
+
+for et view der f.eks. kunne vise admin siden. Den tjekker så om den nuværende bruger der er logget ind har rollen \verb!admin!.
 
 \subsection{Spørgsmål}
 \label{sub:sporgsmal}
-Ud fra ER diagrammernes nedarvningshieraki har vi implementeret dem som Python klasser der alle nedarver fra en generel klasse \verb!Question!. I underklasserne er der så alle de attributter der adskiller klasserne fra hinanden. I et kodespørgsmål er der for eksempel tilføjet attributterne \verb!code! og \verb!exec_name!. Den første er kodestumpen der skal modificeres, og det andet er den eksekverbare fil der findes på serveren til at vurdere svaret på opgaven. For ikke at skulle ændre i logikken til at vise spørgsmål, så bruges en polymorf metode \verb!render_question!. Den sørger for at generere HTML til et spørgsmål, samt tjekke om svaret der gives er rigtigt. Tricket er så, at når man laver en ny underklasse af \verb!Question!, så skal man kun skrive én ny metode til at generere et view og tjekke svaret. Det er et led i at vi gerne vil gøre koden så modulær som muligt.
+Ud fra ER diagrammernes nedarvningshieraki har vi implementeret dem som Python klasser der alle nedarver fra en generel klasse \verb!Question!. I underklasserne er der så alle de attributter der adskiller spørgsmåltyperne fra hinanden. I et kodespørgsmål er der for eksempel tilføjet attributterne \verb!code! og \verb!exec_name!. Den første er kodestumpen der skal modificeres, og det andet er den eksekverbare fil der findes på serveren til at vurdere brugerens svar på opgaven. For ikke at skulle ændre i logikken til at vise spørgsmål, bruges en polymorf metode \verb!render_question!. Den sørger for at generere HTML'en for et givet spørgsmål, samt tjekke om svaret brugeren indsender er korrekt. Tricket er så, at når man laver en ny underklasse af \verb!Question!, så skal man kun skrive én ny metode til at generere et view og tjekke svaret. Det er et led i at vi gerne vil gøre koden så modulær som muligt.
 
 Et af kravene i kravspecifikationen var, at man kunne oprette spørgsmål fra et semistruktureret filformat som f.eks. \verb!YAML!. Til dette har vi brugt et \emph{Factory Method Pattern}. Det er en simpel version af det \emph{Factory Pattern} der beskrives i kapitel 8 i Bruegge og Dutoit\cite{OOSE}. Vi har implementeret en statisk metode, som sørger for at lave det rigtige \verb!Question! ud fra et givet python \verb!dict!. Vi slipper derved for at tænke alt for meget på underklasser fordi man i python har \emph{duck-typing}, hvilket vil sige, at interfaces er implicitte. Det gør at man kan returnere det specifikke objekt i stedet. Den implementerede funktion hedder \verb!from_dict!, og returnerer det spørgsmål der er blevet oprettet ud fra det givne data. Vi kan på den måde faktisk også bruge mange forskellige strukturerede filformater, da mange biblioteker tager en fil ind, og outputter en \verb!dict!.
 
@@ -429,8 +454,7 @@ Da \emph{thresholds} har en naturlig rækkefølge, så er de lidt mere komplicer
 
 Et andet krav er, at man skal kunne få hints til opgaverne. For at man ikke kan snyde, og se hints inden man har bedt om dem, så sender vi dem dynamisk til brugeren. Det vil sige at de injiceres på hjemmesiden mens vedkommende er i gang med at løse opgaven. Vi kan så på serversiden holde øje med hvor mange hints den pågældende bruger har bedt om, og gemme det i loggen. Det foregår med teknologien \verb!AJAX!, som går ud på, at man sender et asynkront HTTP-request til serveren, som så sender data tilbage. Hjemmesiden ændres så dynamisk, sådan at dataene sættes ind på siden uden at den genindlæses.
 
-Bedømmelsesmaskine og javascript kode-editor
-
+!!!Bedømmelsesmaskine og javascript kode-editor!!!
 
 \subsection{Udestående design- og implementationsopgaver}
 \label{sub:udestaende_design_og_implementationsopgaver}
@@ -627,24 +651,23 @@ På Figur \ref{fig:flow_chart_admin} ses en illustration af flowet i en admins i
 \end{figure}
 \FloatBarrier
 
-\subsection{Tænke-højt forsøg}
-\label{sub:taenke_hoejt}
-Blah blah blah
-
 \subsection{Audio-Visuel Præsentation}
 \label{sub:audio_visuel}
 Blah blah blah
 
+\subsection{Tænke-højt forsøg}
+\label{sub:taenke_hoejt}
+Blah blah blah
+
 \section{Projektsamarbejdet}
 \label{sec:projektsamarbejdet}
-Samarbejdet med kunden fungerer stadig ganske udemærket. Når vi mødes med dem er der en meget afslappet og munter stemning, og det virker som om vi er meget godt på bølgelængde sammen og forstår at diskutere og blive enige om de forskellige aspekter af projektet. Vi er stadig ikke så gode til at være officielle og tage referater og den slags, mest fordi møderne mere er en mundtlig samtale og diskussion af projektet, og de ting vi bliver enige om er sjældent helt nye for os, så det er tanker vi allerede selv har gjort os. Vi har desuden endnu ikke haft en helt fungerende prototype at vise frem og bruge som basis for en mere konkret diskussion af projektet, men det skulle vi gerne have klar til næste gang vi skal mødes med kunden.
+Samarbejdet med kunden er gået ganske udemærket. Når vi har mødtes med dem har der været en meget afslappet og munter stemning, og det harvirket som om vi har været meget godt på bølgelængde sammen og forstået at diskutere og blive enige om de forskellige aspekter af projektet. Vi har ikke været så gode til at være meget officielle og tage referater og notere alting ned, nok mest fordi møderne mere har været en mundtlig samtale og diskussion af projektet, hvor det er blevet tegnet både på papir og tavler. De ting vi er blevet enige om har desuden sjældent været helt nye for os, men nærmere været ting vi allerede selv havde ting over, og derfor har vi ikke følt at det har været nødvendigt at notere noget ned. Vi har først ved sidste møde haft en fungerende prototype at vise frem, men den virkede de til gengæld også imponerede over. 
 
-Projektsamarbejdet internt i gruppen går nogenlunde, vi er ikke så gode til at holde sådan officielle møder  med dagsordener og referater og den slags, i stedet snakker vi bare sammen når vi lige mødes inde på universitetet, og arbejder på projektet når vi lige har tid, f.eks. i en pause eller en fri eftermiddag. Det meste af vores kommunikation foregår stadigvæk over email eller facebooks chat.
+Projektsamarbejdet internt i gruppen er gået nogenlunde, her har vi heller ikke været så gode til at holde officielle møder  med dagsordener og referater og lignende. I stedet har vi mere bare snakket sammen når vi lige er mødtes inde på universitetet, og vi har primært arbejdet på projektet når vi lige har tid, f.eks. når vi har haft en pause eller en fri eftermiddag. Det meste af vores kommunikation både indbyrdes og med kunden er foregået over email.
 
-Vi har for nyligt oprettet en to-do liste inde i vores git repository, hvor vi prøver at notere de forskellige opgaver der mangler at blive løst, og som vi opdaterer løbende når vi får gennemført nogle af tingene eller støder på nye ting der skal laves. Det håber vi kan hjælpe os til at have et bedre overblik over projektet, og til at ikke glemme alle de små ting man måske støder på. På to-do listen er der tre sektioner, én til de store, vigtige ting, én til de mindre, mindre vigtige ting, og én til de ting der har at gøre med rapporten.
+Vi har forholdsvis sent i projektet fået oprettet en to-do liste inde i vores git repository, hvor vi har prøvet at notere de forskellige opgaver der manglede at blive løst ned, og som vi løbende har opdateret når vi har fået gennemført nogle af tingene eller er stødt på nye ting der skal laves, og det har fungeret rigtig godt. Det har hjulpet os til at have et bedre overblik over projektet, og til at ikke glemme alle de små ting man kan støde på og tænke at man løser senere.
 
 \newpage
-
 \appendix
 \section{Versionsstyring}
 \label{sec:versionsstyring}
@@ -668,9 +691,11 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 26-04-2015 & CKL & Tilføjet afsnit om tests. \\
 30-04-2015 & CKL & Rettet til genaflevering og tilføjet systemdesign. \\
 08-05-2015 & CKL & Tilføjet afsnit om strukturering. \\
-10-05-2015 & LSE & Tilføjet Brugergrænseflade og screenshots, opdateret Systemdesign. \\
+10-05-2015 & LSE & Tilføjet Brugergrænseflade og screenshots. \\
 11-05-2015 & CKL & Tilføjet review af \cite{nsbullet}. \\
 20-05-2015 & CKL & Tilføjet afsnit omkring systemdesign af brugere og begyndt på spørgsmål. \\
+30-05-2015 & LSE & Tilføjet flere screenshots og flow-charts. \\
+31-05-2015 & LSE & Tilføjet review af Naur. \\
 \end{tabular}
 
 \section{Timeline}
