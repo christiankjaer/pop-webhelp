@@ -241,7 +241,7 @@ På Figur \ref{fig:use_case1} ses en beskrivelse af use casen, hvor en studerend
     \label{fig:use_case1}
 \end{figure}
 
-På Figur \ref{fig:use_case2} ses en beskrivelse af use casen, hvor en studerende svarer på spørgsmål inden for et givet subject. Når den studerende har valgt et subject vil vedkommende blive stillet en række af spørgsmål tilhørende dette subject. Hver gang den studerende svarer rigtigt på et spørgsmål bliver vedkommende belønnet med point. Dette fortsætter indtil har opnået nok point til at gennemføre det givne subject. 
+På Figur \ref{fig:use_case2} ses en beskrivelse af use casen, hvor en studerende svarer på spørgsmål inden for et givet subject. Når den studerende har valgt et subject vil vedkommende blive stillet en række af spørgsmål tilhørende dette subject. Hver gang den studerende svarer rigtigt på et spørgsmål bliver vedkommende belønnet med point. Dette fortsætter indtil har opnået nok point til at gennemføre det givne subject.
 
 \begin{figure}[h]
     \centering
@@ -370,7 +370,7 @@ Som før omtalt i Afsnit~\ref{sec:formal_og_rammer} har vi valgt at bruge framew
 
 I nogle udviklingsmiljøer er der typisk givet en struktur af kodebasen på forhånd. Det gælder f.eks. mange gange når man bruger store frameworks som Django til Python eller Play til Java. Der er nogle konventioner til hvilke klasser der skal i hvilke mapper, og til hvordan konfigurationsfiler skal struktureres. Det er med til at sikre en god strukturing af koden. Frameworket Flask, som vi har valgt at bruge, har ikke sådanne konventioner. Alt kode kunne placeres i en stor fil hvis man ville. Derfor har vi været omhyggelige med at organisere moduler og klasser på en sådan måde at det er nemt at finde hoved og hale i.
 
-Det giver god mening som den første nedbrydning at dele applikationen op i moduler, som hver især indkapsler adskildt funktionalitet. Det beskrives også i kapitel 6.3 i \cite{OOSE}, hvor det beskrives hvordan man får delt et system op, så kohæsionen mellem moduler bliver så lille som mulig. Ud fra kravspecifikationen har vi nedbrudt det i fire moduler; \texttt{user, admin, question} og \texttt{log}. 
+Det giver god mening som den første nedbrydning at dele applikationen op i moduler, som hver især indkapsler adskildt funktionalitet. Det beskrives også i kapitel 6.3 i \cite{OOSE}, hvor det beskrives hvordan man får delt et system op, så kohæsionen mellem moduler bliver så lille som mulig. Ud fra kravspecifikationen har vi nedbrudt det i fire moduler; \texttt{user, admin, question} og \texttt{log}.
 
 \texttt{User} modulet håndterer den del der har at gøre med brugerlogins, og alt der hører med af oprettelse, ændring af kodeord, nulstilning af kodeord osv. \texttt{Admin} modulet håndterer den del der har at gøre med administration af spørgsmål, subects, thresholds og brugere. \texttt{Log} modulet håndterer den del der har at gøre med logning af statistik fra spørgsmålbesvarelser, samt visning af denne. Endlig håndterer \texttt{question} modulet den del der har at gøre med spørgsmål, både selve opbygningen af hele spørgsmål-strukturen samt visning og besvarelse af spørgsmål.
 
@@ -446,7 +446,7 @@ For at det skal være så nemt og smertefrit som muligt at teste, så bruger vi 
 
 For at være sikker på at vores tests er dækkende, så bruges et værktøj der måler dækningsgraden (Afsnit 11.4.3 i \cite{OOSE}) af vores tests. Det giver et mål for hvor gode testene er. Dette værktøj er \verb!coverage!\footnote{\url{http://nedbatchelder.com/code/coverage/}}. Det kan også generere rapporter, der giver et overblik over koden, og visuelt viser hvilke dele af koden vores tests dækker, og hvilke der delvist eller slet ikke er dækket.
 
-På Figur \ref{fig:testcoverage} ses en udskrift af testrapporten. Her kan man see hvilke moduler af koden, som er dækket tilstrækkeligt af tests, og hvilke der måske stadig har nogle mangler. 
+På Figur \ref{fig:testcoverage} ses en udskrift af testrapporten. Her kan man see hvilke moduler af koden, som er dækket tilstrækkeligt af tests, og hvilke der måske stadig har nogle mangler.
 
 \begin{figure}[h]
     \centering
