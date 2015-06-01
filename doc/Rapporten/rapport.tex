@@ -15,6 +15,7 @@
 \usepackage[colorlinks=false]{hyperref}
 \usepackage{tocbibind}
 \usepackage{fancyvrb}
+\usepackage{framed}
 
 % Default fixed font does not support bold face
 \DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{10} % for bold
@@ -454,7 +455,7 @@ Da \emph{thresholds} har en naturlig rækkefølge, så er de lidt mere komplicer
 
 Et andet krav er, at man skal kunne få hints til opgaverne. For at man ikke kan snyde, og se hints inden man har bedt om dem, så sender vi dem dynamisk til brugeren. Det vil sige at de injiceres på hjemmesiden mens vedkommende er i gang med at løse opgaven. Vi kan så på serversiden holde øje med hvor mange hints den pågældende bruger har bedt om, og gemme det i loggen. Det foregår med teknologien \verb!AJAX!, som går ud på, at man sender et asynkront HTTP-request til serveren, som så sender data tilbage. Hjemmesiden ændres så dynamisk, sådan at dataene sættes ind på siden uden at den genindlæses.
 
-!!!Bedømmelsesmaskine og javascript kode-editor!!!
+Et af de mere komplicerede krav til systemer er, at det skal være forbedredt til kodespørgsmål, som skal tjekkes med et program på severen. Dette er noget som vores kunder selv vil implementere, så vi har specificeret en grænseflade mellem vores applikation og systemet, som betyder at systemet kører et script der hører til et spørgsmål, og der fødes så information frem og tilbage. Dette skal også være behageligt for brugeren, så ved kodespørgsmål vises et redigeringsvindue der fremhæver \verb!F#! syntaks. Til dette bruges JavaScript editoren CodeMirror\footnote{\url{https://codemirror.net/}}.
 
 \subsection{Udestående design- og implementationsopgaver}
 \label{sub:udestaende_design_og_implementationsopgaver}
@@ -490,7 +491,7 @@ På Figur \ref{fig:code_coverage} ses hvordan værktøjet viser hvilke dele af k
 
 \subsection{Integrationstests}
 \label{sub:integrationstests}
-Når vi har flere færdiggjorte moduler, så skal de testes sammen med realistiske input data, for at se om flere dele af systemet spiller sammen.
+Vores integrationstests foregår med samme værktøjer som vores unittests. Forskellen ligger i, hvordan testene er designet. I integrationstests testes at sammenspillet med modulerne er som ønsket, og at man kan bruge flere funktionaliteter på en gang. Vi har ikke haft tid til at skrive mange tests, men vi har tests der opretter databaseelementer, logger en bruger ind og åbner spørgsmål. Undervejs tjekkes så at alt er i overensstemmelse med kravspecifikationen, og at der vises præcist hvad der skal på hjemmesiden.
 
 \subsection{Usability-tests}
 \label{sub:usability_tests}
@@ -499,6 +500,8 @@ Når vi har en funktionsdygtig brugergrænseflade, så skal der udføres tests a
 
 \section{Brugergrænseflade og interaktionsdesign}
 \label{sec:userinterface}
+
+I dette afsnit beskrives vores brugergrænseflade og hvordan der interageres med den. Derudover vises der skærmbilleder af den centrale funktionalitet og diagrammer der viser flowet gennem applikationen.
 
 \subsection{Screenshots}
 \label{sub:screenshots}
@@ -654,11 +657,19 @@ På Figur \ref{fig:flow_chart_admin} ses en illustration af flowet i en admins i
 \subsection{AV-præsentation}
 \label{sub:av_praesentation}
 
-Der kan ses en præsentation af de vigtigste elementer i systemet på \url{https://youtu.be/JexAhDF9XCc}
+Der kan ses en præsentation af de vigtigste elementer i systemet på
+\begin{framed}
+    \centering
+    \url{https://youtu.be/JexAhDF9XCc}
+\end{framed}
 
 \subsection{Tænke-højt forsøg}
 \label{sub:taenke_hoejt}
-Blah blah blah
+Vi har udført tænke-højt afprøvning af vores seneste prototype med en mulig bruger for vores system. Vi har ved denne test bedt en testperson om at løse en række opgaver på hjemmesiden som det beskrives i kapitel 9 i \cite{molich}. Ved denne afprøvning har vi identificeret en række problemer ved vores nuværende prototype, som skal addresseres i næste iteration af systemet men som udgangpunkt lykkedes alle opgaverne uden hjælp, og derfor finder vi flowet af applikationen i orden.
+
+Det vi skal have rettet er, at der skal være mere forklarende tekst til funktionaliteten på hjemmesiden. Det skal også fremgå mere tydeligt, hvor man skal indtaste sit svar, og det skal beskrives præcist, hvad der skal ske, når man er færdig med en opgave.
+
+Mange af disse problemer er omkring at bevæge sig rundt på siden, og vi har ikke rigtigt kunnet teste det før prototypen var færdig, derfor kommer vi ikke til at rette det i denne iteration.
 
 \section{Projektsamarbejdet}
 \label{sec:projektsamarbejdet}
