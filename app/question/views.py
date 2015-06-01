@@ -115,10 +115,13 @@ def render_question(q):
             answer = [form.choices.data]
         else:
             answer = form.choices.data
-
         correct = [c.id for c in q.choices if c.correct]
         feedback = 'The answer was correct.'
         result = {'answer': str(answer), 'correct':True, 'feedback':feedback}
+        if len(answer) != len(correct):
+            feedback = 'The answer was incorrect'
+            result['feedback'] = feedback
+            result['correct'] = False
         for i in answer:
             if int(i) not in correct:
                 feedback = 'The answer was incorrect.'
