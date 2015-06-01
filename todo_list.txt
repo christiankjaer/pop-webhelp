@@ -37,8 +37,6 @@ YAML files with wrong format or non-unique values gives ugly error
 
 --- Report ---
 
-Fix width of columns (changelog, timeline)
-
 Review of Highsmith
 
 Systemdesign
