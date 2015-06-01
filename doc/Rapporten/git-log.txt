@@ -1,376 +1,564 @@
-* 9837b06 Fjernet ting fra todo
-* 0f30d9d Ryddet op
-* 7f4e858 CSS fejl
-* 2b9f4af Code er nu med wtforms og rettet bug med at man ikke kan åbne første emne
-*   383196f Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-|\  
-| * eb8b266 Rigtige testdata
-* | 9f80a5e Added extra acces control, session expiration timer and updated the todo-list
-|/  
-*   4695206 Merge branch 'redis' of https://github.com/christiankjaer/pop-webhelp
-|\  
-| * f082922 Et par småting og opdateret todo-list
-| *   4805fe2 Merge with branch 'master'
-| |\  
-| * | f3b8a09 Gået tilbage til at render_question returnerer resultatet
-| * | f58b536 Tilføjet server side session redis halløjsa med flask-session, samt ændret og flyttet rundt på nogle ting
-| * |   27be351 Merge with branch 'master'
-| |\ \  
-| * | | 20b9478 Tester lige om jeg har fået min branch til at virke
-* | | |   ba0ecea Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-|\ \ \ \  
-| | |_|/  
-| |/| |   
-| * | | 430b616 Tilføjet coding spørgsmål
-| | |/  
-| |/|   
-* | | 35f032c Oprettet custom question view til admin siden
-|/ /  
-* | a11a3c1 Ændringer i rapport og todo
-* | 0d3dd64 New points on todo
-* | ef42b22 Updated todo
-* | 45b6c37 Simpelt rollesystem til at skille studerende fra admins
-* |   644f334 Merge
-|\ \  
-| * | b086ac8 Update todo_list.txt
-* | | 01549a7 Tilføjet lidt til todo
-* | | 70c0112 Flere ok tests
-* | | b7acd24 Lill fejl
-* | | 64f31d7 Testene kører igen
-|/ /  
-* | d8c8cba Added simple hint rating system
-* | 6026527 Fjerne debug hejs
-* | e06bec8 Glemt at ud-udkommentere noget kode der virker
-* | 5746e85 Skrevet et bud på en log
-|/  
-* 8f0f96d user er et dårlig navn i postgres
-* b06a602 Ryddet mere op
-* 6360db2 ryddet op
-* f3273b8 Der skal primary keys på
-* 49f3264 Now with unlocking thresholds
-* 7a38581 Bugfix med MC spørgsmål
-*   b773904 Merge branch 'master' of github.com:christiankjaer/pop-webhelp
-|\  
-| * 8e3c4a6 Diverse små tilføjelser og rettelser i rapporten
-| *   9c5d9c6 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-| |\  
-| | * 117ed8b Review af M.A.D.
-| * | 11c4f33 Diverse ændringer i rapporten
-| |/  
-* |   380b9b6 Markdown support
-|\ \  
-| |/  
-| * 5c3e46a Diverse fiks og ændringer
-| * 1ef6abe Tilføjet cascading til databasen så diverse Question items som f.eks. hints bliver slettet sammen med spørgsmålet
-| * 1e17044 Diverse interface og layout forbedringer og justeringer
-| * 01f81df Opdateret yaml templates'ne og fixet matching template'en
-* | 33067a7 Tilføjet bedre markdown converter
-|/  
-*   50bee2f Merge
-|\  
-| * bbbf480 Tilføjet review af No Silver Bullet
-* | ff9d7b7 Diverse ændringer og tilføjelser til rapporten
-* | 6127fb8 Implementeret fil upload og lavet diverse fiks i den forbindelse
-* |   12ddb84 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-|\ \  
-| |/  
-| * fef6f82 Merge
-| *   ac36f77 Merge
-| |\  
-| * | a852af3 Tilføjet afsnit om strukturering
-* | | 49f51f6 Diverse ændringer
-| |/  
-|/|   
-* | 9a7710e Tilføjet Questions og FileUpload til admin siden
-* | 3a73666 Opdateret Systemdesign i rapporten
-* |   f91ba0c Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-|\ \  
-| |/  
-| * 6818b6f Added points to the todolist
-* | 7922005 Tilføjet screenshots, både som filer og i rapporten, og opdateret er-diagrammerne
-|/  
-*   531d7b5 Merge branch 'master' of github.com:christiankjaer/pop-webhelp
-|\  
-| * 4842ef2 Tilføjet Multiple Choice med 1 eller X rigtige
-| * 415ccd9 Tilføjet To Do List
-| * 8ba461e Refaktureret Question's from_dict funktion, tilføjet from_dict funktion til Subject og Threshold, tilføjet mctype til MultipleChoice
-* | b3aeefd Tilføjet automatisk admin interface fra Flask-Admin + bedre feedback fra views.
-|/  
-*   a0dbfdc Merge branch 'master' of github.com:christiankjaer/pop-webhelp
-|\  
-| * eed0136 Tilføjet Subject startside og diverse fiks
-* | a7d842b Tilføjet statussider
-|/  
-* ef6de23 Scores for questions
-* 11fdc24 Fejlhåndtering når der ikke er flere hints
-*   930c7e0 Merge branch 'master' of github.com:christiankjaer/pop-webhelp
-|\  
-| * 7a796ab Update README.md
-* | e44d521 Simpel funktion til at rate hints med thumbs up/thumbs down
-|/  
-* b0845be Glemt fil
-* 56e025c Forslag til hints, det bruger desværre cookies til state
-* c90f81e Lidt latex ting til gitignore
-* 18f8482 Delete rapport.fdb_latexmk
-* 0d8d498 Delete rapport.fls
-* e599e67 Opdateret ER diagrammerne og flyttet dem
-*   2b9ad37 Merge branch 'master' of github.com:christiankjaer/pop-webhelp
-|\  
-| * 2c475e9 Diverse rettelser i rapporten
-| *   14a03b5 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-| |\  
-| * \   517cfec Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-| |\ \  
-| * \ \   1172651 Merge
-| |\ \ \  
-| * | | | d284333 Tilføjet point til Question, Subject og Threshold
-| * | | | 7fc2c19 Tilføjet 'completed' table for at holde styr på hvilke users har fuldført hvilke subjects
-| * | | |   a54050b Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-| |\ \ \ \  
-| * | | | | a20c1ee Tilføjet Log til databasen.
-* | | | | | 8676574 Rettelser til rapporten
-* | | | | | 6438ca9 Forsøg på en queue til spørgsmål
-| |_|_|_|/  
-|/| | | |   
-* | | | | 62c95cc Flere rapport ting. Se changelog i rapporten
-* | | | | 52bbb8c Første hold rettelser til genaflevering
-* | | | | 3f75a6c Review
-* | | | | 4af2c9f Fejl i metoden der blev kaldt ved submit
-* | | | | f57ea81 Used the multimethod module to make dispatch simpler
-| |_|_|/  
-|/| | |   
-* | | | 90a2462 Forglemmelse
-* | | | 7bf1637 Cursor ved drag
-* | | | 8f07b4b Lille bugfix
-| |_|/  
-|/| |   
-* | | 85cf0c6 Added a matching question type
-| |/  
-|/|   
-* | f76a6ae Refactored out the javascript in the ranking question
-* | 2356051 Refactored out render functions for each question type
-* | 57e6c1e Default credentials in config, Fixed tests, added review
-* |   ab799fa Merge branch 'master' of github.com:christiankjaer/pop-webhelp
-|\ \  
-| |/  
-| * 47604eb Tilføjet Lukas' Review
-* |   144c232 Merge
-|\ \  
-| |/  
-| * becca30 Tilføjet random view og empty template
-* | 9daa89d Merge
-* |   e86e9d9 Merge branch 'master' of github.com:christiankjaer/pop-webhelp
-|\ \  
-| |/  
-| * 0762b57 Lille rettelse i Overview
-* |   c47c749 Merge
-|\ \  
-| |/  
-| *   ad842f3 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-| |\  
-| * | 7867e7d Diverse fiks og ændringer ifb. Overview
-| * | 7194e65 Tilføjet 'Overview' forside
-* | | af4f1e5 Lidt blandet
-* | | a98969b Tests af question klassen
-| |/  
-|/|   
-* | 1564ac5 Fixet bug https://github.com/christiankjaer/pop-webhelp/issues/3
-|/  
-* 781b086 Ændret i base.html
-* 7fb4fdc Tilføjet Subject, Threshold, start data til databasen, layout med navbar, opdateret de tre question templates
-* 9ac848d Markdown i spørgsmålstekst og fix af javascript i ranking
-* 29a5f27 Mere tekst om tests + flot figur
-* 7d34fd6 Afsnit om tests
-* cdb6e4e Tilføjet næste rapport
-* f1cfd25 Bedre rangeringsfunktion med en masse javascript.
-* bb4bcfb Nu kan den tjekke rank spørgsmål
-* d87d6a1 Javascript til omrokering
-* ba96356 Tilføjet ranking spørgsmål
-* 88a55dc Update views.py
-* bb3dcbf Tilføjet ny type spørgsmål og dispatching
-* 167b154 Med HTMl nu
-* c0cca22 Bugfix
-* 5d0ffe8 HTML til visning af multiple choice
-* 7627e79 Tilføjet factory method til question
-* 263f8cc Fixet Questions igen igen
-* d28ec42 Fixet Models igen
-* 8d4f006 Fixet Question i databasen
-* 966f343 Oprettet Question model
-* d470a11 Tilføjet ER-diagrammer for databasen
-* aaa9e23 Rettet knaptekst
-* 148a1b6 Stavefejl + not implemented
-* 60972ae Lidt smårettelser
-* 458bad5 Tilføjet anden use case
-*   1457180 Merge
-|\  
-| * 7efd78e Tilføjet figurtekster
-| *   7e1ac67 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-| |\  
-| * | 8d83e72 Diverse rettelser
-* | | 32f931f Stavefejl, tror jeg
-| |/  
-|/|   
-* | a569bbc Class diagram
-* |   f2ea4a6 Merge branch 'master' of github.com:christiankjaer/pop-webhelp
-|\ \  
-| |/  
-| *   7f7e360 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-| |\  
-| | * 85a8e84 Review af artikel 1
-| * | 63b69fd Tilføjet Projektsamarbejdet.
-* | | 0771c1e Tekst til use cases
-* | | d9e4517 Mere sekvens
-| |/  
-|/|   
-* | c833489 FEJLRETNING
-|/  
-*   d6fe2d4 Merged
-|\  
-| * 9faf8c8 Sekvensdiagrammer og use cases
-| *   0920d3e Merge branch 'master' of github.com:christiankjaer/pop-webhelp
-| |\  
-| * | 2024357 Citeringer
-* | | ceb70f1 Tilføjet abstract
-| |/  
-|/|   
-* | 7b5b2dd Fjernet UseCaseModel da den var blevet flyttet
-* |   6e1a966 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-|\ \  
-| |/  
-| * 97f94eb Færdiggjort review
-| * 4f089eb Review af artikel 2
-| * b40f0ad Review
-* | 5d7014c Tilføjet use case model og bce model
-* |   3cce567 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-|\ \  
-| |/  
-| *   045f093 Merge branch 'master' of github.com:christiankjaer/pop-webhelp
-| |\  
-| * | b430546 FACTOR
-* | | 78aa034 Oprettet figur-mappe og flyttet UseCaseModel dertil
-| |/  
-|/|   
-* | 30633e3 Tilføjet bilag og startet på changelog og timeline
-* |   ae06ff2 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-|\ \  
-| |/  
-| *   c30b9b6 Merge branch 'master' of github.com:christiankjaer/pop-webhelp
-| |\  
-| * | c58d161 Et styks use-case
-* | | c059acb Tilføjet UseCaseModel diagram
-| |/  
-|/|   
-* | b184f5b Update README.md
-|/  
-* 686563f Næste rapport tilføjet + lidt diverse
-* 7aa7aff Update requirements.txt
-* d8d8ca8 Flere tests + rettet gitignore
-* aeed9bd Unittests + bugfix
-* 5a9c405 Flere tests
-* 14c14e8 Tilføjet 'code coverage' til test scriptet
-* 481db77 Bugfixes + flere tests
-* e2fd701 Nu med en reset form + link + bugfixes
-*   12ddb79 Merge branch 'add_login'
-|\  
-| * f6a2b56 Flere tests
-| *   dbf8603 Merge branch 'add_login' of github.com:christiankjaer/pop-webhelp into add_login
-| |\  
-| | * 3126090 Update README.md
-| | * 3a3406c Update README.md
-| | * 5801503 Update README.md
-| | * f320496 Update README.md
-| * | 922089b Refactored all user relevant code into folders
-| |/  
-| * 4a545c5 Now you can reset your password if you have amnesia
-| * da3f6be Added reset pw feature
-| * 0d37793 Nu med confirmation email
-| * f28b6ab Tilføjet unittests af User
-| * d15c3de Mere inputvalidering
-| * cbe6bc0 Ryddet op, og gjort rent
-| * 4a9973e Tilføjet register view/controller
-| * 1999da4 Fået login-form til at virke
-| * c64495e Password validering, login html
-| * 4cb7774 Fixed imports for flask-login and sqlalchemy
-* | ec977bc Oprettet og tilføjet review.tex
-* | b921fad Christians review
-* | cccc056 Lukas' Review
-* | 9a54e35 CPR-nummer
-* | 6e7e637 Rettet 2 stavefejl
-* | 24498b4 Diverse rettelser i rapporten.
-* | 179355d Indsat opgave 5.3 og ordnet billeder
-* | c6b3cf0 Tilføjede nogle figurer
-|/  
-*   384fc71 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-|\  
-| * 83ed112 Update delrapport1.tex
-| * 7fd50bc Stavefejl
-* | 5859112 Diverse rettelser og et enkelt citat
-|/  
-*   cb7bed5 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-|\  
-| * deec8c1 Flere citater
-| * 6c3cd45 Flere citater
-| * 353063b Tilføjet citationer
-* | 3974d43 Opdateret Projektaftale og Problemområde afsnittene
-|/  
-*   6a2cfa3 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-|\  
-| * 6cb4552 slettet pdf
-| * b5a8b50 Tilføjet projektetablering
-* | 7ec0721 Skrevet Projektaftale
-* | eefd377 Skrevet Projektaftalen
-* |   1c1491d Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-|\ \  
-| |/  
-| * bac6292 Litteraturliste
-* | 8a976f8 Skrevet projektaftale
-|/  
-*   d2abbfc Merge conflict resolved
-|\  
-| * 7570e96 Opdateret mine afsnit
-* | 890b74a Tilføjet mere om arkitektur
-* | f3ce4d1 Rettet stavefejl
-|/  
-* fc1ba46 Tilføjede bud på nogle afleveringsopgaver
-* 8e0faa1 Tilføjede punkt til problemformulering
-*   6398b24 fixed merge
-|\  
-| * 7e7fa51 Update .gitignore
-| * b33ae8d Delete delrapport1.aux
-| * e6d7922 Delete .DS_Store
-* | 9cdec49 Nu med pæn LaTeX
-|/  
-* 39d86c2 Vi har tilføget starten på en systemdefinition.
-*   3d08464 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-|\  
-| * 7340ea5 Jeg har tilføjet nogle afsnit under projektplanen
-* | 0d9def5 Skrevet Arbejdsfordeling og Køreplan
-* |   4df4774 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-|\ \  
-| |/  
-| * 06be520 SPMP sections added
-| * 15096e0 Fixed
-* | 61ffc96 Ændringer
-|/  
-*   1ef0568 Fixed merge
-|\  
-| * 12abb38 Skrevet ikke-funktionelle krav
-| *   936e744 Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
-| |\  
-| * | c2fe587 Opdaterede problemområde
-* | | a67363b Tilføjet funktionelle krav
-| |/  
-|/|   
-* |   b5aeb60 Fixed merge
-|\ \  
-| |/  
-| * fe72f9f Skrevet problemområde
-* | fd29dfc Skrevet scenarier
-|/  
-* 1256473 Dokumentation
-* 11f4ef7 Added helper files (bootstrap)
-* ec2dea2 Updated README
-* 6ad9e54 Added requirements file for pip
-* 7d9a548 Made a simple flask template
-* 2f663a2 Changed .gitignore to ignore virtualenv files
-* c26e8a8 Initial commit
+Mon Jun 1 12:53:16 2015 +0200 - Christian Kjær Larsen:
+    Todolist
+Mon Jun 1 12:31:52 2015 +0200 - Christian Kjær Larsen:
+    Dum fejl
+Sun May 31 17:37:55 2015 +0200 - Christian Kjær Larsen:
+    Merge
+Sun May 31 17:32:28 2015 +0200 - Christian Kjær Larsen:
+    Småting til rapporten
+Sun May 31 17:00:52 2015 +0200 - Lukas Engedal:
+    Tilføjet review af Naur til rapporten, samt diverse ændringer og tilføjelser.
+Sat May 30 18:55:12 2015 +0200 - Lukas Engedal:
+    Opdateret brugergrænseflade i rapporten og tilføjet flow-charts
+Sat May 30 01:25:37 2015 +0200 - Christian Kjær Larsen:
+    Rettet rapporten
+Sat May 30 01:23:33 2015 +0200 - Christian Kjær Larsen:
+    Rapport rettelser
+Fri May 29 18:16:48 2015 +0200 - Lukas Engedal:
+    Diverse ændringer og tilføjelser til rapporten
+Fri May 29 15:53:27 2015 +0200 - Lukas Engedal:
+    Moved the coding threshold and fixed the admin acces bug
+Fri May 29 15:24:32 2015 +0200 - Lukas Engedal:
+    Various fixes in the yaml files
+Fri May 29 14:38:58 2015 +0200 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Fri May 29 14:38:28 2015 +0200 - Lukas Engedal:
+    Opdateret requirements og readme
+Thu May 28 13:49:52 2015 +0200 - Christian Kjær Larsen:
+    Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+Thu May 28 13:49:27 2015 +0200 - Christian Kjær Larsen:
+    Rigtige YAML eksempler og integrationstest
+Thu May 28 12:34:57 2015 +0200 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Thu May 28 12:34:32 2015 +0200 - Lukas Engedal:
+    Opdateret 3 af figurerne
+Wed May 27 14:17:12 2015 +0200 - Christian Kjær Larsen:
+    Update README.md
+Wed May 27 12:19:31 2015 +0200 - Christian Kjær Larsen:
+    Got git log
+Tue May 26 10:37:15 2015 +0200 - Christian Kjær Larsen:
+    Mere rapport
+Sun May 24 14:33:47 2015 +0200 - Christian Kjær Larsen:
+    Fjernet ting fra todo
+Sun May 24 13:53:47 2015 +0200 - Christian Kjær Larsen:
+    Ryddet op
+Sun May 24 13:34:28 2015 +0200 - Christian Kjær Larsen:
+    CSS fejl
+Sun May 24 13:29:43 2015 +0200 - Christian Kjær Larsen:
+    Code er nu med wtforms og rettet bug med at man ikke kan åbne første emne
+Fri May 22 14:43:29 2015 +0200 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Fri May 22 14:42:32 2015 +0200 - Lukas Engedal:
+    Added extra acces control, session expiration timer and updated the todo-list
+Fri May 22 12:17:55 2015 +0200 - Christian Kjær Larsen:
+    Rigtige testdata
+Thu May 21 15:28:50 2015 +0200 - Lukas Engedal:
+    Merge branch 'redis' of https://github.com/christiankjaer/pop-webhelp
+Thu May 21 15:26:39 2015 +0200 - Lukas Engedal:
+    Et par småting og opdateret todo-list
+Thu May 21 15:15:36 2015 +0200 - Lukas Engedal:
+    Merge with branch 'master'
+Thu May 21 15:09:00 2015 +0200 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Thu May 21 15:08:20 2015 +0200 - Christian Kjær Larsen:
+    Tilføjet coding spørgsmål
+Thu May 21 15:06:01 2015 +0200 - Lukas Engedal:
+    Oprettet custom question view til admin siden
+Thu May 21 14:48:50 2015 +0200 - Lukas Engedal:
+    Gået tilbage til at render_question returnerer resultatet
+Wed May 20 23:39:08 2015 +0200 - Lukas Engedal:
+    Tilføjet server side session redis halløjsa med flask-session, samt ændret og flyttet rundt på nogle ting
+Wed May 20 16:53:36 2015 +0200 - Lukas Engedal:
+    Merge with branch 'master'
+Wed May 20 14:28:44 2015 +0200 - Christian Kjær Larsen:
+    Ændringer i rapport og todo
+Wed May 20 12:06:50 2015 +0200 - Christian Kjær Larsen:
+    New points on todo
+Wed May 20 12:04:21 2015 +0200 - Christian Kjær Larsen:
+    Updated todo
+Wed May 20 11:37:19 2015 +0200 - Christian Kjær Larsen:
+    Simpelt rollesystem til at skille studerende fra admins
+Sat May 16 20:40:06 2015 +0200 - Christian Kjær Larsen:
+    Merge
+Sat May 16 20:39:23 2015 +0200 - Christian Kjær Larsen:
+    Tilføjet lidt til todo
+Sat May 16 20:38:37 2015 +0200 - Christian Kjær Larsen:
+    Flere ok tests
+Sat May 16 20:38:23 2015 +0200 - Christian Kjær Larsen:
+    Lill fejl
+Sat May 16 20:37:44 2015 +0200 - Christian Kjær Larsen:
+    Testene kører igen
+Sat May 16 12:54:38 2015 +0200 - Christian Kjær Larsen:
+    Update todo_list.txt
+Sat May 16 12:53:48 2015 +0200 - Christian Kjær Larsen:
+    Added simple hint rating system
+Fri May 15 23:22:59 2015 +0200 - Christian Kjær Larsen:
+    Fjerne debug hejs
+Fri May 15 23:22:23 2015 +0200 - Christian Kjær Larsen:
+    Glemt at ud-udkommentere noget kode der virker
+Fri May 15 23:20:24 2015 +0200 - Christian Kjær Larsen:
+    Skrevet et bud på en log
+Fri May 15 15:23:32 2015 +0200 - Lukas Engedal:
+    Tester lige om jeg har fået min branch til at virke
+Thu May 14 23:08:59 2015 +0200 - Christian Kjær Larsen:
+    user er et dårlig navn i postgres
+Thu May 14 22:22:34 2015 +0200 - Christian Kjær Larsen:
+    Ryddet mere op
+Thu May 14 22:21:17 2015 +0200 - Christian Kjær Larsen:
+    ryddet op
+Thu May 14 17:00:00 2015 +0200 - Christian Kjær Larsen:
+    Der skal primary keys på
+Thu May 14 14:21:16 2015 +0200 - Christian Kjær Larsen:
+    Now with unlocking thresholds
+Thu May 14 13:04:10 2015 +0200 - Christian Kjær Larsen:
+    Bugfix med MC spørgsmål
+Wed May 13 12:25:04 2015 +0200 - Christian Kjær Larsen:
+    Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+Wed May 13 12:24:55 2015 +0200 - Christian Kjær Larsen:
+    Markdown support
+Wed May 13 11:33:31 2015 +0200 - Lukas Engedal:
+    Diverse små tilføjelser og rettelser i rapporten
+Wed May 13 11:15:50 2015 +0200 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Wed May 13 11:15:19 2015 +0200 - Lukas Engedal:
+    Diverse ændringer i rapporten
+Wed May 13 09:28:44 2015 +0200 - Tobias-SH:
+    Review af M.A.D.
+Wed May 13 01:10:45 2015 +0200 - Christian Kjær Larsen:
+    Tilføjet bedre markdown converter
+Tue May 12 23:51:40 2015 +0200 - Lukas Engedal:
+    Diverse fiks og ændringer
+Tue May 12 23:10:51 2015 +0200 - Lukas Engedal:
+    Tilføjet cascading til databasen så diverse Question items som f.eks. hints bliver slettet sammen med spørgsmålet
+Tue May 12 23:01:49 2015 +0200 - Lukas Engedal:
+    Diverse interface og layout forbedringer og justeringer
+Tue May 12 19:54:43 2015 +0200 - Lukas Engedal:
+    Opdateret yaml templates'ne og fixet matching template'en
+Mon May 11 21:29:16 2015 +0200 - Lukas Engedal:
+    Merge
+Mon May 11 21:26:27 2015 +0200 - Lukas Engedal:
+    Diverse ændringer og tilføjelser til rapporten
+Mon May 11 21:21:09 2015 +0200 - Lukas Engedal:
+    Implementeret fil upload og lavet diverse fiks i den forbindelse
+Mon May 11 16:01:08 2015 +0200 - Christian Kjær Larsen:
+    Tilføjet review af No Silver Bullet
+Mon May 11 14:26:46 2015 +0200 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Mon May 11 14:25:12 2015 +0200 - Lukas Engedal:
+    Diverse ændringer
+Mon May 11 00:07:47 2015 +0200 - Christian Kjær Larsen:
+    Merge
+Sun May 10 19:54:24 2015 +0200 - Christian Kjær Larsen:
+    Merge
+Sun May 10 19:52:09 2015 +0200 - Christian Kjær Larsen:
+    Tilføjet afsnit om strukturering
+Sun May 10 18:57:56 2015 +0200 - Lukas Engedal:
+    Tilføjet Questions og FileUpload til admin siden
+Sun May 10 17:14:04 2015 +0200 - Lukas Engedal:
+    Opdateret Systemdesign i rapporten
+Sun May 10 16:42:39 2015 +0200 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Sun May 10 16:41:12 2015 +0200 - Lukas Engedal:
+    Tilføjet screenshots, både som filer og i rapporten, og opdateret er-diagrammerne
+Fri May 8 20:51:58 2015 +0200 - Christian Kjær Larsen:
+    Added points to the todolist
+Fri May 8 19:06:58 2015 +0200 - Christian Kjær Larsen:
+    Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+Fri May 8 19:04:55 2015 +0200 - Christian Kjær Larsen:
+    Tilføjet automatisk admin interface fra Flask-Admin + bedre feedback fra views.
+Fri May 8 18:46:13 2015 +0200 - Lukas Engedal:
+    Tilføjet Multiple Choice med 1 eller X rigtige
+Fri May 8 16:06:08 2015 +0200 - Lukas Engedal:
+    Tilføjet To Do List
+Fri May 8 16:05:12 2015 +0200 - Lukas Engedal:
+    Refaktureret Question's from_dict funktion, tilføjet from_dict funktion til Subject og Threshold, tilføjet mctype til MultipleChoice
+Thu May 7 15:56:38 2015 +0200 - Christian Kjær Larsen:
+    Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+Thu May 7 15:56:22 2015 +0200 - Christian Kjær Larsen:
+    Tilføjet statussider
+Thu May 7 15:53:33 2015 +0200 - Lukas Engedal:
+    Tilføjet Subject startside og diverse fiks
+Thu May 7 14:28:05 2015 +0200 - Christian Kjær Larsen:
+    Scores for questions
+Mon May 4 13:50:57 2015 +0200 - Christian Kjær Larsen:
+    Fejlhåndtering når der ikke er flere hints
+Mon May 4 12:49:29 2015 +0200 - Christian Kjær Larsen:
+    Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+Mon May 4 12:48:48 2015 +0200 - Christian Kjær Larsen:
+    Simpel funktion til at rate hints med thumbs up/thumbs down
+Mon May 4 11:54:04 2015 +0200 - Christian Kjær Larsen:
+    Update README.md
+Mon May 4 11:38:22 2015 +0200 - Christian Kjær Larsen:
+    Glemt fil
+Mon May 4 11:34:17 2015 +0200 - Christian Kjær Larsen:
+    Forslag til hints, det bruger desværre cookies til state
+Sun May 3 17:58:53 2015 +0200 - Christian Kjær Larsen:
+    Lidt latex ting til gitignore
+Fri May 1 17:01:14 2015 +0200 - Christian Kjær Larsen:
+    Delete rapport.fdb_latexmk
+Fri May 1 17:01:08 2015 +0200 - Christian Kjær Larsen:
+    Delete rapport.fls
+Fri May 1 16:54:27 2015 +0200 - Lukas Engedal:
+    Opdateret ER diagrammerne og flyttet dem
+Fri May 1 16:45:25 2015 +0200 - Christian Kjær Larsen:
+    Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+Fri May 1 16:45:08 2015 +0200 - Christian Kjær Larsen:
+    Rettelser til rapporten
+Fri May 1 16:44:41 2015 +0200 - Christian Kjær Larsen:
+    Forsøg på en queue til spørgsmål
+Fri May 1 16:35:29 2015 +0200 - Lukas Engedal:
+    Diverse rettelser i rapporten
+Fri May 1 16:25:40 2015 +0200 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Thu Apr 30 18:32:52 2015 +0200 - Christian Kjær Larsen:
+    Flere rapport ting. Se changelog i rapporten
+Thu Apr 30 17:44:32 2015 +0200 - Christian Kjær Larsen:
+    Første hold rettelser til genaflevering
+Thu Apr 30 10:43:21 2015 +0200 - Christian Kjær Larsen:
+    Review
+Wed Apr 29 23:46:59 2015 +0200 - Christian Kjær Larsen:
+    Fejl i metoden der blev kaldt ved submit
+Wed Apr 29 20:53:35 2015 +0200 - Christian Kjær Larsen:
+    Used the multimethod module to make dispatch simpler
+Wed Apr 29 16:26:37 2015 +0200 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Wed Apr 29 16:25:17 2015 +0200 - Christian Kjær Larsen:
+    Forglemmelse
+Wed Apr 29 16:24:35 2015 +0200 - Christian Kjær Larsen:
+    Cursor ved drag
+Wed Apr 29 16:17:13 2015 +0200 - Lukas Engedal:
+    Merge
+Wed Apr 29 16:15:36 2015 +0200 - Christian Kjær Larsen:
+    Lille bugfix
+Wed Apr 29 16:00:59 2015 +0200 - Christian Kjær Larsen:
+    Added a matching question type
+Wed Apr 29 15:32:59 2015 +0200 - Lukas Engedal:
+    Tilføjet point til Question, Subject og Threshold
+Wed Apr 29 15:15:32 2015 +0200 - Lukas Engedal:
+    Tilføjet 'completed' table for at holde styr på hvilke users har fuldført hvilke subjects
+Wed Apr 29 14:47:31 2015 +0200 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Wed Apr 29 13:54:40 2015 +0200 - Christian Kjær Larsen:
+    Refactored out the javascript in the ranking question
+Wed Apr 29 13:43:06 2015 +0200 - Christian Kjær Larsen:
+    Refactored out render functions for each question type
+Wed Apr 29 13:26:19 2015 +0200 - Lukas Engedal:
+    Tilføjet Log til databasen.
+Wed Apr 29 13:09:17 2015 +0200 - Christian Kjær Larsen:
+    Default credentials in config, Fixed tests, added review
+Wed Apr 29 12:21:11 2015 +0200 - Christian Kjær Larsen:
+    Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+Wed Apr 29 11:58:45 2015 +0200 - Lukas Engedal:
+    Tilføjet Lukas' Review
+Tue Apr 28 09:38:42 2015 +0200 - Christian Kjær Larsen:
+    Merge
+Tue Apr 28 09:35:38 2015 +0200 - Christian Kjær Larsen:
+    Merge
+Mon Apr 27 18:20:00 2015 +0200 - Lukas Engedal:
+    Tilføjet random view og empty template
+Mon Apr 27 17:41:40 2015 +0200 - Christian Kjær Larsen:
+    Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+Mon Apr 27 17:23:06 2015 +0200 - Lukas Engedal:
+    Lille rettelse i Overview
+Mon Apr 27 16:55:56 2015 +0200 - Christian Kjær Larsen:
+    Merge
+Mon Apr 27 16:53:25 2015 +0200 - Christian Kjær Larsen:
+    Lidt blandet
+Mon Apr 27 16:50:16 2015 +0200 - Christian Kjær Larsen:
+    Tests af question klassen
+Mon Apr 27 16:49:32 2015 +0200 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Mon Apr 27 16:49:04 2015 +0200 - Lukas Engedal:
+    Diverse fiks og ændringer ifb. Overview
+Mon Apr 27 16:14:20 2015 +0200 - Lukas Engedal:
+    Tilføjet 'Overview' forside
+Mon Apr 27 12:53:18 2015 +0200 - Christian Kjær Larsen:
+    Fixet bug https://github.com/christiankjaer/pop-webhelp/issues/3
+Mon Apr 27 11:22:59 2015 +0200 - Lukas Engedal:
+    Ændret i base.html
+Mon Apr 27 11:21:19 2015 +0200 - Lukas Engedal:
+    Tilføjet Subject, Threshold, start data til databasen, layout med navbar, opdateret de tre question templates
+Sun Apr 26 22:52:57 2015 +0200 - Christian Kjær Larsen:
+    Markdown i spørgsmålstekst og fix af javascript i ranking
+Sun Apr 26 16:07:35 2015 +0200 - Christian Kjær Larsen:
+    Mere tekst om tests + flot figur
+Sun Apr 26 14:54:58 2015 +0200 - Christian Kjær Larsen:
+    Afsnit om tests
+Sun Apr 26 13:30:26 2015 +0200 - Christian Kjær Larsen:
+    Tilføjet næste rapport
+Sat Apr 25 15:39:36 2015 +0200 - Christian Kjær Larsen:
+    Bedre rangeringsfunktion med en masse javascript.
+Sat Apr 25 13:26:28 2015 +0200 - Christian Kjær Larsen:
+    Nu kan den tjekke rank spørgsmål
+Fri Apr 24 23:18:58 2015 +0200 - Christian Kjær Larsen:
+    Javascript til omrokering
+Fri Apr 24 21:52:40 2015 +0200 - Christian Kjær Larsen:
+    Tilføjet ranking spørgsmål
+Thu Apr 23 17:45:30 2015 +0200 - Christian Kjær Larsen:
+    Update views.py
+Thu Apr 23 17:44:10 2015 +0200 - Christian Kjær Larsen:
+    Tilføjet ny type spørgsmål og dispatching
+Thu Apr 23 09:05:51 2015 +0200 - Christian Kjær Larsen:
+    Med HTMl nu
+Wed Apr 22 20:29:00 2015 +0200 - Christian Kjær Larsen:
+    Bugfix
+Wed Apr 22 18:57:26 2015 +0200 - Christian Kjær Larsen:
+    HTML til visning af multiple choice
+Wed Apr 22 14:54:13 2015 +0200 - Lukas Engedal:
+    Tilføjet factory method til question
+Wed Apr 22 14:24:58 2015 +0200 - Lukas Engedal:
+    Fixet Questions igen igen
+Wed Apr 22 14:16:02 2015 +0200 - Lukas Engedal:
+    Fixet Models igen
+Wed Apr 22 14:12:14 2015 +0200 - Lukas Engedal:
+    Fixet Question i databasen
+Wed Apr 22 13:58:13 2015 +0200 - Lukas Engedal:
+    Oprettet Question model
+Wed Apr 22 12:27:18 2015 +0200 - Lukas Engedal:
+    Tilføjet ER-diagrammer for databasen
+Wed Apr 22 10:11:17 2015 +0200 - Christian Kjær Larsen:
+    Rettet knaptekst
+Tue Apr 21 11:10:35 2015 +0200 - Christian Kjær Larsen:
+    Stavefejl + not implemented
+Mon Apr 20 11:43:52 2015 +0200 - Christian Kjær Larsen:
+    Lidt smårettelser
+Mon Apr 20 11:35:11 2015 +0200 - Christian Kjær Larsen:
+    Tilføjet anden use case
+Sun Apr 19 17:43:50 2015 +0200 - Christian Kjær Larsen:
+    Merge
+Sun Apr 19 17:42:33 2015 +0200 - Christian Kjær Larsen:
+    Stavefejl, tror jeg
+Sun Apr 19 13:36:39 2015 +0200 - Lukas Engedal:
+    Tilføjet figurtekster
+Sun Apr 19 13:22:21 2015 +0200 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Sun Apr 19 13:21:57 2015 +0200 - Lukas Engedal:
+    Diverse rettelser
+Fri Apr 17 15:46:00 2015 +0200 - Christian Kjær Larsen:
+    Class diagram
+Fri Apr 17 13:08:17 2015 +0200 - Christian Kjær Larsen:
+    Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+Fri Apr 17 13:08:02 2015 +0200 - Christian Kjær Larsen:
+    Tekst til use cases
+Fri Apr 17 12:55:38 2015 +0200 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Fri Apr 17 12:55:12 2015 +0200 - Lukas Engedal:
+    Tilføjet Projektsamarbejdet.
+Fri Apr 17 12:48:26 2015 +0200 - Tobias-SH:
+    Review af artikel 1
+Fri Apr 17 12:29:42 2015 +0200 - Christian Kjær Larsen:
+    Mere sekvens
+Fri Apr 17 12:06:28 2015 +0200 - Christian Kjær Larsen:
+    FEJLRETNING
+Fri Apr 17 12:01:01 2015 +0200 - Lukas Engedal:
+    Merged
+Fri Apr 17 11:57:44 2015 +0200 - Lukas Engedal:
+    Tilføjet abstract
+Fri Apr 17 11:54:43 2015 +0200 - Christian Kjær Larsen:
+    Sekvensdiagrammer og use cases
+Fri Apr 17 10:14:03 2015 +0200 - Christian Kjær Larsen:
+    Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+Thu Apr 16 16:34:06 2015 +0200 - Christian Kjær Larsen:
+    Citeringer
+Thu Apr 16 16:18:22 2015 +0200 - Lukas Engedal:
+    Fjernet UseCaseModel da den var blevet flyttet
+Thu Apr 16 16:14:26 2015 +0200 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Thu Apr 16 16:08:19 2015 +0200 - Lukas Engedal:
+    Tilføjet use case model og bce model
+Thu Apr 16 16:05:47 2015 +0200 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Thu Apr 16 15:45:17 2015 +0200 - Christian Kjær Larsen:
+    Færdiggjort review
+Thu Apr 16 09:58:44 2015 +0200 - Christian Kjær Larsen:
+    Review af artikel 2
+Tue Apr 14 16:17:28 2015 +0200 - Christian Kjær Larsen:
+    Review
+Tue Apr 14 13:39:10 2015 +0200 - Lukas Engedal:
+    Oprettet figur-mappe og flyttet UseCaseModel dertil
+Tue Apr 14 13:17:02 2015 +0200 - Christian Kjær Larsen:
+    Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+Tue Apr 14 13:14:28 2015 +0200 - Lukas Engedal:
+    Tilføjet bilag og startet på changelog og timeline
+Tue Apr 14 13:14:00 2015 +0200 - Christian Kjær Larsen:
+    FACTOR
+Tue Apr 14 12:21:31 2015 +0200 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Tue Apr 14 12:20:45 2015 +0200 - Lukas Engedal:
+    Tilføjet UseCaseModel diagram
+Tue Apr 14 11:57:05 2015 +0200 - Christian Kjær Larsen:
+    Merge branch 'master' of github.com:christiankjaer/pop-webhelp
+Tue Apr 14 11:56:45 2015 +0200 - Christian Kjær Larsen:
+    Et styks use-case
+Mon Apr 13 17:33:02 2015 +0200 - Christian Kjær Larsen:
+    Update README.md
+Wed Apr 8 13:42:26 2015 +0200 - Christian Kjær Larsen:
+    Næste rapport tilføjet + lidt diverse
+Fri Mar 27 16:18:19 2015 +0100 - Christian Kjær Larsen:
+    Update requirements.txt
+Fri Mar 27 16:15:18 2015 +0100 - Christian Kjær Larsen:
+    Flere tests + rettet gitignore
+Fri Mar 27 15:10:13 2015 +0100 - Christian Kjær Larsen:
+    Unittests + bugfix
+Fri Mar 27 14:17:32 2015 +0100 - Christian Kjær Larsen:
+    Flere tests
+Fri Mar 27 13:47:44 2015 +0100 - Christian Kjær Larsen:
+    Tilføjet 'code coverage' til test scriptet
+Fri Mar 27 11:14:49 2015 +0100 - Christian Kjær Larsen:
+    Bugfixes + flere tests
+Thu Mar 26 22:36:51 2015 +0100 - Christian Kjær Larsen:
+    Nu med en reset form + link + bugfixes
+Wed Mar 25 21:12:14 2015 +0100 - Christian Kjær Larsen:
+    Merge branch 'add_login'
+Wed Mar 25 16:52:44 2015 +0100 - Lukas Engedal:
+    Oprettet og tilføjet review.tex
+Tue Mar 24 22:08:22 2015 +0100 - Christian Kjær Larsen:
+    Christians review
+Tue Mar 24 21:49:34 2015 +0100 - Christian Kjær Larsen:
+    Flere tests
+Tue Mar 24 15:52:14 2015 +0100 - Lukas Engedal:
+    Lukas' Review
+Tue Mar 24 14:00:13 2015 +0100 - Christian Kjær Larsen:
+    Merge branch 'add_login' of github.com:christiankjaer/pop-webhelp into add_login
+Tue Mar 24 13:58:21 2015 +0100 - Christian Kjær Larsen:
+    Refactored all user relevant code into folders
+Mon Mar 23 22:56:40 2015 +0100 - Christian Kjær Larsen:
+    Update README.md
+Mon Mar 23 22:55:53 2015 +0100 - Christian Kjær Larsen:
+    Update README.md
+Mon Mar 23 22:55:45 2015 +0100 - Christian Kjær Larsen:
+    Update README.md
+Mon Mar 23 22:55:21 2015 +0100 - Christian Kjær Larsen:
+    Update README.md
+Mon Mar 23 22:49:54 2015 +0100 - Christian Kjær Larsen:
+    Now you can reset your password if you have amnesia
+Mon Mar 23 16:26:36 2015 +0100 - Christian Kjær Larsen:
+    Added reset pw feature
+Mon Mar 23 15:09:46 2015 +0100 - Tobias-SH:
+    CPR-nummer
+Mon Mar 23 14:43:23 2015 +0100 - Christian Kjær Larsen:
+    Rettet 2 stavefejl
+Mon Mar 23 13:01:32 2015 +0100 - Lukas Engedal:
+    Diverse rettelser i rapporten.
+Mon Mar 23 10:27:12 2015 +0100 - Christian Kjær Larsen:
+    Indsat opgave 5.3 og ordnet billeder
+Sun Mar 22 21:04:51 2015 +0100 - Christian Kjær Larsen:
+    Nu med confirmation email
+Sun Mar 22 18:12:03 2015 +0100 - Tobias-SH:
+    Tilføjede nogle figurer
+Sun Mar 22 10:11:49 2015 +0100 - Christian Kjær Larsen:
+    Tilføjet unittests af User
+Sat Mar 21 10:36:58 2015 +0100 - Christian Kjær Larsen:
+    Mere inputvalidering
+Fri Mar 20 21:40:31 2015 +0100 - Christian Kjær Larsen:
+    Ryddet op, og gjort rent
+Fri Mar 20 19:59:16 2015 +0100 - Christian Kjær Larsen:
+    Tilføjet register view/controller
+Fri Mar 20 17:33:41 2015 +0100 - Christian Kjær Larsen:
+    Fået login-form til at virke
+Fri Mar 20 17:02:24 2015 +0100 - Christian Kjær Larsen:
+    Password validering, login html
+Fri Mar 20 16:00:50 2015 +0100 - Christian Kjær Larsen:
+    Fixed imports for flask-login and sqlalchemy
+Fri Mar 20 13:16:36 2015 +0100 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Fri Mar 20 13:16:06 2015 +0100 - Lukas Engedal:
+    Diverse rettelser og et enkelt citat
+Fri Mar 20 13:13:20 2015 +0100 - Christian Kjær Larsen:
+    Update delrapport1.tex
+Fri Mar 20 13:09:41 2015 +0100 - Christian Kjær Larsen:
+    Stavefejl
+Fri Mar 20 12:35:05 2015 +0100 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Fri Mar 20 12:34:01 2015 +0100 - Lukas Engedal:
+    Opdateret Projektaftale og Problemområde afsnittene
+Fri Mar 20 12:28:45 2015 +0100 - Christian Kjær Larsen:
+    Flere citater
+Fri Mar 20 12:09:13 2015 +0100 - Christian Kjær Larsen:
+    Flere citater
+Fri Mar 20 11:49:20 2015 +0100 - Christian Kjær Larsen:
+    Tilføjet citationer
+Fri Mar 20 11:25:04 2015 +0100 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Fri Mar 20 11:24:37 2015 +0100 - Lukas Engedal:
+    Skrevet Projektaftale
+Fri Mar 20 11:20:41 2015 +0100 - Lukas Engedal:
+    Skrevet Projektaftalen
+Fri Mar 20 11:15:06 2015 +0100 - Christian Kjær Larsen:
+    slettet pdf
+Fri Mar 20 11:13:55 2015 +0100 - Christian Kjær Larsen:
+    Tilføjet projektetablering
+Fri Mar 20 10:36:26 2015 +0100 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Fri Mar 20 10:36:00 2015 +0100 - Christian Kjær Larsen:
+    Litteraturliste
+Fri Mar 20 10:35:49 2015 +0100 - Lukas Engedal:
+    Skrevet projektaftale
+Thu Mar 19 12:39:48 2015 +0100 - Christian Kjær Larsen:
+    Merge conflict resolved
+Thu Mar 19 12:37:28 2015 +0100 - Christian Kjær Larsen:
+    Tilføjet mere om arkitektur
+Thu Mar 19 12:36:45 2015 +0100 - Lukas Engedal:
+    Opdateret mine afsnit
+Thu Mar 19 10:40:34 2015 +0100 - Christian Kjær Larsen:
+    Rettet stavefejl
+Thu Mar 19 03:15:47 2015 +0100 - Tobias-SH:
+    Tilføjede bud på nogle afleveringsopgaver
+Thu Mar 19 02:08:12 2015 +0100 - Tobias-SH:
+    Tilføjede punkt til problemformulering
+Wed Mar 18 16:51:57 2015 +0100 - Christian Kjær Larsen:
+    fixed merge
+Wed Mar 18 16:49:20 2015 +0100 - Christian Kjær Larsen:
+    Nu med pæn LaTeX
+Wed Mar 18 16:35:54 2015 +0100 - Christian Kjær Larsen:
+    Update .gitignore
+Wed Mar 18 16:35:06 2015 +0100 - Christian Kjær Larsen:
+    Delete delrapport1.aux
+Wed Mar 18 16:34:39 2015 +0100 - Christian Kjær Larsen:
+    Delete .DS_Store
+Wed Mar 18 14:32:39 2015 +0100 - Christian Kjær Larsen:
+    Vi har tilføget starten på en systemdefinition.
+Wed Mar 18 13:52:22 2015 +0100 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Wed Mar 18 13:51:05 2015 +0100 - Lukas Engedal:
+    Skrevet Arbejdsfordeling og Køreplan
+Wed Mar 18 13:50:09 2015 +0100 - Christian Kjær Larsen:
+    Jeg har tilføjet nogle afsnit under projektplanen
+Wed Mar 18 12:59:06 2015 +0100 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Wed Mar 18 12:58:36 2015 +0100 - Lukas Engedal:
+    Ændringer
+Wed Mar 18 12:56:06 2015 +0100 - Christian Kjær Larsen:
+    SPMP sections added
+Wed Mar 18 12:19:12 2015 +0100 - Christian Kjær Larsen:
+    Fixed
+Wed Mar 18 12:17:14 2015 +0100 - Christian Kjær Larsen:
+    Fixed merge
+Wed Mar 18 12:15:40 2015 +0100 - Christian Kjær Larsen:
+    Tilføjet funktionelle krav
+Wed Mar 18 12:13:57 2015 +0100 - Lukas Engedal:
+    Skrevet ikke-funktionelle krav
+Wed Mar 18 11:52:15 2015 +0100 - Lukas Engedal:
+    Merge branch 'master' of https://github.com/christiankjaer/pop-webhelp
+Wed Mar 18 11:47:06 2015 +0100 - Lukas Engedal:
+    Opdaterede problemområde
+Wed Mar 18 11:45:55 2015 +0100 - Christian Kjær Larsen:
+    Fixed merge
+Wed Mar 18 11:38:49 2015 +0100 - Christian Kjær Larsen:
+    Skrevet scenarier
+Wed Mar 18 11:37:28 2015 +0100 - Lukas Engedal:
+    Skrevet problemområde
+Wed Mar 18 10:48:04 2015 +0100 - Christian Kjær Larsen:
+    Dokumentation
+Sun Mar 15 17:42:10 2015 +0100 - Christian Kjær Larsen:
+    Added helper files (bootstrap)
+Sun Mar 15 16:11:18 2015 +0100 - Christian Kjær Larsen:
+    Updated README
+Sun Mar 15 16:07:38 2015 +0100 - Christian Kjær Larsen:
+    Added requirements file for pip
+Sun Mar 15 16:04:15 2015 +0100 - Christian Kjær Larsen:
+    Made a simple flask template
+Sun Mar 15 15:50:34 2015 +0100 - Christian Kjær Larsen:
+    Changed .gitignore to ignore virtualenv files
+Sun Mar 15 15:40:06 2015 +0100 - Christian Kjær Larsen:
+    Initial commit
