@@ -56,6 +56,12 @@
 % Python for inline
 \newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
 
+\title{
+  \vspace{3cm}
+  \Huge{Projektkursus i Systemudvikling} \\[.10cm]
+  \Large{PoP-Webhelp}
+}
+
 \author{
     Christian Kjær Larsen \texttt{(011292)} \\[.4cm]
     Lukas Svarre Engedal \texttt{(210790)} \\[.4cm]
@@ -63,14 +69,6 @@
     Instruktor: Aske Mottelson\\[.4cm]
     \vspace{9cm}
 }
-
-\title{
-  \vspace{3cm}
-  \Huge{Projektkursus i Systemudvikling 2015} \\[.10cm]
-  \Large{PoP-Webhelp}
-}
-
-\date{}
 
 \begin{document}
 \selectlanguage{danish}
@@ -87,14 +85,11 @@
 
 \selectlanguage{english}
 \begin{abstract}
-This report presents the development of an e-learning system for use in the newly created introductory computer science course at the Department of Computer Science at University of Copenhagen, called \emph{Programmering og Problemløsning}(Programming and Problemsolving). Our clients are Martin Dybdal and Oleksandr Shturmov, both employed at the department, who will be responsible for the course. In the course, the students will be taught the programming language \verb!F#!.
+This report presents the development of an e-learning system for use in the newly created introductory computer science course at the Department of Computer Science at University of Copenhagen, called \emph{Programmering og Problemløsning}(Programming and Problemsolving). The clients are Martin Dybdal and Oleksandr Shturmov, both employed at the department, who will be responsible for the course. In the course, the students will be taught the programming language \verb!F#!.
 
-The aim of the e-learning system is to introduce new students to programming in a simple and user-friendly way, and to teach them various basic ideas and concepts in programming in general, and \verb!F#! in particular. This is done by presenting the students with a series of different exercises, sorted based on subject and difficulty, and presented to students in a specific and meaningful order.
+The aim of the e-learning system is to introduce new students to programming in a simple and user-friendly way, and to teach them various basic ideas and concepts in programming in general, and \verb!F#! in particular. This is done by presenting the students with a series of different exercises, sorted based on subject and difficulty, and presented to students in a specific and meaningful order. The students can also get hints to the exercises if needed.
 
-The system will have two different kinds of users; students and admins.
-Students will mainly be working on the various exercises, and they will also be able to get hints for the exercises if needed and provide feedback on the exercises and hints once completed. Students should also be able to see how well they are doing so far, for instance how many of the exercises belonging to a particular subject matter they have solved.
-
-The primary role of the admins will be managing the exercises and supervising how well the students are doing. They should be able to easily delete or modify existing exercises or add new ones, as well as manage the order in which the students are presented with the exercises. They should also be able to get various statistics about how the students are doing in order to improve and optimize the exercises, their order and their subjects.
+Another important part is the administration of the system, which includes managing the exercises and supervising how well the students are doing. The admins should be able to easily delete or modify existing exercises as well as adding new ones. They should also be able to get various statistics about how the students are doing in order to improve and optimize the exercises.
 \end{abstract}
 \selectlanguage{danish}
 \newpage
@@ -329,7 +324,7 @@ På Figur \ref{fig:class_diagram} kan man se vores klassediagram. Størstedelen 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/ClassDiagram.png}
+    \includegraphics[width=1\linewidth]{figures/ClassDiagram.png}
     \caption{Klassediagram af problemområdet}
     \label{fig:class_diagram}
 \end{figure}
@@ -340,7 +335,7 @@ På Figur \ref{fig:bce_model} kan man se vores BCE model. Modellen har to entity
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.8\linewidth]{figures/BCE-Model.png}
+  \includegraphics[width=1\linewidth]{figures/BCE-Model.png}
   \caption{BCE model for vores system.}
   \label{fig:bce_model}
 \end{figure}
@@ -358,7 +353,7 @@ På Figur \ref{fig:opret_bruger_sekvens} kan man se sekvens-diagrammet for den f
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/OpretBrugerUseCase.png}
+    \includegraphics[width=1\linewidth]{figures/OpretBrugerUseCase.png}
     \caption{Sekvensdiagram over opretning af bruger}
     \label{fig:opret_bruger_sekvens}
 \end{figure}
@@ -367,7 +362,7 @@ På Figur \ref{fig:svar_sekvens} kan man se sekvens-diagrammet for den anden use
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/SvarUseCase.png}
+    \includegraphics[width=1\linewidth]{figures/SvarUseCase.png}
     \caption{Sekvensdiagram over besvarelse af spørgsmål og gennemførelse af subject.}
     \label{fig:svar_sekvens}
 \end{figure}
@@ -376,7 +371,7 @@ På Figur \ref{fig:opret_sp_sekvens} kan man se sekvens-diagrammet for den tredj
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/OpretSporgsmalUseCase.png}
+    \includegraphics[width=1\linewidth]{figures/OpretSporgsmalUseCase.png}
     \caption{Sekvensdiagram over opretning af spørgsmål}
     \label{fig:opret_sp_sekvens}
 \end{figure}
@@ -406,7 +401,7 @@ På Figur \ref{fig:er_diagram_question} er ER-diagrammet for hele spørgsmål-as
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/er_diagram/Qdb.png}
+    \includegraphics[width=1\linewidth]{figures/er_diagram/Qdb.png}
     \caption{ER-diagram over delen af databasen hvor spørgsmålene hører til.}
     \label{fig:er_diagram_question}
 \end{figure}
@@ -456,6 +451,20 @@ Et andet krav er, at man skal kunne få hints til opgaverne. For at man ikke kan
 
 !!!Bedømmelsesmaskine og javascript kode-editor!!!
 
+\subsection{Admin}
+\label{sub:admin}
+Vores admin modul er mere eller mindre direkte importeret fra flask modulet \emph{admin}, og udover at tilføje funktionalitet til uploading og læsning af yaml-filer har vi ikke gjort meget mere med det. Den primære funktion af modulet er at det gør det muligt at oprette et view for hver tabel i databasen, hvor man så kan se hvilket rækker og kolonner der optræder i tabellen, samt oprette, ændre og slette i dataene. Vi har dog opbygget vores database ved hjælp af SQLAlchemy, hvilket vi har fundet ud af ikke arbejder så godt sammen med admin modulet, så meget af funktionaliten fungerer ikke rigtigt. 
+
+Vi har dog som nævnt også tilføjet funktionalitet til at uploade og indlæse filer. Det fungerer på den måde, at når en admin uploader en fil, så bliver den læst af serveren, hvis det da er en korrekt udfyldt yaml fil. Informationerne i filen bliver så brugt til at oprette et nyt spørgsmål, \emph{subject} eller \emph{threshold}, som så tilføjes til databasen. Som det ser ud lige nu bliver filen ikke gemt nogen steder når den er blevet læst.
+
+Lige fra at vi implementerede admin modulet har det dog også kun været en midlertidig løsning, som vi gerne ville have arbejdet videre på, vi har dog aldrig rigtig haft tiden til det. Kundens ville gerne have haft et admin system med mere fokus og funktionalitet baseret på yaml filerne, og hvor det skulle være nemt at se hvad lavede og ændrede. Det har vi også haft nogle tanker omkring hvordan vi ville gribe an, vi er dog ikke nået videre med det.
+
+\subsection{Log}
+\label{sub:log}
+Loggen for vores system er på nuværende tidspunkt meget simpelt implementeret. Det fungerer simpelthen på den måde at hver gang en studerende besvarer et spørgsmål, så bliver der gemt en masse informationer i loggen. Det er f.eks. hvilket bruger og hvilket spørgsmål der er tale om, et tidsstempel, hvad brugeren har svaret, hvor mange hints brugeren brugte og så videre. Alt denne information bliver så gemt i en stor tabel i databasen. Inde på hjemmesiden er der så et link der hedder \emph{log}, som tager en til en side hvor man kan se disse informationer.
+
+Vores implementation af en log er ret simpel, og på længere sigt ville man naturligvis gerne have en mere omfattende lagring af informationer, og især nogle mere brugbare og informative måder at se dataene i loggen på, f.eks. i form af diverse statistikker og grafer. Det er dog igen noget vi ikke har nået at komme så meget videre med på den tid vi har haft.
+
 \subsection{Udestående design- og implementationsopgaver}
 \label{sub:udestaende_design_og_implementationsopgaver}
 Blah blah blah
@@ -488,14 +497,23 @@ På Figur \ref{fig:code_coverage} ses hvordan værktøjet viser hvilke dele af k
     \label{fig:code_coverage}
 \end{figure}
 
+\FloatBarrier
+
 \subsection{Integrationstests}
 \label{sub:integrationstests}
 Når vi har flere færdiggjorte moduler, så skal de testes sammen med realistiske input data, for at se om flere dele af systemet spiller sammen.
 
 \subsection{Usability-tests}
 \label{sub:usability_tests}
-Når vi har en funktionsdygtig brugergrænseflade, så skal der udføres tests af hvor brugervenlig den er.
-\FloatBarrier
+Vi har ladet den ene af vores kunder, Martin, afprøve vores system, og noteret hans kommentarer ned.
+
+Det første der blev kommenteret på var selve layoutet og navigationen af vores webside. Når man gik ind på diverse sider var det ikke nemt at komme tilbage igen hvis man ønskede det, uden direkte at skulle benytte browserens funktion til at gå tilbage. Det var heller ikke åbenlyst at \emph{PoP} logoet i øverste venstre hjørne tog en tilbage til forsiden, eller hvad \emph{Overview} linket inde på admin siden betød.
+
+Det er en pointe som vi helt klart vil tage til os, og vi er også enige i at navigationen af hjemmesiden ikke er helt optimal. Som udviklere ved vi naturligvis hvad enhver knap og funktion gør, men det er naturligvis ikke tilfældet for brugere, og det skal vi selvfølgelig huske at tage hensyn til.
+
+Derudover drejede det sig i høj grad os om selve admin interfacet. Halvdelen af funktionaliteten i vores admin modul virker ikke rigtig sammen med vores database, og den anden halvdel er ikke altid helt åbenlys at få til at virke. Martin så hellere at alt håndtering af spørgsmål og lignende foregik ved at man tilføjer og ændrer i YAML filer, frem for at man skal bruge et webinterface.
+
+Det er igen en kritik vi er meget enige i, admin-interfacet har lige fra det blev indført stået højt på listen over ting vi godt ville have ændret, vi har bare ikke lige haft tiden til det, da vi i stedet har prioriteret at lave de ting der helt manglede at blive lavet.
 
 \section{Brugergrænseflade og interaktionsdesign}
 \label{sec:userinterface}
@@ -510,7 +528,7 @@ På Figur \ref{fig:screenshot_login} ses et screenshot af den første del af vor
 
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/interface/login.png}
+    \includegraphics[width=1\linewidth]{figures/interface/login.png}
     \caption{Screenshot af login-siden.}
     \label{fig:screenshot_login}
 \end{figure}
@@ -519,7 +537,7 @@ På Figur \ref{fig:screenshot_register} ses registreringssiden. Her kan man indt
 
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/interface/register.png}
+    \includegraphics[width=1\linewidth]{figures/interface/register.png}
     \caption{Screenshot af registrerings-siden.}
     \label{fig:screenshot_register}
 \end{figure}
@@ -534,7 +552,7 @@ På forsiden kan den studerende få et overblik over de forskellige \emph{thresh
 
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/interface/overview.png}
+    \includegraphics[width=1\linewidth]{figures/interface/overview.png}
     \caption{Screenshot af index-siden.}
     \label{fig:screenshot_overview}
 \end{figure}
@@ -543,7 +561,7 @@ På Figur \ref{fig:screenshot_subject} ses \emph{subject} siden, hvor den studer
 
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/interface/subject.png}
+    \includegraphics[width=1\linewidth]{figures/interface/subject.png}
     \caption{Screenshot af \emph{subject}-siden.}
     \label{fig:screenshot_subject}
 \end{figure}
@@ -552,7 +570,7 @@ Når den studerende har trykket \emph{begin} vil vedkommende blive stillet en r�
 
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/interface/question.png}
+    \includegraphics[width=1\linewidth]{figures/interface/question.png}
     \caption{Screenshot af spørgsmåls-siden.}
     \label{fig:screenshot_question}
 \end{figure}
@@ -563,7 +581,7 @@ Når den studerende har opnået tilstrækkeligt med point er det valgte \emph{su
 
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/interface/answer.png}
+    \includegraphics[width=1\linewidth]{figures/interface/answer.png}
     \caption{Screenshot af svar-siden.}
     \label{fig:screenshot_answer}
 \end{figure}
@@ -576,7 +594,7 @@ Når man er logget ind som administrator dukker der to nye links op i navigation
 
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/interface/admin_home.png}
+    \includegraphics[width=1\linewidth]{figures/interface/admin_home.png}
     \caption{Screenshot af administratorernes index-side.}
     \label{fig:screenshot_admin_home}
 \end{figure}
@@ -585,7 +603,7 @@ Den første af disse er \emph{Upload File}, som tager en til den side der kan se
 
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/interface/admin_upload.png}
+    \includegraphics[width=1\linewidth]{figures/interface/admin_upload.png}
     \caption{Screenshot af administratorernes upload-side.}
     \label{fig:screenshot_admin_upload}
 \end{figure}
@@ -594,7 +612,7 @@ Størstedelen af de andre links tager en til sider hvor man kan få et overblik 
 
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/interface/admin_subject.png}
+    \includegraphics[width=1\linewidth]{figures/interface/admin_subject.png}
     \caption{Screenshot af administratorernes \emph{subject}-side.}
     \label{fig:screenshot_admin_subject}
 \end{figure}
@@ -603,7 +621,7 @@ Hvis man i navigationsbaren trykker på \emph{Question} åbner man en dropdown m
 
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/interface/admin_question.png}
+    \includegraphics[width=1\linewidth]{figures/interface/admin_question.png}
     \caption{Screenshot af administratorernes spørgsmål-side.}
     \label{fig:screenshot_admin_question}
 \end{figure}
@@ -612,7 +630,7 @@ Det andet nye link på forsiden er \emph{Log}, der tager en til log-siden der ka
 
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/interface/admin_log.png}
+    \includegraphics[width=1\linewidth]{figures/interface/admin_log.png}
     \caption{Screenshot af administratorernes log-side.}
     \label{fig:screenshot_admin_log}
 \end{figure}
@@ -710,6 +728,7 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 07-05-2015 & Første fungerende prototype: & Vores første fungerende prototype af vores projekt er færdig, hvor vi har fået bundet alle de elementer vi løbende har lavet sammen til et sammenhængende hele. Admin aspektet mangler stadig. \\
 21-05-2015 & Endelige protype færdig: & Vi har færdiggjort vores endelige prototype med alle de store elementer på plads. \\
 27-05-2015 & Afsluttende møde med kunde: & Vi havde vores endelige møde med kunden hvor vi præsenterede dem for vores seneste prototype. Kunden virkede imponeret, og vi diskuterede mulighederne for at arbejde videre på projektet. \\
+01-06-2015 & Usability test: & Vi har udført en usability test med kunden Martin, hvor vi har ladet ham prøve at bruge vores system, samtidig med at vi har stået på sidenlinjen og kigget med og noteret hans forskellige kommentarer ned. \\ 
 \end{tabular}
 
 \newpage
