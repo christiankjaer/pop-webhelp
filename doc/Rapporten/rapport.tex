@@ -384,7 +384,7 @@ I dette afsnit beskrives de forskellige apsekter af vores systemdesign. Til sids
 
 \subsection{Valg af frameworks}
 \label{sub:valg_af_frameworks}
-Som før omtalt i Afsnit \ref{sec:formal_og_rammer} har vi valgt at bruge frameworket \emph{Flask} som grundlag for vores webapplikation, der på deres egen hjemmeside\footnote{\url{http://flask.pocoo.org/}} er beskrevet som et såkaldt \emph{microframework}. Det betyder at der ikke følger mange af de ting med som der gør i mange større webframeworks. Flask tilbyder kun HTTP routing og templating. Resten skal man selv finde andre biblioteker til. Vi har valgt det, da der så ikke er så meget, at skulle sætte sig ind i, og det giver mere frihed til at udforme applikationen som kunden og vi synes er bedst.
+Som før omtalt i Afsnit \ref{sec:formal_og_rammer} har vi valgt at bruge frameworket \emph{Flask} som grundlag for vores webapplikation, der på deres egen hjemmeside\footnote{\url{http://flask.pocoo.org/}} er beskrevet som et såkaldt \emph{microframework}. Det betyder at der ikke følger mange af de ting med som der gør i mange større webframeworks. Flask tilbyder kun HTTP routing og templating\footnote{Templating er en måde at vise data fra et programmeringsprog inde i et dokument.}. Resten skal man selv finde andre biblioteker til. Vi har valgt det, da der så ikke er så meget, at skulle sætte sig ind i, og det giver mere frihed til at udforme applikationen som kunden og vi synes er bedst.
 
 \subsection{Strukturering}
 \label{sub:strukturering}
@@ -502,7 +502,7 @@ På Figur \ref{fig:code_coverage} ses hvordan værktøjet viser hvilke dele af k
 
 \subsection{Integrationstests}
 \label{sub:integrationstests}
-Vores integrationstests foregår med samme værktøjer som vores unittests. Forskellen ligger i, hvordan testene er designet. I integrationstests testes at sammenspillet med modulerne er som ønsket, og at man kan bruge flere funktionaliteter på en gang. Vi har ikke haft tid til at skrive mange tests, men vi har tests der opretter databaseelementer, logger en bruger ind og åbner spørgsmål. Undervejs tjekkes så at alt er i overensstemmelse med kravspecifikationen, og at der vises præcist hvad der skal på hjemmesiden.
+Vores integrationstests foregår med samme værktøjer som vores unittests. Forskellen ligger i, hvordan testene er designet. I integrationstests testes at sammenspillet med modulerne er som ønsket, og at man kan bruge flere funktionaliteter på en gang. Vi har ikke haft tid til at skrive mange tests, men vi har tests der opretter databaseelementer, logger en bruger ind og åbner spørgsmål. Undervejs tjekkes så at alt er i overensstemmelse med kravspecifikationen, og at der vises præcist hvad der skal på hjemmesiden. Her er det ikke så vigtigt med dækningsgraden af koden, men det er vigtigt at punkter fra kravspecifikationen testes. Det kan for eksempel være, at brugeren skal kunne logge ind og starte med at besvare spørgsmål.
 
 \subsection{Usability-tests}
 \label{sub:usability_tests}
@@ -680,14 +680,20 @@ Der kan ses en præsentation af de vigtigste elementer i systemet på
     \centering
     \url{https://youtu.be/JexAhDF9XCc}
 \end{framed}
+Den viser hovedfunktionaliteten af systemet. Mere specifikt
+\begin{itemize}
+    \item Registrering som bruger.
+    \item Besvarelse af opgaver.
+    \item Navigering i admin delen.
+\end{itemize}
 
 \subsection{Tænke-højt forsøg}
 \label{sub:taenke_hoejt}
-Vi har udført tænke-højt afprøvning af vores seneste prototype med en mulig bruger for vores system. Vi har ved denne test bedt en testperson om at løse en række opgaver på hjemmesiden som det beskrives i kapitel 9 i \cite{molich}. Ved denne afprøvning har vi identificeret en række problemer ved vores nuværende prototype, som skal addresseres i næste iteration af systemet men som udgangpunkt lykkedes alle opgaverne uden hjælp, og derfor finder vi flowet af applikationen i orden.
+Vi har udført \emph{tænke-højt} afprøvning af vores seneste prototype med en mulig bruger for vores system. Vi har ved denne test bedt en testperson om at løse en række opgaver på hjemmesiden som det beskrives i kapitel 9 i \cite{molich}. Mere specifikt er vedkommende blevet bedt om at logge ind, og derefter besvare et spørgsmål til et par emner. Ved denne afprøvning har vi identificeret en række problemer ved vores nuværende prototype, som skal addresseres i næste iteration af systemet. Som udgangpunkt lykkedes alle opgaverne uden hjælp, og derfor finder vi flowet af applikationen i orden.
 
 Det vi skal have rettet er, at der skal være mere forklarende tekst til funktionaliteten på hjemmesiden. Det skal også fremgå mere tydeligt, hvor man skal indtaste sit svar, og det skal beskrives præcist, hvad der skal ske, når man er færdig med en opgave.
 
-Mange af disse problemer er omkring at bevæge sig rundt på siden, og vi har ikke rigtigt kunnet teste det før prototypen var færdig, derfor kommer vi ikke til at rette det i denne iteration.
+Mange af disse problemer er ikke ting vi har haft så meget fokus på under udviklingen, da vi har været mest interesserede i at få flowet på hjemmesiden til at være optimalt. Nu har vi observeret nogle enkelte problemer ved et \emph{tænke-højt forsøg}, og vi har planer om at rette det i næste iteration af systemet.
 
 \section{Projektsamarbejdet}
 \label{sec:projektsamarbejdet}
@@ -710,7 +716,7 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 
 \section{Changelog}
 \label{sec:changelog}
-\begin{tabular}{l l l}
+\begin{tabular}{p{0.15\textwidth} p{0.1\textwidth} p{0.75\textwidth}}
 08-04-2015 & CKL & Dokument oprettet. \\
 14-04-2015 & CKL & Tilføjet use cases og krav. \\
 16-04-2015 & LSE & Tilføjet UseCaseModel og BCE model. \\
@@ -726,11 +732,12 @@ Link til github: \url{https://github.com/christiankjaer/pop-webhelp}
 20-05-2015 & CKL & Tilføjet afsnit omkring systemdesign af brugere og begyndt på spørgsmål. \\
 30-05-2015 & LSE & Tilføjet flere screenshots og flow-charts. \\
 31-05-2015 & LSE & Tilføjet review af Naur. \\
+01-06-2015 & CKL & Tilføjet integrationstestafsnit og TH-forsøg. \\
 \end{tabular}
 
 \section{Timeline}
 \label{sec:timeline}
-\begin{tabular}{l l p{8cm}}
+\begin{tabular}{p{0.15\textwidth} p{0.35\textwidth} p{0.5\textwidth}}
 11-03-2015 & Første møde med kunde: & Vi har første møde med kunden hvor vi snakker om hvad projektet går ud på og diskuterer krav og løsningsforslag. \\
 16-04-2015 & Andet møde med kunde: & Vi har haft andet møde med kunden, hvor vi har snakket om modellen for de opgaver der skal være i systemet. \\
 22-04-2015 & Internt møde i gruppen: & Vi har diskuteret databasemodeller, og vi er kommet frem til et databaseskema for denne iteration af systemet. Derudover fik vi udviklet i fællesskab på systemet. \\
