@@ -38,7 +38,3 @@ YAML files with wrong format or non-unique values gives ugly error
 --- Report ---
 
 Review of Highsmith
-
-Systemdesign
- - Log
- - Admin
