@@ -131,6 +131,29 @@ Endelig kan man jo som datalog ikke være andet end enig i det syn på programm�
 
 \subsection{Extreme Programming}
 \label{sub:extreme_programming}
+Artiklen diskuterer nogle af de problemer der er ved moderne softwareudvikling, med fokus på hvordan Extreme Programming metodologien håndterer disse udfordringer. Artiklen adresserer det den beskriver som de to væsentligste udfordringer inden for softwareudvikling:
+\begin{itemize}
+\item Hurtig levering af software
+\item Følge med i nærmest konstant forandring
+\end{itemize}
+Specielt de mere traditionelle og \emph{tungere} fremgangsmåder har svært ved at håndtere de hyppige ændringer som markedet kræver, hvorimod Extreme Programming (XP) er en metodologi opbygget netop omkring dette.
+
+En tendens inden for softwareudvikling er at strukturere systemet med øje for funktionalitet der \emph{muligvis} skal implementeres senere og derved spare fremtidigt arbejde, såkaldt \emph{anticipatory design}. Dette fraråder XP dog, til fordel for en fremgangsmåde hvor der kun laves hvad der skal bruges i øjeblikket, uden at lade sig hæmme af spekulation om fremtidig funktionalitet.
+
+Ligesom med andre agile metoder foregår udviklingen i korte iterationer, i tilfældet for XP varer disse iterationer som udgangspunkt 3 uger. 
+
+Et andet grundlæggende princip siger at hver udgivelse skal være så lille som mulig. En fordel ved dette er at det giver hyppigere og mere relevant feedback, der så kan bruges i den efterfølgende udvikling.
+
+En ting der særligt kendetegner XP er dets fokus på refaktorering. En kendt problematik er programkodes tendens til af forskellige grunde at forværres med tiden, og med hyppige ændringer sker denne proces blot endnu hurtigere. XP forsøger at løse dette problem ved at have refaktorering som en central del af processen. I praksis sker dette ved, at når ny funktionalitet skal tilføjes gøres det så simpelt som muligt, hvilket ofte vil involvere refaktorering af dele af koden.
+
+Extreme Programming omfatter en forholdsvis lang række principper og værktøjer, om det er anvendeligt afhænger dog af det pågældende projekt, man kan generelt se metoden som en række retningslinjer og må så vurdere hvad der er relevant for situationen. Særligt er antallet af deltagere i et udviklingsprojekt afgørende for hvilken udviklingsmetode der er bedst egnet. Forholdsvis \emph{lette} metoder som XP er specielt egnet til mindre grupper på omkring 10 personer, hvor kommunikation let kan klares ansigt til ansigt mellem udviklerne. I større projekter med eksempelvis flere hundrede udviklere er kommunikationen dog mere kompliceret, og der vil da være større brug for at koordinere kommunikationen, hvilket kan gøre at andre metoder vil være mere hensigtsmæssige.
+
+Oplagt kan artiklen perpsektivere til udviklingsmetoden præsenteret i artiklen \emph{The M.A.D. Experience} fra forrige delaflevering. På trods af at begge metoder gør brug af en agil fremgangsmåde er der alligevel nogle interessante forskelle mellem dem, særligt med hensyn til hvor de lægger deres fokus. 
+
+En meget væsentlig forskel mellem de to metoder er hvordan de involverer brugerne. Groft sagt virker det i Extreme Programming som om brugernes primære rolle er at supplere udviklerne med story cards, hvor de ved M.A.D. involveres i et noget større omfang. Blandt andet er brugerne tæt involveret i selve designprocessen ved \emph{cooperative design}. Der bruges ved M.A.D. mange ressourcer på indledende og vedvarende analyse af det område systemet skal bruges og af den nuværende praksis. At have sig en omfattende forståelse for brugerne anses som en essentiel forudsætning for at kunne udvikle et godt produkt.
+
+I Extreme Programming spiller unit tests en forholdsvis stor rolle i metoden, da unit tests i XP laves inden selve den kode som de skal teste produceres. Dette bruges som et vigtigt værktøj til at sikre at den funktionalitet der implementeres også løser opgaven som den skal. Til sammenligning fokuserer M.A.D. langt mere på brugertest. I M.A.D. metoden forsøges så vidt muligt at få afprøvet systemet i de omgivelser det skal anvendes. Der er i det hele taget meget fokus på brugervenlighed og \emph{usability} som opnås ved en stor involvering af brugerne. Selvfølgelig vil man ved XP også udvikle brugervenlig software, men det ses nok nærmere som en selvfølge og indgår ikke på samme måde som et punkt i processen.
+
 
 \newpage
 
